@@ -1,0 +1,109 @@
+2012-04-01 17:25:38 Error: [MissingTableException] Table address_parts for model AddressPart was not found in datasource default.
+#0 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(3398): Model->setSource('address_parts')
+#1 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(1276): Model->getDataSource()
+#2 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(1362): Model->schema()
+#3 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(1348): Model->hasField('title', false)
+#4 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(854): Model->hasField(Array)
+#5 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(2789): Model->__get('displayField')
+#6 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(2690): Model->_findList('before', Array)
+#7 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(2648): Model->buildQuery('list', Array)
+#8 E:\xampplite\htdocs\geocan\app\Controller\OmsRegistersController.php(52): Model->find('list')
+#9 [internal function]: OmsRegistersController->add()
+#10 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(OmsRegistersController), Array)
+#11 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#12 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(OmsRegistersController), Object(CakeRequest), Object(CakeResponse))
+#13 E:\xampplite\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2012-04-01 17:26:45 Error: [MissingTableException] Table address_parts for model AddressPart was not found in datasource default.
+#0 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(3398): Model->setSource('address_parts')
+#1 E:\xampplite\htdocs\geocan\lib\Cake\Model\Datasource\DboSource.php(1044): Model->getDataSource()
+#2 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(2653): DboSource->read(Object(OmsRegister), Array)
+#3 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Component\PaginatorComponent.php(172): Model->find('all', Array)
+#4 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Controller.php(1084): PaginatorComponent->paginate(NULL, Array, Array)
+#5 E:\xampplite\htdocs\geocan\app\Controller\OmsRegistersController.php(18): Controller->paginate()
+#6 [internal function]: OmsRegistersController->index()
+#7 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(OmsRegistersController), Array)
+#8 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#9 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(OmsRegistersController), Object(CakeRequest), Object(CakeResponse))
+#10 E:\xampplite\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2012-04-01 17:36:29 Error: [MissingViewException] View file "E:\xampplite\htdocs\geocan\app\View\Patients\index.ctp" is missing.
+#0 E:\xampplite\htdocs\geocan\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(PatientsController), Object(CakeRequest), Object(CakeResponse))
+#4 E:\xampplite\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-01 17:36:38 Error: [MissingViewException] View file "E:\xampplite\htdocs\geocan\app\View\Patients\index.ctp" is missing.
+#0 E:\xampplite\htdocs\geocan\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(PatientsController), Object(CakeRequest), Object(CakeResponse))
+#4 E:\xampplite\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-01 17:36:45 Error: [MissingViewException] View file "E:\xampplite\htdocs\geocan\app\View\OmsRegisters\index.ctp" is missing.
+#0 E:\xampplite\htdocs\geocan\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(OmsRegistersController), Object(CakeRequest), Object(CakeResponse))
+#4 E:\xampplite\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-01 17:37:00 Error: [MissingViewException] View file "E:\xampplite\htdocs\geocan\app\View\OmsRegisters\index.ctp" is missing.
+#0 E:\xampplite\htdocs\geocan\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(OmsRegistersController), Object(CakeRequest), Object(CakeResponse))
+#4 E:\xampplite\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-01 17:37:02 Error: [MissingViewException] View file "E:\xampplite\htdocs\geocan\app\View\OmsRegisters\add.ctp" is missing.
+#0 E:\xampplite\htdocs\geocan\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(OmsRegistersController), Object(CakeRequest), Object(CakeResponse))
+#4 E:\xampplite\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-01 17:38:28 Error: [MissingViewException] View file "E:\xampplite\htdocs\geocan\app\View\OmsRegisters\index.ctp" is missing.
+#0 E:\xampplite\htdocs\geocan\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(OmsRegistersController), Object(CakeRequest), Object(CakeResponse))
+#4 E:\xampplite\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-01 17:40:45 Error: [MissingViewException] View file "E:\xampplite\htdocs\geocan\app\View\Patients\add.ctp" is missing.
+#0 E:\xampplite\htdocs\geocan\lib\Cake\View\View.php(460): View->_getViewFileName(NULL)
+#1 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Controller.php(959): View->render(NULL, NULL)
+#2 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(110): Controller->render()
+#3 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(PatientsController), Object(CakeRequest), Object(CakeResponse))
+#4 E:\xampplite\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-04-01 17:41:03 Error: [MissingTableException] Table address_particulars for model AddressParticular was not found in datasource default.
+#0 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(3398): Model->setSource('address_particu...')
+#1 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(1276): Model->getDataSource()
+#2 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(1362): Model->schema()
+#3 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(1348): Model->hasField('title', false)
+#4 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(854): Model->hasField(Array)
+#5 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(2789): Model->__get('displayField')
+#6 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(2690): Model->_findList('before', Array)
+#7 E:\xampplite\htdocs\geocan\lib\Cake\Model\Model.php(2648): Model->buildQuery('list', Array)
+#8 E:\xampplite\htdocs\geocan\app\Controller\PatientsController.php(50): Model->find('list')
+#9 [internal function]: PatientsController->add()
+#10 E:\xampplite\htdocs\geocan\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PatientsController), Array)
+#11 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#12 E:\xampplite\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(PatientsController), Object(CakeRequest), Object(CakeResponse))
+#13 E:\xampplite\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#14 {main}
+2012-04-05 13:29:36 Error: [MissingControllerException] Controller class GeoCanController could not be found.
+#0 C:\wamp\www\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-04-05 13:29:47 Error: [MissingControllerException] Controller class GeoCanController could not be found.
+#0 C:\wamp\www\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-04-05 13:30:01 Error: [MissingControllerException] Controller class GeoCanController could not be found.
+#0 C:\wamp\www\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-04-05 13:30:18 Error: [MissingControllerException] Controller class GeoCanController could not be found.
+#0 C:\wamp\www\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2012-04-05 13:34:25 Error: [MissingControllerException] Controller class GeoCanController could not be found.
+#0 C:\wamp\www\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
