@@ -1,6 +1,7 @@
 <div class="notes view">
 <h2><?php  echo __('Note');?></h2>
 	<dl>
+	
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>
 			<?php echo h($note['Note']['id']); ?>
