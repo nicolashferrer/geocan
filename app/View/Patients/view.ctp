@@ -68,8 +68,6 @@
 		$i = 0;
 		foreach ($patient['Answer'] as $answer): ?>
 		<tr>
-			<td><?php echo $answer['id'];?></td>
-			<td><?php echo $answer['patient_id'];?></td>
 			<td><?php echo $answer['question_id'];?></td>
 			<td><?php echo $answer['valor'];?></td>
 			<td class="actions">
