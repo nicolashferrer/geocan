@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property Address $Address
  */
 class AddressesController extends AppController {
-
+public $helpers = array('GoogleMapV3'); 
 
 /**
  * index method
