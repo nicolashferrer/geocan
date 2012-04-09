@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
  */
 class PatientsController extends AppController {
 
-
+	//var $name = 'question';
 /**
  * index method
  *
@@ -30,6 +30,8 @@ class PatientsController extends AppController {
 			throw new NotFoundException(__('Invalid patient'));
 		}
 		$this->set('patient', $this->Patient->read(null, $id));
+		$result = $this->Patient->Query('select * from questions left join answers on answers.question_id=questions.id and answers.patient_id='.$id.';');
+		$this->set('results',$result);
 	}
 
 /**
