@@ -99,4 +99,10 @@ class AnswersController extends AppController {
 		$this->Session->setFlash(__('Answer was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allowedActions = array('index', 'view');
+    }
+
 }

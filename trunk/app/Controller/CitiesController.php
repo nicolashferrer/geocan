@@ -97,4 +97,10 @@ class CitiesController extends AppController {
 		$this->Session->setFlash(__('City was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allowedActions = array('index', 'view');
+    }
+
 }

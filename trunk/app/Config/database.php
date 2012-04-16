@@ -62,9 +62,9 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
-		'login' => 'root',
-		'password' => '',
+		'host' => 'localhost:4306',
+		'login' => 'geocan',
+		'password' => 'geocan212',
 		'database' => 'geocan',
 		'prefix' => '',
 		//'encoding' => 'utf8',
