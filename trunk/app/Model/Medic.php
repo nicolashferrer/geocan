@@ -13,6 +13,10 @@ class Medic extends AppModel {
  *
  * @var array
  */
+ 
+ var $displayField = 'nombre';
+ 
+ 
 	public $validate = array(
 		'nombre' => array(
 			'notempty' => array(

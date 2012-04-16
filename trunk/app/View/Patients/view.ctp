@@ -53,7 +53,6 @@
 		<li><?php echo $this->Html->link(__('New Oms Register'), array('controller' => 'oms_registers', 'action' => 'add')); ?> </li>
 	</ul>
 </div>
-
 <div class="related">
 	<h3><?php echo __('Preguntas');?></h3>
 	<?php if (!empty($results)):?>
@@ -70,7 +69,12 @@
 		foreach ($results as $question): ?>
 		<tr>
 			<td><?php echo $question['questions']['descripcion'];?></td>
-			<td><?php echo $question['answers']['valor'];?></td>
+			<td><?php if ($question['answers']['valor'] == 'true')
+							echo 'Si';
+					  elseif ($question['answers']['valor'] == 'false')
+							echo 'No'; 
+					  else 	
+							echo 'No contesto' ?></td>
 			<!--------- ACCIONES DE LAS PREG
 			<td class="actions">
 				<?php echo $this->Html->link(__('Ver'), array('controller' => 'answers', 'action' => 'view', $answer['id'])); ?>
@@ -88,12 +92,10 @@
 	<?php if (!empty($patient['OmsRegister'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Patient Id'); ?></th>
-		<th><?php echo __('Medic Id'); ?></th>
-		<th><?php echo __('Address Part Id'); ?></th>
-		<th><?php echo __('Address Lab Id'); ?></th>
-		<th><?php echo __('Oms Code Id'); ?></th>
+		<th><?php echo __('Medico'); ?></th>
+		<th><?php echo __('Dir. Particular'); ?></th>
+		<th><?php echo __('Dir. Laboral'); ?></th>
+		<th><?php echo __('Codigo OMS'); ?></th>
 		<th><?php echo __('Fecha'); ?></th>
 		<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
@@ -101,12 +103,10 @@
 		$i = 0;
 		foreach ($patient['OmsRegister'] as $omsRegister): ?>
 		<tr>
-			<td><?php echo $omsRegister['id'];?></td>
-			<td><?php echo $omsRegister['patient_id'];?></td>
-			<td><?php echo $omsRegister['medic_id'];?></td>
+			<td><?php echo $omsRegister['Medic']['nombre'].' '.$omsRegister['Medic']['apellido']; ?></td>
 			<td><?php echo $omsRegister['address_part_id'];?></td>
 			<td><?php echo $omsRegister['address_lab_id'];?></td>
-			<td><?php echo $omsRegister['oms_code_id'];?></td>
+			<td><?php echo $omsRegister['Oms']['codigo'];?></td>
 			<td><?php echo $omsRegister['fecha'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('Ver'), array('controller' => 'oms_registers', 'action' => 'view', $omsRegister['id'])); ?>
