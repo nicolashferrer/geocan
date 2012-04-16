@@ -14,6 +14,8 @@ class Patient extends AppModel {
  *
  * @var array
  */
+  var $displayField = 'iniciales';
+ 
 	public $validate = array(
 		'nro_documento' => array(
 			'notempty' => array(
@@ -80,7 +82,7 @@ class Patient extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',
-			'finderQuery' => '',
+			'finderQuery' => 'SELECT OmsRegister.*,Medic.nombre,Medic.apellido,Oms.codigo FROM geocan.oms_registers AS OmsRegister LEFT JOIN medics AS Medic ON Medic.id=OmsRegister.medic_id LEFT JOIN oms_codes AS Oms ON Oms.id=OmsRegister.oms_code_id WHERE OmsRegister.patient_id ={$__cakeID__$}',
 			'counterQuery' => ''
 		)
 	);

@@ -12,6 +12,8 @@ class Answer extends AppModel {
  *
  * @var array
  */
+    var $displayField = 'nombre';
+	
 	public $validate = array(
 		'patient_id' => array(
 			'numeric' => array(
