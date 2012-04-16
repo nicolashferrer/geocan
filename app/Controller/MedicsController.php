@@ -97,4 +97,10 @@ class MedicsController extends AppController {
 		$this->Session->setFlash(__('Medic was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allowedActions = array('index', 'view');
+    }
+
 }

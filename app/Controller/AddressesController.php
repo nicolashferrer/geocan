@@ -97,4 +97,10 @@ public $helpers = array('GoogleMapV3');
 		$this->Session->setFlash(__('Address was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allowedActions = array('index', 'view');
+    }
+
 }
