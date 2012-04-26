@@ -9,6 +9,7 @@
 			<th><?php echo $this->Paginator->sort('address_particular_id');?></th>
 			<th><?php echo $this->Paginator->sort('address_laboral_id');?></th>
 			<th><?php echo $this->Paginator->sort('nro_documento');?></th>
+			<th><?php echo $this->Paginator->sort('edad');?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
@@ -19,12 +20,13 @@
 		<td><?php echo h($patient['Patient']['fecha_nacimiento']); ?>&nbsp;</td>
 		<td><?php echo h($patient['Patient']['sexo']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($patient['AddressParticular']['id'], array('controller' => 'addresses', 'action' => 'view', $patient['AddressParticular']['id'])); ?>
+			<?php echo $this->Html->link($patient['Primary']['id'], array('controller' => 'addresses', 'action' => 'view', $patient['Primary']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($patient['AddressLaboral']['id'], array('controller' => 'addresses', 'action' => 'view', $patient['AddressLaboral']['id'])); ?>
+			<?php echo $this->Html->link($patient['Secondary']['id'], array('controller' => 'addresses', 'action' => 'view', $patient['Secondary']['id'])); ?>
 		</td>
 		<td><?php echo h($patient['Patient']['nro_documento']); ?>&nbsp;</td>
+		<td><?php echo h($patient['Patient']['edad']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $patient['Patient']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $patient['Patient']['id'])); ?>
