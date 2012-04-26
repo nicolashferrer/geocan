@@ -23,10 +23,10 @@
 
 /** General Style Info **/
 body {
-	background: #003d4c;
+	background: #ffffff;
 	color: #fff;
-	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
-	font-size:90%;
+	font-family:'Arial';
+	font-size:100%;
 	margin: 0;
 }
 a {
@@ -79,35 +79,22 @@ p {
 
 #header{
 	padding: 10px 20px;
+	background: #000000;
 }
-#header h1 {
-	line-height:20px;
-	background: #003d4c url('../img/cake.icon.png') no-repeat left;
-	color: #fff;
-	padding: 0px 30px;
-}
-#header h1 a {
-	color: #fff;
-	background: #003d4c;
-	font-weight: normal;
-	text-decoration: none;
-}
-#header h1 a:hover {
-	color: #fff;
-	background: #003d4c;
-	text-decoration: underline;
-}
+
+
 #content{
 	background: #fff;
 	clear: both;
 	color: #333;
-	padding: 10px 20px 40px 20px;
+	padding: 10px 20px 20px 20px;
 	overflow: auto;
 }
 #footer {
 	clear: both;
 	padding: 6px 10px;
-	text-align: right;
+	text-align: center;
+	background: #000000;
 }
 
 /** containers **/
@@ -115,9 +102,8 @@ div.form,
 div.index,
 div.view {
 	float:right;
-	width:76%;
-	border-left:1px solid #666;
-	padding:10px 2%;
+	width:100%;
+	margin: 10px;
 }
 div.actions {
 	float:left;
@@ -256,26 +242,29 @@ dd {
 /** Forms **/
 form {
 	clear: both;
-	margin-right: 20px;
-	padding: 0;
-	width: 95%;
+	padding: 0px;
+	width: 700px;
+	margin-left: auto ;
+	margin-right: auto ;
 }
 fieldset {
-	border: none;
-	margin-bottom: 1em;
-	padding: 16px 10px;
+	border: 2px solid #000000;
+	padding: 10px;
+	margin:0px;
 }
 fieldset legend {
-	color: #e32;
-	font-size: 160%;
+	color: #21BBEF;
+	font-size: 120%;
 	font-weight: bold;
 }
 fieldset fieldset {
-	margin-top: 0;
-	padding: 10px 0 0;
+	border: none;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 fieldset fieldset legend {
-	font-size: 120%;
+	color: #000;
+	font-size: 100%;
 	font-weight: normal;
 }
 fieldset fieldset div {
@@ -284,7 +273,7 @@ fieldset fieldset div {
 }
 form div {
 	clear: both;
-	margin-bottom: 1em;
+	/*margin-bottom: 1em;*/
 	padding: .5em;
 	vertical-align: text-top;
 }
@@ -303,31 +292,36 @@ form div.submit {
 	border: 0;
 	clear: both;
 	margin-top: 10px;
+	text-align:center;
 }
 label {
-	display: block;
-	font-size: 110%;
-	margin-bottom:3px;
+	margin-right:10px;
 }
 input, textarea {
-	clear: both;
-	font-size: 140%;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
-	width:98%;
+	padding: 5px;
+	width: 200px;
+	margin-right:5px;
+}
+
+.inputcorto {
+	width: 40px;
+
 }
 select {
-	clear: both;
-	font-size: 120%;
-	vertical-align: text-bottom;
+	padding: 5px;
+	margin-right:5px;
 }
-select[multiple=multiple] {
-	width: 100%;
-}
+
 option {
-	font-size: 120%;
-	padding: 0 3px;
+
 }
+
+input[type=radio] {
+	font-size: 100%;
+	width: auto;
+	margin:5px;
+}
+
 input[type=checkbox] {
 	clear: left;
 	float: left;
@@ -337,17 +331,7 @@ input[type=checkbox] {
 div.checkbox label {
 	display: inline;
 }
-input[type=radio] {
-	float:left;
-	width:auto;
-	margin: 6px 0;
-	padding: 0;
-	line-height: 26px;
-}
-.radio label {
-	margin: 0 0 6px 20px;
-	line-height: 26px;
-}
+
 input[type=submit] {
 	display: inline;
 	font-size: 110%;
@@ -399,10 +383,11 @@ form .error-message {
 .message {
 	clear: both;
 	color: #fff;
-	font-size: 140%;
+	font-size: 110%;
 	font-weight: bold;
 	margin: 0 0 1em 0;
 	padding: 5px;
+	text-align:center;
 }
 
 .success,
