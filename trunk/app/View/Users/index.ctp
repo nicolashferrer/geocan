@@ -23,7 +23,7 @@
 		<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
 		<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($user['Medics']['id'], array('controller' => 'medics', 'action' => 'view', $user['Medics']['id'])); ?>
+			<?php echo $this->Html->link($user['Medic']['id'], array('controller' => 'medics', 'action' => 'view', $user['Medic']['id'])); ?>
 		</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
