@@ -93,10 +93,32 @@ class OmsCodesController extends AppController {
 		$this->Session->setFlash(__('Oms code was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	//Devuelve los hijos del siguiente nivel para el padre $id	
+	function getSigNivel($id){
 
+	$mixes= $this->OmsCode->find('all', array('conditions' => array('padre' => $id)));
+        
+            $json = array();
+            $i = 0;  
+            foreach ($mixes as $mix) {
+                $json[$i]['descripcion'] = $mix['OmsCode']['descripcion'];
+				$json[$i]['codigo'] = $mix['OmsCode']['codigo'];
+                $i++;
+            }
+		return new CakeResponse(array('body' => json_encode($json)));
+    }
+	
+	//Ayuda para seleccion de codigos OMS
+	public function help() {
+		$codigos = $this->OmsCode->find('list', array('fields' => array('OmsCode.codigo','OmsCode.descripcion'),
+		'conditions' => array('OmsCode.padre' => null)));
+		$this->set(compact('codigos'));
+	}
+	
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allowedActions = array('index', 'view');
     }
-
+	
 }

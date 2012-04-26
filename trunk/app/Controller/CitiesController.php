@@ -97,10 +97,32 @@ class CitiesController extends AppController {
 		$this->Session->setFlash(__('City was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+	
 
+	//Obtener las ciudades a partir de una provincia	
+	function getCiudades($id){
+        if (!$id) {
+            $ciudades = "";
+        }
+        else{
+            $mixes= $this->City->find('all', array('conditions' => array('province_id' => $id)));
+        }
+            $json = array();
+            $i = 0;  
+            foreach ($mixes as $mix) {
+                $json[$i]['id'] = $mix['City']['id'];
+                $json[$i]['nombre'] = $mix['City']['nombre'];
+                $i++;
+            }
+     //   $this->set('jsonVariables', $json);
+    //    $this->render(null, 'ajax', '/elements/json');
+    //    exit(); 
+		return new CakeResponse(array('body' => json_encode($json)));
+    }
+	
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allowedActions = array('index', 'view');
     }
-
+ 
 }
