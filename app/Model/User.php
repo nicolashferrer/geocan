@@ -61,9 +61,9 @@ class User extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Medics' => array(
-			'className' => 'Medics',
-			'foreignKey' => 'medics_id',
+		'Medic' => array(
+			'className' => 'Medic',
+			'foreignKey' => 'medic_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
