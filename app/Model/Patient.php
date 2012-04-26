@@ -14,44 +14,53 @@ class Patient extends AppModel {
  *
  * @var array
  */
-  var $displayField = 'iniciales';
  
+ 
+	var $virtualFields = array(
+		'edad' => "DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(Patient.fecha_nacimiento)), '%Y')+0"
+	);
+
 	public $validate = array(
 		'nro_documento' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Este campo es obligatorio',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-	);
-
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-/**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'AddressParticular' => array(
-			'className' => 'Address',
-			'foreignKey' => 'address_particular_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+		'iniciales' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Este campo es obligatorio',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		),
-		'AddressLaboral' => array(
-			'className' => 'Address',
-			'foreignKey' => 'address_laboral_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+		'fecha_nacimiento' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Este campo es obligatorio',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'date' => array(
+				'rule' => '/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/i',
+				'message' => 'Por favor ingrese la fecha en este formato: DD/MM/AAAA'
+			)
 		)
 	);
+
+	public $belongsTo = array(
+		'Primary' => array('className' => 'Address', 'foreignKey' => 'address_particular_id'),
+		'Secondary' => array('className' => 'Address', 'foreignKey' => 'address_laboral_id')
+		);
 
 /**
  * hasMany associations
@@ -82,9 +91,23 @@ class Patient extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',
-			'finderQuery' => 'SELECT OmsRegister.*,Medic.nombre,Medic.apellido,Oms.codigo FROM geocan.oms_registers AS OmsRegister LEFT JOIN medics AS Medic ON Medic.id=OmsRegister.medic_id LEFT JOIN oms_codes AS Oms ON Oms.id=OmsRegister.oms_code_id WHERE OmsRegister.patient_id ={$__cakeID__$}',
+			'finderQuery' => '',
 			'counterQuery' => ''
 		)
 	);
+
+        function beforeSave()
+        {
+            if (!empty($this->data['Patient']['fecha_nacimiento']))
+            {
+                $this->data['Patient']['fecha_nacimiento'] = implode('-', array_reverse(explode('/', $this->data['Patient']['fecha_nacimiento'])));
+            }
+            if (!empty($this->data['Patient']['nro_documento']))
+            {
+                $documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
+                $this->data['Patient']['nro_documento'] = $documentoEncriptado;
+            }
+            return true;
+        }
 
 }

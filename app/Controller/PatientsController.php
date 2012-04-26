@@ -1,5 +1,6 @@
 <?php
 App::uses('AppController', 'Controller');
+App::uses('Security', 'Utility');
 /**
  * Patients Controller
  *
@@ -7,7 +8,7 @@ App::uses('AppController', 'Controller');
  */
 class PatientsController extends AppController {
 
-	//var $name = 'question';
+	public $helpers = array('Js' => array('Jquery'));
 /**
  * index method
  *
@@ -30,8 +31,6 @@ class PatientsController extends AppController {
 			throw new NotFoundException(__('Invalid patient'));
 		}
 		$this->set('patient', $this->Patient->read(null, $id));
-		$result = $this->Patient->Query('select * from questions left join answers on answers.question_id=questions.id and answers.patient_id='.$id.' where questions.visible=true;');
-		$this->set('results',$result);
 	}
 
 /**
@@ -42,16 +41,37 @@ class PatientsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Patient->create();
-			if ($this->Patient->save($this->request->data)) {
+	//		debug($this->request->data);
+			if ($this->request->data['Control']['cargo_particular'] == 'false') {
+				unset($this->request->data['Primary']);
+			}
+			if ($this->request->data['Control']['cargo_laboral'] == 'false') {
+				unset($this->request->data['Secondary']);
+			}
+			unset($this->request->data['Control']);
+			
+			//Limpio las preguntas que no contesto
+			$respuestas = $this->request->data['Answer'];
+			foreach($respuestas as $indice => $respuesta) {
+				if ($respuesta['valor'] == '') {
+					unset($this->request->data['Answer'][$indice]);
+				}
+			} 
+		
+		//	debug($this->request->data);	
+		//	exit();
+			if ($this->Patient->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The patient has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The patient could not be saved. Please, try again.'));
 			}
 		}
-		$addressParticulars = $this->Patient->AddressParticular->find('list');
-		$addressLaborals = $this->Patient->AddressLaboral->find('list');
-		$this->set(compact('addressParticulars', 'addressLaborals'));
+		Controller::loadModel('Province');
+		$provinces = $this->Province->find('list');
+		Controller::loadModel('Question');
+		$questions = $this->Question->find('all',array('conditions' => array('Question.visible' => '1')));
+		$this->set(compact('provinces','questions'));
 	}
 
 /**
@@ -75,9 +95,9 @@ class PatientsController extends AppController {
 		} else {
 			$this->request->data = $this->Patient->read(null, $id);
 		}
-		$addressParticulars = $this->Patient->AddressParticular->find('list');
-		$addressLaborals = $this->Patient->AddressLaboral->find('list');
-		$this->set(compact('addressParticulars', 'addressLaborals'));
+//		$addressParticulars = $this->Patient->AddressParticular->find('list');
+//		$addressLaborals = $this->Patient->AddressLaboral->find('list');
+//		$this->set(compact('addressParticulars', 'addressLaborals'));
 	}
 
 /**
@@ -101,10 +121,10 @@ class PatientsController extends AppController {
 		$this->Session->setFlash(__('Patient was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
-
+	
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allowedActions = array('index', 'view');
     }
-
+	
 }
