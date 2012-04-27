@@ -7,7 +7,7 @@
 		echo $this->Form->input('username');
 		echo $this->Form->input('password');
 		echo $this->Form->input('group_id');
-		echo $this->Form->input('medics_id');
+		echo $this->Form->input('medic_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit'));?>

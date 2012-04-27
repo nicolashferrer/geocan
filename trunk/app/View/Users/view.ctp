@@ -33,7 +33,7 @@
 		</dd>
 		<dt><?php echo __('Medics'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($user['Medics']['id'], array('controller' => 'medics', 'action' => 'view', $user['Medics']['id'])); ?>
+			<?php echo $this->Html->link($user['Medics']['id'], array('controller' => 'medics', 'action' => 'view', $user['Medic']['id'])); ?>
 			&nbsp;
 		</dd>
 	</dl>
