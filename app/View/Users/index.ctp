@@ -8,7 +8,7 @@
 			<th><?php echo $this->Paginator->sort('group_id');?></th>
 			<th><?php echo $this->Paginator->sort('created');?></th>
 			<th><?php echo $this->Paginator->sort('modified');?></th>
-			<th><?php echo $this->Paginator->sort('medics_id');?></th>
+			<th><?php echo $this->Paginator->sort('medic_id');?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 	</tr>
 	<?php
