@@ -73,23 +73,20 @@ class User extends AppModel {
 	public function beforeSave() {
 		//Encriptacion del password
         $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
-		
-		/*
-		* Cuando modificamos un user, debemos actualizar manualmente los ARo. 
-		*/
-		// Verificar si sus permisos de grupo han cambiado
-		$oldgroupid = $this->User->field('group_id');
-		if ($oldgroupid !== $this->data['User']['group_id']) {
-			$aro =& $this->Acl->Aro;
-			$user = $aro->findByForeignKeyAndModel($this->data['User']['id'], 'User');
-			$group = $aro->findByForeignKeyAndModel($this->data['User']['group_id'], 'Group');
-			// Guardar en la tabla ARO
-			$aro->id = $user['Aro']['id'];
-			$aro->save(array('parent_id' => $group['Aro']['id']));
-		}
-		
+			
         return true;
     }
+	
+	function afterSave($created) {
+		if (!$created) {
+			$parent = $this->parentNode();
+			$parent = $this->node($parent);
+			$node = $this->node();
+			$aro = $node[0];
+			$aro['Aro']['parent_id'] = $parent[0]['Aro']['id'];
+			$this->Aro->save($aro);
+		}
+	}
 	
 	//ACL
 	public $name = 'User';
