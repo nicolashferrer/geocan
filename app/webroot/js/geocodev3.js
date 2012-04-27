@@ -38,7 +38,7 @@ function buscar(tipoDireccion) {
 	
 	if ((calle != "" && altura !="") && (isNaN(altura)==false)) {
 		var address = calle + ' ' + altura_redondeada + ', ' + localidad + ', ' + provincia + ', Argentina';
-		//alert(address);
+		//alert("Busco La direccion: " + address);
 		processGeocoding(address, direccionGoogle, tipoDireccion); 
 	} else {
 		alert("Ingresa bien la direccion!");
@@ -84,6 +84,7 @@ function buscar(tipoDireccion) {
 			var lng = data[0].geometry.location.lng();
 		
 			var direccion = data[0].formatted_address;
+			//alert("Encontre La direccion: " + direccion);
 			var direccion_partida = direccion.split(',');
 		
 		
