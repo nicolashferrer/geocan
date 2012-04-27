@@ -48,7 +48,7 @@ class UsersController extends AppController {
 			}
 		}
 		$groups = $this->User->Group->find('list');
-		//$medics = $this->User->Medic->find('list');
+		$medics = $this->User->Medic->find('list');
 		$this->set(compact('groups', 'medics'));
 	}
 
