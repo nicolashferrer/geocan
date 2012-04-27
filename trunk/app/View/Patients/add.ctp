@@ -107,7 +107,7 @@ $(document).ready(function() {
 					<?php endforeach; ?>
 					</select><select id="localidadesParticular">
 						<option value="0" selected>Seleccionar</option>
-					</select><input type="text" size="25" value="Nombre de la Calle" id="calleParitulcar"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaParticular">
+					</select><input type="text" size="25" value="Nombre de la Calle" id="calleParticular"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaParticular">
 					<a href="JavaScript:buscar('Particular');" id=comprobarParticular"><img src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 				</fieldset>
 				<fieldset>
