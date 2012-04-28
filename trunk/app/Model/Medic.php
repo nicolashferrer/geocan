@@ -16,6 +16,9 @@ class Medic extends AppModel {
  
  var $displayField = 'nombre';
  
+ 	var $virtualFields = array(
+		'nombrecompleto' => " CONCAT(Medic.nombre,' ',Medic.apellido) "
+	);
  
 	public $validate = array(
 		'nombre' => array(
