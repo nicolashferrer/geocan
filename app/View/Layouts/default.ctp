@@ -33,7 +33,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('start/jquery-ui-1.8.19.custom'); // Css de Jquery UI
 	
-	echo $this->fetch('meta');
+		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 		echo $this->Html->script('jquery-1.7.2.min'); // Include jQuery library
@@ -54,7 +54,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			GeoCan © 2012
+			GeoCan &copy; 2012
 		</div>
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
