@@ -47,7 +47,7 @@ class NotesController extends AppController {
 				$this->Session->setFlash(__('The note could not be saved. Please, try again.'));
 			}
 		}
-		$medics = $this->Note->Medic->find('list');
+		$medics = $this->Note->Medic->find('list',array('fields'=>array('Medic.nombrecompleto')));
 		$omsRegisters = $this->Note->OmsRegister->find('list');
 		$this->set(compact('medics', 'omsRegisters'));
 	}
