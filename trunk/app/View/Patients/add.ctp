@@ -13,8 +13,7 @@ $(document).ready(function() {
 	dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
 	dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
 	showOtherMonths: true,
-	selectOtherMonths: true,
-	altFormat: "yy-mm-dd"  // IMPORTANTISIMOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+	selectOtherMonths: true
 	});
 
     $('#provinciasParticular').change(function() {
@@ -63,18 +62,92 @@ $(document).ready(function() {
 		
 	});
 	
+	$('#PatientAddForm').submit(function() {
+        
+		var estadoParticular = $('#chParticular').is(':checked');
+		var estadoLaboral = $('#chLaboral').is(':checked');
+		var cargoParticular = $('#ControlCargoParticular').val();
+		var cargoLaboral = $('#ControlCargoLaboral').val();	
+		
+		if (estadoParticular == true && cargoParticular == "false") {
+			alert("Debe ingresar una direccion particular.");
+			return false;
+		}
+		
+		if (estadoLaboral == true && cargoLaboral == "false") {
+			alert("Debe ingresar una direccion laboral.");
+			return false;
+		}
+		
+		return true;
+		
+    });
+	
+	
 	$('#provinciasParticular').val(1);
 	$('#provinciasParticular').trigger("change");
 	$('#provinciasLaboral').val(1);
 	$('#provinciasLaboral').trigger("change");
+	
+	checkParticular();
+	checkLaboral();
 });
+
+	function checkParticular() {
+	
+		var estado = $('#chParticular').is(':checked');
+		
+		if (estado == false) {
+		
+			$('#provinciasParticular').attr("disabled", "disabled");
+			$('#localidadesParticular').attr("disabled", "disabled");
+			$('#calleParticular').attr("disabled", "disabled");
+			$('#alturaParticular').attr("disabled", "disabled");
+			$('#imgbusquedaParticular').css("display", "none");
+			$('#ControlCargoParticular').val("false");	
+			
+		} else {
+		
+			$('#provinciasParticular').removeAttr("disabled");
+			$('#localidadesParticular').removeAttr("disabled");
+			$('#calleParticular').removeAttr("disabled");
+			$('#alturaParticular').removeAttr("disabled");
+			$('#imgbusquedaParticular').css("display", "inline");
+		
+		}
+	}
+	
+	function checkLaboral() {
+	
+		var estado = $('#chLaboral').is(':checked');
+		
+			if (estado == false) {
+			
+				$('#provinciasLaboral').attr("disabled", "disabled");
+				$('#localidadesLaboral').attr("disabled", "disabled");
+				$('#calleLaboral').attr("disabled", "disabled");
+				$('#alturaLaboral').attr("disabled", "disabled");
+				$('#imgbusquedaLaboral').css("display", "none");
+				$('#ControlCargoLaboral').val("false");	
+				
+			} else {
+			
+				$('#provinciasLaboral').removeAttr("disabled");
+				$('#localidadesLaboral').removeAttr("disabled");
+				$('#calleLaboral').removeAttr("disabled");
+				$('#alturaLaboral').removeAttr("disabled");
+				$('#imgbusquedaLaboral').css("display", "inline");
+			
+			}
+	}
+
+
 </script>
 <div class="patients form">
 <?php echo $this->Form->create('Patient');?>
 	<fieldset>
-		<legend><?php echo __('Información Basica'); ?></legend>
+		<legend><?php echo __('Informaci&oacute;n Basica'); ?></legend>
 	<?php
-	
 		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
 		echo $this->Form->hidden('Control.cargo_laboral', array('value' => 'false'));
 		
@@ -88,7 +161,7 @@ $(document).ready(function() {
 		echo $this->Form->hidden('Secondary.longitud');
 		echo $this->Form->hidden('Secondary.direccion');
 		
-		echo $this->Form->input('nro_documento',array('label' => 'Número De Documento'));
+		echo $this->Form->input('nro_documento',array('label' => 'N&uacute;mero De Documento'));
 		echo $this->Form->input('iniciales');
 		echo $this->Form->input('fecha_nacimiento',array('label' => 'Fecha De Nacimiento', 'type' => 'text'));
 		$options=array('M'=>'Masculino','F'=>'Femenino');
@@ -100,7 +173,7 @@ $(document).ready(function() {
 		
 		?>
 				<fieldset>
-					<legend><?php echo __('Direccion Particular'); ?></legend>
+					<legend><input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"><?php echo __('Direccion Particular'); ?></legend>
 					<select id="provinciasParticular">
 					<?php foreach ($provinces as $key => $province): ?>
 						<option value="<?php echo $key ?>"><?php echo $province ?></option>
@@ -108,10 +181,10 @@ $(document).ready(function() {
 					</select><select id="localidadesParticular">
 						<option value="0" selected>Seleccionar</option>
 					</select><input type="text" size="25" value="Nombre de la Calle" id="calleParticular"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaParticular">
-					<a href="JavaScript:buscar('Particular');" id=comprobarParticular"><img src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
+					<a href="JavaScript:buscar('Particular');" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 				</fieldset>
 				<fieldset>
-					<legend><?php echo __('Direccion Laboral'); ?></legend>
+					<legend><input type="checkbox" id="chLaboral" value="" onclick="checkLaboral();"><?php echo __('Direccion Laboral'); ?></legend>
 					<select id="provinciasLaboral">
 					<?php foreach ($provinces as $key => $province): ?>
 						<option value="<?php echo $key ?>"><?php echo $province ?></option>
@@ -120,7 +193,7 @@ $(document).ready(function() {
 					<select id="localidadesLaboral">
 						<option value="0" selected>Seleccionar</option>
 					</select><input type="text" size="25" value="Nombre de la Calle" id="calleLaboral"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaLaboral">
-					<a href="JavaScript:buscar('Laboral');" id=comprobarLaboral"><img src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
+					<a href="JavaScript:buscar('Laboral');" id="comprobarLaboral"><img id="imgbusquedaLaboral" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 				</fieldset>
 		</fieldset>
 		<br>
