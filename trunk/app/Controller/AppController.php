@@ -54,6 +54,9 @@ class AppController extends Controller {
 		
 		//Esto hace que la acción 'display' sea pública
 		$this->Auth->allowedActions = array('display');
+		
+		$this->currentUser = $this->Auth->user();
+		$this->isAuthed = !empty($this->currentUser); 
     }
 	
 	/**
@@ -118,4 +121,8 @@ class AppController extends Controller {
 		debug($log);
 	}
 
+	function beforeRender() {
+	   $this->set('auth', $this->Auth->user());
+	   $this->set('isAuthed', $this->isAuthed); 
+	} 
 }
