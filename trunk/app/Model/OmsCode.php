@@ -6,6 +6,12 @@ App::uses('AppModel', 'Model');
  * @property OmsRegister $OmsRegister
  */
 class OmsCode extends AppModel {
+
+ var $displayField = 'codigo_desc';
+ 
+  	var $virtualFields = array(
+		'codigo_desc' => " CONCAT(OmsCode.codigo,' - ',OmsCode.descripcion) "
+	);
 /**
  * Validation rules
  *

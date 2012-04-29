@@ -47,12 +47,10 @@ class OmsRegistersController extends AppController {
 				$this->Session->setFlash(__('The oms register could not be saved. Please, try again.'));
 			}
 		}
-	//	$this->set('patient', $this->OmsRegister->Patient->read(null, $id));
+		$this->set('patient', $this->OmsRegister->Patient->read(null, $id));
 		$medics = $this->OmsRegister->Medic->find('list');
-		$addressParts = $this->OmsRegister->AddressPart->find('list');
-		$addressLabs = $this->OmsRegister->AddressLab->find('list');
 		$omsCodes = $this->OmsRegister->OmsCode->find('list');
-		$this->set(compact('medics', 'addressParts', 'addressLabs', 'omsCodes'));
+		$this->set(compact('medics','omsCodes'));
 	}
 
 /**

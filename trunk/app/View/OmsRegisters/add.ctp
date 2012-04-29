@@ -13,8 +13,8 @@
 		
 		// Aca van los ids de las direcciones actuales del usuario por si es necesario usarlas
 		
-		echo $this->Form->hidden('Aux.particular_actual', array('value' => $patient['Primary']['id']));
-		echo $this->Form->hidden('Aux.laboral_actual', array('value' => $patient['Secondary']['id']));
+		echo $this->Form->hidden('Control.particular_actual', array('value' => $patient['Primary']['id']));
+		echo $this->Form->hidden('Control.laboral_actual', array('value' => $patient['Secondary']['id']));
 		
 		// Control para ver si el usuario carga nuevas direcciones o se usan las anteriores		
 		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
