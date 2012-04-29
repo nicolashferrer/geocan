@@ -80,6 +80,22 @@ p {
 #header{
 	padding: 10px 20px;
 	background: #000000;
+	position:relative;
+}
+
+#header-logo{
+	padding: 10px 20px;
+	background: #000000;
+	width: 300px;
+}
+
+#header-statusbar{
+	padding: 5px 20px;
+	background: #111111;
+	text-align: right;
+	position:absolute;
+	bottom:0;
+	right:0;
 }
 
 #header a{

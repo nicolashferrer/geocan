@@ -45,8 +45,17 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 <body>
 	<div id="container">
 		<div id="header">
+			<div id="header-logo">
 			<?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?>
-			<?php echo $this->Html->link('Salir!',array('controller' => 'users', 'action' => 'logout'))?>
+			</div>
+			<div id="header-statusbar">
+			<?php if ($isAuthed): ?>
+				<?php echo $this->Form->label('Usuario:'); ?>
+				<?php echo $this->Form->label($auth['username']); ?>
+				<?php echo $this->Form->label('|'); ?>
+				<?php echo $this->Html->link('Salir',array('controller' => 'users', 'action' => 'logout'))?>
+			<?php endif; ?>
+			</div>
 		</div>
 		<div id="content">
 
