@@ -34,8 +34,8 @@
 			</ul>
 		</div>
 	</fieldset>
-</div>
-<div class="related">
+
+
 	<fieldset>
 		<legend><?php echo __('Preguntas'); ?></legend>
 			<?php if (!empty($results)):?>
@@ -66,8 +66,8 @@
 			</table>
 	</fieldset>
 <?php endif; ?>
-</div>
-<div class="related">
+
+
 	<fieldset>
 		<legend><?php echo __('Registros de OMS'); ?></legend>
 			<?php if (!empty($patient['OmsRegister'])):?>
@@ -101,8 +101,9 @@
 
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('Nuevo OMS'), array('controller' => 'oms_registers', 'action' => 'add'));?> </li>
+				<li><?php echo $this->Html->link(__('Nuevo OMS'), array('controller' => 'oms_registers', 'action' => 'add',$patient['Patient']['id']));?> </li>
 			</ul>
 		</div>
 	</fieldset>
+
 </div>

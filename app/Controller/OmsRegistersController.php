@@ -37,7 +37,7 @@ class OmsRegistersController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($id = null) {
 		if ($this->request->is('post')) {
 			$this->OmsRegister->create();
 			if ($this->OmsRegister->save($this->request->data)) {
@@ -47,12 +47,12 @@ class OmsRegistersController extends AppController {
 				$this->Session->setFlash(__('The oms register could not be saved. Please, try again.'));
 			}
 		}
-		$patients = $this->OmsRegister->Patient->find('list');
+	//	$this->set('patient', $this->OmsRegister->Patient->read(null, $id));
 		$medics = $this->OmsRegister->Medic->find('list');
 		$addressParts = $this->OmsRegister->AddressPart->find('list');
 		$addressLabs = $this->OmsRegister->AddressLab->find('list');
 		$omsCodes = $this->OmsRegister->OmsCode->find('list');
-		$this->set(compact('patients', 'medics', 'addressParts', 'addressLabs', 'omsCodes'));
+		$this->set(compact('medics', 'addressParts', 'addressLabs', 'omsCodes'));
 	}
 
 /**

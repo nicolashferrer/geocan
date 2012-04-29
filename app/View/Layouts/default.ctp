@@ -46,6 +46,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 	<div id="container">
 		<div id="header">
 			<?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?>
+			<?php echo $this->Html->link('Salir!',array('controller' => 'users', 'action' => 'logout'))?>
 		</div>
 		<div id="content">
 
