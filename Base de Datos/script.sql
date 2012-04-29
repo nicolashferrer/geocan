@@ -3,7 +3,7 @@
 -- Server version:               5.1.37 - Source distribution
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-04-29 18:18:08
+-- Date/time:                    2012-04-29 19:34:04
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -364,6 +364,7 @@ CREATE TABLE IF NOT EXISTS `oms_registers` (
   `address_part_id` int(10) unsigned DEFAULT NULL,
   `address_lab_id` int(10) unsigned DEFAULT NULL,
   `oms_code_id` int(10) unsigned NOT NULL,
+  `estadio` tinyint(1) unsigned DEFAULT NULL,
   `fecha` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_oms_paciente` (`patient_id`),
