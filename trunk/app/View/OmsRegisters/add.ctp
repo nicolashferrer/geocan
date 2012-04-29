@@ -3,30 +3,29 @@
 	<fieldset>
 		<legend><?php echo __('Add Oms Register'); ?></legend>
 	<?php
-		echo $this->Form->input('patient_id');
+	
+		// debug($patient);
+		//debug($patient['Primary']['id']);
+		//debug($patient['Secondary']['id']);
+	
+		echo $this->Form->hidden('patient_id', array('value' => $patient['Patient']['id']));
+		
+		
+		// Aca van los ids de las direcciones actuales del usuario por si es necesario usarlas
+		
+		echo $this->Form->hidden('Aux.particular_actual', array('value' => $patient['Primary']['id']));
+		echo $this->Form->hidden('Aux.laboral_actual', array('value' => $patient['Secondary']['id']));
+		
+		// Control para ver si el usuario carga nuevas direcciones o se usan las anteriores		
+		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
+		echo $this->Form->hidden('Control.cargo_laboral', array('value' => 'false'));
+
 		echo $this->Form->input('medic_id');
-		echo $this->Form->input('address_part_id');
-		echo $this->Form->input('address_lab_id');
 		echo $this->Form->input('oms_code_id');
+		
 		echo $this->Form->input('fecha');
+		
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit'));?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Html->link(__('List Oms Registers'), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List Patients'), array('controller' => 'patients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Patient'), array('controller' => 'patients', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Medics'), array('controller' => 'medics', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Medic'), array('controller' => 'medics', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Addresses'), array('controller' => 'addresses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Address Part'), array('controller' => 'addresses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Oms Codes'), array('controller' => 'oms_codes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Oms Code'), array('controller' => 'oms_codes', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Notes'), array('controller' => 'notes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Note'), array('controller' => 'notes', 'action' => 'add')); ?> </li>
-	</ul>
+<?php echo $this->Form->end(__('Crear'));?>
 </div>
