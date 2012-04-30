@@ -102,11 +102,13 @@ class Patient extends AppModel {
             {
                 $this->data['Patient']['fecha_nacimiento'] = implode('-', array_reverse(explode('/', $this->data['Patient']['fecha_nacimiento'])));
             }
-            if (!empty($this->data['Patient']['nro_documento']))
-            {
-                $documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
-                $this->data['Patient']['nro_documento'] = $documentoEncriptado;
-            }
+			if (empty($this->data['Patient']['id'])) { // Si es una alta de nuevo paciente...
+				if (!empty($this->data['Patient']['nro_documento']))
+				{
+					$documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
+					$this->data['Patient']['nro_documento'] = $documentoEncriptado;
+				}
+			}
             return true;
         }
 		
