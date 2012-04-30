@@ -143,7 +143,7 @@
 	
 		//debug($provinces);
 	
-		// debug($patient);
+		//debug($patient);
 		//debug($patient['Primary']['id']);
 		//debug($patient['Secondary']['id']);
 	
