@@ -1,103 +1,38 @@
 <script type="text/javascript" charset="utf-8">
 	
-$(document).ready(function() {
-
-	$('#PatientFechaNacimiento').datepicker({ dateFormat: "dd/mm/yy", 
-	changeMonth: true, changeYear: true, constrainInput: true, 
-	showOn: "button", buttonImage: "<?php echo $this->webroot; ?>img/calendar.png", buttonImageOnly: true,
-	yearRange: "1930:2020", monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-	'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-	monthNamesShort: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-	'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-	dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
-	dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
-	dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
-	showOtherMonths: true,
-	selectOtherMonths: true
-	});
-
-    $('#provinciasParticular').change(function() {
-
-		var $id = $('#provinciasParticular').val();
-		if ($id > 0) {
-			$.getJSON('<?php echo $this->Html->url(array(
-	"controller" => "cities",
-	"action" => "getCiudades"));?>' + '/' + $(this).val(), function(data){
-				$('#localidadesParticular').empty();
-				$.each(data, function(optionIndex, option) {
-					var html = "<option value=\"" + option['id'] + "\">" + option['nombre'] + "</option>";
-					$('#localidadesParticular').append(html);
-				})
-				if ($id == 1) { //La provincia es Buenos Aires
-					$('#localidadesParticular').val(1); // Selecciono Bahia Blanca
-				}
-			});
-		} else {
-			$('#localidadesParticular').empty();
-		}
+	function checkLaboral() {
+	
+		var estado = $('#chLaboral').is(':checked');
+		
+		$('#fsLaboral').toggle();
+		
+			if (estado == true) {
 			
-	});
+				$('#provinciasLaboral').attr("disabled", "disabled");
+				$('#localidadesLaboral').attr("disabled", "disabled");
+				$('#calleLaboral').attr("disabled", "disabled");
+				$('#alturaLaboral').attr("disabled", "disabled");
+				$('#imgbusquedaLaboral').css("display", "none");
+				$('#ControlCargoLaboral').val("false");	
+				
+			} else {
+			
+				$('#provinciasLaboral').removeAttr("disabled");
+				$('#localidadesLaboral').removeAttr("disabled");
+				$('#calleLaboral').removeAttr("disabled");
+				$('#alturaLaboral').removeAttr("disabled");
+				$('#imgbusquedaLaboral').css("display", "inline");
+			
+			}
+	}
 	
-	$('#provinciasLaboral').change(function() {
-	
-	
-		var $id = $('#provinciasLaboral').val();
-		if ($id > 0) {
-			$.getJSON('<?php echo $this->Html->url(array(
-	"controller" => "cities",
-	"action" => "getCiudades"));?>' + '/' + $(this).val(), function(data){
-				$('#localidadesLaboral').empty();
-				$.each(data, function(optionIndex, option) {
-					var html = "<option value=\"" + option['id'] + "\">" + option['nombre'] + "</option>";
-					$('#localidadesLaboral').append(html);
-				})
-				if ($id == 1) { //La provincia es Buenos Aires
-					$('#localidadesLaboral').val(1); // Selecciono Bahia Blanca
-				}
-			});
-		} else {
-			$('#localidadesLaboral').empty();
-		}
-		
-		
-	});
-	
-	$('#PatientAddForm').submit(function() {
-        
-		var estadoParticular = $('#chParticular').is(':checked');
-		var estadoLaboral = $('#chLaboral').is(':checked');
-		var cargoParticular = $('#ControlCargoParticular').val();
-		var cargoLaboral = $('#ControlCargoLaboral').val();	
-		
-		if (estadoParticular == true && cargoParticular == "false") {
-			alert("Debe ingresar una direccion particular.");
-			return false;
-		}
-		
-		if (estadoLaboral == true && cargoLaboral == "false") {
-			alert("Debe ingresar una direccion laboral.");
-			return false;
-		}
-		
-		return true;
-		
-    });
-	
-	
-	$('#provinciasParticular').val(1);
-	$('#provinciasParticular').trigger("change");
-	$('#provinciasLaboral').val(1);
-	$('#provinciasLaboral').trigger("change");
-	
-	checkParticular();
-	checkLaboral();
-});
-
 	function checkParticular() {
 	
 		var estado = $('#chParticular').is(':checked');
 		
-		if (estado == false) {
+		$('#fsParticular').toggle();
+		
+		if (estado == true) {
 		
 			$('#provinciasParticular').attr("disabled", "disabled");
 			$('#localidadesParticular').attr("disabled", "disabled");
@@ -117,31 +52,86 @@ $(document).ready(function() {
 		}
 	}
 	
-	function checkLaboral() {
+	$(document).ready(function() {
 	
-		var estado = $('#chLaboral').is(':checked');
-		
-			if (estado == false) {
+				$('#provinciasParticular').change(function() {
+
+				var $id = $('#provinciasParticular').val();
+
+				if ($id > 0) {
+					$.getJSON('<?php echo $this->Html->url(array(
+			"controller" => "cities",
+			"action" => "getCiudades"));?>' + '/' + $(this).val(), function(data){
+						$('#localidadesParticular').empty();
+						$.each(data, function(optionIndex, option) {
+							var html = "<option value=\"" + option['id'] + "\">" + option['nombre'] + "</option>";
+							$('#localidadesParticular').append(html);
+						})
+						if ($id == 1) { //La provincia es Buenos Aires
+							$('#localidadesParticular').val(1); // Selecciono Bahia Blanca
+						}
+					});
+				} else {
+					$('#localidadesParticular').empty();
+				}
+					
+			});
 			
-				$('#provinciasLaboral').attr("disabled", "disabled");
-				$('#localidadesLaboral').attr("disabled", "disabled");
-				$('#calleLaboral').attr("disabled", "disabled");
-				$('#alturaLaboral').attr("disabled", "disabled");
-				$('#imgbusquedaLaboral').css("display", "none");
-				$('#ControlCargoLaboral').val("false");	
+			$('#provinciasLaboral').change(function() {
+			
+			
+				var $id = $('#provinciasLaboral').val();
+				if ($id > 0) {
+					$.getJSON('<?php echo $this->Html->url(array(
+			"controller" => "cities",
+			"action" => "getCiudades"));?>' + '/' + $(this).val(), function(data){
+						$('#localidadesLaboral').empty();
+						$.each(data, function(optionIndex, option) {
+							var html = "<option value=\"" + option['id'] + "\">" + option['nombre'] + "</option>";
+							$('#localidadesLaboral').append(html);
+						})
+						if ($id == 1) { //La provincia es Buenos Aires
+							$('#localidadesLaboral').val(1); // Selecciono Bahia Blanca
+						}
+					});
+				} else {
+					$('#localidadesLaboral').empty();
+				}
 				
-			} else {
+				
+			});
 			
-				$('#provinciasLaboral').removeAttr("disabled");
-				$('#localidadesLaboral').removeAttr("disabled");
-				$('#calleLaboral').removeAttr("disabled");
-				$('#alturaLaboral').removeAttr("disabled");
-				$('#imgbusquedaLaboral').css("display", "inline");
+		$('#OmsRegisterAddForm').submit(function() {
+        
+			var estadoParticular = $('#chParticular').is(':checked');
+			var estadoLaboral = $('#chLaboral').is(':checked');
+			var cargoParticular = $('#ControlCargoParticular').val();
+			var cargoLaboral = $('#ControlCargoLaboral').val();	
 			
+			if (estadoParticular == false && cargoParticular == "false") {
+				alert("Debe ingresar la nueva dirección particular.");
+				return false;
 			}
-	}
-
-
+			
+			if (estadoLaboral == false && cargoLaboral == "false") {
+				alert("Debe ingresar la nueva direcci&oacute;n laboral.");
+				return false;
+			}
+			
+			return true;
+		
+		});
+	
+		$('#provinciasParticular').val(1);
+		$('#provinciasParticular').trigger("change");
+		$('#provinciasLaboral').val(1);
+		$('#provinciasLaboral').trigger("change");
+		
+		checkParticular();
+		checkLaboral();
+	
+	});
+	
 </script>
 
 <div class="patients form">
@@ -186,10 +176,12 @@ $(document).ready(function() {
 		//echo $this->Form->hidden('nro_documento', array('value' => $patient['Patient']['nro_documento']));
 		
 		?>
-		<fieldset>
-			<legend><input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"><?php echo __('Direccion Particular'); ?></legend>
+		<div class=input>
+		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"> NO modificar la direccion particular del paciente.
+		<fieldset id="fsParticular">
+			<legend><?php echo __('Direccion Particular'); ?></legend>
 			<select id="provinciasParticular">
-			<?php foreach ($provinces as $key => $province): debug?>
+			<?php foreach ($provinces as $key => $province): ?>
 				<option value="<?php echo $key ?>"><?php echo $province ?></option>
 			<?php endforeach; ?>
 			</select><select id="localidadesParticular">
@@ -197,8 +189,11 @@ $(document).ready(function() {
 			</select><input type="text" size="25" value="Nombre de la Calle" id="calleParticular"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaParticular">
 			<a href="JavaScript:buscar('Particular');" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 		</fieldset>
-		<fieldset>
-			<legend><input type="checkbox" id="chLaboral" value="" onclick="checkLaboral();"><?php echo __('Direccion Laboral'); ?></legend>
+		</div>
+		<div class=input>
+		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"> NO modificar la direccion laboral del paciente.
+		<fieldset id="fsLaboral">
+			<legend><?php echo __('Direccion Laboral'); ?></legend>
 			<select id="provinciasLaboral">
 			<?php foreach ($provinces as $key => $province): ?>
 				<option value="<?php echo $key ?>"><?php echo $province ?></option>
@@ -209,5 +204,6 @@ $(document).ready(function() {
 			</select><input type="text" size="25" value="Nombre de la Calle" id="calleLaboral"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaLaboral">
 			<a href="JavaScript:buscar('Laboral');" id="comprobarLaboral"><img id="imgbusquedaLaboral" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 		</fieldset>
+		</div>
 	</fieldset>
 <?php echo $this->Form->end(__('Modificar'));?>
