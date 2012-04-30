@@ -399,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
   `sexo` enum('M','F') DEFAULT NULL,
   `address_particular_id` int(10) unsigned DEFAULT NULL,
   `address_laboral_id` int(10) unsigned DEFAULT NULL,
-  `nro_documento` varchar(50) NOT NULL,
+  `nro_documento` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_patient_address1` (`address_particular_id`),
   KEY `FK_patient_address2` (`address_laboral_id`),
