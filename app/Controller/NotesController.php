@@ -43,8 +43,8 @@ class NotesController extends AppController {
 			$this->Note->create();
 			if ($this->Note->save($this->request->data)) {
 				$this->Session->setFlash(__('La nota ha sido guardada'));
-				//-$this->redirect(array('action' => 'index'));
-				$this->redirect($this->referer());
+				$this->redirect(array('action' => 'index'));
+				//$this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The note could not be saved. Please, try again.'));
 			}
@@ -96,8 +96,8 @@ class NotesController extends AppController {
 		}
 		if ($this->Note->delete()) {
 			$this->Session->setFlash(__('Nota borrada'));
-			$this->redirect($this->referer());
-			//$this->redirect(array('action' => 'index'));
+			//$this->redirect($this->referer());
+			$this->redirect(array('action' => 'index'));
 		}
 		$this->Session->setFlash(__('La nota no pudo ser borrada'));
 		$this->redirect(array('action' => 'index'));
