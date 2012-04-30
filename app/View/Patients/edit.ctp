@@ -157,6 +157,14 @@ $(document).ready(function() {
 		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
 		echo $this->Form->hidden('Control.cargo_laboral', array('value' => 'false'));
 		
+		if (!empty($patient['Primary']['id']){
+			 echo $this->Form->hidden('Control.particular_actual', array('value' => $patient['Patient']['Primary']['id']));
+		}
+		if (!empty($patient['Secondary']['id']){
+			 echo $this->Form->hidden('Control.laboral_actual', array('value' => $patient['Patient']['Secondary']['id']));
+		}
+		
+		
 		echo $this->Form->hidden('Primary.city_id', array('value' => '1'));
 		echo $this->Form->hidden('Primary.latitud');
 		echo $this->Form->hidden('Primary.longitud');
