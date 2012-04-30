@@ -323,8 +323,9 @@ label {
 }
 input, textarea {
 	padding: 5px;
-	width: 200px;
+	/*width: 200px;*/
 	margin-right:5px;
+	resize:none;
 }
 
 .inputcorto {

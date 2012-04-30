@@ -4,9 +4,9 @@
 		<legend><?php echo __('Edit Note'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('medic_id');
-		echo $this->Form->input('oms_register_id');
-		echo $this->Form->input('fecha');
+		//echo $this->Form->input('medic_id');
+		//echo $this->Form->input('oms_register_id');
+		//echo $this->Form->input('fecha');
 		echo $this->Form->input('descripcion');
 	?>
 	</fieldset>

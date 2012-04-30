@@ -3,14 +3,10 @@
 	<fieldset>
 		<legend><?php echo __('Agregar nota'); ?></legend>
 	<?php
-		$hoy = new DateTime();
-		echo $this->Form->hidden('Note.fecha',array('value'=>$hoy->format('Y-m-d H:i:s')));
 		echo $this->Form->hidden('Note.oms_register_id',array('value'=>$this->params['pass'][0]));
 		
 		echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
-		echo $this->Form->label($hoy->format('d/m/Y H:i:s'));
-
-		echo $this->Form->input('descripcion',array('label'=>'Descripci&oacute;n'));
+		echo $this->Form->input('descripcion',array('label'=>'Descripci&oacute;n','size' => '100%'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit'));?>
