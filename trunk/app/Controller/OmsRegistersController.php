@@ -47,10 +47,12 @@ class OmsRegistersController extends AppController {
 				$this->Session->setFlash(__('The oms register could not be saved. Please, try again.'));
 			}
 		}
+		Controller::loadModel('Province');
+		$provinces = $this->Province->find('list');
 		$this->set('patient', $this->OmsRegister->Patient->read(null, $id));
 		$medics = $this->OmsRegister->Medic->find('list');
 		$omsCodes = $this->OmsRegister->OmsCode->find('list');
-		$this->set(compact('medics','omsCodes'));
+		$this->set(compact('medics','omsCodes','provinces'));
 	}
 
 /**

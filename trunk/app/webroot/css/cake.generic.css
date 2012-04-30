@@ -285,6 +285,7 @@ fieldset fieldset {
 	border: none;
 	margin-bottom: 10px;
 	margin-top: 10px;
+	width:100%;
 }
 fieldset fieldset legend {
 	color: #000;

@@ -114,11 +114,17 @@ class PatientsController extends AppController {
 					//si $part_act no se usa en ningun registro oms del paciente.. la borro de direcciones
 					$rta= $this->Patient->OmsRegister->Find('all',array('conditions' => array('OmsRegister.address_part_id' => $part_act , 'OmsRegister.patient_id' => $id)));
 					if ($rta==null){
-						$this->Patient->Address->Delete($part_act);
+						Controller::loadModel('Address');
+						$this->Address->Delete($part_act);
 					}
 				}
 				if (!($lab_act==null)) {
 					//si $lab_act no se usa en ningun registro oms del paciente.. la borro de direcciones
+					$rta= $this->Patient->OmsRegister->Find('all',array('conditions' => array('OmsRegister.address_lab_id' => $lab_act , 'OmsRegister.patient_id' => $id)));
+					if ($rta==null){
+						Controller::loadModel('Address');
+						$this->Address->Delete($lab_act);
+					}
 				}
 				
 				//y redirecciono a la vista
