@@ -1,30 +1,206 @@
+<script type="text/javascript" charset="utf-8">
+	
+$(document).ready(function() {
+
+	$('#PatientFechaNacimiento').datepicker({ dateFormat: "dd/mm/yy", 
+	changeMonth: true, changeYear: true, constrainInput: true, 
+	showOn: "button", buttonImage: "<?php echo $this->webroot; ?>img/calendar.png", buttonImageOnly: true,
+	yearRange: "1930:2020", monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+	'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+	monthNamesShort: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+	'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+	dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+	dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+	dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+	showOtherMonths: true,
+	selectOtherMonths: true
+	});
+
+    $('#provinciasParticular').change(function() {
+
+		var $id = $('#provinciasParticular').val();
+		if ($id > 0) {
+			$.getJSON('<?php echo $this->Html->url(array(
+	"controller" => "cities",
+	"action" => "getCiudades"));?>' + '/' + $(this).val(), function(data){
+				$('#localidadesParticular').empty();
+				$.each(data, function(optionIndex, option) {
+					var html = "<option value=\"" + option['id'] + "\">" + option['nombre'] + "</option>";
+					$('#localidadesParticular').append(html);
+				})
+				if ($id == 1) { //La provincia es Buenos Aires
+					$('#localidadesParticular').val(1); // Selecciono Bahia Blanca
+				}
+			});
+		} else {
+			$('#localidadesParticular').empty();
+		}
+			
+	});
+	
+	$('#provinciasLaboral').change(function() {
+	
+	
+		var $id = $('#provinciasLaboral').val();
+		if ($id > 0) {
+			$.getJSON('<?php echo $this->Html->url(array(
+	"controller" => "cities",
+	"action" => "getCiudades"));?>' + '/' + $(this).val(), function(data){
+				$('#localidadesLaboral').empty();
+				$.each(data, function(optionIndex, option) {
+					var html = "<option value=\"" + option['id'] + "\">" + option['nombre'] + "</option>";
+					$('#localidadesLaboral').append(html);
+				})
+				if ($id == 1) { //La provincia es Buenos Aires
+					$('#localidadesLaboral').val(1); // Selecciono Bahia Blanca
+				}
+			});
+		} else {
+			$('#localidadesLaboral').empty();
+		}
+		
+		
+	});
+	
+	$('#PatientAddForm').submit(function() {
+        
+		var estadoParticular = $('#chParticular').is(':checked');
+		var estadoLaboral = $('#chLaboral').is(':checked');
+		var cargoParticular = $('#ControlCargoParticular').val();
+		var cargoLaboral = $('#ControlCargoLaboral').val();	
+		
+		if (estadoParticular == true && cargoParticular == "false") {
+			alert("Debe ingresar una direccion particular.");
+			return false;
+		}
+		
+		if (estadoLaboral == true && cargoLaboral == "false") {
+			alert("Debe ingresar una direccion laboral.");
+			return false;
+		}
+		
+		return true;
+		
+    });
+	
+	
+	$('#provinciasParticular').val(1);
+	$('#provinciasParticular').trigger("change");
+	$('#provinciasLaboral').val(1);
+	$('#provinciasLaboral').trigger("change");
+	
+	checkParticular();
+	checkLaboral();
+});
+
+	function checkParticular() {
+	
+		var estado = $('#chParticular').is(':checked');
+		
+		if (estado == false) {
+		
+			$('#provinciasParticular').attr("disabled", "disabled");
+			$('#localidadesParticular').attr("disabled", "disabled");
+			$('#calleParticular').attr("disabled", "disabled");
+			$('#alturaParticular').attr("disabled", "disabled");
+			$('#imgbusquedaParticular').css("display", "none");
+			$('#ControlCargoParticular').val("false");	
+			
+		} else {
+		
+			$('#provinciasParticular').removeAttr("disabled");
+			$('#localidadesParticular').removeAttr("disabled");
+			$('#calleParticular').removeAttr("disabled");
+			$('#alturaParticular').removeAttr("disabled");
+			$('#imgbusquedaParticular').css("display", "inline");
+		
+		}
+	}
+	
+	function checkLaboral() {
+	
+		var estado = $('#chLaboral').is(':checked');
+		
+			if (estado == false) {
+			
+				$('#provinciasLaboral').attr("disabled", "disabled");
+				$('#localidadesLaboral').attr("disabled", "disabled");
+				$('#calleLaboral').attr("disabled", "disabled");
+				$('#alturaLaboral').attr("disabled", "disabled");
+				$('#imgbusquedaLaboral').css("display", "none");
+				$('#ControlCargoLaboral').val("false");	
+				
+			} else {
+			
+				$('#provinciasLaboral').removeAttr("disabled");
+				$('#localidadesLaboral').removeAttr("disabled");
+				$('#calleLaboral').removeAttr("disabled");
+				$('#alturaLaboral').removeAttr("disabled");
+				$('#imgbusquedaLaboral').css("display", "inline");
+			
+			}
+	}
+
+
+</script>
+
 <div class="patients form">
 <?php echo $this->Form->create('Patient');?>
 	<fieldset>
 		<legend><?php echo __('Edit Patient'); ?></legend>
+
 	<?php
 		echo $this->Form->input('id');
+		
 		echo $this->Form->input('iniciales');
-		echo $this->Form->input('fecha_nacimiento');
-		echo $this->Form->input('sexo');
-		echo $this->Form->input('address_particular_id');
-		echo $this->Form->input('address_laboral_id');
-		echo $this->Form->input('nro_documento');
-	?>
+		
+		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
+		echo $this->Form->hidden('Control.cargo_laboral', array('value' => 'false'));
+		
+		echo $this->Form->hidden('Primary.city_id', array('value' => '1'));
+		echo $this->Form->hidden('Primary.latitud');
+		echo $this->Form->hidden('Primary.longitud');
+		echo $this->Form->hidden('Primary.direccion');
+		
+		echo $this->Form->hidden('Secondary.city_id', array('value' => '1'));
+		echo $this->Form->hidden('Secondary.latitud');
+		echo $this->Form->hidden('Secondary.longitud');
+		echo $this->Form->hidden('Secondary.direccion');
+				
+		echo $this->Form->input('fecha_nacimiento',array('label' => 'Fecha De Nacimiento', 'type' => 'text'));
+		
+		$options=array('M'=>'Masculino','F'=>'Femenino');
+		$attributes=array('legend'=>false,'value'=>'M','separator'=>'');	
+		echo "<div class=input>";
+			echo $this->Form->label("Sexo");
+			echo $this->Form->radio('sexo',$options,$attributes);
+		echo "</div>";
+		
+		//echo $this->Form->hidden('nro_documento', array('value' => $patient['Patient']['nro_documento']));
+		
+		?>
+		<fieldset>
+			<legend><input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"><?php echo __('Direccion Particular'); ?></legend>
+			<select id="provinciasParticular">
+			<?php foreach ($provinces as $key => $province): debug?>
+				<option value="<?php echo $key ?>"><?php echo $province ?></option>
+			<?php endforeach; ?>
+			</select><select id="localidadesParticular">
+				<option value="0" selected>Seleccionar</option>
+			</select><input type="text" size="25" value="Nombre de la Calle" id="calleParticular"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaParticular">
+			<a href="JavaScript:buscar('Particular');" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
+		</fieldset>
+		<fieldset>
+			<legend><input type="checkbox" id="chLaboral" value="" onclick="checkLaboral();"><?php echo __('Direccion Laboral'); ?></legend>
+			<select id="provinciasLaboral">
+			<?php foreach ($provinces as $key => $province): ?>
+				<option value="<?php echo $key ?>"><?php echo $province ?></option>
+			<?php endforeach; ?>
+			</select> 
+			<select id="localidadesLaboral">
+				<option value="0" selected>Seleccionar</option>
+			</select><input type="text" size="25" value="Nombre de la Calle" id="calleLaboral"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaLaboral">
+			<a href="JavaScript:buscar('Laboral');" id="comprobarLaboral"><img id="imgbusquedaLaboral" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
+		</fieldset>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit'));?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-
-		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('Patient.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Patient.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Patients'), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List Addresses'), array('controller' => 'addresses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Address Particular'), array('controller' => 'addresses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Answers'), array('controller' => 'answers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Answer'), array('controller' => 'answers', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Oms Registers'), array('controller' => 'oms_registers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Oms Register'), array('controller' => 'oms_registers', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<?php echo $this->Form->end(__('Modificar'));?>
