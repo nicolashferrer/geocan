@@ -111,7 +111,14 @@ class Patient extends AppModel {
 			}
             return true;
         }
+				
+		function afterFind($resultados) {
+			foreach ($resultados as $clave => $valor) {
+				if (isset($valor['Patient']['fecha_nacimiento'])) {
+					$resultados[$clave]['Patient']['fecha_nacimiento'] = date('d/m/Y', strtotime($valor['Patient']['fecha_nacimiento']));
+				}
+			}
+			return $resultados;
+		}
 		
-
-
 }
