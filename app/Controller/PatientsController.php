@@ -9,6 +9,28 @@ App::uses('Security', 'Utility');
 class PatientsController extends AppController {
 
 	public $helpers = array('Js' => array('Jquery'));
+	//public $documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
+	function search(){}
+
+
+function result() {
+
+					$this->Patient->recursive = 0;
+					$this->set('result', $this->paginate());
+					if(!empty($this->data)) { 
+						$documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
+                        $data = $this->Patient->find('all',array('conditions'=>array('Patient.nro_documento'=> $documentoEncriptado))); 
+                        $this->set('result',$data); 
+                       
+						}
+					else { 
+                                $this->redirect(array('controller'=>'patient','action'=>'search')); 
+                        } 
+				
+
+				} 
+
+
 /**
  * index method
  *
