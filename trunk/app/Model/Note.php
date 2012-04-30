@@ -7,6 +7,11 @@ App::uses('AppModel', 'Model');
  * @property OmsRegister $OmsRegister
  */
 class Note extends AppModel {
+
+		public function beforeSave() {
+			$hoy = new DateTime();
+			$this->data['Note']['fecha'] = $hoy->format('Y-m-d H:i:s');
+		}
 /**
  * Validation rules
  *
