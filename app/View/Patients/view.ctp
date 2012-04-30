@@ -12,6 +12,11 @@
 					<?php echo h($patient['Patient']['fecha_nacimiento']); ?>
 					&nbsp;
 				</dd>
+				<dt><?php echo __('Edad'); ?></dt>
+				<dd>
+					<?php echo h($patient['Patient']['edad']); ?>
+					&nbsp;
+				</dd>
 				<dt><?php echo __('Sexo'); ?></dt>
 				<dd>
 					<?php echo h($patient['Patient']['sexo']); ?>
@@ -43,9 +48,6 @@
 			<tr>
 				<th><?php echo __('Descripcion'); ?></th>
 				<th><?php echo __('Respuesta'); ?></th>
-
-				<th class="actions"><?php echo __('Acciones');?></th>
-
 			</tr>
 			<?php
 				$i = 0;
@@ -58,12 +60,15 @@
 									echo 'No'; 
 							  else 	
 									echo 'No contesto' ?></td>
-					<td class="actions">
-						<?php echo $this->Html->link(__('Editar'), array('controller' => 'answers', 'action' => 'edit', $question['answers']['id'])); ?>
-					</td>
 				</tr>
 			<?php endforeach; ?>
+			
 			</table>
+					<div class="actions">
+			<ul>
+				<li><?php echo $this->Html->link(__('Editar Respuestas'), array('action' => 'edit', $patient['Patient']['id'])); ?> </li>
+			</ul>
+		</div>
 	</fieldset>
 <?php endif; ?>
 
@@ -73,25 +78,33 @@
 			<?php if (!empty($patient['OmsRegister'])):?>
 				<table cellpadding = "0" cellspacing = "0">
 				<tr>
-					<th><?php echo __('Medico'); ?></th>
-					<th><?php echo __('Dir. Particular'); ?></th>
-					<th><?php echo __('Dir. Laboral'); ?></th>
-					<th><?php echo __('Codigo OMS'); ?></th>
+					<th><?php echo __('C&oacute;digo'); ?></th>
 					<th><?php echo __('Fecha'); ?></th>
-					<th class="actions"><?php echo __('Actions');?></th>
+					<th><?php echo __('M&eacute;dico'); ?></th>
+					<!--
+					<th><?php // echo __('Dir. Particular'); ?></th>
+					<th><?php // echo __('Dir. Laboral'); ?></th>
+					-->
+					
+					<th class="actions"></th>
 				</tr>
 				<?php
 					$i = 0;
 					foreach ($patient['OmsRegister'] as $omsRegister): ?>
 					<tr>
-						<td><?php echo $omsRegister['Medic']['nombre'].' '.$omsRegister['Medic']['apellido']; ?></td>
-						<td><?php echo $omsRegister['AddressPart']['direccion'];?></td>
-						<td><?php echo $omsRegister['AddressLab']['direccion'];?></td>
 						<td><?php echo $omsRegister['Oms']['codigo'];?></td>
 						<td><?php echo $omsRegister['fecha'];?></td>
+						<td><?php echo $omsRegister['Medic']['apellido'].' '.$omsRegister['Medic']['nombre']; ?></td>
+						<!--
+						
+						<td><?php // echo $omsRegister['AddressPart']['direccion'];?></td>
+						<td><?php // echo $omsRegister['AddressLab']['direccion'];?></td>
+						-->
+						
 						<td class="actions">
-							<?php echo $this->Html->link(__('Ver'), array('controller' => 'oms_registers', 'action' => 'view', $omsRegister['id'])); ?>
-							<?php echo $this->Html->link(__('Editar'), array('controller' => 'oms_registers', 'action' => 'edit', $omsRegister['id'])); ?>
+							<?php echo $this->Html->link(__('Detalles'), array('controller' => 'oms_registers', 'action' => 'view', $omsRegister['id'])); ?>
+							<?php echo $this->Html->link(__('Modificar'), array('controller' => 'oms_registers', 'action' => 'edit', $omsRegister['id'])); ?>
+							<?php echo $this->Html->link(__('Notas'), array('controller' => 'notes', 'action' => 'add', $patient['Patient']['id'])); ?>
 							<?php echo $this->Form->postLink(__('Borrar'), array('controller' => 'oms_registers', 'action' => 'delete', $omsRegister['id']), null, __('Esta usted seguro que desea eliminar # %s?', $omsRegister['id'])); ?>
 						</td>
 					</tr>

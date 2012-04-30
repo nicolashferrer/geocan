@@ -125,5 +125,14 @@ class OmsRegister extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+	function afterFind($resultados) {
+			foreach ($resultados as $clave => $valor) {
+				if (isset($valor['OmsRegister']['fecha'])) {
+					$resultados[$clave]['OmsRegister']['fecha'] = date('d/m/Y', strtotime($valor['OmsRegister']['fecha']));
+				}
+			}
+			return $resultados;
+		}
 
 }
