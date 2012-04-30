@@ -92,13 +92,13 @@ function buscar(tipoDireccion) {
 	//		" <a href=http://maps.google.com/maps?t=m&q="+lat+","+ lng+" target='_blank'>Comprobar Coordenadas!</a>");
 		
 			if (tipoDireccion == 'Particular') {
-				$('#PrimaryCityId').val(1);
+				$('#PrimaryCityId').val($('#localidadesParticular option:selected').val());
 				$('#PrimaryLatitud').val(lat);
 				$('#PrimaryLongitud').val(lng);
 				$('#PrimaryDireccion').val(direccion_partida[0]);
 				$('#ControlCargoParticular').val('true');
 			} else {
-				$('#SecondaryCityId').val(1);
+				$('#SecondaryCityId').val($('#localidadesLaboral option:selected').val());
 				$('#SecondaryLatitud').val(lat);
 				$('#SecondaryLongitud').val(lng);
 				$('#SecondaryDireccion').val(direccion_partida[0]);
