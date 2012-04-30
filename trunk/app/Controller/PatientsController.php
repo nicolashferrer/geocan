@@ -9,28 +9,6 @@ App::uses('Security', 'Utility');
 class PatientsController extends AppController {
 
 	public $helpers = array('Js' => array('Jquery'));
-	//public $documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
-	function search(){}
-
-
-function result() {
-
-					$this->Patient->recursive = 0;
-					$this->set('result', $this->paginate());
-					if(!empty($this->data)) { 
-						$documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
-                        $data = $this->Patient->find('all',array('conditions'=>array('Patient.nro_documento'=> $documentoEncriptado))); 
-                        $this->set('result',$data); 
-                       
-						}
-					else { 
-                                $this->redirect(array('controller'=>'patient','action'=>'search')); 
-                        } 
-				
-
-				} 
-
-
 /**
  * index method
  *
@@ -81,7 +59,6 @@ function result() {
 					unset($this->request->data['Answer'][$indice]);
 				}
 			} 
-		
 		//	debug($this->request->data);	
 		//	exit();
 			if ($this->Patient->saveAll($this->request->data)) {
@@ -107,13 +84,25 @@ function result() {
 	public function edit($id = null) {
 		$this->Patient->id = $id;
 		if (!$this->Patient->exists()) {
-			throw new NotFoundException(__('Invalid patient'));
+			throw new NotFoundException(__('Paciente invalido'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->Patient->save($this->request->data)) {
+			
+			if ($this->request->data['Control']['cargo_particular'] == 'false') {
+				unset($this->request->data['Primary']);
+			}
+			if ($this->request->data['Control']['cargo_laboral'] == 'false') {
+				unset($this->request->data['Secondary']);
+			}
+			unset($this->request->data['Control']);
+			
+			debug($this->request->data);
+
+			if ($this->Patient->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The patient has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {
+				// echo "<script language='JavaScript'> alert('lalal'); </script>";
 				$this->Session->setFlash(__('The patient could not be saved. Please, try again.'));
 			}
 		} else {
@@ -122,6 +111,10 @@ function result() {
 //		$addressParticulars = $this->Patient->AddressParticular->find('list');
 //		$addressLaborals = $this->Patient->AddressLaboral->find('list');
 //		$this->set(compact('addressParticulars', 'addressLaborals'));
+		$this->set('patient', $this->Patient->read(null, $id));
+		Controller::loadModel('Province');
+		$provinces = $this->Province->find('list');
+		$this->set(compact('provinces'));
 	}
 
 /**
