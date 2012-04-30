@@ -44,8 +44,7 @@ class NotesController extends AppController {
 			if ($this->Note->save($this->request->data)) {
 				$this->Session->setFlash(__('La nota ha sido guardada'));
 				//-$this->redirect(array('action' => 'index'));
-				//$this->redirect($this->referer());
-				$this->History->goBack(); 
+				$this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The note could not be saved. Please, try again.'));
 			}
