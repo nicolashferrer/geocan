@@ -88,19 +88,42 @@ class PatientsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			
+			$part_act= null;
+			$lab_act= null;
+			
 			if ($this->request->data['Control']['cargo_particular'] == 'false') {
 				unset($this->request->data['Primary']);
+			}
+			else{
+				$part_act= $this->request->data['Control']['particular_actual'];
 			}
 			if ($this->request->data['Control']['cargo_laboral'] == 'false') {
 				unset($this->request->data['Secondary']);
 			}
-			unset($this->request->data['Control']);
+			else{
+				$lab_act= $this->request->data['Control']['laboral_actual'];
+			}
 			
-			debug($this->request->data);
-
+			unset($this->request->data['Control']);
+						
 			if ($this->Patient->saveAll($this->request->data)) {
+				
 				$this->Session->setFlash(__('The patient has been saved'));
+	
+				if (!($part_act==null)) {
+					//si $part_act no se usa en ningun registro oms del paciente.. la borro de direcciones
+					$rta= $this->Patient->OmsRegister->Find('all',array('conditions' => array('OmsRegister.address_part_id' => $part_act , 'OmsRegister.patient_id' => $id)));
+					if ($rta==null){
+						$this->Patient->Address->Delete($part_act);
+					}
+				}
+				if (!($lab_act==null)) {
+					//si $lab_act no se usa en ningun registro oms del paciente.. la borro de direcciones
+				}
+				
+				//y redirecciono a la vista
 				$this->redirect(array('action' => 'index'));
+				
 			} else {
 				// echo "<script language='JavaScript'> alert('lalal'); </script>";
 				$this->Session->setFlash(__('The patient could not be saved. Please, try again.'));
