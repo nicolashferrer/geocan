@@ -40,6 +40,8 @@ class AppController extends Controller {
             )
         ),
         'Session'
+		//,'History'
+		//,'HistoryBar'
     );
     public $helpers = array('Html', 'Form', 'Session');
 

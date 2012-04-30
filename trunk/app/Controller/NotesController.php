@@ -7,6 +7,7 @@ App::uses('AppController', 'Controller');
  */
 class NotesController extends AppController {
 
+	
 
 /**
  * index method
@@ -41,8 +42,10 @@ class NotesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Note->create();
 			if ($this->Note->save($this->request->data)) {
-				$this->Session->setFlash(__('The note has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('La nota ha sido guardada'));
+				//-$this->redirect(array('action' => 'index'));
+				//$this->redirect($this->referer());
+				$this->History->goBack(); 
 			} else {
 				$this->Session->setFlash(__('The note could not be saved. Please, try again.'));
 			}
@@ -61,14 +64,14 @@ class NotesController extends AppController {
 	public function edit($id = null) {
 		$this->Note->id = $id;
 		if (!$this->Note->exists()) {
-			throw new NotFoundException(__('Invalid note'));
+			throw new NotFoundException(__('Nota no válida'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Note->save($this->request->data)) {
-				$this->Session->setFlash(__('The note has been saved'));
+				$this->Session->setFlash(__('La nota ha sido guardada'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The note could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('La nota no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
 		} else {
 			$this->request->data = $this->Note->read(null, $id);
@@ -90,13 +93,14 @@ class NotesController extends AppController {
 		}
 		$this->Note->id = $id;
 		if (!$this->Note->exists()) {
-			throw new NotFoundException(__('Invalid note'));
+			throw new NotFoundException(__('Nota no válida'));
 		}
 		if ($this->Note->delete()) {
-			$this->Session->setFlash(__('Note deleted'));
-			$this->redirect(array('action' => 'index'));
+			$this->Session->setFlash(__('Nota borrada'));
+			$this->redirect($this->referer());
+			//$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Note was not deleted'));
+		$this->Session->setFlash(__('La nota no pudo ser borrada'));
 		$this->redirect(array('action' => 'index'));
 	}
 

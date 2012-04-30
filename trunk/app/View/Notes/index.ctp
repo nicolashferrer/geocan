@@ -1,4 +1,4 @@
-<div class="notes index">
+﻿<div class="notes index">
 	<h2><?php echo __('Notes');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>

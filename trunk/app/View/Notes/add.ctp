@@ -1,4 +1,4 @@
-<div class="notes form">
+﻿<div class="notes form">
 <?php echo $this->Form->create('Note');?>
 	<fieldset>
 		<legend><?php echo __('Agregar nota'); ?></legend>
