@@ -37,8 +37,12 @@ class OmsRegistersController extends AppController {
  *
  * @return void
  */
-	public function add($id = null) {
+	public function add($id = null) {	
 		if ($this->request->is('post')) {
+		
+			//debug($this->request->data);
+			//exit;
+		
 			$this->OmsRegister->create();
 			if ($this->OmsRegister->save($this->request->data)) {
 				$this->Session->setFlash(__('The oms register has been saved'));
@@ -104,7 +108,7 @@ class OmsRegistersController extends AppController {
 		}
 		$this->Session->setFlash(__('Oms register was not deleted'));
 		$this->redirect(array('action' => 'index'));
-	}
+	}	
 
 	function beforeFilter() {
 		parent::beforeFilter();

@@ -109,6 +109,32 @@ class OmsCodesController extends AppController {
 		return new CakeResponse(array('body' => json_encode($json)));
     }
 	
+	//Devuelve las sugerencias a partir de un query dado para el autocompletamiento de codigos oms	
+	function sugerencias(){
+
+	if (!empty($this->request->query['query'])) {
+		$query = $this->request->query['query'];
+	} else {
+		$query = "";
+	}
+	
+	$mixes= $this->OmsCode->find('all', array('conditions' => array( 'OR' => array('OmsCode.codigo LIKE' => '%'.$query.'%','OmsCode.descripcion LIKE' => '%'.$query.'%'))));
+        
+            $desc = array();
+			$ids = array();
+            $i = 0;  
+            foreach ($mixes as $mix) {
+                $desc[$i] = $mix['OmsCode']['codigo'].' - '.$mix['OmsCode']['descripcion'];
+				$ids[$i] = $mix['OmsCode']['id'];
+                $i++;
+            }
+			$json = array();
+			$json[0]['query'] = $query;
+			$json[0]['suggestions'] = $desc;
+			$json[0]['data'] = $ids;
+		return new CakeResponse(array('body' => json_encode($json[0])));
+    }
+	
 	//Ayuda para seleccion de codigos OMS
 	public function help() {
 		$codigos = $this->OmsCode->find('list', array('fields' => array('OmsCode.codigo','OmsCode.descripcion'),

@@ -32,6 +32,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('start/jquery-ui-1.8.19.custom'); // Css de Jquery UI
+		echo $this->Html->css('styles'); // Css de plugin jquery autocompletar
 	
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -39,6 +40,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->script('jquery-1.7.2.min'); // Include jQuery library
 		echo $this->Html->script('jquery-ui-1.8.19.min'); // Include Jquery UI para calendarios y demas
 		echo $this->Html->script('geocodev3'); // Include jQuery library
+		echo $this->Html->script('jquery.autocomplete-min'); // Plugin jquery para autocompletamiento de codigos oms
 		
 	?>
 </head>
