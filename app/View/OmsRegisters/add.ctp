@@ -1,5 +1,6 @@
 <script type="text/javascript" charset="utf-8">
-	
+	var options, a;
+
 	function checkLaboral() {
 	
 		var estado = $('#chLaboral').is(':checked');
@@ -54,6 +55,21 @@
 	
 	$(document).ready(function() {
 	
+			$('#OmsRegisterFecha').datepicker({ dateFormat: "dd/mm/yy", 
+				changeMonth: true, changeYear: true, constrainInput: true, 
+				showOn: "button", buttonImage: "<?php echo $this->webroot; ?>img/calendar.png", buttonImageOnly: true,
+				yearRange: "1930:2020", monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+				'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+				monthNamesShort: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+				'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+				dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
+				dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
+				dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
+				showOtherMonths: true,
+				selectOtherMonths: true
+			});
+		
+	
 				$('#provinciasParticular').change(function() {
 
 				var $id = $('#provinciasParticular').val();
@@ -103,18 +119,57 @@
 			
 		$('#OmsRegisterAddForm').submit(function() {
         
+			var codigo = $('#OmsRegisterOmsCodeId').val();
 			var estadoParticular = $('#chParticular').is(':checked');
 			var estadoLaboral = $('#chLaboral').is(':checked');
 			var cargoParticular = $('#ControlCargoParticular').val();
 			var cargoLaboral = $('#ControlCargoLaboral').val();	
 			
+			if (codigo == '') {
+				$( "#ingresarCodigo" ).dialog({
+					modal: true,
+					resizable: false,
+					height:120,
+					widht:400,
+					buttons: {
+						Ok: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+				});
+				
+				return false;
+			}
+			
+			
 			if (estadoParticular == false && cargoParticular == "false") {
-				alert("Debe ingresar la nueva dirección particular.");
+				$( "#ingresarDirParticular" ).dialog({
+					modal: true,
+					resizable: false,
+					height:120,
+					widht:400,
+					buttons: {
+						Ok: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+				});
+
 				return false;
 			}
 			
 			if (estadoLaboral == false && cargoLaboral == "false") {
-				alert("Debe ingresar la nueva direcci&oacute;n laboral.");
+				$( "#ingresarDirLaboral" ).dialog({
+					modal: true,
+					resizable: false,
+					height:120,
+					widht:400,
+					buttons: {
+						Ok: function() {
+							$( this ).dialog( "close" );
+						}
+					}
+				});
 				return false;
 			}
 			
@@ -129,6 +184,11 @@
 		
 		checkParticular();
 		checkLaboral();
+		
+		options = { serviceUrl:'<?php echo $this->Html->url(array("controller" => "omscodes",	"action" => "sugerencias"));?>/', minChars:2, maxHeight:300, width:400,
+		onSelect: function(value, data){ $('#OmsRegisterOmsCodeId').val(data);
+		}};
+		a = $('#sugerencias').autocomplete(options);
 	
 	});
 	
@@ -151,7 +211,7 @@
 		
 		$hoy = new DateTime();
 //		$hoyformateado = $hoy->format('Y-m-d H:i:s');
-		$hoyformateado = $hoy->format('Y-m-d');
+		$hoyformateado = $hoy->format('d/m/Y');
 		
 	//	echo $this->Form->hidden('fecha',array('value'=>$hoyformateado));
 		
@@ -174,7 +234,13 @@
 		echo $this->Form->hidden('address_lab_id', array('value' => $patient['Secondary']['id']));
 
 		echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
-		echo $this->Form->input('oms_code_id',array('label'=>'C&oacute;digo'));
+		//echo $this->Form->input('oms_code_id',array('label'=>'C&oacute;digo','type' => 'text'));
+		echo "<div class=input>";
+		echo $this->Form->label("C&oacute;digo");
+		echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'>";
+		echo "</div>";	
+		
+		echo $this->Form->hidden('oms_code_id');
 		echo $this->Form->input('fecha',array('type' => 'text','value' => $hoyformateado));
 		
 		$options=array('0'=>'Desconocido','1'=>'1','2'=>'2','3'=>'3','4'=>'4');
@@ -183,10 +249,11 @@
 		echo $this->Form->label("Estad&iacute;o");
 		echo $this->Form->radio('estadio',$options,$attributes);
 		echo "</div>";	
+		
 
-	?>
+	?>	
 		<div class=input>
-		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"> Utilizar direccion particular actual del paciente.
+		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"> Utilizar direcci&oacute;n particular actual del paciente.
 		<fieldset id="fsParticular">
 			<legend><?php echo __('Direccion Particular'); ?></legend>
 			<select id="provinciasParticular">
@@ -200,7 +267,7 @@
 		</fieldset>
 		</div>
 		<div class=input>
-		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"> Utilizar direccion laboral actual del paciente.
+		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"> Utilizar direcci&oacute;n laboral actual del paciente.
 		<fieldset id="fsLaboral">
 			<legend><?php echo __('Direccion Laboral'); ?></legend>
 			<select id="provinciasLaboral">
@@ -216,4 +283,23 @@
 		</div>
 	</fieldset>
 <?php echo $this->Form->end(__('Crear'));?>
+</div>
+
+<div id="ingresarDirParticular" title="Ingresar Direcci&oacute;n" style="display:none">
+	<p>
+		<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
+		Debe ingresar una Direcci&oacute;n Particular.
+	</p>
+</div>
+<div id="ingresarDirLaboral" title="Ingresar Direcci&oacute;n" style="display:none">
+	<p>
+		<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
+		Debe ingresar una Direcci&oacute;n Laboral.
+	</p>
+</div>
+<div id="ingresarCodigo" title="Ingresar C&oacute;digo" style="display:none">
+	<p>
+		<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
+		Debe ingresar un C&oacute;digo OMS.
+	</p>
 </div>

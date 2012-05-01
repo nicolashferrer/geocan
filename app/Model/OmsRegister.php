@@ -57,6 +57,10 @@ class OmsRegister extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'date' => array(
+				'rule' => '/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/i',
+				'message' => 'Por favor ingrese la fecha en este formato: DD/MM/AAAA'
+			)
 		)
 	);
 
@@ -126,6 +130,15 @@ class OmsRegister extends AppModel {
 		)
 	);
 	
+    function beforeSave()
+        {
+            if (!empty($this->data['OmsRegister']['fecha']))
+            {
+                $this->data['OmsRegister']['fecha'] = implode('-', array_reverse(explode('/', $this->data['OmsRegister']['fecha'])));
+            }
+            return true;
+        }
+		
 	function afterFind($resultados) {
 			foreach ($resultados as $clave => $valor) {
 				if (isset($valor['OmsRegister']['fecha'])) {

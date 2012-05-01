@@ -339,8 +339,12 @@ input, textarea {
 
 .inputcorto {
 	width: 40px;
-
 }
+
+.inputlargo {
+	width: 400px;
+}
+
 select {
 	padding: 5px;
 	margin-right:5px;
