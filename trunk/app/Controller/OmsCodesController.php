@@ -102,6 +102,7 @@ class OmsCodesController extends AppController {
             $json = array();
             $i = 0;  
             foreach ($mixes as $mix) {
+				$json[$i]['id'] = $mix['OmsCode']['id'];
                 $json[$i]['descripcion'] = $mix['OmsCode']['descripcion'];
 				$json[$i]['codigo'] = $mix['OmsCode']['codigo'];
                 $i++;
@@ -118,7 +119,7 @@ class OmsCodesController extends AppController {
 		$query = "";
 	}
 	
-	$mixes= $this->OmsCode->find('all', array('conditions' => array( 'OR' => array('OmsCode.codigo LIKE' => '%'.$query.'%','OmsCode.descripcion LIKE' => '%'.$query.'%'))));
+	$mixes= $this->OmsCode->find('all', array('conditions' => array( 'OR' => array('OmsCode.codigo LIKE' => '%'.$query.'%','OmsCode.descripcion LIKE' => '%'.$query.'%'), 'OmsCode.padre <>' => null )));
         
             $desc = array();
 			$ids = array();
@@ -139,6 +140,7 @@ class OmsCodesController extends AppController {
 	public function help() {
 		$codigos = $this->OmsCode->find('list', array('fields' => array('OmsCode.codigo','OmsCode.descripcion'),
 		'conditions' => array('OmsCode.padre' => null)));
+		$this->layout = 'mini';
 		$this->set(compact('codigos'));
 	}
 	

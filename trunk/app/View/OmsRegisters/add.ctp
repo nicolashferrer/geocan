@@ -129,8 +129,8 @@
 				$( "#ingresarCodigo" ).dialog({
 					modal: true,
 					resizable: false,
-					height:120,
-					widht:400,
+					height:130,
+					width:300,
 					buttons: {
 						Ok: function() {
 							$( this ).dialog( "close" );
@@ -147,7 +147,7 @@
 					modal: true,
 					resizable: false,
 					height:120,
-					widht:400,
+					width:300,
 					buttons: {
 						Ok: function() {
 							$( this ).dialog( "close" );
@@ -163,7 +163,7 @@
 					modal: true,
 					resizable: false,
 					height:120,
-					widht:400,
+					width:300,
 					buttons: {
 						Ok: function() {
 							$( this ).dialog( "close" );
@@ -190,7 +190,14 @@
 		}};
 		a = $('#sugerencias').autocomplete(options);
 	
+		$(".iframe").colorbox({iframe:true, width:"400px", height:"400px", scrolling:false});
 	});
+	
+	function cambiarCodigo(id, desc ) {
+		$("#sugerencias").val(desc);
+		$('#OmsRegisterOmsCodeId').val(id);
+		$(".iframe").colorbox.close();
+	}
 	
 </script>
 
@@ -237,7 +244,7 @@
 		//echo $this->Form->input('oms_code_id',array('label'=>'C&oacute;digo','type' => 'text'));
 		echo "<div class=input>";
 		echo $this->Form->label("C&oacute;digo");
-		echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'>";
+		echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "omscodes",	"action" => "help"))."'>Selector C&oacute;digos</a>";
 		echo "</div>";	
 		
 		echo $this->Form->hidden('oms_code_id');
@@ -297,9 +304,9 @@
 		Debe ingresar una Direcci&oacute;n Laboral.
 	</p>
 </div>
-<div id="ingresarCodigo" title="Ingresar C&oacute;digo" style="display:none">
+<div id="ingresarCodigo" title="Ingresar Codigo" style="display:none">
 	<p>
 		<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
-		Debe ingresar un C&oacute;digo OMS.
+		Debe ingresar un Codigo OMS.
 	</p>
 </div>
