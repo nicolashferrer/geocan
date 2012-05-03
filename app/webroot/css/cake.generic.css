@@ -72,6 +72,10 @@ p {
 	margin: 0 0 1em 0;
 }
 
+#login fieldset {
+	text-align:center;
+}
+
 /** Layout **/
 #container {
 	text-align: left;
