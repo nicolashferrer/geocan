@@ -22,10 +22,10 @@
 			<?php echo $this->Html->link($omsRegister['Medic']['id'], array('controller' => 'medics', 'action' => 'view', $omsRegister['Medic']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($omsRegister['AddressPart']['id'], array('controller' => 'addresses', 'action' => 'view', $omsRegister['AddressPart']['id'])); ?>
+			<?php echo $this->Html->link($omsRegister['Primary']['id'], array('controller' => 'addresses', 'action' => 'view', $omsRegister['Primary']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($omsRegister['AddressLab']['id'], array('controller' => 'addresses', 'action' => 'view', $omsRegister['AddressLab']['id'])); ?>
+			<?php echo $this->Html->link($omsRegister['Secondary']['id'], array('controller' => 'addresses', 'action' => 'view', $omsRegister['Secondary']['id'])); ?>
 		</td>
 		<td>
 			<?php echo $this->Html->link($omsRegister['OmsCode']['id'], array('controller' => 'oms_codes', 'action' => 'view', $omsRegister['OmsCode']['id'])); ?>

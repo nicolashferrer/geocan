@@ -14,7 +14,8 @@
 				$('#calleLaboral').attr("disabled", "disabled");
 				$('#alturaLaboral').attr("disabled", "disabled");
 				$('#imgbusquedaLaboral').css("display", "none");
-				$('#ControlCargoLaboral').val("false");	
+				$('#ControlCargoLaboral').val("false");
+				$('#ControlMismaLaboral').val("true");
 				
 			} else {
 			
@@ -23,6 +24,7 @@
 				$('#calleLaboral').removeAttr("disabled");
 				$('#alturaLaboral').removeAttr("disabled");
 				$('#imgbusquedaLaboral').css("display", "inline");
+				$('#ControlMismaLaboral').val("false");
 			
 			}
 	}
@@ -40,7 +42,8 @@
 			$('#calleParticular').attr("disabled", "disabled");
 			$('#alturaParticular').attr("disabled", "disabled");
 			$('#imgbusquedaParticular').css("display", "none");
-			$('#ControlCargoParticular').val("false");	
+			$('#ControlCargoParticular').val("false");
+			$('#ControlMismaParticular').val("true");				
 			
 		} else {
 		
@@ -49,6 +52,7 @@
 			$('#calleParticular').removeAttr("disabled");
 			$('#alturaParticular').removeAttr("disabled");
 			$('#imgbusquedaParticular').css("display", "inline");
+			$('#ControlMismaParticular').val("false");
 		
 		}
 	}
@@ -226,6 +230,8 @@
 				
 		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
 		echo $this->Form->hidden('Control.cargo_laboral', array('value' => 'false'));
+		echo $this->Form->hidden('Control.misma_particular', array('value' => 'false'));
+		echo $this->Form->hidden('Control.misma_laboral', array('value' => 'false'));
 		
 		echo $this->Form->hidden('Primary.city_id', array('value' => '1'));
 		echo $this->Form->hidden('Primary.latitud');
@@ -243,12 +249,12 @@
 		echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
 		//echo $this->Form->input('oms_code_id',array('label'=>'C&oacute;digo','type' => 'text'));
 		echo "<div class=input>";
-		echo $this->Form->label("C&oacute;digo");
+		echo $this->Form->label("&nbsp; C&oacute;digo");
 		echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "omscodes",	"action" => "help"))."'>Selector C&oacute;digos</a>";
 		echo "</div>";	
 		
 		echo $this->Form->hidden('oms_code_id');
-		echo $this->Form->input('fecha',array('type' => 'text','value' => $hoyformateado));
+		echo $this->Form->input('fecha',array('label' => '&nbsp; Fecha','type' => 'text','value' => $hoyformateado));
 		
 		$options=array('0'=>'Desconocido','1'=>'1','2'=>'2','3'=>'3','4'=>'4');
 		$attributes=array('legend'=>false,'value'=>'0','separator'=>'');	

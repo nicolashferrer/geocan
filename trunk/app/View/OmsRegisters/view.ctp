@@ -4,27 +4,27 @@
 		<dl>
 			<dt><?php echo __('Paciente'); ?></dt>
 			<dd>
-				<?php echo $this->Html->link($omsRegister['Patient']['iniciales'], array('controller' => 'patients', 'action' => 'view', $omsRegister['Patient']['id'])); ?>
+				<?php echo $omsRegister['Patient']['iniciales']; ?>
 				&nbsp;
 			</dd>
 			<dt><?php echo __('Médico'); ?></dt>
 			<dd>
-				<?php echo $this->Html->link($omsRegister['Medic']['nombrecompleto'], array('controller' => 'medics', 'action' => 'view', $omsRegister['Medic']['id'])); ?>
+				<?php echo $omsRegister['Medic']['nombrecompleto']; ?>
 				&nbsp;
 			</dd>
 			<dt><?php echo __('Dirección particular'); ?></dt>
 			<dd>
-				<?php echo $this->Html->link($omsRegister['AddressPart']['id'], array('controller' => 'addresses', 'action' => 'view', $omsRegister['AddressPart']['id'])); ?>
+				<?php echo $omsRegister['Primary']['direccion']; ?>
 				&nbsp;
 			</dd>
 			<dt><?php echo __('Dirección laboral'); ?></dt>
 			<dd>
-				<?php echo $this->Html->link($omsRegister['AddressLab']['id'], array('controller' => 'addresses', 'action' => 'view', $omsRegister['AddressLab']['id'])); ?>
+				<?php echo $omsRegister['Secondary']['direccion']; ?>
 				&nbsp;
 			</dd>
 			<dt><?php echo __('Código Oms'); ?></dt>
 			<dd>
-				<?php echo $this->Html->link($omsRegister['OmsCode']['codigo'], array('controller' => 'oms_codes', 'action' => 'view', $omsRegister['OmsCode']['id'])); ?>
+				<?php echo $omsRegister['OmsCode']['codigo_desc']; ?>
 				&nbsp;
 			</dd>
 			<dt><?php echo __('Fecha'); ?></dt>

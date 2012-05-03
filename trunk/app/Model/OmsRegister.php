@@ -86,14 +86,14 @@ class OmsRegister extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'AddressPart' => array(
+		'Primary' => array(
 			'className' => 'Address',
 			'foreignKey' => 'address_part_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
 		),
-		'AddressLab' => array(
+		'Secondary' => array(
 			'className' => 'Address',
 			'foreignKey' => 'address_lab_id',
 			'conditions' => '',
