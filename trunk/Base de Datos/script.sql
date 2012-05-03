@@ -3,7 +3,7 @@
 -- Server version:               5.1.37 - Source distribution
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-05-01 16:19:59
+-- Date/time:                    2012-05-02 23:30:42
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -137,9 +137,9 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   PRIMARY KEY (`id`),
   KEY `FK_address_city` (`city_id`),
   CONSTRAINT `FK_address_city` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.addresses: ~7 rows (approximately)
+-- Dumping data for table geocan.addresses: ~8 rows (approximately)
 DELETE FROM `addresses`;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
 INSERT INTO `addresses` (`id`, `city_id`, `latitud`, `longitud`, `direccion`) VALUES
@@ -149,7 +149,8 @@ INSERT INTO `addresses` (`id`, `city_id`, `latitud`, `longitud`, `direccion`) VA
 	(5, 1, -38.7002029, -62.2688002, '12 de Octubre 1500'),
 	(6, 1, -38.7211394, -62.2760872, 'Terrada 300'),
 	(7, 1, -38.7211394, -62.2760872, 'Terrada 300'),
-	(8, 1, -38.7140494, -62.2720411, 'Blandengues 1');
+	(8, 1, -38.7140494, -62.2720411, 'Blandengues 1'),
+	(9, 1, -38.7135232, -62.2691631, '11 de Abril 100');
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 
 
@@ -356,7 +357,7 @@ CREATE TABLE IF NOT EXISTS `oms_registers` (
   `address_part_id` int(10) unsigned DEFAULT NULL,
   `address_lab_id` int(10) unsigned DEFAULT NULL,
   `oms_code_id` int(10) unsigned NOT NULL,
-  `estadio` tinyint(1) unsigned DEFAULT NULL,
+  `estadio` tinyint(2) unsigned DEFAULT NULL,
   `fecha` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_oms_paciente` (`patient_id`),
@@ -374,14 +375,16 @@ CREATE TABLE IF NOT EXISTS `oms_registers` (
   CONSTRAINT `FK_oms_registers_medic` FOREIGN KEY (`medic_id`) REFERENCES `medics` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_oms_registers_oms_code` FOREIGN KEY (`oms_code_id`) REFERENCES `oms_codes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_oms_registers_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.oms_registers: ~2 rows (approximately)
+-- Dumping data for table geocan.oms_registers: ~4 rows (approximately)
 DELETE FROM `oms_registers`;
 /*!40000 ALTER TABLE `oms_registers` DISABLE KEYS */;
 INSERT INTO `oms_registers` (`id`, `patient_id`, `medic_id`, `address_part_id`, `address_lab_id`, `oms_code_id`, `estadio`, `fecha`) VALUES
 	(4, '4f99fb47-9bfc-4016-9d95-04607be0049b', 1, 7, 5, 1, 1, '2012-04-30 00:00:00'),
-	(12, '4f99fe1c-e050-46b0-b2b4-1b847be0049b', 1, 2, 3, 4, 0, '2012-05-01 00:00:00');
+	(12, '4f99fe1c-e050-46b0-b2b4-1b847be0049b', 1, 2, 3, 4, 0, '2012-05-01 00:00:00'),
+	(13, '4f99fe1c-e050-46b0-b2b4-1b847be0049b', 1, 2, 3, 7, 0, '2012-05-02 00:00:00'),
+	(14, '4f99fe1c-e050-46b0-b2b4-1b847be0049b', 2, 9, 3, 2, 0, '2012-05-05 00:00:00');
 /*!40000 ALTER TABLE `oms_registers` ENABLE KEYS */;
 
 
