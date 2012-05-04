@@ -95,16 +95,18 @@ p {
 
 #header-statusbar{
 	padding: 5px 20px;
-	background: #111111;
-	text-align: right;
-	position:absolute;
-	bottom:0;
-	right:0;
+	text-align: center;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	
-	border:1px solid #222;
-	border-top: #222;
+	background-color: #fff;
+	border:1px solid #CCC;
+	color: #000;
+	margin:0 auto 0 auto;
+	width: 500px;
+}
+
+#header-statusbar a{
+	color: #000 !important; 
 }
 
 #header a{

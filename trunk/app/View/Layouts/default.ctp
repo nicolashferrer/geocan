@@ -27,6 +27,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		<?php echo $title_for_layout; ?>
 	</title>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=es&libraries=places""></script>  
+
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -45,18 +46,42 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->script('jquery.colorbox-min'); // Plugin jquery para ventanas modales
 		
 	?>
+		<script type="text/javascript">
+		var timer = null
+
+		function fechaActual(){
+			var time = new Date()
+			var date = time.getDate();
+			date=((date < 10) ? "0" : "") + date
+			var mes = time.getMonth()+1;
+			mes=((mes < 10) ? "0" : "") + mes
+			var anio = time.getFullYear();
+			var hours = time.getHours()
+			hours=((hours < 10) ? "0" : "") + hours
+			var minutes = time.getMinutes()
+			minutes=((minutes < 10) ? "0" : "") + minutes
+			var seconds = time.getSeconds()
+			seconds=((seconds < 10) ? "0" : "") + seconds
+			var clock = date + "/" + mes + "/" + anio + " " + hours + ":" + minutes + ":" + seconds
+			//document.forms[0].display.value = clock
+			$("#fechaActual").html(clock);
+			timer = setTimeout("fechaActual()",1000)
+		}
+	</script>
 </head>
-<body>
+<body onLoad="fechaActual()">
 	<div id="container">
 		<div id="header">
 			<div id="header-logo">
 			<?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?>
 			</div>
 			<div id="header-statusbar">
-			<?php if ($isAuthed): ?>
+			<?php if ($isAuthed):  ?>
 				<?php echo $this->Form->label('Usuario:'); ?>
 				<?php echo $this->Form->label($auth['username']); ?>
 				<?php echo $this->Form->label('|'); ?>
+				<span id="fechaActual"></span>
+				<?php echo $this->Form->label(' |'); ?>
 				<?php echo $this->Html->link('Salir',array('controller' => 'users', 'action' => 'logout'))?>
 			<?php endif; ?>
 			</div>
