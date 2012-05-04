@@ -117,30 +117,31 @@ class UsersController extends AppController {
 	
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('*');
+		$this->Auth->allow('login,logout,initDB');
 	}
 	
 	public function initDB() {
 		$group =& $this->User->Group;
 		//Permisos de los administradores
 		$group->id = 1;
-		$this->Acl->allow($group, 'controller');
+		$this->Acl->allow($group, 'controllers');
 		//Permisos de los medicos
 		$group->id = 2;
-		$this->Acl->deny($group, 'controller');
-		$this->Acl->allow($group, 'controller/Patients/Add');
-		$this->Acl->allow($group, 'controller/Patients/Edit');
-		$this->Acl->allow($group, 'controller/Addresses/Add');
-		$this->Acl->allow($group, 'controller/Addresses/Edit');
-		$this->Acl->allow($group, 'controller/Notes/Add');
-		$this->Acl->allow($group, 'controller/Notes/Edit');
-		$this->Acl->allow($group, 'controller/OmsRegisters/Add');
-		$this->Acl->allow($group, 'controller/OmsRegisters/Edit');
-		$this->Acl->allow($group, 'controller/Answers/Add');
-		$this->Acl->allow($group, 'controller/Answers/Edit');
+		$this->Acl->deny($group, 'controllers');
+		$this->Acl->allow($group, 'controllers/Patients/add');
+		$this->Acl->allow($group, 'controllers/Patients/edit');
+		$this->Acl->allow($group, 'controllers/Patients/view');
+		$this->Acl->allow($group, 'controllers/Addresses/add');
+		$this->Acl->allow($group, 'controllers/Addresses/edit');
+		$this->Acl->allow($group, 'controllers/Notes/add');
+		$this->Acl->allow($group, 'controllers/Notes/edit');
+		$this->Acl->allow($group, 'controllers/OmsRegisters/add');
+		$this->Acl->allow($group, 'controllers/OmsRegisters/edit');
+		$this->Acl->allow($group, 'controllers/Answers/add');
+		$this->Acl->allow($group, 'controllers/Answers/edit');
 		//Permisos de los usuarios
 		$group->id = 3;
-		$this->Acl->deny($group, 'controller');
+		$this->Acl->allow($group, 'controllers');
     }
 
 }
