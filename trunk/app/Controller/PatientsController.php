@@ -9,6 +9,33 @@ App::uses('Security', 'Utility');
 class PatientsController extends AppController {
 
 	public $helpers = array('Js' => array('Jquery'));
+
+	function search(){}
+
+
+	function result() {
+					if(!empty($this->data)) { 
+						$documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
+                      
+					    $this->paginate = array(
+							'conditions' => array('Patient.nro_documento LIKE' => $documentoEncriptado),
+							'limit' => 10
+						);
+						$data = $this->paginate('Patient');
+						$this->set(compact('data'));
+						
+                        $this->set('result',$data); 
+                       
+						}
+					else { 
+                                $this->redirect(array('action'=>'search'));
+									
+                        } 
+				
+
+				} 
+
+
 /**
  * index method
  *
