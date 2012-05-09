@@ -15,12 +15,16 @@ class PatientsController extends AppController {
 
 	function result() {
 					if(!empty($this->data)) { 
+					
+						debug($this->data['Patient']['nro_documento']);
+					
 						$documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
+						
+						debug($documentoEncriptado);
+						
+						exit;
                       
-					    $this->paginate = array(
-							'conditions' => array('Patient.nro_documento LIKE' => $documentoEncriptado),
-							'limit' => 10
-						);
+					    $this->paginate = array('conditions' => array('Patient.nro_documento' => $documentoEncriptado));
 						$data = $this->paginate('Patient');
 						$this->set(compact('data'));
 						
@@ -86,8 +90,13 @@ class PatientsController extends AppController {
 					unset($this->request->data['Answer'][$indice]);
 				}
 			} 
-		//	debug($this->request->data);	
-		//	exit();
+			$quedaron = sizeof($this->request->data['Answer']);
+			if ($quedaron==0) {
+				unset($this->request->data['Answer']);
+			}
+			//debug($this->request->data);	
+			//exit();
+			
 			if ($this->Patient->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('The patient has been saved'));
 				$this->redirect(array('action' => 'index'));
