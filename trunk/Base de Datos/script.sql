@@ -3,7 +3,7 @@
 -- Server version:               5.1.37 - Source distribution
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-05-09 20:18:43
+-- Date/time:                    2012-05-09 22:29:53
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,13 +27,13 @@ CREATE TABLE IF NOT EXISTS `acos` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.acos: ~92 rows (approximately)
 DELETE FROM `acos`;
 /*!40000 ALTER TABLE `acos` DISABLE KEYS */;
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-	(1, NULL, NULL, NULL, 'controllers', 1, 184),
+	(1, NULL, NULL, NULL, 'controllers', 1, 186),
 	(2, 1, NULL, NULL, 'Addresses', 2, 13),
 	(3, 2, NULL, NULL, 'index', 3, 4),
 	(4, 2, NULL, NULL, 'view', 5, 6),
@@ -90,41 +90,42 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 	(63, 58, NULL, NULL, 'delete', 117, 118),
 	(65, 1, NULL, NULL, 'Pages', 120, 123),
 	(66, 65, NULL, NULL, 'display', 121, 122),
-	(68, 1, NULL, NULL, 'Patients', 124, 139),
+	(68, 1, NULL, NULL, 'Patients', 124, 141),
 	(69, 68, NULL, NULL, 'index', 125, 126),
 	(70, 68, NULL, NULL, 'view', 127, 128),
 	(71, 68, NULL, NULL, 'add', 129, 130),
 	(72, 68, NULL, NULL, 'edit', 131, 132),
 	(73, 68, NULL, NULL, 'delete', 133, 134),
-	(75, 1, NULL, NULL, 'Provinces', 140, 151),
-	(76, 75, NULL, NULL, 'index', 141, 142),
-	(77, 75, NULL, NULL, 'view', 143, 144),
-	(78, 75, NULL, NULL, 'add', 145, 146),
-	(79, 75, NULL, NULL, 'edit', 147, 148),
-	(80, 75, NULL, NULL, 'delete', 149, 150),
-	(82, 1, NULL, NULL, 'Questions', 152, 163),
-	(83, 82, NULL, NULL, 'index', 153, 154),
-	(84, 82, NULL, NULL, 'view', 155, 156),
-	(85, 82, NULL, NULL, 'add', 157, 158),
-	(86, 82, NULL, NULL, 'edit', 159, 160),
-	(87, 82, NULL, NULL, 'delete', 161, 162),
-	(89, 1, NULL, NULL, 'Users', 164, 181),
-	(90, 89, NULL, NULL, 'index', 165, 166),
-	(91, 89, NULL, NULL, 'view', 167, 168),
-	(92, 89, NULL, NULL, 'add', 169, 170),
-	(93, 89, NULL, NULL, 'edit', 171, 172),
-	(94, 89, NULL, NULL, 'delete', 173, 174),
-	(95, 89, NULL, NULL, 'login', 175, 176),
-	(96, 89, NULL, NULL, 'logout', 177, 178),
-	(98, 1, NULL, NULL, 'AclExtras', 182, 183),
+	(75, 1, NULL, NULL, 'Provinces', 142, 153),
+	(76, 75, NULL, NULL, 'index', 143, 144),
+	(77, 75, NULL, NULL, 'view', 145, 146),
+	(78, 75, NULL, NULL, 'add', 147, 148),
+	(79, 75, NULL, NULL, 'edit', 149, 150),
+	(80, 75, NULL, NULL, 'delete', 151, 152),
+	(82, 1, NULL, NULL, 'Questions', 154, 165),
+	(83, 82, NULL, NULL, 'index', 155, 156),
+	(84, 82, NULL, NULL, 'view', 157, 158),
+	(85, 82, NULL, NULL, 'add', 159, 160),
+	(86, 82, NULL, NULL, 'edit', 161, 162),
+	(87, 82, NULL, NULL, 'delete', 163, 164),
+	(89, 1, NULL, NULL, 'Users', 166, 183),
+	(90, 89, NULL, NULL, 'index', 167, 168),
+	(91, 89, NULL, NULL, 'view', 169, 170),
+	(92, 89, NULL, NULL, 'add', 171, 172),
+	(93, 89, NULL, NULL, 'edit', 173, 174),
+	(94, 89, NULL, NULL, 'delete', 175, 176),
+	(95, 89, NULL, NULL, 'login', 177, 178),
+	(96, 89, NULL, NULL, 'logout', 179, 180),
+	(98, 1, NULL, NULL, 'AclExtras', 184, 185),
 	(99, 16, NULL, NULL, 'getCiudades', 37, 38),
 	(100, 23, NULL, NULL, 'build_acl', 51, 52),
 	(101, 51, NULL, NULL, 'getSigNivel', 101, 102),
 	(102, 51, NULL, NULL, 'help', 103, 104),
-	(103, 89, NULL, NULL, 'initDB', 179, 180),
+	(103, 89, NULL, NULL, 'initDB', 181, 182),
 	(105, 51, NULL, NULL, 'sugerencias', 105, 106),
 	(106, 68, NULL, NULL, 'search', 135, 136),
-	(107, 68, NULL, NULL, 'result', 137, 138);
+	(107, 68, NULL, NULL, 'result', 137, 138),
+	(108, 68, NULL, NULL, 'editAnswers', 139, 140);
 /*!40000 ALTER TABLE `acos` ENABLE KEYS */;
 
 
@@ -139,7 +140,14 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   PRIMARY KEY (`id`),
   KEY `FK_address_city` (`city_id`),
   CONSTRAINT `FK_address_city` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table geocan.addresses: ~1 rows (approximately)
+DELETE FROM `addresses`;
+/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
+INSERT INTO `addresses` (`id`, `city_id`, `latitud`, `longitud`, `direccion`) VALUES
+	(1, 1, -38.7098387, -62.2669045, 'Zapiola 500');
+/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.answers
@@ -154,8 +162,15 @@ CREATE TABLE IF NOT EXISTS `answers` (
   KEY `FK_answer_question` (`question_id`),
   CONSTRAINT `FK_answer_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`),
   CONSTRAINT `FK_answer_question` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
+-- Dumping data for table geocan.answers: ~2 rows (approximately)
+DELETE FROM `answers`;
+/*!40000 ALTER TABLE `answers` DISABLE KEYS */;
+INSERT INTO `answers` (`id`, `patient_id`, `question_id`, `valor`) VALUES
+	(1, '4fab02d7-7954-44cf-a1a7-08ec7be0049b', 1, 1),
+	(2, '4fab02d7-7954-44cf-a1a7-08ec7be0049b', 2, 0);
+/*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.aros
@@ -313,7 +328,10 @@ CREATE TABLE IF NOT EXISTS `notes` (
   CONSTRAINT `FK_notes_oms_register` FOREIGN KEY (`oms_register_id`) REFERENCES `oms_registers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+-- Dumping data for table geocan.notes: ~0 rows (approximately)
+DELETE FROM `notes`;
+/*!40000 ALTER TABLE `notes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notes` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.oms_codes
@@ -367,9 +385,14 @@ CREATE TABLE IF NOT EXISTS `oms_registers` (
   CONSTRAINT `FK_oms_registers_medic` FOREIGN KEY (`medic_id`) REFERENCES `medics` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_oms_registers_oms_code` FOREIGN KEY (`oms_code_id`) REFERENCES `oms_codes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_oms_registers_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-
+-- Dumping data for table geocan.oms_registers: ~0 rows (approximately)
+DELETE FROM `oms_registers`;
+/*!40000 ALTER TABLE `oms_registers` DISABLE KEYS */;
+INSERT INTO `oms_registers` (`id`, `patient_id`, `medic_id`, `address_part_id`, `address_lab_id`, `oms_code_id`, `estadio`, `fecha`) VALUES
+	(1, '4fab02d7-7954-44cf-a1a7-08ec7be0049b', 1, NULL, NULL, 2, 1, '2012-05-09 00:00:00');
+/*!40000 ALTER TABLE `oms_registers` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.patients
@@ -388,6 +411,15 @@ CREATE TABLE IF NOT EXISTS `patients` (
   CONSTRAINT `FK_patient_address1` FOREIGN KEY (`address_particular_id`) REFERENCES `addresses` (`id`),
   CONSTRAINT `FK_patient_address2` FOREIGN KEY (`address_laboral_id`) REFERENCES `addresses` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table geocan.patients: ~2 rows (approximately)
+DELETE FROM `patients`;
+/*!40000 ALTER TABLE `patients` DISABLE KEYS */;
+INSERT INTO `patients` (`id`, `iniciales`, `fecha_nacimiento`, `sexo`, `address_particular_id`, `address_laboral_id`, `nro_documento`) VALUES
+	('4faaff2e-e3ec-46b1-8a6b-08ec7be0049b', 'NAM', '1986-11-25', 'M', 1, NULL, '0193eff009ed009f6b9e6f551e869911d5f326205b280c36cea9636297ede534'),
+	('4fab02d7-7954-44cf-a1a7-08ec7be0049b', 'HOY', '2000-10-11', 'F', NULL, NULL, 'd62bce2760df0b171b2269de45884537a88be6ade7835de091b10c896433aac4');
+/*!40000 ALTER TABLE `patients` ENABLE KEYS */;
+
 
 -- Dumping structure for table geocan.provinces
 DROP TABLE IF EXISTS `provinces`;
@@ -413,14 +445,15 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `descripcion` varchar(255) NOT NULL,
   `visible` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.questions: ~2 rows (approximately)
+-- Dumping data for table geocan.questions: ~3 rows (approximately)
 DELETE FROM `questions`;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
 INSERT INTO `questions` (`id`, `descripcion`, `visible`) VALUES
 	(1, 'Fuma?', 1),
-	(2, 'Bebe?', 1);
+	(2, 'Bebe?', 1),
+	(3, 'Droga?', 1);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 
 
