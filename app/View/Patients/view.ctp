@@ -19,7 +19,10 @@
 				</dd>
 				<dt><?php echo __('Sexo'); ?></dt>
 				<dd>
-					<?php echo h($patient['Patient']['sexo']); ?>
+					<?php if ($patient['Patient']['sexo'] == 'M')
+							echo 'Masculino';
+						  else
+							echo 'Femenino'; ?>
 					&nbsp;
 				</dd>
 				<dt><?php echo __('Dir. Particular'); ?></dt>
@@ -35,7 +38,7 @@
 			</dl>
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('Editar Paciente'), array('action' => 'edit', $patient['Patient']['id'])); ?> </li>
+				<li><?php echo $this->Html->link(__('Editar Paciente'), array('action' => 'editAnswers', $patient['Patient']['id'])); ?> </li>
 			</ul>
 		</div>
 	</fieldset>
@@ -54,12 +57,13 @@
 				foreach ($results as $question):?>
 				<tr>
 					<td><?php echo $question['questions']['descripcion'];?></td>
-					<td><?php if ($question['answers']['valor'] == 'true')
+					<td><?php if ($question['answers']['valor'] == true)
 									echo 'Si';
-							  elseif ($question['answers']['valor'] == 'false')
-									echo 'No'; 
-							  else 	
-									echo 'No contesto' ?></td>
+							  elseif ($question['answers']['id'] == null)
+									echo 'No contesto'; 
+								  else 	
+									echo 'No'; ?>	
+					</td>
 				</tr>
 			<?php endforeach; ?>
 			
