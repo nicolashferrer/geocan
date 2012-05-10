@@ -65,6 +65,22 @@ class PatientsController extends AppController {
 		$result = $this->Patient->Query('select * from questions left join answers on answers.question_id=questions.id and answers.patient_id="'.$id.'" where questions.visible=true;');
 		$this->set('results',$result);
 	}
+	
+/**
+ * editAnswers method
+ *
+ * @param string $id
+ * @return void
+ */
+	public function editAnswers($id = null) {
+		$this->Patient->id = $id;
+		if (!$this->Patient->exists()) {
+			throw new NotFoundException(__('Invalid patient'));
+		}
+		$this->set('patient', $this->Patient->read(null, $id));
+		$result = $this->Patient->Query('select * from questions left join answers on answers.question_id=questions.id and answers.patient_id="'.$id.'" where questions.visible=true;');
+		$this->set('results',$result);
+	}
 
 /**
  * add method
