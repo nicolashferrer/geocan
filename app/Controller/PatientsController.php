@@ -77,9 +77,39 @@ class PatientsController extends AppController {
 		if (!$this->Patient->exists()) {
 			throw new NotFoundException(__('Invalid patient'));
 		}
+		if ($this->request->is('post')) {
+			$this->request->data['Patient']['id']= $id;
+			//Limpio las preguntas que no contesto
+			$respuestas = $this->request->data['Answer'];
+			foreach($respuestas as $indice => $respuesta) {
+				
+				if ($respuesta['valor'] == '') {
+					//si la respuesta se modifico a "no contesta" hay que eliminarla
+					$rta= $this->Patient->Answer->Find('all',array('conditions' => array('Answer.patient_id' => $id , 'Answer.question_id' => $respuesta['question_id'])));
+					if ($rta!=null){
+						Controller::loadModel('Answer');
+						$this->Answer->Delete($rta[0]['Answer']['id']);
+					}
+					unset($this->request->data['Answer'][$indice]);
+				}
+			} 
+			$quedaron = sizeof($this->request->data['Answer']);
+			if ($quedaron==0) {
+				unset($this->request->data['Answer']);
+			}
+			//debug($this->request->data);	
+			//exit();
+			
+			if ($this->Patient->saveAll($this->request->data)) {
+				$this->Session->setFlash(__('Las respuestas fueron actualizadas exitosamente'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('Las respuestas no pueden ser actualizadas. Intente Nuevamente!'));
+			}
+		}
 		$this->set('patient', $this->Patient->read(null, $id));
 		$result = $this->Patient->Query('select * from questions left join answers on answers.question_id=questions.id and answers.patient_id="'.$id.'" where questions.visible=true;');
-		$this->set('results',$result);
+		$this->set('questions',$result);
 	}
 
 /**
