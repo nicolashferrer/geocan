@@ -131,6 +131,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Patients/add');
 		$this->Acl->allow($group, 'controllers/Patients/edit');
 		$this->Acl->allow($group, 'controllers/Patients/view');
+		$this->Acl->allow($group, 'controllers/Patients/editAnswers');
 		$this->Acl->allow($group, 'controllers/Addresses/add');
 		$this->Acl->allow($group, 'controllers/Addresses/edit');
 		$this->Acl->allow($group, 'controllers/Notes/add');
