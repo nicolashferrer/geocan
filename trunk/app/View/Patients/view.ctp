@@ -38,7 +38,7 @@
 			</dl>
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('Editar Paciente'), array('action' => 'editAnswers', $patient['Patient']['id'])); ?> </li>
+				<li><?php echo $this->Html->link(__('Editar Paciente'), array('action' => 'edit', $patient['Patient']['id'])); ?> </li>
 			</ul>
 		</div>
 	</fieldset>
@@ -70,7 +70,7 @@
 			</table>
 					<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('Editar Respuestas'), array('action' => 'edit', $patient['Patient']['id'])); ?> </li>
+				<li><?php echo $this->Html->link(__('Editar Respuestas'), array('action' => 'editAnswers', $patient['Patient']['id'])); ?> </li>
 			</ul>
 		</div>
 	</fieldset>
