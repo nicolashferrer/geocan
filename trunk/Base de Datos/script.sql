@@ -3,7 +3,7 @@
 -- Server version:               5.1.37 - Source distribution
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-05-09 22:29:53
+-- Date/time:                    2012-05-11 01:07:32
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -27,13 +27,13 @@ CREATE TABLE IF NOT EXISTS `acos` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.acos: ~92 rows (approximately)
+-- Dumping data for table geocan.acos: ~94 rows (approximately)
 DELETE FROM `acos`;
 /*!40000 ALTER TABLE `acos` DISABLE KEYS */;
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-	(1, NULL, NULL, NULL, 'controllers', 1, 186),
+	(1, NULL, NULL, NULL, 'controllers', 1, 188),
 	(2, 1, NULL, NULL, 'Addresses', 2, 13),
 	(3, 2, NULL, NULL, 'index', 3, 4),
 	(4, 2, NULL, NULL, 'view', 5, 6),
@@ -90,42 +90,43 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 	(63, 58, NULL, NULL, 'delete', 117, 118),
 	(65, 1, NULL, NULL, 'Pages', 120, 123),
 	(66, 65, NULL, NULL, 'display', 121, 122),
-	(68, 1, NULL, NULL, 'Patients', 124, 141),
+	(68, 1, NULL, NULL, 'Patients', 124, 143),
 	(69, 68, NULL, NULL, 'index', 125, 126),
 	(70, 68, NULL, NULL, 'view', 127, 128),
 	(71, 68, NULL, NULL, 'add', 129, 130),
 	(72, 68, NULL, NULL, 'edit', 131, 132),
 	(73, 68, NULL, NULL, 'delete', 133, 134),
-	(75, 1, NULL, NULL, 'Provinces', 142, 153),
-	(76, 75, NULL, NULL, 'index', 143, 144),
-	(77, 75, NULL, NULL, 'view', 145, 146),
-	(78, 75, NULL, NULL, 'add', 147, 148),
-	(79, 75, NULL, NULL, 'edit', 149, 150),
-	(80, 75, NULL, NULL, 'delete', 151, 152),
-	(82, 1, NULL, NULL, 'Questions', 154, 165),
-	(83, 82, NULL, NULL, 'index', 155, 156),
-	(84, 82, NULL, NULL, 'view', 157, 158),
-	(85, 82, NULL, NULL, 'add', 159, 160),
-	(86, 82, NULL, NULL, 'edit', 161, 162),
-	(87, 82, NULL, NULL, 'delete', 163, 164),
-	(89, 1, NULL, NULL, 'Users', 166, 183),
-	(90, 89, NULL, NULL, 'index', 167, 168),
-	(91, 89, NULL, NULL, 'view', 169, 170),
-	(92, 89, NULL, NULL, 'add', 171, 172),
-	(93, 89, NULL, NULL, 'edit', 173, 174),
-	(94, 89, NULL, NULL, 'delete', 175, 176),
-	(95, 89, NULL, NULL, 'login', 177, 178),
-	(96, 89, NULL, NULL, 'logout', 179, 180),
-	(98, 1, NULL, NULL, 'AclExtras', 184, 185),
+	(75, 1, NULL, NULL, 'Provinces', 144, 155),
+	(76, 75, NULL, NULL, 'index', 145, 146),
+	(77, 75, NULL, NULL, 'view', 147, 148),
+	(78, 75, NULL, NULL, 'add', 149, 150),
+	(79, 75, NULL, NULL, 'edit', 151, 152),
+	(80, 75, NULL, NULL, 'delete', 153, 154),
+	(82, 1, NULL, NULL, 'Questions', 156, 167),
+	(83, 82, NULL, NULL, 'index', 157, 158),
+	(84, 82, NULL, NULL, 'view', 159, 160),
+	(85, 82, NULL, NULL, 'add', 161, 162),
+	(86, 82, NULL, NULL, 'edit', 163, 164),
+	(87, 82, NULL, NULL, 'delete', 165, 166),
+	(89, 1, NULL, NULL, 'Users', 168, 185),
+	(90, 89, NULL, NULL, 'index', 169, 170),
+	(91, 89, NULL, NULL, 'view', 171, 172),
+	(92, 89, NULL, NULL, 'add', 173, 174),
+	(93, 89, NULL, NULL, 'edit', 175, 176),
+	(94, 89, NULL, NULL, 'delete', 177, 178),
+	(95, 89, NULL, NULL, 'login', 179, 180),
+	(96, 89, NULL, NULL, 'logout', 181, 182),
+	(98, 1, NULL, NULL, 'AclExtras', 186, 187),
 	(99, 16, NULL, NULL, 'getCiudades', 37, 38),
 	(100, 23, NULL, NULL, 'build_acl', 51, 52),
 	(101, 51, NULL, NULL, 'getSigNivel', 101, 102),
 	(102, 51, NULL, NULL, 'help', 103, 104),
-	(103, 89, NULL, NULL, 'initDB', 181, 182),
+	(103, 89, NULL, NULL, 'initDB', 183, 184),
 	(105, 51, NULL, NULL, 'sugerencias', 105, 106),
 	(106, 68, NULL, NULL, 'search', 135, 136),
 	(107, 68, NULL, NULL, 'result', 137, 138),
-	(108, 68, NULL, NULL, 'editAnswers', 139, 140);
+	(108, 68, NULL, NULL, 'editAnswers', 139, 140),
+	(109, 68, NULL, NULL, 'recuperarPaciente', 141, 142);
 /*!40000 ALTER TABLE `acos` ENABLE KEYS */;
 
 
@@ -162,14 +163,11 @@ CREATE TABLE IF NOT EXISTS `answers` (
   KEY `FK_answer_question` (`question_id`),
   CONSTRAINT `FK_answer_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`),
   CONSTRAINT `FK_answer_question` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.answers: ~2 rows (approximately)
+-- Dumping data for table geocan.answers: ~0 rows (approximately)
 DELETE FROM `answers`;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
-INSERT INTO `answers` (`id`, `patient_id`, `question_id`, `valor`) VALUES
-	(1, '4fab02d7-7954-44cf-a1a7-08ec7be0049b', 1, 1),
-	(2, '4fab02d7-7954-44cf-a1a7-08ec7be0049b', 2, 0);
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 
 
@@ -387,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `oms_registers` (
   CONSTRAINT `FK_oms_registers_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.oms_registers: ~0 rows (approximately)
+-- Dumping data for table geocan.oms_registers: ~1 rows (approximately)
 DELETE FROM `oms_registers`;
 /*!40000 ALTER TABLE `oms_registers` DISABLE KEYS */;
 INSERT INTO `oms_registers` (`id`, `patient_id`, `medic_id`, `address_part_id`, `address_lab_id`, `oms_code_id`, `estadio`, `fecha`) VALUES

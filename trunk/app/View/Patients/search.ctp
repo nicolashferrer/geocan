@@ -1,21 +1,55 @@
+<script>
 
-<h2><?php echo __('Busqueda de Pacientes');?></h2>
-<?php
-echo $this->Form->create('Patient', array('action'=>'result')); 
-echo $this->Form->input('Patient.nro_documento',array('type' => 'text')); 
+	$(document).ready(function() {
+	
+		$('#btbuscar').click(function() {
+	
+		$('#resultadoOK').hide();
+		$('#resultadoKO').hide();
+	
+		var $dni = $('#dni').val();
+		
+		$.getJSON('<?php echo $this->Html->url(array("controller" => "patients","action" => "recuperarPaciente"));?>' + '/' + $dni, function(data){
+				if(data.encontre==true) {
+					//$('#elid').html(data.id);
+					$('#linkVer').html('<a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "view"));?>/' + data.id+'">Ver Ficha Paciente</a>');
+					$('#linkOms').html('<a href="<?php echo $this->Html->url(array("controller" => "oms_registers","action" => "add"));?>/' + data.id+'">Cargar Oms</a>');
+					$('#resultadoOK').show();
+				} else {
+					$('#resultadoKO').show();
+				}
+			});
 
-echo $this->Form->end('Search');
+		});
+		
+	});
+	
+</script>
 
-?>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Patient'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Addresses'), array('controller' => 'addresses', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Address Particular'), array('controller' => 'addresses', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Answers'), array('controller' => 'answers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Answer'), array('controller' => 'answers', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Oms Registers'), array('controller' => 'oms_registers', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Oms Register'), array('controller' => 'oms_registers', 'action' => 'add')); ?> </li>
-	</ul>
+<div class="form" align="center">
+	<fieldset>
+		<legend>Buscar Paciente</legend>
+		N&uacute;mero De Documento <input type="input" id="dni" size="25">
+		<input class="boton" type="submit" id="btbuscar" value="Buscar">
+		<br><br>
+		<div id="resultadoOK" style="display:none">
+		<p>El paciente fue encontrado. ¿Que operaci&oacute;n desea realizar?</p>
+		<div class="actions">
+			<ul>
+				<li id="linkVer"></li>
+				<li id="linkOms"></li>
+			</ul>
+		</div>
+		</div>
+		
+		<div id="resultadoKO" style="display:none">
+		<p>No se encontro ningun paciente con ese n&uacute;mero documento.</p>
+		<div class="actions">
+			<ul>
+				<li><?php echo $this->Html->link(__('Crear Nuevo Paciente'), array("controller" => "patients",'action' => 'add')); ?> </li>
+			</ul>
+		</div>
+		</div>
+		
+	</fieldset>
 </div>

@@ -10,6 +10,37 @@ class PatientsController extends AppController {
 
 	public $helpers = array('Js' => array('Jquery'));
 
+	//funcion invocada por ajax, para determinar si existe un paciente y devolver su ID
+	function recuperarPaciente($doc=null){
+	
+		$json = array();
+		
+		if (!empty($doc)) {
+		
+			$documentoEncriptado = Security::hash($doc, 'sha256', true);
+			
+			//Ver como hacer para que solamente me traiga EL ID!!! y no todo el restoooooooooooooo
+			$resultado = $this->Patient->find('first', array('fields' => array('Patient.id'),'conditions' => array( 'Patient.nro_documento' => $documentoEncriptado )));
+			
+			if ($resultado!=false) {
+				$json[0]['encontre'] = true;
+				$json[0]['id'] = $resultado['Patient']['id'];
+			} else {
+		
+				$json[0]['encontre'] = false;
+				$json[0]['id'] = '';
+			}
+			
+		} else {
+		
+			$json[0]['encontre'] = false;
+			$json[0]['id'] = '';
+		}
+
+		return new CakeResponse(array('body' => json_encode($json[0])));
+	
+	}
+	
 	function search(){}
 
 
