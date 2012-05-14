@@ -33,7 +33,7 @@
 		<input class="boton" type="submit" id="btbuscar" value="Buscar">
 		<br><br>
 		<div id="resultadoOK" style="display:none">
-		<p>El paciente fue encontrado. ¿Que operaci&oacute;n desea realizar?</p>
+		<p>El paciente fue encontrado. &iquest;Que operaci&oacute;n desea realizar?</p>
 		<div class="actions">
 			<ul>
 				<li id="linkVer"></li>

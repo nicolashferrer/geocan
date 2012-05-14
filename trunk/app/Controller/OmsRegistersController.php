@@ -59,8 +59,9 @@ class OmsRegistersController extends AppController {
 			//exit;	
 			$this->OmsRegister->create();
 			if ($this->OmsRegister->saveAll($this->request->data)) {
-				$this->Session->setFlash(__('The oms register has been saved'));
-				$this->redirect(array('action' => 'index'));
+				//$this->Session->setFlash(__('The oms register has been saved'));
+				$this->Session->setFlash(__('La informaci&oacute;n fue agregada correctamente!', null), 'default', array('class' => 'success'));
+				$this->redirect(array('controller' => 'patients','action' => 'view',$id));
 			} else {
 				$this->Session->setFlash(__('The oms register could not be saved. Please, try again.'));
 			}
@@ -79,15 +80,17 @@ class OmsRegistersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null,$paciente=null) {
 		$this->OmsRegister->id = $id;
 		if (!$this->OmsRegister->exists()) {
 			throw new NotFoundException(__('Invalid oms register'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->OmsRegister->save($this->request->data)) {
-				$this->Session->setFlash(__('The oms register has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('La informaci&oacute;n fue modificada correctamente!', null), 'default', array('class' => 'success'));
+				$this->redirect(array('controller' => 'patients','action' => 'view',$paciente));
+				//$this->Session->setFlash(__('The oms register has been saved'));
+				//$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The oms register could not be saved. Please, try again.'));
 			}

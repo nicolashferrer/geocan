@@ -107,7 +107,7 @@
 						
 						<td class="actions">
 							<?php echo $this->Html->link(__('Detalles y Notas'), array('controller' => 'oms_registers', 'action' => 'view', $omsRegister['id'])); ?>
-							<?php echo $this->Html->link(__('Modificar'), array('controller' => 'oms_registers', 'action' => 'edit', $omsRegister['id'])); ?>
+							<?php echo $this->Html->link(__('Modificar'), array('controller' => 'oms_registers', 'action' => 'edit', $omsRegister['id'],$patient['Patient']['id'])); ?>
 							<?php //echo $this->Html->link(__('Notas'), array('controller' => 'oms_registers', 'action' => 'view', $omsRegister['id'])); ?>
 							<?php echo $this->Form->postLink(__('Borrar'), array('controller' => 'oms_registers', 'action' => 'delete', $omsRegister['id']), null, __('Esta usted seguro que desea eliminar # %s?', $omsRegister['id'])); ?>
 						</td>

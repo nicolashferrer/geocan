@@ -44,6 +44,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->script('geocodev3'); // Include jQuery library
 		echo $this->Html->script('jquery.autocomplete-min'); // Plugin jquery para autocompletamiento de codigos oms
 		echo $this->Html->script('jquery.colorbox-min'); // Plugin jquery para ventanas modales
+
 		
 	?>
 		<script type="text/javascript">
@@ -67,6 +68,11 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 			$("#fechaActual").html(clock);
 			timer = setTimeout("fechaActual()",1000)
 		}
+	
+	$(document).ready(function() {
+		$('.success,.message').delay(5000).hide('fade', {color: '#EFEFEF'}, 1000);
+				
+	});
 	</script>
 </head>
 <body onLoad="fechaActual()">
@@ -74,17 +80,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		<div id="header">
 			<div id="header-logo">
 			<?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?>
-			</div>
-			<div id="header-statusbar">
-			<?php if ($isAuthed):  ?>
-				<?php echo $this->Form->label('Usuario:'); ?>
-				<?php echo $this->Form->label($auth['username']); ?>
-				<?php echo $this->Form->label('|'); ?>
-				<span id="fechaActual"></span>
-				<?php echo $this->Form->label(' |'); ?>
-				<?php echo $this->Html->link('Salir',array('controller' => 'users', 'action' => 'logout'))?>
-			<?php endif; ?>
-			</div>
+			</div>	
 		</div>
 		<div id="content">
 
