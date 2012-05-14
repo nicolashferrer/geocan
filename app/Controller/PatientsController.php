@@ -132,8 +132,11 @@ class PatientsController extends AppController {
 			//exit();
 			
 			if ($this->Patient->saveAll($this->request->data)) {
-				$this->Session->setFlash(__('Las respuestas fueron actualizadas exitosamente'));
-				$this->redirect(array('action' => 'index'));
+			//	$this->Session->setFlash(__('Las respuestas fueron actualizadas exitosamente'));
+			$this->Session->setFlash(__('La informaci&oacute;n fue modificada correctamente!', null), 
+                            'default', 
+                             array('class' => 'success'));
+				$this->redirect(array('action' => 'view',$id));
 			} else {
 				$this->Session->setFlash(__('Las respuestas no pueden ser actualizadas. Intente Nuevamente!'));
 			}
@@ -221,7 +224,10 @@ class PatientsController extends AppController {
 						
 			if ($this->Patient->saveAll($this->request->data)) {
 				
-				$this->Session->setFlash(__('The patient has been saved'));
+				//$this->Session->setFlash(__('The patient has been saved'));
+				$this->Session->setFlash(__('La informaci&oacute;n fue modificada correctamente!', null), 
+                            'default', 
+                             array('class' => 'success'));
 	
 				if (!($part_act==null)) {
 					//si $part_act no se usa en ningun registro oms del paciente.. la borro de direcciones
@@ -241,7 +247,7 @@ class PatientsController extends AppController {
 				}
 				
 				//y redirecciono a la vista
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view',$id));
 				
 			} else {
 				// echo "<script language='JavaScript'> alert('lalal'); </script>";

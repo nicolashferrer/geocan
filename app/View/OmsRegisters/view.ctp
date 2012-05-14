@@ -35,7 +35,7 @@
 		</dl>
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('Editar Oms'), array('action' => 'edit', $omsRegister['OmsRegister']['id'])); ?> </li>
+				<li><?php echo $this->Html->link(__('Editar Oms'), array('action' => 'edit', $omsRegister['OmsRegister']['id'],$omsRegister['Patient']['id'])); ?> </li>
 			</ul>
 		</div>
 	</fieldset>

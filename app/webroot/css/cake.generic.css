@@ -451,7 +451,7 @@ form .error-message {
 .message {
 	clear: both;
 	color: #fff;
-	font-size: 110%;
+	font-size: 100%;
 	font-weight: bold;
 	margin: 0 0 1em 0;
 	padding: 5px;
@@ -465,6 +465,8 @@ form .error-message {
 .notice,
 p.error,
 .error-message {
+	font-weight: bold;
+	text-align: center;
 	background: #ffcc00;
 	background-repeat: repeat-x;
 	background-image: -moz-linear-gradient(top, #ffcc00, #E6B800);
