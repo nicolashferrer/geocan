@@ -151,7 +151,7 @@ class PatientsController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add($id = null) {
 		if ($this->request->is('post')) {
 			$this->Patient->create();
 	//		debug($this->request->data);
@@ -188,7 +188,8 @@ class PatientsController extends AppController {
 		$provinces = $this->Province->find('list');
 		Controller::loadModel('Question');
 		$questions = $this->Question->find('all',array('conditions' => array('Question.visible' => '1')));
-		$this->set(compact('provinces','questions'));
+		$this->set(compact('provinces','questions','id'));
+		
 	}
 
 /**
