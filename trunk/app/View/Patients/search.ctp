@@ -16,6 +16,7 @@
 					$('#linkOms').html('<a href="<?php echo $this->Html->url(array("controller" => "oms_registers","action" => "add"));?>/' + data.id+'">Cargar Oms</a>');
 					$('#resultadoOK').show();
 				} else {
+					$('#linkCrear').html('<a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "add"));?>/' + $dni+'">Crear Nuevo Paciente</a>');
 					$('#resultadoKO').show();
 				}
 			});
@@ -46,7 +47,7 @@
 		<p>No se encontro ningun paciente con ese n&uacute;mero documento.</p>
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('Crear Nuevo Paciente'), array("controller" => "patients",'action' => 'add')); ?> </li>
+				<li id="linkCrear"></li>
 			</ul>
 		</div>
 		</div>
