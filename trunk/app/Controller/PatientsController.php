@@ -178,10 +178,12 @@ class PatientsController extends AppController {
 			//exit();
 			
 			if ($this->Patient->saveAll($this->request->data)) {
-				$this->Session->setFlash(__('The patient has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('La informaci&oacute;n fue agregada correctamente!', null), 
+                            'default', 
+                             array('class' => 'success'));
+				$this->redirect(array('action' => 'view',$this->Patient->id));
 			} else {
-				$this->Session->setFlash(__('The patient could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El pacente no puede ser creado. Intente Nuevamente!'));
 			}
 		}
 		Controller::loadModel('Province');
