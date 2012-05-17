@@ -56,9 +56,9 @@
 				<td><?php echo $note['fecha'];?></td>
 				<td><?php echo $note['descripcion'];?></td>
 				<td class="actions">
-					<?php echo $this->Html->link(__('Ver'), array('controller' => 'notes', 'action' => 'view', $note['id'])); ?>
-					<?php echo $this->Html->link(__('Editar'), array('controller' => 'notes', 'action' => 'edit', $note['id'])); ?>
-					<?php echo $this->Form->postLink(__('Borrar'), array('controller' => 'notes', 'action' => 'delete', $note['id']), null, __('Está seguro que desea borrar la nota?', $note['id'])); ?>
+					<?php echo $this->Html->link(__('Ver'), array('controller' => 'notes', 'action' => 'view', $note['id'],$omsRegister['OmsRegister']['id'])); ?>
+					<?php echo $this->Html->link(__('Editar'), array('controller' => 'notes', 'action' => 'edit', $note['id'],$omsRegister['OmsRegister']['id'])); ?>
+					<?php echo $this->Form->postLink(__('Borrar'), array('controller' => 'notes', 'action' => 'delete', $note['id'],$omsRegister['OmsRegister']['id']), null, __('Está seguro que desea borrar la nota?', $note['id'])); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
