@@ -38,12 +38,12 @@ class NotesController extends AppController {
  *
  * @return void
  */
-	public function add() {
+	public function add( $id=null) {
 		if ($this->request->is('post')) {
 			$this->Note->create();
 			if ($this->Note->save($this->request->data)) {
 				$this->Session->setFlash(__('La nota ha sido guardada'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller'=>'omsregisters','action' => 'view',$id));
 				//$this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('The note could not be saved. Please, try again.'));
@@ -51,7 +51,7 @@ class NotesController extends AppController {
 		}
 		$medics = $this->Note->Medic->find('list',array('fields'=>array('Medic.nombrecompleto')));
 		$omsRegisters = $this->Note->OmsRegister->find('list');
-		$this->set(compact('medics', 'omsRegisters'));
+		$this->set(compact('medics', 'omsRegisters','id'));
 	}
 
 /**
@@ -68,7 +68,7 @@ class NotesController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Note->save($this->request->data)) {
 				$this->Session->setFlash(__('La nota ha sido guardada'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('controller'=>'oms_registers','action' => 'view',$id));
 			} else {
 				$this->Session->setFlash(__('La nota no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
