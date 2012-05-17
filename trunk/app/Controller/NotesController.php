@@ -25,7 +25,7 @@ class NotesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function view($id = null) {
+	public function view($id = null, $idRegOms = null) {
 		$this->Note->id = $id;
 		if (!$this->Note->exists()) {
 			throw new NotFoundException(__('Invalid note'));
@@ -60,7 +60,7 @@ class NotesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function edit($id = null, $idRegOms = null) {
 		$this->Note->id = $id;
 		if (!$this->Note->exists()) {
 			throw new NotFoundException(__('Nota no válida'));
@@ -68,12 +68,12 @@ class NotesController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Note->save($this->request->data)) {
 				$this->Session->setFlash(__('La nota ha sido guardada'));
-				$this->redirect(array('controller'=>'oms_registers','action' => 'view',$id));
+				$this->redirect(array('controller'=>'oms_registers','action' => 'view',$idRegOms));
 			} else {
 				$this->Session->setFlash(__('La nota no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
 		} else {
-			$this->request->data = $this->Note->read(null, $id);
+			$this->request->data = $this->Note->read(null, $idRegOms);
 		}
 		$medics = $this->Note->Medic->find('list');
 		$omsRegisters = $this->Note->OmsRegister->find('list');
@@ -86,7 +86,7 @@ class NotesController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete($id = null, $idRegOms = null ) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -97,10 +97,10 @@ class NotesController extends AppController {
 		if ($this->Note->delete()) {
 			$this->Session->setFlash(__('Nota borrada'));
 			//$this->redirect($this->referer());
-			$this->redirect(array('action' => 'index'));
+			$this->redirect(array('controller'=>'oms_registers','action' => 'view',$idRegOms));
 		}
 		$this->Session->setFlash(__('La nota no pudo ser borrada'));
-		$this->redirect(array('action' => 'index'));
+		$this->redirect(array('controller'=>'oms_registers','action' => 'view',$idRegOms));
 	}
 
 	function beforeFilter() {
