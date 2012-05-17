@@ -3,7 +3,7 @@
 	<fieldset>
 		<legend><?php echo __('Agregar nota'); ?></legend>
 	<?php
-		echo $this->Form->hidden('Note.oms_register_id',array('value'=>$this->params['pass'][0]));
+		echo $this->Form->hidden('Note.oms_register_id',array('value'=>$id));
 		
 		echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
 		echo $this->Form->input('descripcion',array('label'=>'Descripci&oacute;n','size' => '100%'));
