@@ -220,5 +220,5 @@ $(document).ready(function() {
 		?>
 		</fieldset>
 
-<?php echo $this->Form->end(__('Dar de Alta'));?>
+<?php echo $this->Form->end(__('Agregar'));?>
 </div>
