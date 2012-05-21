@@ -11,6 +11,9 @@ class MedicType extends AppModel {
  *
  * @var array
  */
+ 
+ var $displayField = 'tipo';
+ 
 	public $validate = array(
 		'tipo' => array(
 			'notempty' => array(
