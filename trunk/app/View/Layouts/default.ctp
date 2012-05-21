@@ -81,29 +81,30 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 <body onLoad="fechaActual()">
 	<div id="container">
 		<div id="header">
-			<div id="header-logo"><?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?></div>
+			<div id="header-logo"><a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "search"));?>"><?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?></a></div>
 			<div id="menucontainer">
-			<ul id="nav">
-				<li class="top"><a href="#" class="top_link"><span>Inicio</span></a></li>
-				<li class="top"><a href="#nogo2" id="products" class="top_link"><span class="down">Pacientes</span></a>
-				<ul class="sub">
-					<li><?php echo $this->Html->link('Buscar...',array('controller' => 'patients', 'action' => 'search'))?></li>
-					<li><?php echo $this->Html->link('Nuevo Paciente',array('controller' => 'patients', 'action' => 'add'))?></li>
+				<ul id="nav">
+					<?php if ($isAuthed) {  ?>
+					<li class="top"><a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "search"));?>" class="top_link"><span>Inicio</span></a></li>
+					<li class="top"><a href="#nogo2" id="products" class="top_link"><span class="down">Pacientes</span></a>
+						<ul class="sub">
+							<li><?php echo $this->Html->link('Buscar...',array('controller' => 'patients', 'action' => 'search'))?></li>
+							<li><?php echo $this->Html->link('Nuevo Paciente',array('controller' => 'patients', 'action' => 'add'))?></li>
+						</ul>
+					</li>
+					<li class="topder"><a href="#" class="top_link"><span id="fechaActual"></span></a></li>					
+					<li class="topder"><a href="#" class="top_link"><span class="down"><?php echo $this->Form->label($auth['username']); ?></span></a>
+					<ul class="sub">
+						<li><?php echo $this->Html->link(utf8_encode('Cambiar Contraseña'),array('controller' => 'users', 'action' => 'logout'))?></li>
+						<li><?php echo $this->Html->link('Salir',array('controller' => 'users', 'action' => 'logout'))?></li>
+					</ul>
+					</li>
+					<?php } else { ?>
+					<li class="topder"><a href="#" class="top_link"><span id="fechaActual"></span></a></li>	
+					<?php } ?>
+					
 				</ul>
-				</li>
-				<li class="topder"><a href="#" class="top_link"><span id="fechaActual"></span></a></li>
-				<?php if ($isAuthed):  ?>
-				<li class="topder"><a href="#" class="top_link"><?php echo $this->Form->label($auth['username']); ?></span></a>
-				<ul class="sub">
-					<li><?php echo $this->Html->link('Cambiar Contraseña',array('controller' => 'users', 'action' => 'logout'))?></li>
-					<li><?php echo $this->Html->link('Salir',array('controller' => 'users', 'action' => 'logout'))?></li>
-				</ul>
-				</li>
-
-				<?php endif; ?>
-				
-	</ul>
-	</div>
+			</div>
 			
 		</div>
 		</div>
@@ -115,9 +116,9 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			GeoCan &copy; 2012
+			GeoCan &copy; 2012 
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>
