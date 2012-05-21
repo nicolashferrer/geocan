@@ -66,7 +66,7 @@ class UsersController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view',$id));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
@@ -78,6 +78,36 @@ class UsersController extends AppController {
 		$this->set(compact('groups', 'medics'));
 	}
 
+/**
+ * edit method
+ *
+ * @param string $id
+ * @return void
+ */
+	public function editPassword($id =null) {
+		$this->User->id = $id;
+		if (!$this->User->exists()) {
+			throw new NotFoundException(__('Invalid user'));
+		}
+		if ($this->request->is('post')) {
+			$this->request->data['Patient']['id']= $id;
+			$this->data['User']['security_code'] = '123456';
+			$this->data['User']['password_confirm_hash'] = $this->Auth->password($this->data['User']['password_confirm']);
+			
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('The user has been saved'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+			}
+		}
+		else {
+			$this->request->data = $this->User->read(null, $id);
+		}
+		unset($this->data['User']['password']);
+		unset($this->data['User']['password_confirm']);
+	}
+	
 /**
  * delete method
  *
