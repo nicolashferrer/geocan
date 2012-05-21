@@ -96,7 +96,6 @@ class UsersController extends AppController {
 			$this->request->data['Patient']['id']= $id;
 			$this->data['User']['password_confirm_hash'] = $this->Auth->password($this->data['User']['password_confirm']);
 			
-			
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved'));
 				$this->redirect(array('action' => 'index'));
