@@ -46,6 +46,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->script('jquery.autocomplete-min'); // Plugin jquery para autocompletamiento de codigos oms
 		echo $this->Html->script('jquery.colorbox-min'); // Plugin jquery para ventanas modales
 		echo $this->Html->script('menu');
+		echo $this->Html->script('geocan-utils');
 		
 	?>
 		<script type="text/javascript">
@@ -86,10 +87,16 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 				<ul id="nav">
 					<?php if ($isAuthed) {  ?>
 					<li class="top"><a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "search"));?>" class="top_link"><span>Inicio</span></a></li>
-					<li class="top"><a href="#nogo2" id="products" class="top_link"><span class="down">Pacientes</span></a>
+					<li class="top"><a href="#nogo2" id="patients" class="top_link"><span class="down">Pacientes</span></a>
 						<ul class="sub">
 							<li><?php echo $this->Html->link('Buscar...',array('controller' => 'patients', 'action' => 'search'))?></li>
 							<li><?php echo $this->Html->link('Nuevo Paciente',array('controller' => 'patients', 'action' => 'add'))?></li>
+						</ul>
+					</li>
+					<li class="top"><a href="#nogo2" id="administration" class="top_link"><span class="down">Administraci&oacute;n</span></a>
+						<ul class="sub">
+							<li><?php echo $this->Html->link('Usuarios',array('controller' => 'users', 'action' => 'index'))?></li>
+							<li><?php echo $this->Html->link('Grupos',array('controller' => 'groups', 'action' => 'index'))?></li>
 						</ul>
 					</li>
 					<li class="topder"><a href="#" class="top_link"><span id="fechaActual"></span></a></li>					
@@ -116,7 +123,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			GeoCan &copy; 2012 
+			GeoCan&copy; 2012 
 		</div>
 	</div>
 	<?php //echo $this->element('sql_dump'); ?>

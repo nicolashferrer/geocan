@@ -28,6 +28,11 @@ body {
 	font-family:'Arial';
 	font-size:100%;
 	margin: 0;
+	
+	width:100%;
+	
+	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size: 12px;
 }
 a {
 	color: #003d4c;
@@ -128,7 +133,7 @@ p {
 }
 #footer {
 	clear: both;
-	padding: 6px 10px;
+	padding: 6px 0px;
 	text-align: center;
 	background: #000000;
 }
