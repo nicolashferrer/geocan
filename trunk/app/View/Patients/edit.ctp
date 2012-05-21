@@ -137,7 +137,7 @@
 <div class="patients form">
 <?php echo $this->Form->create('Patient');?>
 	<fieldset>
-		<legend><?php echo __('Edit Patient'); ?></legend>
+		<legend><?php echo __('Modificar Paciente'); ?></legend>
 
 	<?php
 		echo $this->Form->input('id');
