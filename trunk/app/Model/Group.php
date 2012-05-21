@@ -42,7 +42,7 @@ class Group extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',
-			'finderQuery' => '',
+			'finderQuery' => 'SELECT User.*,Medic.nombre,Medic.apellido FROM geocan.users AS User LEFT JOIN medics AS Medic ON Medic.id=User.medic_id  WHERE User.group_id ={$__cakeID__$}',
 			'counterQuery' => ''
 		)
 	);
