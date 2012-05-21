@@ -86,9 +86,10 @@ p {
 }
 
 #header-logo{
-	/*padding: 10px 20px;*/
+	padding: 10px;
 	background: #000000;
 	width: 300px;
+	margin:auto;
 }
 
 #header-statusbar{
@@ -112,7 +113,7 @@ p {
 #menucontainer {
 	width:100% !important;
 	height:36px;
-	background-image:url('menu/blank.gif');
+	background-image:url('menu/fondomenu.gif');
 	background-repeat:repeat-x;
 }
 
