@@ -1,4 +1,3 @@
-
 <div id="login">
 	<fieldset>
 		<legend><?php echo __('Ingreso al Sistema'); ?></legend>
@@ -6,7 +5,7 @@
 		echo $this->Form->create('User', array('url' => array('controller' => 'users', 'action' =>'login')));
 		echo $this->Form->input('User.username');
 		echo $this->Form->input('User.password');
-		echo $this->Form->end('Login');
+		echo $this->Form->end('Entrar');
 		?>
 	</fieldset>
 </div>

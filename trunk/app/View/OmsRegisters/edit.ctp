@@ -1,25 +1,13 @@
 <script>
 	$(document).ready(function() {
 	
-			$('#OmsRegisterFecha').datepicker({ dateFormat: "dd/mm/yy", 
-				changeMonth: true, changeYear: true, constrainInput: true, 
-				showOn: "button", buttonImage: "<?php echo $this->webroot; ?>img/calendar.png", buttonImageOnly: true,
-				yearRange: "1930:2020", monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-				'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-				monthNamesShort: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-				'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-				dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
-				dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
-				dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
-				showOtherMonths: true,
-				selectOtherMonths: true
-			});
+			$('#OmsRegisterFecha').datepicker(datepicker_config);
 	});
 </script>
 <div class="omsRegisters form">
 <?php echo $this->Form->create('OmsRegister');?>
 	<fieldset>
-		<legend><?php echo __('Edit Oms Register'); ?></legend>
+		<legend><?php echo __('Editar Oms'); ?></legend>
 	<?php
 		//debug($omsregister);
 	

@@ -1,20 +1,8 @@
 <script type="text/javascript" charset="utf-8">
 	
 $(document).ready(function() {
-
-	$('#PatientFechaNacimiento').datepicker({ dateFormat: "dd/mm/yy", 
-	changeMonth: true, changeYear: true, constrainInput: true, 
-	showOn: "button", buttonImage: "<?php echo $this->webroot; ?>img/calendar.png", buttonImageOnly: true,
-	yearRange: "1930:2020", monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-	'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-	monthNamesShort: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
-	'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
-	dayNames: ['Domingo','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','S&aacute;bado'],
-	dayNamesShort: ['Dom','Lun','Mar','Mi&eacute;','Juv','Vie','S&aacute;b'],
-	dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','S&aacute;'],
-	showOtherMonths: true,
-	selectOtherMonths: true
-	});
+	
+	$('#PatientFechaNacimiento').datepicker(datepicker_config);
 
     $('#provinciasParticular').change(function() {
 
@@ -141,7 +129,6 @@ $(document).ready(function() {
 			}
 	}
 
-
 </script>
 <div class="patients form">
 <?php echo $this->Form->create('Patient');?>
@@ -181,7 +168,9 @@ $(document).ready(function() {
 					<?php endforeach; ?>
 					</select><select id="localidadesParticular">
 						<option value="0" selected>Seleccionar</option>
-					</select><input type="text" size="25" value="Nombre de la Calle" id="calleParticular"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaParticular">
+					</select>
+					<input type="text" size="25" value="Calle" id="calleParticular" class="clear-text-field" >
+					<input type="text" size="5" value="Altura" id="alturaParticular" class="clear-text-field" >
 					<a href="JavaScript:buscar('Particular');" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 				</fieldset>
 				<fieldset>
@@ -193,7 +182,9 @@ $(document).ready(function() {
 					</select> 
 					<select id="localidadesLaboral">
 						<option value="0" selected>Seleccionar</option>
-					</select><input type="text" size="25" value="Nombre de la Calle" id="calleLaboral"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaLaboral">
+					</select>
+					<input type="text" size="25" value="Calle" id="calleLaboral" class="clear-text-field">
+					<input type="text" size="5" value="Altura" id="alturaLaboral" class="clear-text-field">
 					<a href="JavaScript:buscar('Laboral');" id="comprobarLaboral"><img id="imgbusquedaLaboral" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 				</fieldset>
 		</fieldset>

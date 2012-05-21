@@ -27,7 +27,7 @@ class UsersController extends AppController {
 	public function view($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario no válido'));
 		}
 		$this->set('user', $this->User->read(null, $id));
 	}
@@ -44,10 +44,10 @@ class UsersController extends AppController {
             $this->request->data['User']['password_confirm_hash'] = $this->data['User']['password_confirm'];	
 			
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('El Usuario se ha creado correctamente'));
+				$this->Session->setFlash(__('El usuario se ha creado correctamente'));
 				$this->redirect(array('action' => 'view',$this->User->id));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, inténtelo de nuevo.'));
 			}
 		}
 		$groups = $this->User->Group->find('list');
@@ -64,14 +64,14 @@ class UsersController extends AppController {
 	public function edit($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario no válido'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
+				$this->Session->setFlash(__('El usuario se ha guardado'));
 				$this->redirect(array('action' => 'view',$id));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, inténtelo de nuevo.'));
 			}
 		} else {
 			$this->request->data = $this->User->read(null, $id);
@@ -90,17 +90,17 @@ class UsersController extends AppController {
 	public function editPassword($id =null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario no válido'));
 		}
 		if ($this->request->is('post')) {
 			$this->request->data['Patient']['id']= $id;
 			$this->data['User']['password_confirm_hash'] = $this->Auth->password($this->data['User']['password_confirm']);
 			
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
+				$this->Session->setFlash(__('El usuario se ha guardado'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, inténtelo de nuevo.'));
 			}
 		}
 		else {
@@ -120,13 +120,13 @@ class UsersController extends AppController {
 		}
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
+			throw new NotFoundException(__('Usuario no válido'));
 		}
 		if ($this->User->delete()) {
-			$this->Session->setFlash(__('User deleted'));
+			$this->Session->setFlash(__('Usuarios borrado'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('User was not deleted'));
+		$this->Session->setFlash(__('El usuario no se ha eliminado'));
 		$this->redirect(array('action' => 'index'));
 	}
 	
@@ -135,13 +135,13 @@ class UsersController extends AppController {
 			if ($this->Auth->login()) {
 				$this->redirect($this->Auth->redirect());
 			} else {
-				$this->Session->setFlash('Your username or password was incorrect.');
+				$this->Session->setFlash('Su nombre de usuario o la contraseña es incorrecta.');
 			}
 		}
 	}
 
 	public function logout() {
-		$this->Session->setFlash('Gracias por utilizar Geocan&#174;');
+		$this->Session->setFlash('Gracias por utilizar Geocan&copy;');
 		$this->redirect($this->Auth->logout());
 	}
 	

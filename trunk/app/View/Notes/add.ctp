@@ -9,7 +9,7 @@
 		echo $this->Form->input('descripcion',array('label'=>'Descripci&oacute;n','size' => '100%'));
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit'));?>
+<?php echo $this->Form->end(__('Guardar'));?>
 </div>
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
