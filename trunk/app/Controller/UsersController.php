@@ -38,11 +38,14 @@ class UsersController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
+		if (!empty($this->data)) {
+
 			$this->User->create();
+            $this->request->data['User']['password_confirm_hash'] = $this->data['User']['password_confirm'];	
+			
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash(__('El Usuario se ha creado correctamente'));
+				$this->redirect(array('action' => 'view',$this->User->id));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
 			}
@@ -91,8 +94,8 @@ class UsersController extends AppController {
 		}
 		if ($this->request->is('post')) {
 			$this->request->data['Patient']['id']= $id;
-			$this->data['User']['security_code'] = '123456';
 			$this->data['User']['password_confirm_hash'] = $this->Auth->password($this->data['User']['password_confirm']);
+			
 			
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved'));
@@ -104,8 +107,6 @@ class UsersController extends AppController {
 		else {
 			$this->request->data = $this->User->read(null, $id);
 		}
-		unset($this->data['User']['password']);
-		unset($this->data['User']['password_confirm']);
 	}
 	
 /**
