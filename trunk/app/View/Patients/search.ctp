@@ -16,7 +16,7 @@
 					$('#linkOms').html('<a href="<?php echo $this->Html->url(array("controller" => "oms_registers","action" => "add"));?>/' + data.id+'">Cargar Oms</a>');
 					$('#resultadoOK').show();
 				} else {
-					$('#linkCrear').html('<a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "add"));?>/' + $dni+'">Crear Nuevo Paciente</a>');
+					$('#linkCrear').html('<a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "add"));?>/' + $dni+'">Nuevo Paciente</a>');
 					$('#resultadoKO').show();
 				}
 			});
