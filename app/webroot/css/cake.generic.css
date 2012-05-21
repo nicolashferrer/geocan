@@ -65,9 +65,7 @@ h4 {
 	color: #993;
 	font-weight: normal;
 }
-ul, li {
-	margin: 0 12px;
-}
+
 p {
 	margin: 0 0 1em 0;
 }
@@ -94,15 +92,12 @@ p {
 }
 
 #header-statusbar{
-	padding: 5px 20px;
 	text-align: center;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	background-color: #fff;
-	border:1px solid #CCC;
 	color: #000;
-	margin:0 auto 0 auto;
-	width: 500px;
+	width:100% !important;
+	height:36px;
+	background-image:url('menu/fondomenu.gif');
+	background-repeat:repeat-x;
 }
 
 #header-statusbar a{
@@ -110,8 +105,15 @@ p {
 }
 
 #header a{
-	color:#fff;
+	color:#000;
 	text-decoration:none;
+}
+
+#menucontainer {
+	width:100% !important;
+	height:36px;
+	background-image:url('menu/blank.gif');
+	background-repeat:repeat-x;
 }
 
 
