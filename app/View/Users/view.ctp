@@ -1,53 +1,38 @@
 <div class="users view">
-<h2><?php  echo __('User');?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Username'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['username']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Password'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['password']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Group'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($user['Group']['name'], array('controller' => 'groups', 'action' => 'view', $user['Group']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Modified'); ?></dt>
-		<dd>
-			<?php echo h($user['User']['modified']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Medics'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($user['Medics']['id'], array('controller' => 'medics', 'action' => 'view', $user['Medic']['id'])); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit User'), array('action' => 'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete User'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Groups'), array('controller' => 'groups', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Group'), array('controller' => 'groups', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Medics'), array('controller' => 'medics', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Medics'), array('controller' => 'medics', 'action' => 'add')); ?> </li>
-	</ul>
+	<fieldset>
+		<legend><?php echo __('Usuario'); ?></legend>
+		<dl>
+			<dt><?php echo __('Nombre Usuario'); ?></dt>
+			<dd>
+				<?php echo h($user['User']['username']); ?>
+				&nbsp;
+			</dd>
+			<dt><?php echo __('Grupo'); ?></dt>
+			<dd>
+				<?php echo h($user['Group']['name']); ?>
+				&nbsp;
+			</dd>
+			<dt><?php echo __('Creado'); ?></dt>
+			<dd>
+				<?php echo h($user['User']['created']); ?>
+				&nbsp;
+			</dd>
+			<dt><?php echo __('Modificado'); ?></dt>
+			<dd>
+				<?php echo h($user['User']['modified']); ?>
+				&nbsp;
+			</dd>
+			<dt><?php echo __('Medico'); ?></dt>
+			<dd>
+				<?php echo $user['Medic']['nombre'].' '.$user['Medic']['apellido']; ?>
+				&nbsp;
+			</dd>
+		</dl>
+		<div class="actions">
+			<ul>
+				<li><?php echo $this->Html->link(__('Modificar Usuario'), array('action' => 'edit', $user['User']['id'])); ?> </li>
+				<li><?php echo $this->Html->link(__('Modificar Password'), array('action' => 'editPassword', $user['User']['id'])); ?> </li>
+			</ul>
+		</div>
+	</fieldset>
 </div>

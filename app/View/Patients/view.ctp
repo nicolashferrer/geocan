@@ -46,7 +46,7 @@
 
 	<fieldset>
 		<legend><?php echo __('Preguntas'); ?></legend>
-			<?php if (!empty($results)):?>
+		<?php if (!empty($results)):?>
 			<table cellpadding = "0" cellspacing = "0">
 			<tr>
 				<th><?php echo __('Descripcion'); ?></th>
@@ -68,13 +68,14 @@
 			<?php endforeach; ?>
 			
 			</table>
-					<div class="actions">
-			<ul>
-				<li><?php echo $this->Html->link(__('Modificar Respuestas'), array('action' => 'editAnswers', $patient['Patient']['id'])); ?> </li>
-			</ul>
-		</div>
+			<div class="actions">
+				<ul>
+					<li><?php echo $this->Html->link(__('Modificar Respuestas'), array('action' => 'editAnswers', $patient['Patient']['id'])); ?> </li>
+				</ul>
+			</div>
+		<?php endif; ?>
 	</fieldset>
-<?php endif; ?>
+
 
 
 	<fieldset>
@@ -98,7 +99,7 @@
 					<tr>
 						<td><?php echo $omsRegister['Oms']['codigo'];?></td>
 						<td><?php echo $omsRegister['fecha'];?></td>
-						<td><?php echo $omsRegister['Medic']['apellido'].' '.$omsRegister['Medic']['nombre']; ?></td>
+						<td><?php echo $omsRegister['Medic']['nombre'].' '.$omsRegister['Medic']['apellido']; ?></td>
 						<!--
 						
 						<td><?php // echo $omsRegister['AddressPart']['direccion'];?></td>
