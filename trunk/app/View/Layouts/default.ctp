@@ -35,6 +35,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->css('start/jquery-ui-1.8.19.custom'); // Css de Jquery UI
 		echo $this->Html->css('styles'); // Css de plugin jquery autocompletar
 		echo $this->Html->css('colorbox'); // Css de Plugin jquery para ventanas modales
+		echo $this->Html->css('menu'); 
 	
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -44,7 +45,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->script('geocodev3'); // Include jQuery library
 		echo $this->Html->script('jquery.autocomplete-min'); // Plugin jquery para autocompletamiento de codigos oms
 		echo $this->Html->script('jquery.colorbox-min'); // Plugin jquery para ventanas modales
-
+		echo $this->Html->script('menu');
 		
 	?>
 		<script type="text/javascript">
@@ -69,8 +70,10 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 			timer = setTimeout("fechaActual()",1000)
 		}
 	
-	$(document).ready(function() {
+	$(document).ready(function() { 
+	
 		$('.success,.message').delay(5000).hide('fade', {color: '#EFEFEF'}, 1000);
+		
 				
 	});
 	</script>
@@ -78,9 +81,31 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 <body onLoad="fechaActual()">
 	<div id="container">
 		<div id="header">
-			<div id="header-logo">
-			<?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?>
-			</div>	
+			<div id="header-logo"><?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?></div>
+			<div id="menucontainer">
+			<ul id="nav">
+				<li class="top"><a href="#" class="top_link"><span>Inicio</span></a></li>
+				<li class="top"><a href="#nogo2" id="products" class="top_link"><span class="down">Pacientes</span></a>
+				<ul class="sub">
+					<li><?php echo $this->Html->link('Buscar...',array('controller' => 'patients', 'action' => 'search'))?></li>
+					<li><?php echo $this->Html->link('Nuevo Paciente',array('controller' => 'patients', 'action' => 'add'))?></li>
+				</ul>
+				</li>
+				<li class="topder"><a href="#" class="top_link"><span id="fechaActual"></span></a></li>
+				<?php if ($isAuthed):  ?>
+				<li class="topder"><a href="#" class="top_link"><?php echo $this->Form->label($auth['username']); ?></span></a>
+				<ul class="sub">
+					<li><?php echo $this->Html->link('Cambiar Contraseña',array('controller' => 'users', 'action' => 'logout'))?></li>
+					<li><?php echo $this->Html->link('Salir',array('controller' => 'users', 'action' => 'logout'))?></li>
+				</ul>
+				</li>
+
+				<?php endif; ?>
+				
+	</ul>
+	</div>
+			
+		</div>
 		</div>
 		<div id="content">
 
