@@ -38,7 +38,7 @@
 			</dl>
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('Editar Paciente'), array('action' => 'edit', $patient['Patient']['id'])); ?> </li>
+				<li><?php echo $this->Html->link(__('Modificar Paciente'), array('action' => 'edit', $patient['Patient']['id'])); ?> </li>
 			</ul>
 		</div>
 	</fieldset>
@@ -70,7 +70,7 @@
 			</table>
 					<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('Editar Respuestas'), array('action' => 'editAnswers', $patient['Patient']['id'])); ?> </li>
+				<li><?php echo $this->Html->link(__('Modificar Respuestas'), array('action' => 'editAnswers', $patient['Patient']['id'])); ?> </li>
 			</ul>
 		</div>
 	</fieldset>
@@ -78,7 +78,7 @@
 
 
 	<fieldset>
-		<legend><?php echo __('Registros de OMS'); ?></legend>
+		<legend><?php echo __('Registros OMS'); ?></legend>
 			<?php if (!empty($patient['OmsRegister'])):?>
 				<table cellpadding = "0" cellspacing = "0">
 				<tr>
@@ -109,7 +109,7 @@
 							<?php echo $this->Html->link(__('Detalles y Notas'), array('controller' => 'oms_registers', 'action' => 'view', $omsRegister['id'])); ?>
 							<?php echo $this->Html->link(__('Modificar'), array('controller' => 'oms_registers', 'action' => 'edit', $omsRegister['id'],$patient['Patient']['id'])); ?>
 							<?php //echo $this->Html->link(__('Notas'), array('controller' => 'oms_registers', 'action' => 'view', $omsRegister['id'])); ?>
-							<?php echo $this->Form->postLink(__('Borrar'), array('controller' => 'oms_registers', 'action' => 'delete', $omsRegister['id']), null, __('Esta usted seguro que desea eliminar # %s?', $omsRegister['id'])); ?>
+							<?php echo $this->Form->postLink(__('Eliminar'), array('controller' => 'oms_registers', 'action' => 'delete', $omsRegister['id']), null, __('Esta usted seguro que desea eliminar # %s?', $omsRegister['id'])); ?>
 						</td>
 					</tr>
 					<?php endforeach; ?>
