@@ -47,7 +47,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->script('jquery.colorbox-min'); // Plugin jquery para ventanas modales
 		echo $this->Html->script('menu');
 		echo $this->Html->script('geocan-utils');
-		
+
 	?>
 		<script type="text/javascript">
 		var timer = null
@@ -95,14 +95,30 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 					</li>
 					<li class="top"><a href="#nogo2" id="administration" class="top_link"><span class="down">Administraci&oacute;n</span></a>
 						<ul class="sub">
-							<li><?php echo $this->Html->link('Usuarios',array('controller' => 'users', 'action' => 'index'))?></li>
-							<li><?php echo $this->Html->link('Grupos',array('controller' => 'groups', 'action' => 'index'))?></li>
+							<li><a href="#" class="fly">Geolocaci&oacute;n</a>
+								<ul>
+									<li><?php echo $this->Html->link('Provincias',array('controller' => 'provinces', 'action' => 'index'))?></li>
+									<li><?php echo $this->Html->link('Ciudades',array('controller' => 'cities', 'action' => 'index'))?></li>
+								</ul>
+							</li>
+							<li><a href="#" class="fly">M&eacute;dicos</a>
+								<ul>
+									<li><?php echo $this->Html->link(utf8_encode('Médicos'),array('controller' => 'medics', 'action' => 'index'))?></li>
+									<li><?php echo $this->Html->link(utf8_encode('Tipos de Médicos'),array('controller' => 'medictypes', 'action' => 'index'))?></li>
+								</ul>
+							</li>
+							<li><a href="#" class="fly">Usuarios</a>
+								<ul>
+									<li><?php echo $this->Html->link('Usuarios',array('controller' => 'users', 'action' => 'index'))?></li>
+									<li><?php echo $this->Html->link('Grupos',array('controller' => 'groups', 'action' => 'index'))?></li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 					<li class="topder"><a href="#" class="top_link"><span id="fechaActual"></span></a></li>					
 					<li class="topder"><a href="#" class="top_link"><span class="down"><?php echo $this->Form->label($auth['username']); ?></span></a>
 					<ul class="sub">
-						<li><?php echo $this->Html->link(utf8_encode('Cambiar Contraseña'),array('controller' => 'users', 'action' => 'logout'))?></li>
+						<li><?php echo $this->Html->link(utf8_encode('Cambiar Contraseña'),array('controller' => 'users', 'action' => 'editPassword',$this->Session->read('Auth.User.id')))?></li>
 						<li><?php echo $this->Html->link('Salir',array('controller' => 'users', 'action' => 'logout'))?></li>
 					</ul>
 					</li>
