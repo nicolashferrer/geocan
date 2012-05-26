@@ -59,6 +59,8 @@ class AppController extends Controller {
 		
 		$this->currentUser = $this->Auth->user();
 		$this->isAuthed = !empty($this->currentUser); 
+		//$user = $this->User->read(null, $this->Session->read('Auth.User.id'));
+		
     }
 	
 	function beforeRender() {

@@ -10,8 +10,8 @@
 			<tr>
 				<th><?php echo $this->Paginator->sort('Nombre Usuario');?></th>
 				<th><?php echo $this->Paginator->sort('Grupo');?></th>
-				<th><?php echo $this->Paginator->sort('Creado');?></th>
-				<th><?php echo $this->Paginator->sort('Modificado');?></th>
+				<!-- th><?php echo $this->Paginator->sort('Creado');?></th -->
+				<!-- th><?php echo $this->Paginator->sort('Modificado');?></th -->
 				<th><?php echo $this->Paginator->sort('Medico');?></th>
 				<th class="actions"><?php echo __('Acciones');?></th>
 			</tr>
@@ -19,8 +19,8 @@
 			<tr>
 				<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
 				<td><?php echo h($user['Group']['name']); ?>&nbsp;</td>
-				<td><?php echo h($user['User']['created']); ?>&nbsp;</td>
-				<td><?php echo h($user['User']['modified']); ?>&nbsp;</td>
+				<!-- td><?php echo h($user['User']['created']); ?>&nbsp;</td -->
+				<!-- td><?php echo h($user['User']['modified']); ?>&nbsp;</td -->
 				<td><?php echo $user['Medic']['nombre'].' '.$user['Medic']['apellido'];?>&nbsp;</td>
 				<td class="actions">
 					<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $user['User']['id'])); ?>

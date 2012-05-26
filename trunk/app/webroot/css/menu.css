@@ -48,16 +48,16 @@ way to fit your requirements.
 #nav li:hover ul.sub li a
 {display:block; font-size:11px; height:20px; width:140px; line-height:20px; text-indent:5px; color:#000; text-decoration:none;}
 #nav li ul.sub li a.fly
-{background:#fff url(menu/arrow.gif) 80px 7px no-repeat;}
+{background:#fff url(menu/arrow.gif) 130px 7px no-repeat;}
 #nav li:hover ul.sub li a:hover 
 {background:#3a93d2; color:#fff;}
 #nav li:hover ul.sub li a.fly:hover
-{background:#3a93d2 url(menu/arrow_over.gif) 80px 7px no-repeat; color:#fff;}
+{background:#3a93d2 url(menu/arrow_over.gif) 130px 7px no-repeat; color:#fff;}
 
-#nav li:hover ul li:hover > a.fly {background:#3a93d2 url(menu/arrow_over.gif) 80px 7px no-repeat; color:#fff;} 
+#nav li:hover ul li:hover > a.fly {background:#3a93d2 url(menu/arrow_over.gif) 130px 7px no-repeat; color:#fff;} 
 
 #nav li:hover ul li:hover ul,
 #nav li:hover ul li:hover ul li:hover ul,
 #nav li:hover ul li:hover ul li:hover ul li:hover ul,
 #nav li:hover ul li:hover ul li:hover ul li:hover ul li:hover ul
-{left:90px; top:-4px; background: #fff; padding:3px; border:1px solid #3a93d2; white-space:nowrap; width:90px; z-index:400; height:auto;}
+{left:140px; top:-4px; background: #fff; padding:3px; border:1px solid #3a93d2; white-space:nowrap; width:140px; z-index:400; height:auto;}
