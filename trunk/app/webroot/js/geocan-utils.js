@@ -30,7 +30,7 @@ function clearTextField( field ){
 
 var datepicker_config = { dateFormat: "dd/mm/yy", 
 	changeMonth: true, changeYear: true, constrainInput: true, 
-	showOn: "button", buttonImage: "../img/calendar.png", buttonImageOnly: true,
+	showOn: "button", buttonImage: "/geocan/img/calendar.png", buttonImageOnly: true,
 	yearRange: "1930:2020", monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
 	'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
 	monthNamesShort: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
