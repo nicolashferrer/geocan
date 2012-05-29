@@ -41,8 +41,13 @@ class UsersController extends AppController {
 		if (!empty($this->data)) {
 
 			$this->User->create();
-            $this->request->data['User']['password_confirm_hash'] = $this->data['User']['password_confirm'];	
+			$this->request->data['User']['password'] = 'geocan2012';
+			$this->request->data['User']['password_confirm'] = 'geocan2012';
+            $this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];	
 			
+			debug($this->request->data);	
+			exit();
+
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('El usuario se ha creado correctamente'));
 				$this->redirect(array('action' => 'view',$this->User->id));
@@ -54,6 +59,39 @@ class UsersController extends AppController {
 		$medics = $this->User->Medic->find('list');
 		$this->set(compact('groups', 'medics'));
 	}
+
+	
+/**
+ * add method
+ *
+ * @return void
+ */
+	public function resetPassword($id=null, $username=null) {
+		$this->autoRender = false;
+		$this->User->id = $id;
+		
+		if (!$this->User->exists()) {
+			throw new NotFoundException(__('Usuario no válido'));
+		}
+		else
+		{
+			$this->request->data['User']['id']= $id;
+			$this->request->data['User']['username']= $username;
+			$this->request->data['User']['password'] = 'geocan2012';
+			$this->request->data['User']['password_confirm'] = 'geocan2012';
+            $this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
+			
+				//debug($this->request->data);	
+				//exit();
+			
+			if ($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('El password se reseto exitosamente'));
+			} else {
+				$this->Session->setFlash(__('El password no se pudo Resetear. Por favor, intentelo de nuevo.'));
+			}
+		}
+		$this->redirect(array('action' => 'index'));
+	}	
 
 /**
  * edit method
@@ -87,24 +125,35 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function editPassword($id =null) {
+	public function editPassword($id =null, $username= null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Usuario no válido'));
 		}
-		if ($this->request->is('post')) {
-			$this->request->data['Patient']['id']= $id;
-			$this->data['User']['password_confirm_hash'] = $this->Auth->password($this->data['User']['password_confirm']);
+		if ($this->request->is('post')) {	
 			
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('El usuario se ha guardado'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, inténtelo de nuevo.'));
+			$cont= $this->User->Find('all',array('conditions' => array('User.id' => $id)));
+			
+			if ($cont[0]['User']['password'] == AuthComponent::password($this->request->data['User']['pass_viejo']))
+			{
+				$this->request->data['User']['id']= $id;
+				$this->request->data['User']['username'] = $username;
+				$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
+				
+				//debug($this->request->data);
+				//exit();
+			
+				if ($this->User->save($this->request->data)) {
+					$this->Session->setFlash(__('El usuario se ha guardado'));
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, inténtelo de nuevo.'));
+				}
 			}
-		}
-		else {
-			$this->request->data = $this->User->read(null, $id);
+			else
+			{
+				$this->Session->setFlash(__('La contraseña anterior no coincide.'));
+			}
 		}
 	}
 	
