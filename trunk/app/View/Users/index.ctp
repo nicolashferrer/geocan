@@ -25,7 +25,7 @@
 				<td class="actions">
 					<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $user['User']['id'])); ?>
 					<?php echo $this->Html->link(__('Modificar'), array('action' => 'edit', $user['User']['id'])); ?>
-					<?php echo $this->Html->link(__('Modificar Password'), array('action' => 'editPassword', $user['User']['id'])); ?>
+					<?php echo $this->Html->link(__('Resetear Password'), array('action' => 'resetPassword', $user['User']['id'], $user['User']['username'])); ?>
 					<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $user['User']['id']), null, __('Esta seguro que desea eliminar el usuario %s?', $user['User']['username'])); ?>
 				</td>
 			</tr>
