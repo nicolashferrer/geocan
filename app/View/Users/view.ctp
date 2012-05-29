@@ -31,7 +31,12 @@
 		<div class="actions">
 			<ul>
 				<li><?php echo $this->Html->link(__('Modificar Usuario'), array('action' => 'edit', $user['User']['id'])); ?> </li>
-				<li><?php echo $this->Html->link(__('Modificar Password'), array('action' => 'editPassword', $user['User']['id'])); ?> </li>
+				<li>
+					<?php 
+						if ($user['group']['name']='administradores')
+							echo $this->Html->link(__('Resetear Password'), array('action' => 'resetPassword', $user['User']['id']));
+					?>
+				</li>
 			</ul>
 		</div>
 	</fieldset>
