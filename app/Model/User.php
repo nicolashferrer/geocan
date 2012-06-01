@@ -25,6 +25,7 @@ class User extends AppModel {
 				'message' => 'Por favor ingrese un nombre de usuario.',
 				'allowEmpty' => false,
 				'required' => true,
+				'on' => 'create'
 			),
 		),
         'password' => array(
@@ -37,12 +38,6 @@ class User extends AppModel {
                     'message' => 'El password tiene que tener como minimo 6 caracteres.'
                 ),
          ),
-		 'password_confirm' => array(
-                'minlength' => array(
-                    'rule' => array('wrapper', array(array('minLength', 6), array('password_confirm'))),
-                    'message' => 'El password tiene que tener como minimo 6 caracteres.'
-				),
-		 ),
 		'group_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),

@@ -137,22 +137,25 @@ class UsersController extends AppController {
 			if ($cont[0]['User']['password'] == AuthComponent::password($this->request->data['User']['pass_viejo']))
 			{
 				$this->request->data['User']['id']= $id;
-				$this->request->data['User']['username'] = $username;
+				//$this->request->data['User']['username'] = $username; El problema era con el modelo, que pedia que el username sea no_empty! se lo puse solo cuando es una creacion!
 				$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
 				
 				//debug($this->request->data);
 				//exit();
 			
 				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash(__('El usuario se ha guardado'));
-					$this->redirect(array('action' => 'index'));
+					$this->Session->setFlash(__('La contrase&ntilde;a se cambio correctamente. Por favor vuelva a ingresar.', null), 
+                            'default', 
+                             array('class' => 'success'));
+					$this->redirect($this->Auth->logout());
+					//$this->redirect(array('action' => 'index'));
 				} else {
 					$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, inténtelo de nuevo.'));
 				}
 			}
 			else
 			{
-				$this->Session->setFlash(__('La contraseña anterior no coincide.'));
+				$this->Session->setFlash(__('La contrase&ntilde;a anterior no coincide.'));
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 $(document).ready(function(){
 	
 	/* Run clearTextField function on all selected text fields */
-	clearTextField( jQuery(".clear-text-field") );
+	clearTextField( jQuery(".clear-text-field"));
 
 });
 

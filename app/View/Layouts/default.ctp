@@ -118,7 +118,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 					<li class="topder"><a href="#" class="top_link"><span id="fechaActual"></span></a></li>					
 					<li class="topder"><a href="#" class="top_link"><span class="down"><?php echo $this->Form->label($auth['username']); ?></span></a>
 					<ul class="sub">
-						<li><?php echo $this->Html->link(utf8_encode('Cambiar Contraseña'),array('controller' => 'users', 'action' => 'editPassword', $auth['id'], $auth['username']))?></li>
+						<li><?php echo $this->Html->link(utf8_encode('Cambiar Contraseña'),array('controller' => 'users', 'action' => 'editPassword', $auth['id']))?></li>
 						<li><?php echo $this->Html->link('Salir',array('controller' => 'users', 'action' => 'logout'))?></li>
 					</ul>
 					</li>
