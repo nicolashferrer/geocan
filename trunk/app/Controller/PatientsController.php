@@ -183,7 +183,7 @@ class PatientsController extends AppController {
                              array('class' => 'success'));
 				$this->redirect(array('action' => 'view',$this->Patient->id));
 			} else {
-				$this->Session->setFlash(__('El pacente no puede ser creado. Intente Nuevamente!'));
+				$this->Session->setFlash(__('El paciente no pudo ser creado. Intente Nuevamente!'));
 			}
 		}
 		Controller::loadModel('Province');

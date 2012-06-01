@@ -212,4 +212,5 @@ $(document).ready(function() {
 		</fieldset>
 
 <?php echo $this->Form->end(__('Agregar'));?>
+<a href="javascript:window.history.back()">go back</a> 
 </div>
