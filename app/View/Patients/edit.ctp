@@ -54,6 +54,8 @@
 	
 	$(document).ready(function() {
 	
+				$('#PatientFechaNacimiento').datepicker(datepicker_config);
+	
 				$('#provinciasParticular').change(function() {
 
 				var $id = $('#provinciasParticular').val();
@@ -168,7 +170,7 @@
 		
 		$options=array('M'=>'Masculino','F'=>'Femenino');
 		$attributes=array('legend'=>false,'value'=>'M','separator'=>'');	
-		echo "<div class=input>";
+		echo "<div>";
 			echo $this->Form->label("Sexo");
 			echo $this->Form->radio('sexo',$options,$attributes);
 		echo "</div>";
@@ -177,7 +179,7 @@
 		
 		?>
 		<div class=input>
-		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"> NO modificar la direccion particular del paciente.
+		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"/> No modificar la direccion particular del paciente.<br />
 		<fieldset id="fsParticular">
 			<legend><?php echo __('Direccion Particular'); ?></legend>
 			<select id="provinciasParticular">
@@ -186,12 +188,12 @@
 			<?php endforeach; ?>
 			</select><select id="localidadesParticular">
 				<option value="0" selected>Seleccionar</option>
-			</select><input type="text" size="25" value="Nombre de la Calle" id="calleParticular"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaParticular">
+			</select>
+			<input type="text" size="25" value="Calle" id="calleParticular" class="clear-text-field" />
+			<input type="text" size="5" value="Altura" id="alturaParticular" class="clear-text-field" />
 			<a href="JavaScript:buscar('Particular');" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 		</fieldset>
-		</div>
-		<div class=input>
-		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"> NO modificar la direccion laboral del paciente.
+		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"/> No modificar la direccion laboral del paciente.<br />
 		<fieldset id="fsLaboral">
 			<legend><?php echo __('Direccion Laboral'); ?></legend>
 			<select id="provinciasLaboral">
@@ -201,7 +203,9 @@
 			</select> 
 			<select id="localidadesLaboral">
 				<option value="0" selected>Seleccionar</option>
-			</select><input type="text" size="25" value="Nombre de la Calle" id="calleLaboral"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaLaboral">
+			</select>
+			<input type="text" size="25" value="Calle" id="calleLaboral" class="clear-text-field" />
+			<input type="text" size="5" value="Altura" id="alturaLaboral" class="clear-text-field" />
 			<a href="JavaScript:buscar('Laboral');" id="comprobarLaboral"><img id="imgbusquedaLaboral" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 		</fieldset>
 		</div>

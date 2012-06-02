@@ -76,7 +76,7 @@ p {
 }
 
 #login fieldset {
-	text-align:center;
+	/*text-align:center;*/
 }
 
 /** Layout **/
@@ -800,3 +800,42 @@ pre {
 #url-rewriting-warning {
 	display:none;
 }
+
+/*NUEVOS*/
+.input{
+	width:100%;
+	padding:5px;
+}
+
+.input label{
+	display:block;
+	float:left;
+	width:15em;
+	padding:1px;
+	color:#444444;
+	text-align:right;
+}
+
+.input input, .input select{
+	padding:0.15em;
+	/*width:14em;*/
+	border:1px solid #ddd;
+	background:#f6f6f6;
+	
+	font-family: Verdana;    
+	font-size:1em;
+	
+	-moz-border-radius:0.4em;
+	-khtml-border-radius:0.4em;
+}
+
+.input input:hover, .input input:focus , .input select:hover, .input select:focus {
+	border-color:#c5c5c5;
+	background:#fAfAfA;
+}
+
+.input input[type=radio]{
+	font-size: 100%;
+	width: auto;
+	margin:5px;
+} 

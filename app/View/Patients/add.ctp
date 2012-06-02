@@ -153,15 +153,18 @@ $(document).ready(function() {
 		echo $this->Form->input('iniciales');
 		echo $this->Form->input('fecha_nacimiento',array('label' => 'Fecha De Nacimiento', 'type' => 'text'));
 		$options=array('M'=>'Masculino','F'=>'Femenino');
-		$attributes=array('legend'=>false,'value'=>'M','separator'=>'');	
-		echo "<div class=input>";
-		echo $this->Form->label("Sexo");
+		$attributes=array('legend'=>false,'value'=>'M','separator'=>'');
+		
+		echo "<div>";
+		echo $this->Form->label('Sexo');
 		echo $this->Form->radio('sexo',$options,$attributes);
 		echo "</div>";
 		
 		?>
+				<div class=input>
 				<fieldset>
-					<legend><input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"><?php echo __('Direccion Particular'); ?></legend>
+					<legend>
+					<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"><?php echo __('Direccion Particular'); ?></legend>
 					<select id="provinciasParticular">
 					<?php foreach ($provinces as $key => $province): ?>
 						<option value="<?php echo $key ?>"><?php echo $province ?></option>
@@ -187,6 +190,7 @@ $(document).ready(function() {
 					<input type="text" size="5" value="Altura" id="alturaLaboral" class="clear-text-field">
 					<a href="JavaScript:buscar('Laboral');" id="comprobarLaboral"><img id="imgbusquedaLaboral" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 				</fieldset>
+				</div>
 		</fieldset>
 		<br>
 		<fieldset>
@@ -198,7 +202,7 @@ $(document).ready(function() {
 			
 				$opciones=array('1'=>'Si','0'=>'No',''=>'No Contesta');
 				$atributos=array('legend'=>false,'value'=>'','separator'=>'');
-				echo "<div class=input>";
+				echo "<div>";
 				echo $this->Form->label($question['Question']['descripcion']);
 				echo $this->Form->hidden('Answer.'.$i.'.question_id', array('value' => $question['Question']['id']));
 				//echo $this->Form->hidden('Answer.'.$i.'patient_id', array('value' => ''));
