@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
  */
 class NotesController extends AppController {
 
-	
+public $helpers = array('Tinymce');
 
 /**
  * index method
@@ -41,6 +41,8 @@ class NotesController extends AppController {
 	public function add( $id=null) {
 		if ($this->request->is('post')) {
 			$this->Note->create();
+			
+			
 			if ($this->Note->save($this->request->data)) {
 				$this->Session->setFlash(__('La nota ha sido guardada'));
 				$this->redirect(array('controller'=>'omsregisters','action' => 'view',$id));

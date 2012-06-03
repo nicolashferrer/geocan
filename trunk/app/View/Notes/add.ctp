@@ -1,12 +1,20 @@
 ﻿<div class="notes form">
+
 <?php echo $this->Form->create('Note');?>
+
 	<fieldset>
 		<legend><?php echo __('Agregar nota'); ?></legend>
 	<?php
-		echo $this->Form->hidden('Note.oms_register_id',array('value'=>$id));
 		
+		echo $this->Form->hidden('Note.oms_register_id',array('value'=>$id));
 		echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
-		echo $this->Form->input('descripcion',array('label'=>'Descripci&oacute;n','size' => '100%'));
+		echo $this->Tinymce->input('Note.descripcion', array( 
+            'label' => 'Descripcion' 
+            ),array( 
+                'language'=>'es' 
+            ), 
+            'basic' 
+        ); 
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Guardar'));?>

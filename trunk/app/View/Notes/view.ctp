@@ -9,7 +9,7 @@
 		</dd>
 		<dt><?php echo __('Descripción'); ?></dt>
 		<dd>
-			<?php echo h($note['Note']['descripcion']); ?>
+			<?php echo ($note['Note']['descripcion']); ?>
 			&nbsp;
 		</dd>
 		<dt><?php echo __('Fecha'); ?></dt>
