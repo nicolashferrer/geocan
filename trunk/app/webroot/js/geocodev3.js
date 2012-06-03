@@ -1,4 +1,4 @@
-
+﻿
 $(document).ready(function(){
 	
 	/*
@@ -38,10 +38,10 @@ function buscar(tipoDireccion) {
 	
 	if ((calle != "" && altura !="") && (isNaN(altura)==false)) {
 		var address = calle + ' ' + altura_redondeada + ', ' + localidad + ', ' + provincia + ', Argentina';
-		//alert("Busco La direccion: " + address);
 		processGeocoding(address, direccionGoogle, tipoDireccion); 
 	} else {
-		alert("Ingresa bien la direccion!");
+		//alert("Ingresa bien la direccion!");
+		jAlert("Debe ingresar una direcci&oacute;n correcta.","Errores de Geolocalización");
 	}
 }
 
@@ -104,7 +104,8 @@ function buscar(tipoDireccion) {
 				$('#SecondaryDireccion').val(direccion_partida[0]);
 				$('#ControlCargoLaboral').val('true');		
 			}
-			alert("Direccion Encontrada");
+			jAlert("Direcci&oacute;n encontrada.","Errores de Geolocalización");
+			
 			
 		} else {
 			if (tipoDireccion == 'Particular') {
@@ -112,6 +113,7 @@ function buscar(tipoDireccion) {
 			} else {
 				$('#ControlCargoLaboral').val('false');
 			}
-			alert('ERROR! Unable to geocode address');
+			//alert('ERROR! Unable to geocode address');
+			jAlert("No se pudo geolocalizar la direcci&oacute;n encontrada.","Errores de Geolocalización");
 		}
 	}
