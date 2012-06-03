@@ -28,9 +28,23 @@ class User extends AppModel {
 				'on' => 'create'
 			),
 		),
+		'pass_viejo' => array(
+			'notempty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Por favor ingrese el password viejo.',
+				'allowEmpty' => false,
+				'required' => true,
+				'on' => 'update'
+			),
+			'compare' => array(
+                    'rule' => array('compare', array('password_antiguo')),
+                    'message' => 'password antiguo no coincide.'
+            ),
+		),
         'password' => array(
                 'compare' => array(
-                    'rule' => array('compare', array('password_confirm_hash', 'password_confirm')),
+                    //'rule' => array('compare', array('password', 'password_confirm')),
+					'rule' => array('compare', array('password_confirm')),
                     'message' => 'Los passwords no coinciden.'
                 ),
                 'minlength' => array(
@@ -52,6 +66,7 @@ class User extends AppModel {
 	
 	public function compare($value, $options = array(), $rule = array()) {
             $valid = current($value) == $this->data[$this->alias][$options[0]];
+			
             if (!$valid) {
                 $this->invalidate(isset($options[1])? $options[1] : $options[0], $rule['message']);
             }
@@ -102,10 +117,19 @@ class User extends AppModel {
 	
 	public function beforeSave() {
 		//Encriptacion del password
+		
         $this->data['User']['password'] = AuthComponent::password($this->data['User']['password']);
 			
         return true;
     }
+	
+	public function beforeValidate(){
+	
+		$this->data['User']['pass_viejo'] = AuthComponent::password($this->data['User']['pass_viejo']);
+		
+		return true;
+	}
+
 	
 	function afterSave($created) {
 		if (!$created) {

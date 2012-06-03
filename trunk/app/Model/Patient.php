@@ -22,6 +22,11 @@ class Patient extends AppModel {
 
 	public $validate = array(
 		'nro_documento' => array(
+			'is_unique' => array(
+                    'rule' => array('isUnique'),
+					'on' => 'create',
+                    'message' => 'El DNI ya existe.',
+               ),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Este campo es obligatorio',
@@ -102,6 +107,19 @@ class Patient extends AppModel {
             {
                 $this->data['Patient']['fecha_nacimiento'] = implode('-', array_reverse(explode('/', $this->data['Patient']['fecha_nacimiento'])));
             }
+			/*if (empty($this->data['Patient']['id'])) { // Si es una alta de nuevo paciente...
+				if (!empty($this->data['Patient']['nro_documento']))
+				{
+					$documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
+					$this->data['Patient']['nro_documento'] = $documentoEncriptado;
+				}
+			}*/
+            return true;
+        }
+		
+		public function beforeValidate(){
+			//Encriptacion del documento
+			
 			if (empty($this->data['Patient']['id'])) { // Si es una alta de nuevo paciente...
 				if (!empty($this->data['Patient']['nro_documento']))
 				{
@@ -110,7 +128,7 @@ class Patient extends AppModel {
 				}
 			}
             return true;
-        }
+		}
 				
 		function afterFind($resultados) {
 			foreach ($resultados as $clave => $valor) {

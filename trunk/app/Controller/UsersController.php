@@ -43,10 +43,12 @@ class UsersController extends AppController {
 			$this->User->create();
 			$this->request->data['User']['password'] = 'geocan2012';
 			$this->request->data['User']['password_confirm'] = 'geocan2012';
-            $this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];	
+			$this->request->data['User']['pass_viejo'] = '1';
+			$this->request->data['User']['password_antiguo'] = AuthComponent::password('1');
+            //$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];	
 			
-			debug($this->request->data);	
-			exit();
+			//debug($this->request->data);	
+			//exit();
 
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('El usuario se ha creado correctamente'));
@@ -66,7 +68,7 @@ class UsersController extends AppController {
  *
  * @return void
  */
-	public function resetPassword($id=null, $username=null) {
+	public function resetPassword($id=null) {
 		$this->autoRender = false;
 		$this->User->id = $id;
 		
@@ -76,10 +78,10 @@ class UsersController extends AppController {
 		else
 		{
 			$this->request->data['User']['id']= $id;
-			$this->request->data['User']['username']= $username;
+			//$this->request->data['User']['username']= $username;
 			$this->request->data['User']['password'] = 'geocan2012';
 			$this->request->data['User']['password_confirm'] = 'geocan2012';
-            $this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
+            //$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
 			
 				//debug($this->request->data);	
 				//exit();
@@ -125,7 +127,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function editPassword($id =null, $username= null) {
+	public function editPassword($id =null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Usuario no válido'));
@@ -134,12 +136,12 @@ class UsersController extends AppController {
 			
 			$cont= $this->User->Find('all',array('conditions' => array('User.id' => $id)));
 			
-			if ($cont[0]['User']['password'] == AuthComponent::password($this->request->data['User']['pass_viejo']))
-			{
+			/*if ($cont[0]['User']['password'] == AuthComponent::password($this->request->data['User']['pass_viejo']))
+			{*/
 				$this->request->data['User']['id']= $id;
 				//$this->request->data['User']['username'] = $username; El problema era con el modelo, que pedia que el username sea no_empty! se lo puse solo cuando es una creacion!
-				$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
-				
+				//$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
+				$this->request->data['User']['password_antiguo'] = $cont[0]['User']['password'];
 				//debug($this->request->data);
 				//exit();
 			
@@ -152,11 +154,13 @@ class UsersController extends AppController {
 				} else {
 					$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, inténtelo de nuevo.'));
 				}
+			/*
 			}
 			else
 			{
 				$this->Session->setFlash(__('La contrase&ntilde;a anterior no coincide.'));
 			}
+			*/
 		}
 	}
 	
