@@ -46,15 +46,17 @@
 		<table cellpadding = "0" cellspacing = "0">
 		<tr>
 			<th><?php echo __('Fecha'); ?></th>
-			<th><?php echo __('Descripcion'); ?></th>
+			<th><?php echo __('Medico'); ?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 		</tr>
 		<?php
 			$i = 0;
+		
 			foreach ($omsRegister['Note'] as $note): ?>
 			<tr>
 				<td><?php echo $note['fecha'];?></td>
-				<td><?php echo $note['descripcion'];?></td>
+				<td><?php echo $note['medic_id'];?></td>
+				
 				<td class="actions">
 					<?php echo $this->Html->link(__('Ver'), array('controller' => 'notes', 'action' => 'view', $note['id'],$omsRegister['OmsRegister']['id'])); ?>
 					<?php echo $this->Html->link(__('Editar'), array('controller' => 'notes', 'action' => 'edit', $note['id'],$omsRegister['OmsRegister']['id'])); ?>
