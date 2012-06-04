@@ -1,3 +1,10 @@
+<script type="text/javascript">
+	
+$(document).ready(function() {
+	$('.password').addClass("required");
+});
+
+</script>
 <div class="patients form">
 <?php echo $this->Form->create('User');?>
 	<fieldset>
