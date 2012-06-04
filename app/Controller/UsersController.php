@@ -45,7 +45,12 @@ class UsersController extends AppController {
 			$this->request->data['User']['password_confirm'] = 'geocan2012';
 			$this->request->data['User']['pass_viejo'] = '1';
 			$this->request->data['User']['password_antiguo'] = AuthComponent::password('1');
-            //$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];	
+            //$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
+
+			if ($this->request->data['Control']['conMedico'] == 'false') {
+				unset($this->request->data['User']['medic_id']);
+			}
+			unset($this->request->data['Control']);
 			
 			//debug($this->request->data);	
 			//exit();
