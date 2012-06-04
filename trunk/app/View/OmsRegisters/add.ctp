@@ -1,5 +1,6 @@
 <script type="text/javascript" charset="utf-8">
 	var options, a;
+	var avisado = false;
 
 	function checkLaboral() {
 	
@@ -109,7 +110,7 @@
 				
 			});
 			
-		$('#OmsRegisterAddForm').submit(function() {
+		$('#OmsRegisterAddForm').submit(function(event) {
         
 			var codigo = $('#OmsRegisterOmsCodeId').val();
 			var estadoParticular = $('#chParticular').is(':checked');
@@ -117,53 +118,44 @@
 			var cargoParticular = $('#ControlCargoParticular').val();
 			var cargoLaboral = $('#ControlCargoLaboral').val();	
 			
+			var partActual = $('#OmsRegisterAddressPartId').val();
+			var labActual = $('#OmsRegisterAddressLabId').val();	
+
 			if (codigo == '') {
-				$( "#ingresarCodigo" ).dialog({
-					modal: true,
-					resizable: false,
-					height:130,
-					width:300,
-					buttons: {
-						Ok: function() {
-							$( this ).dialog( "close" );
-						}
-					}
-				});
-				
+				jAlert("Debe ingresar o seleccionar un c&oacute;digo OMS.","Datos Faltantes");		
 				return false;
 			}
 			
 			
 			if (estadoParticular == false && cargoParticular == "false") {
-				$( "#ingresarDirParticular" ).dialog({
-					modal: true,
-					resizable: false,
-					height:120,
-					width:300,
-					buttons: {
-						Ok: function() {
-							$( this ).dialog( "close" );
-						}
-					}
-				});
-
+				jAlert("Debe ingresar una direcci&oacute;n particular.","Datos Faltantes");
 				return false;
 			}
 			
 			if (estadoLaboral == false && cargoLaboral == "false") {
-				$( "#ingresarDirLaboral" ).dialog({
-					modal: true,
-					resizable: false,
-					height:120,
-					width:300,
-					buttons: {
-						Ok: function() {
-							$( this ).dialog( "close" );
-						}
-					}
-				});
+				jAlert("Debe ingresar una direcci&oacute;n laboral.","Datos Faltantes");
 				return false;
 			}
+			
+			if (partActual=="" && labActual=="") {
+				if (!avisado) {
+				
+					event.preventDefault();
+			
+					jConfirm('&iquest;Confirma la creaci&oacute;n de un registro OMS sin direcciones? El paciente no cuenta actualmente con ninguna direcci&oacute;n particular o laboral..', 'Registro OMS sin direcciones', function(r) {
+						if (r) { 
+						avisado = true;
+						$('#OmsRegisterAddForm').submit();
+					} else {
+						return false;
+					}
+					});
+					
+				}
+			}
+			
+			
+			
 			
 			return true;
 		
@@ -238,7 +230,7 @@
 		//echo $this->Form->input('oms_code_id',array('label'=>'C&oacute;digo','type' => 'text'));
 		echo "<div class=input>";
 		echo $this->Form->label("&nbsp; C&oacute;digo");
-		echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "omscodes",	"action" => "help"))."'>Selector C&oacute;digos</a>";
+		echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "omscodes",	"action" => "help"))."'>Ayuda</a>";
 		echo "</div>";	
 		
 		echo $this->Form->hidden('oms_code_id');
@@ -246,7 +238,7 @@
 		
 		$options=array('0'=>'Desconocido','1'=>'1','2'=>'2','3'=>'3','4'=>'4');
 		$attributes=array('legend'=>false,'value'=>'0','separator'=>'');	
-		echo "<div class=input>";
+		echo "<div>";
 		echo $this->Form->label("Estad&iacute;o");
 		echo $this->Form->radio('estadio',$options,$attributes);
 		echo "</div>";	
@@ -263,7 +255,8 @@
 			<?php endforeach; ?>
 			</select><select id="localidadesParticular">
 				<option value="0" selected>Seleccionar</option>
-			</select><input type="text" size="25" value="Nombre de la Calle" id="calleParticular"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaParticular">
+			</select><input type="text" size="25" value="Nombre de la Calle" id="calleParticular" class="clear-text-field">
+			<input type="text" size="5" value="Altura" id="alturaParticular" class="clear-text-field">
 			<a href="JavaScript:buscar('Particular');" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 		</fieldset>
 		</div>
@@ -278,29 +271,11 @@
 			</select> 
 			<select id="localidadesLaboral">
 				<option value="0" selected>Seleccionar</option>
-			</select><input type="text" size="25" value="Nombre de la Calle" id="calleLaboral"><input type="text" size="25" class="inputcorto" value="Altura" id="alturaLaboral">
+			</select><input type="text" size="25" value="Nombre de la Calle" id="calleLaboral" class="clear-text-field">
+			<input type="text" size="5" value="Altura" id="alturaLaboral" class="clear-text-field">
 			<a href="JavaScript:buscar('Laboral');" id="comprobarLaboral"><img id="imgbusquedaLaboral" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 		</fieldset>
 		</div>
 	</fieldset>
 <?php echo $this->Form->end(__('Crear'));?>
-</div>
-
-<div id="ingresarDirParticular" title="Ingresar Direcci&oacute;n" style="display:none">
-	<p>
-		<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
-		Debe ingresar una Direcci&oacute;n Particular.
-	</p>
-</div>
-<div id="ingresarDirLaboral" title="Ingresar Direcci&oacute;n" style="display:none">
-	<p>
-		<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
-		Debe ingresar una Direcci&oacute;n Laboral.
-	</p>
-</div>
-<div id="ingresarCodigo" title="Ingresar Codigo" style="display:none">
-	<p>
-		<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
-		Debe ingresar un Codigo OMS.
-	</p>
 </div>

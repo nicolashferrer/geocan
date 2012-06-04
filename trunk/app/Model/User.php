@@ -61,7 +61,7 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
+		)
 	);
 	
 	public function compare($value, $options = array(), $rule = array()) {

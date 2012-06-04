@@ -35,7 +35,9 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->css('start/jquery-ui-1.8.19.custom'); // Css de Jquery UI
 		echo $this->Html->css('styles'); // Css de plugin jquery autocompletar
 		echo $this->Html->css('colorbox'); // Css de Plugin jquery para ventanas modales
-		echo $this->Html->css('menu'); 
+		echo $this->Html->css('menu');
+		echo $this->Html->css('jquery.alerts');
+		
 	
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -47,6 +49,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->script('jquery.colorbox-min'); // Plugin jquery para ventanas modales
 		echo $this->Html->script('menu');
 		echo $this->Html->script('geocan-utils');
+		echo $this->Html->script('jquery.alerts');
 
 	?>
 		<script type="text/javascript">
@@ -74,6 +77,9 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 	$(document).ready(function() { 
 	
 		$('.success,.message').delay(5000).hide('fade', {color: '#EFEFEF'}, 1000);
+		
+		$('.submit').append('<input type="button" value="Volver" onClick="javascript:window.history.back();">');
+		
 		
 				
 	});
@@ -105,6 +111,11 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 								<ul>
 									<li><?php echo $this->Html->link(utf8_encode('Médicos'),array('controller' => 'medics', 'action' => 'index'))?></li>
 									<li><?php echo $this->Html->link(utf8_encode('Tipos de Médicos'),array('controller' => 'medictypes', 'action' => 'index'))?></li>
+								</ul>
+							</li>
+							<li><a href="#" class="fly">Pacientes</a>
+								<ul>
+									<li><?php echo $this->Html->link(utf8_encode('Preguntas'),array('controller' => 'questions', 'action' => 'index'))?></li>
 								</ul>
 							</li>
 							<li><a href="#" class="fly">Usuarios</a>
@@ -139,7 +150,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			GeoCan&copy; 2012 
+			GeoCan &copy; 2012 
 		</div>
 	</div>
 	<?php //echo $this->element('sql_dump'); ?>
