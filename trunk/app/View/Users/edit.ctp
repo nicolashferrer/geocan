@@ -40,6 +40,7 @@
 			echo $this->Form->input('id');
 			echo $this->Form->input('username',array('label'=>'Nombre Usuario', 'readonly' => 'readonly'));
 			echo $this->Form->input('group_id',array('label'=>'Grupo'));
+			//debug($User);
 			echo $this->Form->hidden('Control.conMedico', array('value' => 'true'));
 		?>
 		

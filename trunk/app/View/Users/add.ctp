@@ -1,4 +1,4 @@
-<script type="text/javascript" charset="utf-8">
+﻿<script type="text/javascript">
 		
 	function checkMedico() {
 	
@@ -9,7 +9,7 @@
 		if ((estado==false) && ($('#UserGroupId').val()=='2'))
 		{
 			$('#chMedico').attr("checked",true);
-			jAlert('Un medico debe tener un medico seleccionado','Informacioacute;n');
+			jAlert('Un medico debe tener un medico seleccionado',tituloinfo);
 		}
 		else
 		{
