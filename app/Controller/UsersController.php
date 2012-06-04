@@ -107,6 +107,7 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Usuario no válido'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			unset($this->request->data['User']['username']);
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('El usuario se ha guardado'));
 				$this->redirect(array('action' => 'view',$id));
