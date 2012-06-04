@@ -207,6 +207,8 @@ class PatientsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			
+			//debug($this->request->data);
+			
 			$part_act= null;
 			$lab_act= null;
 			

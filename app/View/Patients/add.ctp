@@ -1,5 +1,8 @@
 <script type="text/javascript" charset="utf-8">
 	
+	var avisado = false;
+	
+	
 $(document).ready(function() {
 	
 	$('#PatientFechaNacimiento').datepicker(datepicker_config);
@@ -50,21 +53,43 @@ $(document).ready(function() {
 		
 	});
 	
-	$('#PatientAddForm').submit(function() {
+	$('#PatientAddForm').submit(function(event) {
         
+
+
 		var estadoParticular = $('#chParticular').is(':checked');
 		var estadoLaboral = $('#chLaboral').is(':checked');
 		var cargoParticular = $('#ControlCargoParticular').val();
 		var cargoLaboral = $('#ControlCargoLaboral').val();	
 		
 		if (estadoParticular == true && cargoParticular == "false") {
-			alert("Debe ingresar una direccion particular.");
+			//alert("Debe ingresar una direccion particular.");
+			jAlert("Debe ingresar una direcci&oacute;n particular.","Datos Faltantes");
 			return false;
 		}
 		
 		if (estadoLaboral == true && cargoLaboral == "false") {
-			alert("Debe ingresar una direccion laboral.");
+			//alert("Debe ingresar una direccion laboral.");
+			jAlert("Debe ingresar una direcci&oacute;n laboral.","Datos Faltantes");
 			return false;
+		}
+		
+		if ((estadoParticular == false) && (estadoLaboral == false)) {
+		
+			if (!avisado) {
+			
+				event.preventDefault();
+		
+				jConfirm('&iquest;Confirma la creaci&oacute;n de un paciente sin direcciones?', 'Paciente sin direcciones', function(r) {
+					if (r) { 
+					avisado = true;
+					$('#PatientAddForm').submit();
+				} else {
+					return false;
+				}
+				});
+				
+			}
 		}
 		
 		return true;
@@ -216,5 +241,4 @@ $(document).ready(function() {
 		</fieldset>
 
 <?php echo $this->Form->end(__('Agregar'));?>
-<a href="javascript:window.history.back()">go back</a> 
 </div>
