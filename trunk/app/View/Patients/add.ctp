@@ -115,9 +115,14 @@ $(document).ready(function() {
 			$('#provinciasParticular').attr("disabled", "disabled");
 			$('#localidadesParticular').attr("disabled", "disabled");
 			$('#calleParticular').attr("disabled", "disabled");
+			$('#calleParticular').val("Calle");
+			$('#alturaParticular').val("Altura");
 			$('#alturaParticular').attr("disabled", "disabled");
 			$('#imgbusquedaParticular').css("display", "none");
 			$('#ControlCargoParticular').val("false");	
+			
+			//Remuevo el icono del mapita si es que existe...
+			$('#imgmapaParticular').remove();
 			
 		} else {
 		
@@ -140,8 +145,13 @@ $(document).ready(function() {
 				$('#localidadesLaboral').attr("disabled", "disabled");
 				$('#calleLaboral').attr("disabled", "disabled");
 				$('#alturaLaboral').attr("disabled", "disabled");
+				$('#calleLaboral').val("Calle");
+				$('#alturaLaboral').val("Altura");
 				$('#imgbusquedaLaboral').css("display", "none");
 				$('#ControlCargoLaboral').val("false");	
+				
+				//Remuevo el icono del mapita si es que existe...
+				$('#imgmapaLaboral').remove();
 				
 			} else {
 			
