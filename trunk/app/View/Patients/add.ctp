@@ -239,6 +239,5 @@ $(document).ready(function() {
 			endforeach;	
 		?>
 		</fieldset>
-
 <?php echo $this->Form->end(__('Agregar'));?>
 </div>
