@@ -27,7 +27,7 @@
 	
 </script>
 
-<div class="form" align="center">
+<div class="input" align="center">
 	<fieldset>
 		<legend>Buscar Paciente</legend>
 		N&uacute;mero De Documento <input type="input" id="dni" size="25">
