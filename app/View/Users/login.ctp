@@ -1,3 +1,10 @@
+<script>
+	$(document).ready(function() { 
+	
+		$('#btvolver').remove();
+					
+	});
+</script>
 <div id="login">
 	<fieldset>
 		<legend><?php echo __('Ingreso al Sistema'); ?></legend>
