@@ -1,4 +1,6 @@
 ﻿
+var tituloinfo = "Información";
+
 $(document).ready(function(){
 	
 	/*
