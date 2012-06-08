@@ -78,7 +78,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 	
 		$('.success,.message').delay(5000).hide('fade', {color: '#EFEFEF'}, 1000);
 		
-		$('.submit').append('<input type="button" value="Volver" onClick="javascript:window.history.back();">');
+		$('.submit').append('<input type="button" id="btvolver" value="Volver" onClick="javascript:window.history.back();">');
 		
 		
 				
