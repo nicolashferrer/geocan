@@ -27,7 +27,17 @@
 			checkMedico();
 		}
 		});
-	
+		
+		<?php
+			if ($this->data['User']['medic_id']!=null)
+			{
+		?>
+			$('#chMedico').attr("checked",true);	
+			checkMedico();
+		<?php
+			}
+		?>
+		
 	});
 
 </script>
@@ -40,13 +50,12 @@
 			echo $this->Form->input('id');
 			echo $this->Form->input('username',array('label'=>'Nombre Usuario', 'readonly' => 'readonly'));
 			echo $this->Form->input('group_id',array('label'=>'Grupo'));
-			//debug($User);
-			echo $this->Form->hidden('Control.conMedico', array('value' => 'true'));
+			echo $this->Form->hidden('Control.conMedico', array('value' => 'false'));
+			//debug($this->data['User']['medic_id']);
 		?>
-		
 		<div class=input>
-			<input type="checkbox" id="chMedico" value="" checked onclick="checkMedico();"/> Con Medico<br />
-			<div id="fsMedico">
+			<input type="checkbox" id="chMedico" value="" onclick="checkMedico();"/> Con Medico<br />
+			<div id="fsMedico" style="display:none">
 					<?php 
 						echo $this->Form->input('medic_id',array('label'=>'Medico'));
 					?>
