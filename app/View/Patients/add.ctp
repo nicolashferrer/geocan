@@ -168,7 +168,7 @@ $(document).ready(function() {
 <div class="patients form">
 <?php echo $this->Form->create('Patient');?>
 	<fieldset>
-		<legend><?php echo __('Informaci&oacute;n Basica'); ?></legend>
+		<legend><?php echo __('Informaci&oacute;n B&aacute;sica'); ?></legend>
 	<?php
 		
 		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
@@ -191,7 +191,7 @@ $(document).ready(function() {
 		$attributes=array('legend'=>false,'value'=>'M','separator'=>'');
 		
 		echo "<div>";
-		echo $this->Form->label('Sexo');
+		echo "<label class='label_radio required'>Sexo</label>";
 		echo $this->Form->radio('sexo',$options,$attributes);
 		echo "</div>";
 		
@@ -199,7 +199,7 @@ $(document).ready(function() {
 				<div class=input>
 				<fieldset>
 					<legend>
-					<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"><?php echo __('Direccion Particular'); ?></legend>
+					<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"><?php echo __('Direcci&oacute;n Particular'); ?></legend>
 					<select id="provinciasParticular">
 					<?php foreach ($provinces as $key => $province): ?>
 						<option value="<?php echo $key ?>"><?php echo $province ?></option>
@@ -238,7 +238,7 @@ $(document).ready(function() {
 				$opciones=array('1'=>'Si','0'=>'No',''=>'No Contesta');
 				$atributos=array('legend'=>false,'value'=>'','separator'=>'');
 				echo "<div>";
-				echo $this->Form->label($question['Question']['descripcion']);
+				echo "<label class='label_radio'>".$this->Form->label($question['Question']['descripcion'])."</label>";
 				echo $this->Form->hidden('Answer.'.$i.'.question_id', array('value' => $question['Question']['id']));
 				//echo $this->Form->hidden('Answer.'.$i.'patient_id', array('value' => ''));
 				echo $this->Form->radio('Answer.'.$i.'.valor',$opciones,$atributos);
