@@ -10,7 +10,7 @@
 		<tr>
 				<th><?php echo $this->Paginator->sort('Nombre');?></th>
 				<th><?php echo $this->Paginator->sort('Provincia');?></th>
-				<th class="actions"><?php echo __('Acciones');?></th>
+				<th class="actions"></th>
 		</tr>
 		<?php foreach ($cities as $city): ?>
 			<tr>
