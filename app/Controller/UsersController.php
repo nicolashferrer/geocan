@@ -27,7 +27,7 @@ class UsersController extends AppController {
 	public function view($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Usuario no válido'));
+			throw new NotFoundException(__('Usuario no v&aacute;lido'));
 		}
 		$this->set('user', $this->User->read(null, $id));
 	}
@@ -61,7 +61,7 @@ class UsersController extends AppController {
                              array('class' => 'success'));
 				$this->redirect(array('action' => 'view',$this->User->id));
 			} else {
-				$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, inténtelo de nuevo.'));
+				$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 		$groups = $this->User->Group->find('list');
@@ -100,7 +100,7 @@ class UsersController extends AppController {
                             'default', 
                              array('class' => 'success'));
 			} else {
-				$this->Session->setFlash(__('La contrase&ntilde;a no se pudo Resetear. Por favor, intentelo de nuevo.'));
+				$this->Session->setFlash(__('La contrase&ntilde;a no se pudo Resetear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 		$this->redirect(array('action' => 'index'));
@@ -115,7 +115,7 @@ class UsersController extends AppController {
 	public function edit($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Usuario no válido'));
+			throw new NotFoundException(__('Usuario no v&aacute;lido'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			
@@ -134,10 +134,12 @@ class UsersController extends AppController {
 			//exit();
 			
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('El usuario se ha guardado'));
+				$this->Session->setFlash(__('El usuario se ha modificado correctamente', null), 
+                            'default', 
+                             array('class' => 'success'));
 				$this->redirect(array('action' => 'view',$id));
 			} else {
-				$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, inténtelo de nuevo.'));
+				$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		} else {
 			$this->request->data = $this->User->read(null, $id);
@@ -202,10 +204,12 @@ class UsersController extends AppController {
 		}
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Usuario no válido'));
+			throw new NotFoundException(__('Usuario no v&aacute;lido'));
 		}
 		if ($this->User->delete()) {
-			$this->Session->setFlash(__('Usuarios borrado'));
+			$this->Session->setFlash(__('El usuario se ha borrado correctamente', null), 
+			'default', 
+			 array('class' => 'success'));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->Session->setFlash(__('El usuario no se ha eliminado'));
