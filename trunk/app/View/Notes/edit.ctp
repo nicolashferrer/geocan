@@ -7,7 +7,7 @@
 		echo $this->Form->input('id');
 		//echo $this->Form->input('descripcion',array('label'=>'Descripci&oacute;n','size' => '100%'));
 		echo $this->Tinymce->input('Note.descripcion', array( 
-            'label' => 'Descripci&oacute;n'
+            'label' => 'Contenido'
             ),array( 
                 'language'=>'es',
 				'width'=>'100%',
