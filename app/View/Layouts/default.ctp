@@ -154,10 +154,10 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
-		<div id="footer">
+	</div>
+			<div id="footer">
 			GeoCan &copy; 2012 
 		</div>
-	</div>
 	<?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>
