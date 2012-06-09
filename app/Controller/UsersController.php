@@ -86,6 +86,8 @@ class UsersController extends AppController {
 			//$this->request->data['User']['username']= $username;
 			$this->request->data['User']['password'] = 'geocan2012';
 			$this->request->data['User']['password_confirm'] = 'geocan2012';
+			$this->request->data['User']['pass_viejo'] = '1';
+			$this->request->data['User']['password_antiguo'] = AuthComponent::password('1');
             //$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
 			
 				//debug($this->request->data);	
@@ -112,7 +114,21 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Usuario no válido'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			
 			unset($this->request->data['User']['username']);
+			
+			if ($this->request->data['Control']['conMedico'] == 'false') {
+				$this->request->data['User']['medic_id']= null;
+			}
+			
+			unset($this->request->data['Control']);
+			
+			$this->request->data['User']['pass_viejo'] = '1';
+			$this->request->data['User']['password_antiguo'] = AuthComponent::password('1');
+			
+			//debug($this->request->data);
+			//exit();
+			
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('El usuario se ha guardado'));
 				$this->redirect(array('action' => 'view',$id));
