@@ -75,11 +75,11 @@ public $helpers = array('Tinymce');
 				$this->Session->setFlash(__('La nota no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
 		} else {
-			$this->request->data = $this->Note->read(null, $idRegOms);
+			$this->request->data = $this->Note->read(null, $id);
 		}
-		$medics = $this->Note->Medic->find('list');
-		$omsRegisters = $this->Note->OmsRegister->find('list');
-		$this->set(compact('medics', 'omsRegisters'));
+		//$medics = $this->Note->Medic->find('list');
+		//$omsRegisters = $this->Note->OmsRegister->find('list');
+		//$this->set(compact('medics', 'omsRegisters'));
 	}
 
 /**
