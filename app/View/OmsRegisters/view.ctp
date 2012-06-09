@@ -45,8 +45,8 @@
 		<?php if (!empty($omsRegister['Note'])):?>
 		<table cellpadding = "0" cellspacing = "0">
 		<tr>
-			<th><?php echo __('Fecha'); ?></th>
 			<th><?php echo __('Medico'); ?></th>
+			<th><?php echo __('Fecha'); ?></th>
 			<th class="actions"><?php echo __('Actions');?></th>
 		</tr>
 		<?php
@@ -54,9 +54,8 @@
 		
 			foreach ($omsRegister['Note'] as $note): ?>
 			<tr>
+				<td><?php echo $note['Medic']['nombre'].' '.$note['Medic']['apellido'];;?></td>
 				<td><?php echo $note['fecha'];?></td>
-				<td><?php echo $note['medic_id'];?></td>
-				
 				<td class="actions">
 					<?php echo $this->Html->link(__('Ver'), array('controller' => 'notes', 'action' => 'view', $note['id'],$omsRegister['OmsRegister']['id'])); ?>
 					<?php echo $this->Html->link(__('Editar'), array('controller' => 'notes', 'action' => 'edit', $note['id'],$omsRegister['OmsRegister']['id'])); ?>

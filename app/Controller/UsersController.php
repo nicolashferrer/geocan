@@ -56,7 +56,9 @@ class UsersController extends AppController {
 			//exit();
 
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('El usuario se ha creado correctamente'));
+				$this->Session->setFlash(__('El usuario se ha creado correctamente', null), 
+                            'default', 
+                             array('class' => 'success'));
 				$this->redirect(array('action' => 'view',$this->User->id));
 			} else {
 				$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, inténtelo de nuevo.'));
@@ -94,9 +96,11 @@ class UsersController extends AppController {
 				//exit();
 			
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('El password se reseto exitosamente'));
+				$this->Session->setFlash(__('La contrase&ntilde;a se reseto exitosamente', null), 
+                            'default', 
+                             array('class' => 'success'));
 			} else {
-				$this->Session->setFlash(__('El password no se pudo Resetear. Por favor, intentelo de nuevo.'));
+				$this->Session->setFlash(__('La contrase&ntilde;a no se pudo Resetear. Por favor, intentelo de nuevo.'));
 			}
 		}
 		$this->redirect(array('action' => 'index'));

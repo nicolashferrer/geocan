@@ -133,7 +133,7 @@ class PatientsController extends AppController {
 			
 			if ($this->Patient->saveAll($this->request->data)) {
 			//	$this->Session->setFlash(__('Las respuestas fueron actualizadas exitosamente'));
-			$this->Session->setFlash(__('La informaci&oacute;n fue modificada correctamente!', null), 
+				$this->Session->setFlash(__('La informaci&oacute;n fue modificada correctamente!', null), 
                             'default', 
                              array('class' => 'success'));
 				$this->redirect(array('action' => 'view',$id));
