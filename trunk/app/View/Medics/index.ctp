@@ -8,10 +8,10 @@
 		</div>
 		<table cellpadding="0" cellspacing="0">
 		<tr>
-				<th><?php echo $this->Paginator->sort('Nombre');?></th>
-				<th><?php echo $this->Paginator->sort('Apellido');?></th>
-				<th><?php echo $this->Paginator->sort('Matricula');?></th>
-				<th><?php echo $this->Paginator->sort('Tipo de Medico');?></th>
+				<th><?php echo $this->Paginator->sort('nombre');?></th>
+				<th><?php echo $this->Paginator->sort('apellido');?></th>
+				<th><?php echo $this->Paginator->sort('matricula');?></th>
+				<th><?php echo $this->Paginator->sort('tipo de Medico');?></th>
 				<th class="actions"><?php echo __('Acciones');?></th>
 		</tr>
 		<?php
