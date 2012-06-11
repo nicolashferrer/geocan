@@ -27,7 +27,7 @@ public $helpers = array('GoogleMapV3');
 	public function view($id = null) {
 		$this->Address->id = $id;
 		if (!$this->Address->exists()) {
-			throw new NotFoundException(__('Invalid address'));
+			throw new NotFoundException(__('Direcci&oacute;n inv&aacute;lida'));
 		}
 		$this->set('address', $this->Address->read(null, $id));
 	}
@@ -41,10 +41,12 @@ public $helpers = array('GoogleMapV3');
 		if ($this->request->is('post')) {
 			$this->Address->create();
 			if ($this->Address->save($this->request->data)) {
-				$this->Session->setFlash(__('The address has been saved'));
+				$this->Session->setFlash(__('La direcci&oacute;n fue creada correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The address could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('La direcci&oacute;n no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 		$cities = $this->Address->City->find('list');
@@ -60,14 +62,16 @@ public $helpers = array('GoogleMapV3');
 	public function edit($id = null) {
 		$this->Address->id = $id;
 		if (!$this->Address->exists()) {
-			throw new NotFoundException(__('Invalid address'));
+			throw new NotFoundException(__('Direcci&oacute;n inv&aacute;lida'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Address->save($this->request->data)) {
-				$this->Session->setFlash(__('The address has been saved'));
+				$this->Session->setFlash(__('La direcci&oacute;n fue modificada correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The address could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('La direcci&oacute;n no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
 		} else {
 			$this->request->data = $this->Address->read(null, $id);
@@ -88,13 +92,15 @@ public $helpers = array('GoogleMapV3');
 		}
 		$this->Address->id = $id;
 		if (!$this->Address->exists()) {
-			throw new NotFoundException(__('Invalid address'));
+			throw new NotFoundException(__('Direcci&oacute;n inv&aacute;lida'));
 		}
 		if ($this->Address->delete()) {
-			$this->Session->setFlash(__('Address deleted'));
+			$this->Session->setFlash(__('La direcci&oacute;n fue borrada correctamente', null), 
+					'default', 
+					array('class' => 'success'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Address was not deleted'));
+		$this->Session->setFlash(__('La direcci&oacute;n no pudo ser borrada'));
 		$this->redirect(array('action' => 'index'));
 	}
 

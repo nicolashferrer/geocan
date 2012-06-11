@@ -27,7 +27,7 @@ class OmsRegistersController extends AppController {
 	public function view($id = null) {
 		$this->OmsRegister->id = $id;
 		if (!$this->OmsRegister->exists()) {
-			throw new NotFoundException(__('Invalid oms register'));
+			throw new NotFoundException(__('Registro Oms inv&aacute;lido'));
 		}
 		$this->set('omsRegister', $this->OmsRegister->read(null, $id));
 	}
@@ -59,11 +59,14 @@ class OmsRegistersController extends AppController {
 			//exit;	
 			$this->OmsRegister->create();
 			if ($this->OmsRegister->saveAll($this->request->data)) {
-				//$this->Session->setFlash(__('The oms register has been saved'));
-				$this->Session->setFlash(__('La informaci&oacute;n fue agregada correctamente!', null), 'default', array('class' => 'success'));
+			
+				$this->Session->setFlash(__('El registro Oms fue creado correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('controller' => 'patients','action' => 'view',$id));
+				
 			} else {
-				$this->Session->setFlash(__('The oms register could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El registro Oms no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 		Controller::loadModel('Province');
@@ -83,19 +86,18 @@ class OmsRegistersController extends AppController {
 	public function edit($id = null,$paciente=null) {
 		$this->OmsRegister->id = $id;
 		if (!$this->OmsRegister->exists()) {
-			throw new NotFoundException(__('Invalid oms register'));
+			throw new NotFoundException(__('Registro Oms inv&aacute;lido'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->OmsRegister->save($this->request->data)) {
-				$this->Session->setFlash(__('La informaci&oacute;n fue modificada correctamente!', null), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('El registro Oms fue modificado correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('controller' => 'patients','action' => 'view',$paciente));
-				//$this->Session->setFlash(__('The oms register has been saved'));
-				//$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The oms register could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El registro Oms no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
 		} else {
-			//$this->request->data = $this->OmsRegister->read(null, $id);
 			$this->set('omsregister', $this->OmsRegister->read(null, $id));
 		}
 		//$patients = $this->OmsRegister->Patient->find('list');
@@ -118,13 +120,15 @@ class OmsRegistersController extends AppController {
 		}
 		$this->OmsRegister->id = $id;
 		if (!$this->OmsRegister->exists()) {
-			throw new NotFoundException(__('Invalid oms register'));
+			throw new NotFoundException(__('Registro Oms inv&aacute;lido'));
 		}
 		if ($this->OmsRegister->delete()) {
-			$this->Session->setFlash(__('Oms register deleted'));
+			$this->Session->setFlash(__('El registro Oms fue borrado correctamente', null), 
+					'default', 
+					array('class' => 'success'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Oms register was not deleted'));
+		$this->Session->setFlash(__('El registro Oms no pudo ser borrado'));
 		$this->redirect(array('action' => 'index'));
 	}	
 

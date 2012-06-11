@@ -90,7 +90,7 @@ class PatientsController extends AppController {
 	public function view($id = null) {
 		$this->Patient->id = $id;
 		if (!$this->Patient->exists()) {
-			throw new NotFoundException(__('Invalid patient'));
+			throw new NotFoundException(__('Paciente inv&aacute;lido'));
 		}
 		$this->set('patient', $this->Patient->read(null, $id));
 		$result = $this->Patient->Query('select * from questions left join answers on answers.question_id=questions.id and answers.patient_id="'.$id.'" where questions.visible=true;');
@@ -106,7 +106,7 @@ class PatientsController extends AppController {
 	public function editAnswers($id = null) {
 		$this->Patient->id = $id;
 		if (!$this->Patient->exists()) {
-			throw new NotFoundException(__('Invalid patient'));
+			throw new NotFoundException(__('Paciente inv&aacute;lido'));
 		}
 		if ($this->request->is('post')) {
 			$this->request->data['Patient']['id']= $id;
@@ -133,12 +133,12 @@ class PatientsController extends AppController {
 			
 			if ($this->Patient->saveAll($this->request->data)) {
 			//	$this->Session->setFlash(__('Las respuestas fueron actualizadas exitosamente'));
-				$this->Session->setFlash(__('La informaci&oacute;n fue modificada correctamente!', null), 
+				$this->Session->setFlash(__('La informaci&oacute;n fue modificada correctamente', null), 
                             'default', 
                              array('class' => 'success'));
 				$this->redirect(array('action' => 'view',$id));
 			} else {
-				$this->Session->setFlash(__('Las respuestas no pueden ser actualizadas. Intente Nuevamente!'));
+				$this->Session->setFlash(__('Las respuestas no pueden ser actualizadas. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 		$this->set('patient', $this->Patient->read(null, $id));
@@ -183,7 +183,7 @@ class PatientsController extends AppController {
                              array('class' => 'success'));
 				$this->redirect(array('action' => 'view',$this->Patient->id));
 			} else {
-				$this->Session->setFlash(__('El paciente no pudo ser creado. Intente Nuevamente!'));
+				$this->Session->setFlash(__('El paciente no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 		Controller::loadModel('Province');
@@ -203,7 +203,7 @@ class PatientsController extends AppController {
 	public function edit($id = null) {
 		$this->Patient->id = $id;
 		if (!$this->Patient->exists()) {
-			throw new NotFoundException(__('Paciente invalido'));
+			throw new NotFoundException(__('Paciente inv&aacute;lido'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			
@@ -256,7 +256,7 @@ class PatientsController extends AppController {
 				
 			} else {
 				// echo "<script language='JavaScript'> alert('lalal'); </script>";
-				$this->Session->setFlash(__('The patient could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El paciente no se pudo guardar. Por favor, inténtelo de nuevo.'));
 			}
 		} else {
 			$this->request->data = $this->Patient->read(null, $id);
@@ -282,13 +282,15 @@ class PatientsController extends AppController {
 		}
 		$this->Patient->id = $id;
 		if (!$this->Patient->exists()) {
-			throw new NotFoundException(__('Invalid patient'));
+			throw new NotFoundException(__('Paciente invalido'));
 		}
 		if ($this->Patient->delete()) {
-			$this->Session->setFlash(__('Patient deleted'));
+			$this->Session->setFlash(__('El paciente fue borrado exitosamente.', null), 
+                            'default', 
+                             array('class' => 'success'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Patient was not deleted'));
+		$this->Session->setFlash(__('El paciente no fue eliminado.'));
 		$this->redirect(array('action' => 'index'));
 	}
 	
