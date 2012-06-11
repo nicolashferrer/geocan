@@ -27,7 +27,7 @@ class MedicTypesController extends AppController {
 	public function view($id = null) {
 		$this->MedicType->id = $id;
 		if (!$this->MedicType->exists()) {
-			throw new NotFoundException(__('Invalid medic type'));
+			throw new NotFoundException(__('Tipo de m&eacute;dico inv&aacute;lido'));
 		}
 		$this->set('medicType', $this->MedicType->read(null, $id));
 	}
@@ -41,10 +41,12 @@ class MedicTypesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->MedicType->create();
 			if ($this->MedicType->save($this->request->data)) {
-				$this->Session->setFlash(__('The medic type has been saved'));
+				$this->Session->setFlash(__('El tipo de m&eacute;dico fue creado correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The medic type could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El tipo de m&eacute;dico no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 	}
@@ -58,14 +60,16 @@ class MedicTypesController extends AppController {
 	public function edit($id = null) {
 		$this->MedicType->id = $id;
 		if (!$this->MedicType->exists()) {
-			throw new NotFoundException(__('Invalid medic type'));
+			throw new NotFoundException(__('Tipo de m&eacute;dico inv&aacute;lido'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->MedicType->save($this->request->data)) {
-				$this->Session->setFlash(__('The medic type has been saved'));
+				$this->Session->setFlash(__('El tipo de m&eacute;dico fue modificado correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The medic type could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El tipo de m&eacute;dico no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
 		} else {
 			$this->request->data = $this->MedicType->read(null, $id);
@@ -84,13 +88,15 @@ class MedicTypesController extends AppController {
 		}
 		$this->MedicType->id = $id;
 		if (!$this->MedicType->exists()) {
-			throw new NotFoundException(__('Invalid medic type'));
+			throw new NotFoundException(__('Tipo de m&eacute;dico inv&aacute;lido'));
 		}
 		if ($this->MedicType->delete()) {
-			$this->Session->setFlash(__('Medic type deleted'));
+			$this->Session->setFlash(__('El tipo de m&eacute;dico fue borrado correctamente', null), 
+					'default', 
+					array('class' => 'success'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Medic type was not deleted'));
+		$this->Session->setFlash(__('El tipo de m&eacute;dico no pudo ser borrado'));
 		$this->redirect(array('action' => 'index'));
 	}
 }

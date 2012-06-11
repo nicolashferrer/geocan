@@ -28,7 +28,7 @@ public $helpers = array('Tinymce');
 	public function view($id = null, $idRegOms = null) {
 		$this->Note->id = $id;
 		if (!$this->Note->exists()) {
-			throw new NotFoundException(__('Invalid note'));
+			throw new NotFoundException(__('Nota inv&aacute;lida'));
 		}
 		$this->set('note', $this->Note->read(null, $id));
 	}
@@ -44,11 +44,13 @@ public $helpers = array('Tinymce');
 			
 			
 			if ($this->Note->save($this->request->data)) {
-				$this->Session->setFlash(__('La nota ha sido guardada'));
+				$this->Session->setFlash(__('La nota fue creada correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('controller'=>'omsregisters','action' => 'view',$id));
 				//$this->redirect($this->referer());
 			} else {
-				$this->Session->setFlash(__('The note could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('La nota no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 		$medics = $this->Note->Medic->find('list',array('fields'=>array('Medic.nombrecompleto')));
@@ -69,7 +71,9 @@ public $helpers = array('Tinymce');
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Note->save($this->request->data)) {
-				$this->Session->setFlash(__('La nota ha sido guardada'));
+				$this->Session->setFlash(__('La nota fue modificada correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('controller'=>'oms_registers','action' => 'view',$idRegOms));
 			} else {
 				$this->Session->setFlash(__('La nota no se ha podido guardar. Por favor, intente nuevamente.'));
@@ -94,10 +98,12 @@ public $helpers = array('Tinymce');
 		}
 		$this->Note->id = $id;
 		if (!$this->Note->exists()) {
-			throw new NotFoundException(__('Nota no válida'));
+			throw new NotFoundException(__('Nota inv&aacute;lida'));
 		}
 		if ($this->Note->delete()) {
-			$this->Session->setFlash(__('Nota borrada'));
+			$this->Session->setFlash(__('La nota fue borrada correctamente', null), 
+					'default', 
+					array('class' => 'success'));
 			//$this->redirect($this->referer());
 			$this->redirect(array('controller'=>'oms_registers','action' => 'view',$idRegOms));
 		}

@@ -27,7 +27,7 @@ class MedicsController extends AppController {
 	public function view($id = null) {
 		$this->Medic->id = $id;
 		if (!$this->Medic->exists()) {
-			throw new NotFoundException(__('Invalid medic'));
+			throw new NotFoundException(__('M&eacute;dico inv&aacute;lido'));
 		}
 		$this->set('medic', $this->Medic->read(null, $id));
 	}
@@ -41,10 +41,12 @@ class MedicsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Medic->create();
 			if ($this->Medic->save($this->request->data)) {
-				$this->Session->setFlash(__('The medic has been saved'));
+				$this->Session->setFlash(__('El m&eacute;dico fue creado correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The medic could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El m&eacute;dico no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 		$medicTypes = $this->Medic->MedicType->find('list');
@@ -60,14 +62,16 @@ class MedicsController extends AppController {
 	public function edit($id = null) {
 		$this->Medic->id = $id;
 		if (!$this->Medic->exists()) {
-			throw new NotFoundException(__('Invalid medic'));
+			throw new NotFoundException(__('M&eacute;dico inv&aacute;lido'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Medic->save($this->request->data)) {
-				$this->Session->setFlash(__('The medic has been saved'));
+				$this->Session->setFlash(__('El m&eacute;dico fue modificado correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The medic could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El m&eacute;dico no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
 		} else {
 			$this->request->data = $this->Medic->read(null, $id);
@@ -88,13 +92,15 @@ class MedicsController extends AppController {
 		}
 		$this->Medic->id = $id;
 		if (!$this->Medic->exists()) {
-			throw new NotFoundException(__('Invalid medic'));
+			throw new NotFoundException(__('M&eacute;dico inv&aacute;lido'));
 		}
 		if ($this->Medic->delete()) {
-			$this->Session->setFlash(__('Medic deleted'));
+			$this->Session->setFlash(__('El m&eacute;dico fue borrado correctamente', null), 
+					'default', 
+					array('class' => 'success'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Medic was not deleted'));
+		$this->Session->setFlash(__('El m&eacute;dico no pudo ser borrado'));
 		$this->redirect(array('action' => 'index'));
 	}
 

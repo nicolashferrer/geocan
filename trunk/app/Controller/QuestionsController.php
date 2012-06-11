@@ -27,7 +27,7 @@ class QuestionsController extends AppController {
 	public function view($id = null) {
 		$this->Question->id = $id;
 		if (!$this->Question->exists()) {
-			throw new NotFoundException(__('Invalid question'));
+			throw new NotFoundException(__('Pregunta inv&aacute;lida'));
 		}
 		$this->set('question', $this->Question->read(null, $id));
 	}
@@ -41,10 +41,12 @@ class QuestionsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Question->create();
 			if ($this->Question->save($this->request->data)) {
-				$this->Session->setFlash(__('The question has been saved'));
+				$this->Session->setFlash(__('La pregunta fue creada correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('La pregunta no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 	}
@@ -58,14 +60,16 @@ class QuestionsController extends AppController {
 	public function edit($id = null) {
 		$this->Question->id = $id;
 		if (!$this->Question->exists()) {
-			throw new NotFoundException(__('Invalid question'));
+			throw new NotFoundException(__('Pregunta inv&aacute;lida'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Question->save($this->request->data)) {
-				$this->Session->setFlash(__('The question has been saved'));
+				$this->Session->setFlash(__('La pregunta fue modificada correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The question could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('La pregunta no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
 		} else {
 			$this->request->data = $this->Question->read(null, $id);
@@ -84,13 +88,15 @@ class QuestionsController extends AppController {
 		}
 		$this->Question->id = $id;
 		if (!$this->Question->exists()) {
-			throw new NotFoundException(__('Invalid question'));
+			throw new NotFoundException(__('Pregunta inv&aacute;lida'));
 		}
 		if ($this->Question->delete()) {
-			$this->Session->setFlash(__('Question deleted'));
+			$this->Session->setFlash(__('La pregunta fue borrada correctamente', null), 
+					'default', 
+					array('class' => 'success'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Question was not deleted'));
+		$this->Session->setFlash(__('La pregunta no pudo ser borrada'));
 		$this->redirect(array('action' => 'index'));
 	}
 

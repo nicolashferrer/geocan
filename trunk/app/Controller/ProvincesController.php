@@ -27,7 +27,7 @@ class ProvincesController extends AppController {
 	public function view($id = null) {
 		$this->Province->id = $id;
 		if (!$this->Province->exists()) {
-			throw new NotFoundException(__('Invalid province'));
+			throw new NotFoundException(__('Provincia inv&aacute;lida'));
 		}
 		$this->set('province', $this->Province->read(null, $id));
 	}
@@ -41,10 +41,12 @@ class ProvincesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Province->create();
 			if ($this->Province->save($this->request->data)) {
-				$this->Session->setFlash(__('The province has been saved'));
+				$this->Session->setFlash(__('La provincia fue creada correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The province could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('La provincia no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 	}
@@ -58,14 +60,16 @@ class ProvincesController extends AppController {
 	public function edit($id = null) {
 		$this->Province->id = $id;
 		if (!$this->Province->exists()) {
-			throw new NotFoundException(__('Invalid province'));
+			throw new NotFoundException(__('Provincia inv&aacute;lida'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Province->save($this->request->data)) {
-				$this->Session->setFlash(__('The province has been saved'));
+				$this->Session->setFlash(__('La provincia fue modificada correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The province could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('La provincia no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
 		} else {
 			$this->request->data = $this->Province->read(null, $id);
@@ -84,13 +88,15 @@ class ProvincesController extends AppController {
 		}
 		$this->Province->id = $id;
 		if (!$this->Province->exists()) {
-			throw new NotFoundException(__('Invalid province'));
+			throw new NotFoundException(__('Provincia inv&aacute;lida'));
 		}
 		if ($this->Province->delete()) {
-			$this->Session->setFlash(__('Province deleted'));
+			$this->Session->setFlash(__('La provincia fue borrada correctamente', null), 
+					'default', 
+					array('class' => 'success'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Province was not deleted'));
+		$this->Session->setFlash(__('La provincia no pudo ser borrada'));
 		$this->redirect(array('action' => 'index'));
 	}
 
