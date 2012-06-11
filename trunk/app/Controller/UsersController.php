@@ -180,7 +180,7 @@ class UsersController extends AppController {
 					$this->redirect($this->Auth->logout());
 					//$this->redirect(array('action' => 'index'));
 				} else {
-					$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, inténtelo de nuevo.'));
+					$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, int&eacute;ntelo de nuevo.'));
 				}
 			/*
 			}
