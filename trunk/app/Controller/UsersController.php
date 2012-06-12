@@ -228,6 +228,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Patients/add');
 		$this->Acl->allow($group, 'controllers/Patients/edit');
 		$this->Acl->allow($group, 'controllers/Patients/view');
+		$this->Acl->allow($group, 'controllers/Patients/search');
+		$this->Acl->allow($group, 'controllers/Patients/recuperarPaciente');
 		$this->Acl->allow($group, 'controllers/Patients/editAnswers');
 		$this->Acl->allow($group, 'controllers/Addresses/add');
 		$this->Acl->allow($group, 'controllers/Addresses/edit');
@@ -235,8 +237,19 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Notes/edit');
 		$this->Acl->allow($group, 'controllers/OmsRegisters/add');
 		$this->Acl->allow($group, 'controllers/OmsRegisters/edit');
+		$this->Acl->allow($group, 'controllers/OmsRegisters/view');		
 		$this->Acl->allow($group, 'controllers/Answers/add');
 		$this->Acl->allow($group, 'controllers/Answers/edit');
+		$this->Acl->allow($group, 'controllers/Cities/getCiudades');
+		$this->Acl->allow($group, 'controllers/Cities/view');
+		$this->Acl->allow($group, 'controllers/Provinces/view');
+		$this->Acl->allow($group, 'controllers/OmsCodes/getSigNivel');
+		$this->Acl->allow($group, 'controllers/OmsCodes/sugerencias');
+		$this->Acl->allow($group, 'controllers/OmsCodes/help');
+		
+				$this->Acl->allow($group, 'controllers/Users/login');
+				$this->Acl->allow($group, 'controllers/Users/logout');
+		
 		//Permisos de los usuarios
 		$group->id = 3;
 		$this->Acl->allow($group, 'controllers');

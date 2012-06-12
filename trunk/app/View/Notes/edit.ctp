@@ -3,9 +3,9 @@
 	<fieldset>
 		<legend><?php echo __('Editar Nota'); ?></legend>
 	<?php
+		echo "<div><label class='label_radio required'>M&eacute;dico</label>".$this->request->data['Medic']['nombrecompleto']."</div>";
+		echo $this->Form->hidden('medic_id',array('value'=>$auth['medic_id']));
 		echo $this->Form->input('id');
-		echo $this->Form->input('id');
-		//echo $this->Form->input('descripcion',array('label'=>'Descripci&oacute;n','size' => '100%'));
 		echo $this->Tinymce->input('Note.descripcion', array( 
             'label' => 'Contenido'
             ),array( 

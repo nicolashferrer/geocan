@@ -22,8 +22,8 @@
 		
 		$options=array('0'=>'Desconocido','1'=>'1','2'=>'2','3'=>'3','4'=>'4');
 		$attributes=array('legend'=>false,'value'=> $omsregister['OmsRegister']['estadio'] ,'separator'=>'');	
-		echo "<div class=input>";
-		echo $this->Form->label("Estad&iacute;o");
+		echo "<div>";
+		echo "<label class='label_radio required'>Estad&iacute;o</label>";
 		echo $this->Form->radio('estadio',$options,$attributes);
 		echo "</div>";	
 	?>
