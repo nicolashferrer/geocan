@@ -1,0 +1,6 @@
+geocan2012 = 1500c2908e71d66b19bfce3a1b4e042d4c860649
+admin3 = a0f76f8adbe4a2b8ce42d1c33913b0cd27d28bf0
+
+Clave del usuario ADMIN es admin3
+
+
