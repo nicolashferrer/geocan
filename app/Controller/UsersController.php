@@ -198,6 +198,8 @@ class UsersController extends AppController {
 	public function login() {
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
+				$user = $this->User->read('password',$this->Auth->user('id'));
+				$this->Session->write('userpass', $user['User']['password']);
 				$this->redirect($this->Auth->redirect());
 			} else {
 				$this->Session->setFlash('Su nombre de usuario o la contrase&ntilde;a es incorrecta.');
