@@ -43,9 +43,6 @@ class UsersController extends AppController {
 			$this->User->create();
 			$this->request->data['User']['password'] = 'geocan2012';
 			$this->request->data['User']['password_confirm'] = 'geocan2012';
-			$this->request->data['User']['pass_viejo'] = '1';
-			$this->request->data['User']['password_antiguo'] = AuthComponent::password('1');
-            //$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
 
 			if ($this->request->data['Control']['conMedico'] == 'false') {
 				unset($this->request->data['User']['medic_id']);
@@ -55,7 +52,7 @@ class UsersController extends AppController {
 			//debug($this->request->data);	
 			//exit();
 
-			if ($this->User->save($this->request->data)) {
+			if ($this->User->save($this->request->data, true, array('username','password','group_id','medic_id','created','modified'))) {
 				$this->Session->setFlash(__('El usuario se ha creado correctamente', null), 
                             'default', 
                              array('class' => 'success'));
@@ -85,17 +82,13 @@ class UsersController extends AppController {
 		else
 		{
 			$this->request->data['User']['id']= $id;
-			//$this->request->data['User']['username']= $username;
 			$this->request->data['User']['password'] = 'geocan2012';
 			$this->request->data['User']['password_confirm'] = 'geocan2012';
-			$this->request->data['User']['pass_viejo'] = '1';
-			$this->request->data['User']['password_antiguo'] = AuthComponent::password('1');
-            //$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
 			
 				//debug($this->request->data);	
 				//exit();
 			
-			if ($this->User->save($this->request->data)) {
+			if ($this->User->save($this->request->data, true, array('password'))) {
 				$this->Session->setFlash(__('La contrase&ntilde;a se reseto exitosamente', null), 
                             'default', 
                              array('class' => 'success'));
@@ -127,13 +120,10 @@ class UsersController extends AppController {
 			
 			unset($this->request->data['Control']);
 			
-			$this->request->data['User']['pass_viejo'] = '1';
-			$this->request->data['User']['password_antiguo'] = AuthComponent::password('1');
-			
 			//debug($this->request->data);
 			//exit();
 			
-			if ($this->User->save($this->request->data)) {
+			if ($this->User->save($this->request->data, true, array('group_id','medic_id','created','modified'))) {
 				$this->Session->setFlash(__('El usuario se ha modificado correctamente', null), 
                             'default', 
                              array('class' => 'success'));
@@ -164,31 +154,20 @@ class UsersController extends AppController {
 			
 			$cont= $this->User->Find('all',array('conditions' => array('User.id' => $id)));
 			
-			/*if ($cont[0]['User']['password'] == AuthComponent::password($this->request->data['User']['pass_viejo']))
-			{*/
-				$this->request->data['User']['id']= $id;
-				//$this->request->data['User']['username'] = $username; El problema era con el modelo, que pedia que el username sea no_empty! se lo puse solo cuando es una creacion!
-				//$this->request->data['User']['password_confirm_hash'] = $this->request->data['User']['password_confirm'];
-				$this->request->data['User']['password_antiguo'] = $cont[0]['User']['password'];
-				//debug($this->request->data);
-				//exit();
+			$this->request->data['User']['id']= $id;
+			$this->request->data['User']['password_antiguo'] = $cont[0]['User']['password'];
 			
-				if ($this->User->save($this->request->data)) {
-					$this->Session->setFlash(__('La contrase&ntilde;a se cambio correctamente. Por favor vuelva a ingresar.', null), 
-                            'default', 
-                             array('class' => 'success'));
-					$this->redirect($this->Auth->logout());
-					//$this->redirect(array('action' => 'index'));
-				} else {
-					$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, int&eacute;ntelo de nuevo.'));
-				}
-			/*
+			//debug($this->request->data);
+			//exit();
+		
+			if ($this->User->save($this->request->data, true, array('password','pass_viejo','created','modified'))) {
+				$this->Session->setFlash(__('La contrase&ntilde;a se cambio correctamente. Por favor vuelva a ingresar.', null), 
+						'default', 
+						 array('class' => 'success'));
+				$this->redirect($this->Auth->logout());
+			} else {
+				$this->Session->setFlash(__('El usuario no se pudo guardar. Por favor, int&eacute;ntelo de nuevo.'));
 			}
-			else
-			{
-				$this->Session->setFlash(__('La contrase&ntilde;a anterior no coincide.'));
-			}
-			*/
 		}
 	}
 	
