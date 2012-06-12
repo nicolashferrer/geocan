@@ -47,7 +47,7 @@
 		<tr>
 			<th><?php echo __('Medico'); ?></th>
 			<th><?php echo __('Fecha'); ?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
+			<th class="actions"></th>
 		</tr>
 		<?php
 			$i = 0;
@@ -72,7 +72,5 @@
 	</div>
 </fieldset>
 </div>
-
-
-	
+	<form><div class="submit"></div></form>
 </div>

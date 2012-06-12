@@ -41,8 +41,7 @@ public $helpers = array('Tinymce');
 	public function add( $id=null) {
 		if ($this->request->is('post')) {
 			$this->Note->create();
-			
-			
+				
 			if ($this->Note->save($this->request->data)) {
 				$this->Session->setFlash(__('La nota fue creada correctamente.', null), 
 					'default', 
@@ -53,9 +52,13 @@ public $helpers = array('Tinymce');
 				$this->Session->setFlash(__('La nota no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
-		$medics = $this->Note->Medic->find('list',array('fields'=>array('Medic.nombrecompleto')));
-		$omsRegisters = $this->Note->OmsRegister->find('list');
-		$this->set(compact('medics', 'omsRegisters','id'));
+		if  ($this->Auth->user('group_id')!=2) { // Si no es un medico...
+			$medics = $this->Note->Medic->find('list',array('fields'=>array('Medic.nombrecompleto')));
+			$this->set(compact('medics','id'));
+		} else {
+			$medic = $this->Note->Medic->read('nombrecompleto',$this->Auth->user('medic_id'));
+			$this->set(compact('medic','id'));
+		}
 	}
 
 /**
@@ -81,9 +84,6 @@ public $helpers = array('Tinymce');
 		} else {
 			$this->request->data = $this->Note->read(null, $id);
 		}
-		//$medics = $this->Note->Medic->find('list');
-		//$omsRegisters = $this->Note->OmsRegister->find('list');
-		//$this->set(compact('medics', 'omsRegisters'));
 	}
 
 /**

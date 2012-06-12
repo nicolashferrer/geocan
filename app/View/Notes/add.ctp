@@ -7,7 +7,14 @@
 	<?php
 		
 		echo $this->Form->hidden('Note.oms_register_id',array('value'=>$id));
-		echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
+		
+		if ($auth['group_id']!=2) {
+			echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
+		} else {
+			echo "<div><label class='label_radio required'>M&eacute;dico</label>".$medic['Medic']['nombrecompleto']."</div>";
+			echo $this->Form->hidden('medic_id',array('value'=>$auth['medic_id']));
+		}
+				
 		echo $this->Tinymce->input('Note.descripcion', 
 			array( 
 				'label' => 'Contenido'

@@ -17,6 +17,11 @@
 				$('#imgbusquedaLaboral').css("display", "none");
 				$('#ControlCargoLaboral').val("false");
 				$('#ControlMismaLaboral').val("true");
+				$('#calleLaboral').val("Calle");
+				$('#alturaLaboral').val("Altura");
+				
+				//Remuevo el icono del mapita si es que existe...
+				$('#imgmapaLaboral').remove();
 				
 			} else {
 			
@@ -44,7 +49,12 @@
 			$('#alturaParticular').attr("disabled", "disabled");
 			$('#imgbusquedaParticular').css("display", "none");
 			$('#ControlCargoParticular').val("false");
-			$('#ControlMismaParticular').val("true");				
+			$('#ControlMismaParticular').val("true");	
+			$('#calleParticular').val("Calle");
+			$('#alturaParticular').val("Altura");
+
+			//Remuevo el icono del mapita si es que existe...
+			$('#imgmapaParticular').remove();			
 			
 		} else {
 		
@@ -227,10 +237,9 @@
 		echo $this->Form->hidden('address_lab_id', array('value' => $patient['Secondary']['id']));
 
 		echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
-		//echo $this->Form->input('oms_code_id',array('label'=>'C&oacute;digo','type' => 'text'));
 		echo "<div class=input>";
-		echo $this->Form->label("&nbsp; C&oacute;digo");
-		echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "omscodes",	"action" => "help"))."'>Ayuda</a>";
+		echo "<label class='label_radio required'>C&oacute;digo</label>";
+		echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "omscodes",	"action" => "help"))."'><img src='".$this->webroot."css/images/help.gif' style='vertical-align: middle;' /></a>";
 		echo "</div>";	
 		
 		echo $this->Form->hidden('oms_code_id');
@@ -239,7 +248,7 @@
 		$options=array('0'=>'Desconocido','1'=>'1','2'=>'2','3'=>'3','4'=>'4');
 		$attributes=array('legend'=>false,'value'=>'0','separator'=>'');	
 		echo "<div>";
-		echo $this->Form->label("Estad&iacute;o");
+		echo "<label class='label_radio required'>Estad&iacute;o</label>";
 		echo $this->Form->radio('estadio',$options,$attributes);
 		echo "</div>";	
 		
@@ -248,7 +257,7 @@
 		<div class=input>
 		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"> Utilizar direcci&oacute;n particular actual del paciente.
 		<fieldset id="fsParticular">
-			<legend><?php echo __('Direccion Particular'); ?></legend>
+			<legend><?php echo __('Direcci&oacute;n Particular'); ?></legend>
 			<select id="provinciasParticular">
 			<?php foreach ($provinces as $key => $province): ?>
 				<option value="<?php echo $key ?>"><?php echo $province ?></option>
@@ -263,7 +272,7 @@
 		<div class=input>
 		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"> Utilizar direcci&oacute;n laboral actual del paciente.
 		<fieldset id="fsLaboral">
-			<legend><?php echo __('Direccion Laboral'); ?></legend>
+			<legend><?php echo __('Direcci&oacute;n Laboral'); ?></legend>
 			<select id="provinciasLaboral">
 			<?php foreach ($provinces as $key => $province): ?>
 				<option value="<?php echo $key ?>"><?php echo $province ?></option>

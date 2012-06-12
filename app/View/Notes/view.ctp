@@ -2,12 +2,12 @@
 	<fieldset>
 	<legend><?php echo __('Nota'); ?></legend>
 	<dl>
-		<dt><?php echo __('Médico'); ?></dt>
+		<dt><?php echo __('M&eacute;dico'); ?></dt>
 		<dd>
-			<?php echo $this->Html->link($note['Medic']['nombrecompleto'], array('controller' => 'medics', 'action' => 'view', $note['Medic']['id'])); ?>
+			<?php echo h($note['Medic']['nombrecompleto']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php echo __('Descripción'); ?></dt>
+		<dt><?php echo __('Contenido'); ?></dt>
 		<dd>
 			<?php echo ($note['Note']['descripcion']); ?>
 			&nbsp;
@@ -24,4 +24,5 @@
 			</ul>
 		</div>
 	</fieldset>
+	<form><div class="submit"></div></form>
 </div>

@@ -14,6 +14,11 @@
 				$('#alturaLaboral').attr("disabled", "disabled");
 				$('#imgbusquedaLaboral').css("display", "none");
 				$('#ControlCargoLaboral').val("false");	
+				$('#calleLaboral').val("Calle");
+				$('#alturaLaboral').val("Altura");
+				
+				//Remuevo el icono del mapita si es que existe...
+				$('#imgmapaLaboral').remove();
 				
 			} else {
 			
@@ -40,6 +45,13 @@
 			$('#alturaParticular').attr("disabled", "disabled");
 			$('#imgbusquedaParticular').css("display", "none");
 			$('#ControlCargoParticular').val("false");	
+			
+			$('#calleParticular').val("Calle");
+			$('#alturaParticular').val("Altura");
+
+			//Remuevo el icono del mapita si es que existe...
+			$('#imgmapaParticular').remove();	
+			
 			
 		} else {
 		
@@ -169,9 +181,9 @@
 		echo $this->Form->input('fecha_nacimiento',array('label' => 'Fecha De Nacimiento', 'type' => 'text'));
 		
 		$options=array('M'=>'Masculino','F'=>'Femenino');
-		$attributes=array('legend'=>false,'value'=>'M','separator'=>'');	
+		$attributes=array('legend'=>false,'value'=> $patient['Patient']['sexo'],'separator'=>'');	
 		echo "<div>";
-			echo $this->Form->label("Sexo");
+			echo "<label class='label_radio required'>Sexo</label>";
 			echo $this->Form->radio('sexo',$options,$attributes);
 		echo "</div>";
 		
@@ -179,9 +191,9 @@
 		
 		?>
 		<div class=input>
-		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"/> No modificar la direccion particular del paciente.<br />
+		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"/>No modificar la direcci&oacute;n particular del paciente.<br />
 		<fieldset id="fsParticular">
-			<legend><?php echo __('Direccion Particular'); ?></legend>
+			<legend><?php echo __('Direcci&oacute;n Particular'); ?></legend>
 			<select id="provinciasParticular">
 			<?php foreach ($provinces as $key => $province): ?>
 				<option value="<?php echo $key ?>"><?php echo $province ?></option>
@@ -193,9 +205,9 @@
 			<input type="text" size="5" value="Altura" id="alturaParticular" class="clear-text-field" />
 			<a href="JavaScript:buscar('Particular');" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 		</fieldset>
-		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"/> No modificar la direccion laboral del paciente.<br />
+		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"/>No modificar la direcci&oacute;n laboral del paciente.<br />
 		<fieldset id="fsLaboral">
-			<legend><?php echo __('Direccion Laboral'); ?></legend>
+			<legend><?php echo __('Direcci&oacute;n Laboral'); ?></legend>
 			<select id="provinciasLaboral">
 			<?php foreach ($provinces as $key => $province): ?>
 				<option value="<?php echo $key ?>"><?php echo $province ?></option>
