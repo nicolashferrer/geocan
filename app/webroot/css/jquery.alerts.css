@@ -39,6 +39,10 @@
 	background-image: url(images/important.gif);
 }
 
+#popup_content.error {
+	background-image: url(images/important.gif);
+}
+
 #popup_content.prompt {
 	background-image: url(images/help.gif);
 }
