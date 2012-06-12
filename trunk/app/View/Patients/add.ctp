@@ -238,7 +238,7 @@ $(document).ready(function() {
 				$opciones=array('1'=>'Si','0'=>'No',''=>'No Contesta');
 				$atributos=array('legend'=>false,'value'=>'','separator'=>'');
 				echo "<div>";
-				echo "<label class='label_radio'>".$this->Form->label($question['Question']['descripcion'])."</label>";
+				echo "<label class='label_radio'>".$question['Question']['descripcion']."</label>";
 				echo $this->Form->hidden('Answer.'.$i.'.question_id', array('value' => $question['Question']['id']));
 				//echo $this->Form->hidden('Answer.'.$i.'patient_id', array('value' => ''));
 				echo $this->Form->radio('Answer.'.$i.'.valor',$opciones,$atributos);

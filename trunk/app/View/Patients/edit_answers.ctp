@@ -19,8 +19,8 @@
 				else 	
 					$atributos=array('legend'=>false,'value'=>'0' ,'separator'=>'');
 				
-				echo "<div class=input>";
-				echo $this->Form->label($question['questions']['descripcion']);
+				echo "<div>";
+				echo "<label class='label_radio'>".$this->Form->label($question['questions']['descripcion'])."</label>";
 				echo $this->Form->hidden('Answer.'.$i.'.question_id', array('value' => $question['questions']['id']));
 				echo $this->Form->radio('Answer.'.$i.'.valor',$opciones,$atributos);
 				echo "</div>";
