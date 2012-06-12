@@ -144,7 +144,7 @@ function buscar(tipoDireccion) {
 					$('#imgmapaLaboral').remove();
 				}
 				//alert('ERROR! Unable to geocode address');
-				jAlert("No se pudo geolocalizar la direcci&oacute;n encontrada.","Errores de Geolocalización");
+				jError("No se pudo geolocalizar la direcci&oacute;n solicitada.","Errores de Geolocalización");
 
 			}
 			
@@ -157,7 +157,7 @@ function buscar(tipoDireccion) {
 				$('#imgmapaLaboral').remove();
 			}
 			//alert('ERROR! Unable to geocode address');
-			jAlert("No se pudo geolocalizar la direcci&oacute;n encontrada.","Errores de Geolocalización");
+			jError("No se pudo geolocalizar la direcci&oacute;n solicitada.","Errores de Geolocalización");
 		}
 	}
 	
