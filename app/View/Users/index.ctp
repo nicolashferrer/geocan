@@ -25,9 +25,11 @@
 				<td class="actions">
 					<?php echo $this->Html->image('view.png', array('url' =>  array('action' => 'view', $user['User']['id']),'border' => '0','escape' => false))?>
 					<?php //echo $this->Html->link(__('Ver'), array('action' => 'view', $user['User']['id'])); ?>
-					<?php echo $this->Html->link(__('Modificar'), array('action' => 'edit', $user['User']['id'])); ?>
+					<?php echo $this->Html->image('edit.png', array('url' => array('action' => 'edit', $user['User']['id']),'border' => '0','escape' => false)); ?>
+					<?php //echo $this->Html->link(__('Modificar'), array('action' => 'edit', $user['User']['id'])); ?>
 					<?php echo $this->Html->link(__('Resetear Password'), array('action' => 'resetPassword', $user['User']['id'])); ?>
-					<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $user['User']['id']), null, __('Esta seguro que desea eliminar el usuario %s?', $user['User']['username'])); ?>
+					<?php echo $this->Html->link($this->Html->image('delete.png', array('border' => '0')), array('action' => 'delete', $user['User']['id']), array('escape' => false) , sprintf(__('Esta seguro que desea eliminar el usuario %s?', true), $user['User']['username'])); ?>
+					<?php //echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $user['User']['id']), null, __('Esta seguro que desea eliminar el usuario %s?', $user['User']['username'])); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
