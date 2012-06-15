@@ -100,11 +100,7 @@ class OmsRegistersController extends AppController {
 		} else {
 			$this->set('omsregister', $this->OmsRegister->read(null, $id));
 		}
-		//$patients = $this->OmsRegister->Patient->find('list');
 		$medics = $this->OmsRegister->Medic->find('list');
-		//$addressParts = $this->OmsRegister->AddressPart->find('list');
-		//$addressLabs = $this->OmsRegister->AddressLab->find('list');
-		//$omsCodes = $this->OmsRegister->OmsCode->find('list');
 		$this->set(compact('medics'));
 	}
 
@@ -114,7 +110,7 @@ class OmsRegistersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function delete($id = null) {
+	public function delete($id = null,$paciente=null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
@@ -126,12 +122,25 @@ class OmsRegistersController extends AppController {
 			$this->Session->setFlash(__('El registro Oms fue borrado correctamente', null), 
 					'default', 
 					array('class' => 'success'));
-			$this->redirect(array('action' => 'index'));
+			//$this->redirect(array('controller' => 'patients','action' => 'view',$paciente));
 		}
-		$this->Session->setFlash(__('El registro Oms no pudo ser borrado'));
-		$this->redirect(array('action' => 'index'));
+		if (!$this->checkDelete())
+			$this->Session->setFlash(__('El registro Oms no pudo ser borrado, tiene notas asociadas.'));
+		//$this->redirect(array('action' => 'index'));
+		$this->redirect(array('controller' => 'patients','action' => 'view',$paciente));
 	}	
-
+	
+	function checkDelete(){
+		$count = $this->OmsRegister->Note->find("count", array(
+			"conditions" => array("oms_register_id" => $this->OmsRegister->id)
+		));
+		if ($count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allowedActions = array('index', 'view');

@@ -48,9 +48,6 @@ class UsersController extends AppController {
 				unset($this->request->data['User']['medic_id']);
 			}
 			unset($this->request->data['Control']);
-			
-			//debug($this->request->data);	
-			//exit();
 
 			if ($this->User->save($this->request->data, true, array('username','password','group_id','medic_id','created','modified'))) {
 				$this->Session->setFlash(__('El usuario se ha creado correctamente', null), 

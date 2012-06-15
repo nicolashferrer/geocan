@@ -137,7 +137,7 @@ class TinymceHelper extends AppHelper {
                 'theme_advanced_resizing' => false, 
                 'theme_advanced_resize_horizontal' => true, 
                 'convert_fonts_to_spans' => false ,
-				 'theme_advanced_font_sizes' => '10px,12px,14px,16px,24px'
+				'theme_advanced_font_sizes' => '10px,12px,14px,16px,24px'
 
             ); 
         } 

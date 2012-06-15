@@ -138,7 +138,19 @@ class OmsRegister extends AppModel {
             }
             return true;
         }
+	
+	function beforeDelete(){
+		$count = $this->Note->find("count", array(
+			"conditions" => array("oms_register_id" => $this->id)
+		));
 		
+		if ($count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	function afterFind($resultados) {
 			foreach ($resultados as $clave => $valor) {
 				if (isset($valor['OmsRegister']['fecha'])) {
