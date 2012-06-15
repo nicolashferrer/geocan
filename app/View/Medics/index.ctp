@@ -11,7 +11,7 @@
 				<th><?php echo $this->Paginator->sort('nombre');?></th>
 				<th><?php echo $this->Paginator->sort('apellido');?></th>
 				<th><?php echo $this->Paginator->sort('matricula');?></th>
-				<th><?php echo $this->Paginator->sort('tipo de Medico');?></th>
+				<th><?php echo $this->Paginator->sort('MedicType.tipo','Tipo de Medico');?></th>
 				<th class="actions"><?php echo __('Acciones');?></th>
 		</tr>
 		<?php

@@ -48,12 +48,9 @@ class Patient extends AppModel {
 		),
 		'fecha_nacimiento' => array(
 			'notempty' => array(
-				'rule' => array('notempty'),
-				'message' => 'Este campo es obligatorio',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+				'rule' => array('date','dmy'),
+				'message' => 'Ingrese una fecha valida dd/mm/aaaa.',
+				//'allowEmpty' => true
 			),
 			'date' => array(
 				'rule' => '/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/i',
