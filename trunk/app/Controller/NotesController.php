@@ -56,7 +56,8 @@ public $helpers = array('Tinymce');
 			$medics = $this->Note->Medic->find('list',array('fields'=>array('Medic.nombrecompleto')));
 			$this->set(compact('medics','id'));
 		} else {
-			$medic = $this->Note->Medic->read('nombrecompleto',$this->Auth->user('medic_id'));
+			Controller::loadModel('Medic');
+			$medic = $this->Medic->read('nombrecompleto',$this->Auth->user('medic_id'));
 			$this->set(compact('medic','id'));
 		}
 	}
