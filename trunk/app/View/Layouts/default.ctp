@@ -101,7 +101,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 					</li>
 					<li class="top"><a href="#nogo2" id="reportes" class="top_link"><span class="down">Reportes</span></a>
 						<ul class="sub">
-							<li><a href="#">Proximamente....</a></li>
+							<li><?php echo $this->Html->link('Prueba',array('controller' => 'addresses', 'action' => 'reporte'))?></li>
 						</ul>
 					</li>
 					<li class="top"><a href="#nogo2" id="administration" class="top_link"><span class="down">Administraci&oacute;n</span></a>
