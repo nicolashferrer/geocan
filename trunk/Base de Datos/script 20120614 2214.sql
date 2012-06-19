@@ -156,21 +156,7 @@ CREATE TABLE `addresses` (
   PRIMARY KEY (`id`),
   KEY `FK_address_city` (`city_id`),
   CONSTRAINT `FK_address_city` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `addresses`
---
-
-/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
-INSERT INTO `addresses` (`id`,`city_id`,`latitud`,`longitud`,`direccion`) VALUES 
- (1,1,-38.7098387,-62.2669045,'Zapiola 500'),
- (3,1,-38.7190841,-62.2654023,'Alsina 1'),
- (4,1,-38.7190841,-62.2654023,'Alsina 1'),
- (6,1,-38.7190841,-62.2654023,'Alsina 1'),
- (7,1,-38.7097541,-62.2908069,'Terrada 1600'),
- (8,1,-38.7134743,-62.26254640000002,'Zapiola 100');
-/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -189,13 +175,6 @@ CREATE TABLE `answers` (
   CONSTRAINT `FK_answer_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`),
   CONSTRAINT `FK_answer_question` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `answers`
---
-
-/*!40000 ALTER TABLE `answers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 
 
 --
@@ -302,7 +281,7 @@ CREATE TABLE `cities` (
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
 INSERT INTO `cities` (`id`,`nombre`,`province_id`) VALUES 
  (1,'Bahía Blanca',1),
- (2,'Otra Ciudad',2);
+ (2,'Buenos Aires',2);
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 
 
@@ -348,7 +327,9 @@ CREATE TABLE `medic_types` (
 
 /*!40000 ALTER TABLE `medic_types` DISABLE KEYS */;
 INSERT INTO `medic_types` (`id`,`tipo`) VALUES 
- (1,'Oncologo');
+ (1,'Clinico'),
+ (2,'Oncólogo'),
+ (3,'Patólogo');
 /*!40000 ALTER TABLE `medic_types` ENABLE KEYS */;
 
 
@@ -374,8 +355,8 @@ CREATE TABLE `medics` (
 
 /*!40000 ALTER TABLE `medics` DISABLE KEYS */;
 INSERT INTO `medics` (`id`,`nombre`,`apellido`,`matricula`,`medic_type_id`) VALUES 
- (1,'Medico','De Juguete','1234567',1),
- (2,'Otro','otro','3333',1);
+ (1,'Roberto','Voorhees','1234567',1),
+ (2,'Freddy','Kruger','666',2);
 /*!40000 ALTER TABLE `medics` ENABLE KEYS */;
 
 
@@ -397,19 +378,9 @@ CREATE TABLE `notes` (
   KEY `FK_notes_oms_register` (`oms_register_id`),
   CONSTRAINT `FK_notes_medic` FOREIGN KEY (`medic_id`) REFERENCES `medics` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_notes_oms_register` FOREIGN KEY (`oms_register_id`) REFERENCES `oms_registers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `notes`
---
 
-/*!40000 ALTER TABLE `notes` DISABLE KEYS */;
-INSERT INTO `notes` (`id`,`medic_id`,`oms_register_id`,`fecha`,`descripcion`) VALUES 
- (1,1,2,'2012-05-31 21:01:51','Le doy una nota!'),
- (2,1,5,'2012-06-03 22:01:07','<p><strong><span style=\"color: #ff0000;\">Hola!</span></strong></p>\r\n<ul>\r\n<li><strong><span style=\"color: #ff0000;\">1<br /></span></strong></li>\r\n<li><strong><span style=\"color: #ff0000;\">2<br /></span></strong></li>\r\n<li><strong><span style=\"color: #ff0000;\">3<br /></span></strong></li>\r\n</ul>'),
- (3,1,6,'2012-06-09 04:20:47','<p><span style=\"font-size: 24px;\"><strong><span style=\"color: #ff0000;\">sdfsdffsd</span></strong></span></p>'),
- (4,1,7,'2012-06-15 00:46:42','<p>lalalala d&lt;vsdfgbsdfgsdfgb <strong><span style=\"color: #ff0000;\">dszfgbszdf</span></strong></p>');
-/*!40000 ALTER TABLE `notes` ENABLE KEYS */;
 
 
 --
@@ -704,20 +675,7 @@ CREATE TABLE `oms_registers` (
   CONSTRAINT `FK_oms_registers_medic` FOREIGN KEY (`medic_id`) REFERENCES `medics` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_oms_registers_oms_code` FOREIGN KEY (`oms_code_id`) REFERENCES `oms_codes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_oms_registers_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `oms_registers`
---
-
-/*!40000 ALTER TABLE `oms_registers` DISABLE KEYS */;
-INSERT INTO `oms_registers` (`id`,`patient_id`,`medic_id`,`address_part_id`,`address_lab_id`,`oms_code_id`,`estadio`,`fecha`) VALUES 
- (2,'4fab02d7-7954-44cf-a1a7-08ec7be0049b',1,NULL,NULL,34,4,'2012-05-31 00:00:00'),
- (4,'4fab02d7-7954-44cf-a1a7-08ec7be0049b',1,7,6,19,0,'2012-06-03 00:00:00'),
- (5,'4fcbf7ce-d290-47ef-8361-11987be0049b',1,NULL,NULL,19,0,'2012-06-03 00:00:00'),
- (6,'4fab02d7-7954-44cf-a1a7-08ec7be0049b',1,7,6,32,0,'2012-06-06 00:00:00'),
- (7,'4fab02d7-7954-44cf-a1a7-08ec7be0049b',1,7,6,19,0,'2012-06-11 00:00:00');
-/*!40000 ALTER TABLE `oms_registers` ENABLE KEYS */;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 --
@@ -742,17 +700,6 @@ CREATE TABLE `patients` (
   CONSTRAINT `FK_patient_address2` FOREIGN KEY (`address_laboral_id`) REFERENCES `addresses` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `patients`
---
-
-/*!40000 ALTER TABLE `patients` DISABLE KEYS */;
-INSERT INTO `patients` (`id`,`iniciales`,`fecha_nacimiento`,`sexo`,`address_particular_id`,`address_laboral_id`,`nro_documento`,`created`,`modified`) VALUES 
- ('4faaff2e-e3ec-46b1-8a6b-08ec7be0049b','NAM','1986-11-25','M',1,NULL,'0193eff009ed009f6b9e6f551e869911d5f326205b280c36cea9636297ede534',NULL,NULL),
- ('4fab02d7-7954-44cf-a1a7-08ec7be0049b','HOY','2000-10-11','M',7,6,'d62bce2760df0b171b2269de45884537a88be6ade7835de091b10c896433aac4',NULL,NULL),
- ('4fcbf7ce-d290-47ef-8361-11987be0049b','PEPIT','1993-06-01','M',NULL,NULL,'14080a7bd5cba8e3ad8eb95245115622a325d01a99ee463163abc053a92dafaa',NULL,NULL),
- ('4fda8c59-8d94-4c85-800e-115c7be0049b','hola','1981-05-17','M',8,NULL,'28948d8e54491b62f3243ad657df60a0c3eead34c6fa47a62d1c6bebd4fb3238','2012-06-15 01:14:01','2012-06-15 01:14:01');
-/*!40000 ALTER TABLE `patients` ENABLE KEYS */;
 
 
 --
@@ -773,7 +720,7 @@ CREATE TABLE `provinces` (
 /*!40000 ALTER TABLE `provinces` DISABLE KEYS */;
 INSERT INTO `provinces` (`id`,`nombre`) VALUES 
  (1,'Buenos Aires'),
- (2,'Ciudad X');
+ (2,'La Pampa');
 /*!40000 ALTER TABLE `provinces` ENABLE KEYS */;
 
 
@@ -795,9 +742,9 @@ CREATE TABLE `questions` (
 
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
 INSERT INTO `questions` (`id`,`descripcion`,`visible`) VALUES 
- (1,'Fuma?',0),
- (2,'Bebe?',1),
- (3,'Droga?',1);
+ (1,'¿Fuma?',1),
+ (2,'¿Bebe?',1),
+ (3,'¿Droga?',1);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 
 
