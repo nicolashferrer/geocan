@@ -20,11 +20,11 @@ public $helpers = array('GoogleMapV3');
 
 	
 	public function reporte() {
-		$addresses = $this->Address->query("select Patient.iniciales, Address.longitud, Address.latitud, Address.direccion
-from patients as Patient inner join oms_registers as OmsRegister on Patient.id = OmsRegister.patient_id
-left join addresses as Address on Address.id = OmsRegister.address_part_id");
-		debug($addresses);
-		exit;
+		$addresses = $this->Address->query("select Patient.iniciales, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(Patient.fecha_nacimiento)), '%Y')+0) AS edad,
+		Address.longitud, Address.latitud, Address.direccion from patients as Patient inner join oms_registers as OmsRegister on Patient.id = OmsRegister.patient_id
+		left join addresses as Address on Address.id = OmsRegister.address_part_id");
+		//debug($addresses);
+		//exit;
 		$this->set(compact('addresses'));
 	}
 	
