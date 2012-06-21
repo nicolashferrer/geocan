@@ -198,8 +198,8 @@ td.actions {
 	white-space: nowrap;
 }
 table td.actions a {
-	margin: 0px 6px;
-	padding:2px 5px;
+	/*margin: 0px 6px;
+	padding:2px 5px;*/
 }
 
 /* SQL log */
@@ -912,7 +912,7 @@ pre {
 .input input, .input select{
 	padding:0.15em;
 	/*width:14em;*/
-	border:1px solid #ddd;
+	border:1px solid #c5c5c5;
 	background:#f6f6f6;
 	
 	font-family: Verdana;    
@@ -924,7 +924,7 @@ pre {
 
 .input input:hover, .input input:focus , .input select:hover, .input select:focus {
 	border-color:#c5c5c5;
-	background:#fAfAfA;
+	background:#fdfdfd;
 }
 
 .input input[type=radio]{

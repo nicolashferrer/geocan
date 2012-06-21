@@ -98,12 +98,26 @@ class MedicsController extends AppController {
 			$this->Session->setFlash(__('El m&eacute;dico fue borrado correctamente', null), 
 					'default', 
 					array('class' => 'success'));
-			$this->redirect(array('action' => 'index'));
+			//$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('El m&eacute;dico no pudo ser borrado'));
+
+		if (!$this->checkDelete()){
+			$this->Session->setFlash(__('El m&eacute;dico no pudo ser borrado. Tiene Oms asociados.'));
+		}
 		$this->redirect(array('action' => 'index'));
 	}
 
+	function checkDelete(){
+		$count = $this->Medic->OmsRegister->find("count", array(
+			"conditions" => array("medic_id" => $this->Medic->id)
+		));
+		if ($count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allowedActions = array('index', 'view');

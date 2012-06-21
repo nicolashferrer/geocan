@@ -164,6 +164,12 @@ $(document).ready(function() {
 			}
 	}
 
+	jQuery(function(){
+		$("#calleParticular").Watermark("Calle");
+		$("#alturaParticular").Watermark("Altura");
+		$("#calleLaboral").Watermark("Calle");
+		$("#alturaLaboral").Watermark("Altura");
+	});
 </script>
 <div class="patients form">
 <?php echo $this->Form->create('Patient');?>
@@ -207,8 +213,8 @@ $(document).ready(function() {
 					</select><select id="localidadesParticular">
 						<option value="0" selected>Seleccionar</option>
 					</select>
-					<input type="text" size="25" value="Calle" id="calleParticular" class="clear-text-field" >
-					<input type="text" size="5" value="Altura" id="alturaParticular" class="clear-text-field" >
+					<input type="text" size="25" id="calleParticular" />
+					<input type="text" size="5" id="alturaParticular" />
 					<a href="JavaScript:buscar('Particular');" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 				</fieldset>
 				<fieldset>
@@ -221,8 +227,8 @@ $(document).ready(function() {
 					<select id="localidadesLaboral">
 						<option value="0" selected>Seleccionar</option>
 					</select>
-					<input type="text" size="25" value="Calle" id="calleLaboral" class="clear-text-field">
-					<input type="text" size="5" value="Altura" id="alturaLaboral" class="clear-text-field">
+					<input type="text" size="25" id="calleLaboral" />
+					<input type="text" size="5" id="alturaLaboral" />
 					<a href="JavaScript:buscar('Laboral');" id="comprobarLaboral"><img id="imgbusquedaLaboral" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 				</fieldset>
 				</div>

@@ -98,12 +98,23 @@ class CitiesController extends AppController {
 			$this->Session->setFlash(__('La ciudad fue borrada correctamente', null), 
 					'default', 
 					array('class' => 'success'));
-			$this->redirect(array('action' => 'index'));
+			//$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('La ciudad no pudo ser borrada'));
+		if (!$this->checkDelete())
+			$this->Session->setFlash(__('La ciudad no pudo ser borrada. Tiene direcciones asociadas.'));
 		$this->redirect(array('action' => 'index'));
 	}
 	
+	function checkDelete(){
+		$count = $this->City->Address->find("count", array(
+			"conditions" => array("city_id" => $this->City->id)
+		));
+		if ($count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	//Obtener las ciudades a partir de una provincia	
 	function getCiudades($id){

@@ -51,4 +51,14 @@ class Province extends AppModel {
 		)
 	);
 
+	function beforeDelete(){
+		$count = $this->City->find("count", array(
+			"conditions" => array("province_id" => $this->id)
+		));
+		if ($count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

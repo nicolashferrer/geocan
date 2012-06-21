@@ -94,10 +94,22 @@ class ProvincesController extends AppController {
 			$this->Session->setFlash(__('La provincia fue borrada correctamente', null), 
 					'default', 
 					array('class' => 'success'));
-			$this->redirect(array('action' => 'index'));
+			//$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('La provincia no pudo ser borrada'));
+		if (!$this->checkDelete())
+			$this->Session->setFlash(__('La provincia no pudo ser borrada. Tiene ciudades asociadas.'));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	function checkDelete(){
+		$count = $this->Province->City->find("count", array(
+			"conditions" => array("province_id" => $this->Province->id)
+		));
+		if ($count == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	function beforeFilter() {
