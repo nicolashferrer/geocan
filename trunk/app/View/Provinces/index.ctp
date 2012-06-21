@@ -18,7 +18,7 @@
 					<td><?php echo h($province['Province']['nombre']); ?>&nbsp;</td>
 					<td class="actions">
 						<?php echo $this->Html->link(__('Modificar'), array('action' => 'edit', $province['Province']['id'])); ?>
-						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $province['Province']['id']), null, __('Esta seguro que desea eliminar la provincia # %s?', $province['Province']['nombre'])); ?>
+						<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $province['Province']['id']), null, __('Esta seguro que desea eliminar la provincia "%s"?', $province['Province']['nombre'])); ?>
 					</td>
 				</tr>
 			<?php endforeach; ?>

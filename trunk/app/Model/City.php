@@ -73,4 +73,14 @@ class City extends AppModel {
 		)
 	);
 
+	function beforeDelete(){
+		$count = $this->Address->find("count", array(
+			"conditions" => array("city_id" => $this->id)
+		));
+		if ($count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

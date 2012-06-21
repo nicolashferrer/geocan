@@ -115,5 +115,15 @@ class Medic extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
+	
+	function beforeDelete(){
+		$count = $this->OmsRegister->find("count", array(
+			"conditions" => array("medic_id" => $this->id)
+		));
+		if ($count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
