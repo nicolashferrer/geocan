@@ -8,16 +8,12 @@
 		</div>
 		<table cellpadding="0" cellspacing="0">
 		<tr>
-				<th><?php echo $this->Paginator->sort('Nombre');?></th>
-				<th><?php echo $this->Paginator->sort('Creado');?></th>
-				<th><?php echo $this->Paginator->sort('Modificado');?></th>
-				<th class="actions"><?php echo __('Acciones');?></th>
+				<th><?php echo $this->Paginator->sort('Group.name','Nombre');?></th>
+				<th class="actions"></th>
 		</tr>
 		<?php foreach ($groups as $group): ?>
 			<tr>
 				<td><?php echo h($group['Group']['name']); ?>&nbsp;</td>
-				<td><?php echo h($group['Group']['created']); ?>&nbsp;</td>
-				<td><?php echo h($group['Group']['modified']); ?>&nbsp;</td>
 				<td class="actions">
 					<?php echo $this->Html->link(__('Ver'), array('action' => 'view', $group['Group']['id'])); ?>
 					<?php echo $this->Html->link(__('Modificar'), array('action' => 'edit', $group['Group']['id'])); ?>

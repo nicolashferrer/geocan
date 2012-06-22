@@ -31,18 +31,14 @@
 		<table cellpadding = "0" cellspacing = "0">
 			<tr>
 				<th><?php echo __('Nombre Usuario'); ?></th>
-				<th><?php echo __('Creado'); ?></th>
-				<th><?php echo __('Modificado'); ?></th>
 				<th><?php echo __('Medico'); ?></th>
-				<th class="actions"><?php echo __('Acciones');?></th>
+				<th class="actions"></th>
 			</tr>
 			<?php
 				$i = 0;
 				foreach ($group['User'] as $user): ?>
 				<tr>
 					<td><?php echo $user['username'];?>&nbsp;</td>
-					<td><?php echo $user['created'];?>&nbsp;</td>
-					<td><?php echo $user['modified'];?>&nbsp;</td>
 					<td><?php echo $user['Medic']['nombre'].' '.$user['Medic']['apellido'];?>&nbsp;</td>
 					<td class="actions">
 						<?php echo $this->Html->link(__('Ver'), array('controller' => 'users', 'action' => 'view', $user['id'])); ?>
