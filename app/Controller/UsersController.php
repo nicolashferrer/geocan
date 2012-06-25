@@ -222,6 +222,7 @@ class UsersController extends AppController {
 		//Permisos de los medicos
 		$group->id = 2;
 		$this->Acl->deny($group, 'controllers');
+		
 		$this->Acl->allow($group, 'controllers/Patients/add');
 		$this->Acl->allow($group, 'controllers/Patients/edit');
 		$this->Acl->allow($group, 'controllers/Patients/view');
@@ -244,12 +245,63 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/OmsCodes/sugerencias');
 		$this->Acl->allow($group, 'controllers/OmsCodes/help');
 		
-				$this->Acl->allow($group, 'controllers/Users/login');
-				$this->Acl->allow($group, 'controllers/Users/logout');
+		$this->Acl->allow($group, 'controllers/Users/login');
+		$this->Acl->allow($group, 'controllers/Users/logout');
 		
-		//Permisos de los usuarios
+		//Permisos de los ayudantes
 		$group->id = 3;
-		$this->Acl->allow($group, 'controllers');
+		$this->Acl->deny($group, 'controllers');
+		
+		$this->Acl->allow($group, 'controllers/Users/login');
+		$this->Acl->allow($group, 'controllers/Users/logout');
+		
+		$this->Acl->allow($group, 'controllers/Groups/view');
+				
+		// Permisos sobre pacientes
+		$this->Acl->allow($group, 'controllers/Patients/add');
+		$this->Acl->allow($group, 'controllers/Patients/edit');
+		$this->Acl->allow($group, 'controllers/Patients/view');
+		$this->Acl->allow($group, 'controllers/Patients/search');
+		//$this->Acl->allow($group, 'controllers/Patients/delete');
+		$this->Acl->allow($group, 'controllers/Patients/recuperarPaciente');
+		$this->Acl->allow($group, 'controllers/Patients/editAnswers');
+		
+		// Permisos OMS Registers y Codigos OMS
+		$this->Acl->allow($group, 'controllers/OmsRegisters/add');
+		$this->Acl->allow($group, 'controllers/OmsRegisters/edit');
+		$this->Acl->allow($group, 'controllers/OmsRegisters/view');
+		//$this->Acl->allow($group, 'controllers/OmsRegisters/delete');	
+		$this->Acl->allow($group, 'controllers/OmsCodes/getSigNivel');
+		$this->Acl->allow($group, 'controllers/OmsCodes/sugerencias');
+		$this->Acl->allow($group, 'controllers/OmsCodes/help');
+		$this->Acl->allow($group, 'controllers/OmsCodes/view');
+		
+		// Permisos de direcciones
+		$this->Acl->allow($group, 'controllers/Addresses/add');
+		$this->Acl->allow($group, 'controllers/Addresses/view');
+		$this->Acl->allow($group, 'controllers/Addresses/edit');
+		$this->Acl->allow($group, 'controllers/Addresses/delete');
+		
+		//Permisos de notas
+		$this->Acl->allow($group, 'controllers/Notes/add');
+		$this->Acl->allow($group, 'controllers/Notes/edit');
+		$this->Acl->allow($group, 'controllers/Notes/delete');
+		$this->Acl->allow($group, 'controllers/Notes/view');
+		
+		// Permisos de preguntas
+		$this->Acl->allow($group, 'controllers/Answers/add');
+		$this->Acl->allow($group, 'controllers/Answers/edit');
+		//$this->Acl->allow($group, 'controllers/Answers/delete');
+		$this->Acl->allow($group, 'controllers/Answers/view');
+		
+		// Ciudades y Provincias
+		$this->Acl->allow($group, 'controllers/Cities/getCiudades');
+		$this->Acl->allow($group, 'controllers/Cities/add');
+		$this->Acl->allow($group, 'controllers/Cities/view');
+		$this->Acl->allow($group, 'controllers/Cities/edit');
+		//$this->Acl->allow($group, 'controllers/Cities/delete');
+		$this->Acl->allow($group, 'controllers/Provinces/view');
+		
     }
 
 }
