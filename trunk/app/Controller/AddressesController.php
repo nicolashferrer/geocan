@@ -20,16 +20,13 @@ public $helpers = array('GoogleMapV3');
 
 	
 	public function reporte() {
-		$addresses = $this->Address->query("select Patient.iniciales, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(Patient.fecha_nacimiento)), '%Y')+0) AS edad,
-		Address.longitud, Address.latitud, Address.direccion from patients as Patient inner join oms_registers as OmsRegister on Patient.id = OmsRegister.patient_id
-		left join addresses as Address on Address.id = OmsRegister.address_part_id");
-		$addresses_work = $this->Address->query("select Patient.iniciales, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(Patient.fecha_nacimiento)), '%Y')+0) AS edad,
-		Address.longitud, Address.latitud, Address.direccion from patients as Patient inner join oms_registers as OmsRegister on Patient.id = OmsRegister.patient_id
-		left join addresses as Address on Address.id = Patient.address_laboral_id");
-		//debug($addresses_work);
+		$addresses = $this->Address->query("select Patient.* from ( select p.sexo, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, dir.* from patients AS p join
+				(select o.address_part_id,o.address_lab_id, o.patient_id from oms_registers as o GROUP BY o.patient_id) AS oms on oms.patient_id = p.id join addresses 
+				as dir on dir.id = COALESCE(oms.address_part_id,oms.address_lab_id)) as Patient");
+		//debug($addresses);
 		//exit;
 		$this->set(compact('addresses'));
-		$this->set(compact('addresses_work'));
+		//$this->set(compact('addresses_work'));
 	}
 	
 /**

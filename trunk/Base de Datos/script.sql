@@ -3,7 +3,7 @@
 -- Server version:               5.1.37 - Source distribution
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4154
--- Date/time:                    2012-06-25 01:05:37
+-- Date/time:                    2012-06-28 01:42:59
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -145,14 +145,34 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   PRIMARY KEY (`id`),
   KEY `FK_address_city` (`city_id`),
   CONSTRAINT `FK_address_city` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.addresses: ~2 rows (approximately)
+-- Dumping data for table geocan.addresses: ~22 rows (approximately)
 DELETE FROM `addresses`;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
 INSERT INTO `addresses` (`id`, `city_id`, `latitud`, `longitud`, `direccion`) VALUES
 	(1, 1, -38.7135327, -62.2691502, '11 de Abril 100'),
-	(2, 1, -38.7190841, -62.2654023, 'Alsina 1');
+	(2, 1, -38.7190841, -62.2654023, 'Alsina 1'),
+	(3, 1, -38.7058369, -62.2671652, 'Salta 500'),
+	(4, 1, -38.7092936, -62.2700189, 'Alvarado 700'),
+	(5, 1, -38.7045059, -62.2615128, 'Fuerte Argentino'),
+	(6, 1, -38.7295799, -62.2804450999999, 'Av Colón'),
+	(7, 1, -38.7219369, -62.2750091, 'Terrada 200'),
+	(8, 1, -38.7161803, -62.2658204, 'Sarmiento 100'),
+	(9, 1, -38.7110278, -62.2781204, 'Estomba 900'),
+	(10, 1, -38.7000692, -62.263954, 'Cerrito 1100'),
+	(11, 1, -38.7003684, -62.3094539, 'Almafuerte 3100'),
+	(12, 1, -38.7139133, -62.2477072, 'Charcas 1100'),
+	(13, 1, -38.7111594, -62.2529872, 'Las Heras 1000'),
+	(14, 1, -38.7186148, -62.2626742, 'Belgrano 100'),
+	(15, 1, -38.7196884, -62.252903, 'Darwin'),
+	(16, 1, -38.7399958, -62.2392298, 'Cramer 1'),
+	(17, 1, -38.6847185, -62.3106636, 'Estomba 5000'),
+	(18, 1, -38.7306137, -62.2774277, 'Donado'),
+	(19, 1, -38.7189506, -62.2494325, 'Newton 500'),
+	(20, 1, -38.7325851, -62.2363228, 'Punta Alta 600'),
+	(21, 1, -38.6797295, -62.2801819, 'Pigue'),
+	(22, 1, -38.7135327, -62.2691502, '11 de Abril 100');
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 
 
@@ -168,15 +188,46 @@ CREATE TABLE IF NOT EXISTS `answers` (
   KEY `FK_answer_question` (`question_id`),
   CONSTRAINT `FK_answer_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`),
   CONSTRAINT `FK_answer_question` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.answers: ~3 rows (approximately)
+-- Dumping data for table geocan.answers: ~34 rows (approximately)
 DELETE FROM `answers`;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
 INSERT INTO `answers` (`id`, `patient_id`, `question_id`, `valor`) VALUES
 	(1, '4fdfcc0a-d64c-42e0-9e2d-160c7be0049b', 1, 0),
 	(2, '4fdfcc0a-d64c-42e0-9e2d-160c7be0049b', 2, 0),
-	(3, '4fdfcc0a-d64c-42e0-9e2d-160c7be0049b', 3, 0);
+	(3, '4fdfcc0a-d64c-42e0-9e2d-160c7be0049b', 3, 0),
+	(4, '4feb92e1-de74-4680-9ba5-10e8c0a80164', 1, 0),
+	(5, '4feb92e1-de74-4680-9ba5-10e8c0a80164', 3, 1),
+	(6, '4feb92e1-de74-4680-9ba5-10e8c0a80164', 4, 0),
+	(7, '4feb9307-60e8-4384-b436-10e8c0a80164', 1, 1),
+	(8, '4feb9307-60e8-4384-b436-10e8c0a80164', 2, 0),
+	(9, '4feb9307-60e8-4384-b436-10e8c0a80164', 3, 0),
+	(10, '4feb9307-60e8-4384-b436-10e8c0a80164', 4, 0),
+	(11, '4feb933c-36dc-4309-b7c8-10e8c0a80164', 2, 1),
+	(12, '4feb933c-36dc-4309-b7c8-10e8c0a80164', 3, 0),
+	(13, '4feb933c-36dc-4309-b7c8-10e8c0a80164', 4, 1),
+	(14, '4feb940c-657c-458b-bed9-10e8c0a80164', 1, 0),
+	(15, '4feb940c-657c-458b-bed9-10e8c0a80164', 3, 0),
+	(16, '4feb940c-657c-458b-bed9-10e8c0a80164', 4, 0),
+	(17, '4feb9422-3364-4746-8db7-10e8c0a80164', 1, 0),
+	(18, '4feb9422-3364-4746-8db7-10e8c0a80164', 2, 1),
+	(19, '4feb9422-3364-4746-8db7-10e8c0a80164', 3, 0),
+	(20, '4feb9422-3364-4746-8db7-10e8c0a80164', 4, 0),
+	(21, '4feb9524-f774-4c06-88c5-10e8c0a80164', 1, 1),
+	(22, '4feb9581-38b4-49cc-bfdd-10e8c0a80164', 1, 1),
+	(23, '4feb9581-38b4-49cc-bfdd-10e8c0a80164', 2, 1),
+	(24, '4feb95eb-109c-4503-9170-10e8c0a80164', 1, 0),
+	(25, '4feb95eb-109c-4503-9170-10e8c0a80164', 2, 0),
+	(26, '4feb95eb-109c-4503-9170-10e8c0a80164', 3, 1),
+	(27, '4feb95eb-109c-4503-9170-10e8c0a80164', 4, 0),
+	(28, '4feb967b-a8cc-400c-8581-10e8c0a80164', 1, 0),
+	(29, '4feb967b-a8cc-400c-8581-10e8c0a80164', 2, 1),
+	(30, '4feb967b-a8cc-400c-8581-10e8c0a80164', 4, 0),
+	(31, '4feb96ce-7a40-404d-b131-10e8c0a80164', 1, 0),
+	(32, '4feb96ce-7a40-404d-b131-10e8c0a80164', 2, 0),
+	(33, '4feb96ce-7a40-404d-b131-10e8c0a80164', 3, 0),
+	(34, '4feb96ce-7a40-404d-b131-10e8c0a80164', 4, 0);
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 
 
@@ -672,14 +723,30 @@ CREATE TABLE IF NOT EXISTS `oms_registers` (
   CONSTRAINT `FK_oms_registers_medic` FOREIGN KEY (`medic_id`) REFERENCES `medics` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_oms_registers_oms_code` FOREIGN KEY (`oms_code_id`) REFERENCES `oms_codes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_oms_registers_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.oms_registers: ~2 rows (approximately)
+-- Dumping data for table geocan.oms_registers: ~18 rows (approximately)
 DELETE FROM `oms_registers`;
 /*!40000 ALTER TABLE `oms_registers` DISABLE KEYS */;
 INSERT INTO `oms_registers` (`id`, `patient_id`, `medic_id`, `address_part_id`, `address_lab_id`, `oms_code_id`, `estadio`, `fecha`) VALUES
-	(1, '4fdfcc0a-d64c-42e0-9e2d-160c7be0049b', 2, 1, NULL, 19, 0, '2012-06-18 00:00:00'),
-	(2, '4fe3efc2-8788-4771-8328-11d47be0049b', 2, NULL, 2, 63, 0, '2012-06-22 00:00:00');
+	(2, '4fe3efc2-8788-4771-8328-11d47be0049b', 2, NULL, 2, 63, 0, '2012-06-22 00:00:00'),
+	(3, '4feb92e1-de74-4680-9ba5-10e8c0a80164', 1, 3, 4, 50, 0, '2012-06-27 00:00:00'),
+	(4, '4feb92e1-de74-4680-9ba5-10e8c0a80164', 2, 3, 4, 106, 0, '2012-06-27 00:00:00'),
+	(5, '4feb9307-60e8-4384-b436-10e8c0a80164', 1, 5, 6, 67, 1, '2012-06-27 00:00:00'),
+	(6, '4feb933c-36dc-4309-b7c8-10e8c0a80164', 1, 7, 8, 78, 0, '2012-06-27 00:00:00'),
+	(7, '4feb933c-36dc-4309-b7c8-10e8c0a80164', 1, 7, 8, 173, 0, '2012-06-27 00:00:00'),
+	(8, '4feb940c-657c-458b-bed9-10e8c0a80164', 1, 9, 10, 50, 0, '2012-06-27 00:00:00'),
+	(9, '4feb940c-657c-458b-bed9-10e8c0a80164', 2, 9, 10, 138, 0, '2012-06-27 00:00:00'),
+	(10, '4feb9422-3364-4746-8db7-10e8c0a80164', 1, 11, 12, 18, 1, '2012-06-27 00:00:00'),
+	(11, '4feb9524-f774-4c06-88c5-10e8c0a80164', 1, 13, 14, 67, 0, '2012-06-27 00:00:00'),
+	(12, '4feb9524-f774-4c06-88c5-10e8c0a80164', 1, 13, 14, 20, 0, '2012-06-27 00:00:00'),
+	(13, '4feb9581-38b4-49cc-bfdd-10e8c0a80164', 1, 15, 16, 46, 0, '2012-06-27 00:00:00'),
+	(14, '4feb9581-38b4-49cc-bfdd-10e8c0a80164', 1, 15, 16, 67, 0, '2012-06-27 00:00:00'),
+	(15, '4feb95eb-109c-4503-9170-10e8c0a80164', 1, 17, 18, 80, 1, '2012-06-27 00:00:00'),
+	(16, '4feb967b-a8cc-400c-8581-10e8c0a80164', 1, 19, 20, 30, 3, '2012-06-27 00:00:00'),
+	(17, '4feb96ce-7a40-404d-b131-10e8c0a80164', 1, 21, 22, 219, 0, '2012-06-27 00:00:00'),
+	(18, '4feb96ce-7a40-404d-b131-10e8c0a80164', 2, 21, 22, 154, 0, '2012-06-27 00:00:00'),
+	(19, '4feba5aa-0dc4-4ef3-8084-10e8c0a80164', 1, NULL, NULL, 20, 0, '2012-06-27 00:00:00');
 /*!40000 ALTER TABLE `oms_registers` ENABLE KEYS */;
 
 
@@ -702,12 +769,23 @@ CREATE TABLE IF NOT EXISTS `patients` (
   CONSTRAINT `FK_patient_address2` FOREIGN KEY (`address_laboral_id`) REFERENCES `addresses` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.patients: ~2 rows (approximately)
+-- Dumping data for table geocan.patients: ~13 rows (approximately)
 DELETE FROM `patients`;
 /*!40000 ALTER TABLE `patients` DISABLE KEYS */;
 INSERT INTO `patients` (`id`, `iniciales`, `fecha_nacimiento`, `sexo`, `address_particular_id`, `address_laboral_id`, `nro_documento`, `created`, `modified`) VALUES
 	('4fdfcc0a-d64c-42e0-9e2d-160c7be0049b', 'GHT', '1985-02-14', 'F', 1, NULL, 'd62bce2760df0b171b2269de45884537a88be6ade7835de091b10c896433aac4', '2012-06-18 21:47:06', '2012-06-18 22:43:23'),
-	('4fe3efc2-8788-4771-8328-11d47be0049b', 'GEO', '2001-01-11', 'M', NULL, 2, '14080a7bd5cba8e3ad8eb95245115622a325d01a99ee463163abc053a92dafaa', '2012-06-22 01:08:34', '2012-06-22 01:08:34');
+	('4fe3efc2-8788-4771-8328-11d47be0049b', 'GEO', '2001-01-11', 'M', NULL, 2, '14080a7bd5cba8e3ad8eb95245115622a325d01a99ee463163abc053a92dafaa', '2012-06-22 01:08:34', '2012-06-22 01:08:34'),
+	('4feb92e1-de74-4680-9ba5-10e8c0a80164', 'SAM', '2012-04-02', 'M', 3, 4, 'a5cb5eb02820ab12dd1d70f777f4c283b2b526ce31e1c2be481fa54f9cbcd3b0', '2012-06-27 20:10:25', '2012-06-27 20:10:25'),
+	('4feb9307-60e8-4384-b436-10e8c0a80164', '555', '1962-06-19', 'F', 5, 6, 'cdec4860f4ebbc8eed9a2e2f6eb4ee5275985134d78c4469ec542ecb3b77774a', '2012-06-27 20:11:03', '2012-06-27 20:11:03'),
+	('4feb933c-36dc-4309-b7c8-10e8c0a80164', 'SPIN', '2002-06-27', 'M', 7, 8, '75990f478268b73281858131a82a8680e199d3e2e8479e7e4f2b077967721236', '2012-06-27 20:11:56', '2012-06-27 20:11:56'),
+	('4feb940c-657c-458b-bed9-10e8c0a80164', 'DOS', '1992-06-27', 'M', 9, 10, 'ba4b4de236fe1a73f841d63c65d6bba688aa57615fdf03ff729bc6bb248fad8c', '2012-06-27 20:15:24', '2012-06-27 20:15:24'),
+	('4feb9422-3364-4746-8db7-10e8c0a80164', '666', '1952-06-18', 'F', 11, 12, '2c2b21b1b668c06ae479516a1d12b6c77c1fe562c0f958693ef48ecb3bb6f47a', '2012-06-27 20:15:46', '2012-06-27 20:15:46'),
+	('4feb9524-f774-4c06-88c5-10e8c0a80164', 'TRES', '1982-06-27', 'M', 13, 14, '9385b3ad1854d255920b0b22262c1eaecaac18a6ddc9ef4f46976bb73214c065', '2012-06-27 20:20:04', '2012-06-27 20:20:04'),
+	('4feb9581-38b4-49cc-bfdd-10e8c0a80164', 'CUAT', '1972-06-27', 'M', 15, 16, '6ad56c4f317d256b49a7aa7d0dec42562a728dc0bc9547bc42da30aa04ae2576', '2012-06-27 20:21:37', '2012-06-27 20:21:37'),
+	('4feb95eb-109c-4503-9170-10e8c0a80164', '777', '1942-06-09', 'F', 17, 18, 'd25f3f948eba0cb14688e0eb42996c46acaf66a72a33e6f349ce3bb0e40b2054', '2012-06-27 20:23:23', '2012-06-27 20:23:23'),
+	('4feb967b-a8cc-400c-8581-10e8c0a80164', '888', '1932-06-19', 'M', 19, 20, 'c31d9bbb1d7ae71c8c07666bf93dfc4c8a264605c02dcad7c8de8c5008e16b6e', '2012-06-27 20:25:47', '2012-06-27 20:25:47'),
+	('4feb96ce-7a40-404d-b131-10e8c0a80164', 'NUEV', '1922-06-27', 'M', 21, 22, '63d740f8e6e2b5ca1b9c582d6006c0c5a5f01d1253fff7e846f1b3c5bf094ac2', '2012-06-27 20:27:10', '2012-06-27 20:27:10'),
+	('4feba5aa-0dc4-4ef3-8084-10e8c0a80164', 'PEPE', '1913-06-27', 'M', NULL, NULL, '67796106662c5d969e93c7a554943f9972f778cdd8509ec93ff2b885f53be420', '2012-06-27 21:30:34', '2012-06-27 21:30:34');
 /*!40000 ALTER TABLE `patients` ENABLE KEYS */;
 
 
@@ -719,7 +797,7 @@ CREATE TABLE IF NOT EXISTS `provinces` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.provinces: ~2 rows (approximately)
+-- Dumping data for table geocan.provinces: ~24 rows (approximately)
 DELETE FROM `provinces`;
 /*!40000 ALTER TABLE `provinces` DISABLE KEYS */;
 INSERT INTO `provinces` (`id`, `nombre`) VALUES
@@ -759,7 +837,7 @@ CREATE TABLE IF NOT EXISTS `questions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.questions: ~3 rows (approximately)
+-- Dumping data for table geocan.questions: ~4 rows (approximately)
 DELETE FROM `questions`;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
 INSERT INTO `questions` (`id`, `descripcion`, `visible`) VALUES

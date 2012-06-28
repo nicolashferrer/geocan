@@ -84,10 +84,10 @@ class GoogleMapV3Helper extends Helper {
 	//DEFAULT MAP OPTIONS (function map())
 	var $defaultWidth="100%";					//Width of the map
 	var $defaultHeight="800px";					//Height of the map
-	var $defaultZoom=13;							//Default zoom
+	var $defaultZoom=14;							//Default zoom 
 	var $defaultType='ROADMAP';					//Type of map (ROADMAP, SATELLITE, HYBRID or TERRAIN)
-	var $defaultLatitude=-38.73333;		//Default latitude if the browser doesn't support localization or you don't want localization
-	var $defaultLongitude=-62.26667;	//Default longitude if the browser doesn't support localization or you don't want localization
+	var $defaultLatitude=-38.717570;		//Default latitude if the browser doesn't support localization or you don't want localization -38.717570, -62.265671
+	var $defaultLongitude=-62.265671;	//Default longitude if the browser doesn't support localization or you don't want localization
 	var $defaultLocalize=false;					//Boolean to localize your position or not
 	var $defaultMarker=false;					//Boolean to put a marker in the position or not
 	//var $defaultMarkerIcon='http://google-maps-icons.googlecode.com/files/home.png'; //Default icon of the marker
