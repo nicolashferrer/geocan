@@ -235,7 +235,7 @@ $(document).ready(function() {
 		</fieldset>
 		<br>
 		<fieldset>
-			<legend><?php echo __('Informacion Adicional'); ?></legend>
+			<legend><?php echo __('Informaci&oacute;n Adicional'); ?></legend>
 			<?php
 			
 			$i = 0;

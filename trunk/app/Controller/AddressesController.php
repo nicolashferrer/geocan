@@ -20,13 +20,67 @@ public $helpers = array('GoogleMapV3');
 
 	
 	public function reporte() {
-		$addresses = $this->Address->query("select Patient.* from ( select p.sexo, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, dir.* from patients AS p join
-				(select o.address_part_id,o.address_lab_id, o.patient_id from oms_registers as o GROUP BY o.patient_id) AS oms on oms.patient_id = p.id join addresses 
-				as dir on dir.id = COALESCE(oms.address_part_id,oms.address_lab_id)) as Patient");
-		//debug($addresses);
-		//exit;
-		$this->set(compact('addresses'));
-		//$this->set(compact('addresses_work'));
+	
+		if ($this->request->is('post')) {
+			
+			$condiciones = " WHERE 1=1 ";
+	
+			//debug($this->request->data);
+	
+			$aux = $this->request->data['Consulta'];
+						
+			//debug($aux);
+			
+			$condedad = " WHERE 1=1 ";
+			
+			if ($aux['edadMin'] != '') {
+				$condedad .= " AND edad >= ".$aux['edadMin']." ";
+			} 
+			
+			if ($aux['edadMax'] != '') {
+				$condedad .= " AND edad <= ".$aux['edadMax']." ";
+			} 
+
+			if ($aux['sexo'] == 'M') {
+				$condiciones .= " AND p.sexo = 'M' ";
+			}
+			
+			if ($aux['sexo'] == 'F') {
+				$condiciones .= " AND p.sexo = 'F' ";
+			}
+			
+			$preguntas = $this->request->data['Answer'];
+			
+			$joinpreguntas = "";
+			
+			$ipreg=0;
+			foreach ($preguntas as $preg):
+			
+				if ($preg['valor'] != '') {
+					$ipreg++;	
+					$joinpreguntas .= " JOIN answers AS a".$ipreg." ON a".$ipreg.".patient_id = p.id AND a".$ipreg.".question_id = ".$preg['question_id']." AND a".$ipreg.".valor = ".$preg['valor'];
+				}
+			
+			endforeach;	
+			
+			//debug($joinpreguntas);
+	
+			$consulta = "select Patient.* from ( select p.sexo, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, dir.* from patients AS p join
+					(select o.address_part_id,o.address_lab_id, o.patient_id from oms_registers as o GROUP BY o.patient_id) AS oms on oms.patient_id = p.id join addresses 
+					as dir on dir.id = COALESCE(oms.address_part_id,oms.address_lab_id) " . $joinpreguntas . $condiciones . " ) as Patient".$condedad;
+	
+			//debug($consulta);
+	
+			$addresses = $this->Address->query($consulta);
+			
+			//exit;
+			$this->set(compact('addresses'));
+			
+		}
+		Controller::loadModel('Question');
+		$questions = $this->Question->find('all',array('conditions' => array('Question.visible' => '1')));
+		$this->set(compact('questions'));
+		
 	}
 	
 /**
