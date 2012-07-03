@@ -156,7 +156,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		</div>
 	</div>
 			<div id="footer">
-			GeoCan &copy; 2012
+			<b>GeoCan &copy; 2012</b> <br> Versi&oacute;n BETA - Por favor no ingresar datos reales. <br> La intensi&oacute;n de esta versi&oacute;n es poder probar las caracter&iacute;sticas del sistema y lograr una mejor experiencia de usuario.
 		</div>
 	<?php //echo $this->element('sql_dump'); ?>
 </body>
