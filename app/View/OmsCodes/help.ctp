@@ -11,7 +11,7 @@ $(document).ready(function() {
 			$('#desc').val(primertexto);
 		
 			$.getJSON('<?php echo $this->Html->url(array(
-	"controller" => "omscodes",
+	"controller" => "oms_codes",
 	"action" => "getSigNivel"));?>' + '/' + $(this).val(), function(data){
 				$('#segundoNivel').empty();
 				$('#tercerNivel').empty();
@@ -45,7 +45,7 @@ $(document).ready(function() {
 			$('#desc').val(segundotexto);	
 			
 			$.getJSON('<?php echo $this->Html->url(array(
-	"controller" => "omscodes",
+	"controller" => "oms_codes",
 	"action" => "getSigNivel"));?>' + '/' + segundocodigo, function(data){
 				$('#tercerNivel').empty();
 				if (data.length > 0) {

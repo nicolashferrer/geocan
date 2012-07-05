@@ -115,7 +115,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 							<li><a href="#" class="fly">M&eacute;dicos</a>
 								<ul>
 									<li><?php echo $this->Html->link(utf8_encode('Médicos'),array('controller' => 'medics', 'action' => 'index'))?></li>
-									<li><?php echo $this->Html->link(utf8_encode('Tipos de Médicos'),array('controller' => 'medictypes', 'action' => 'index'))?></li>
+									<li><?php echo $this->Html->link(utf8_encode('Tipos de Médicos'),array('controller' => 'medic_types', 'action' => 'index'))?></li>
 								</ul>
 							</li>
 							<li><a href="#" class="fly">Pacientes</a>
