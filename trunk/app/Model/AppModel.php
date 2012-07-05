@@ -31,4 +31,13 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+	public function currentUser() {
+	
+	// $user = $this->Auth->user();
+		$result = array('id' => 1);
+		return $result;
+	  //return $user[$this->Auth->userModel]; # Return the complete user array
+	}
+
 }
