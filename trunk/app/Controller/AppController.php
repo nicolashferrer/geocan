@@ -55,7 +55,7 @@ class AppController extends Controller {
 		$this->Auth->actionPath = 'controllers/';
 		
 		//Esto hace que la acción 'display' sea pública
-		$this->Auth->allowedActions = array('display');
+		$this->Auth->allowedActions = array('display','reload_captcha','captcha');
 		
 		$this->currentUser = $this->Auth->user();
 		$this->isAuthed = !empty($this->currentUser); 

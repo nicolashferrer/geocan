@@ -193,13 +193,28 @@ class UsersController extends AppController {
 	}
 	
 	public function login() {
+	
+		if(!isset($this->Captcha))	{ //if Component was not loaded throug $components array()
+				App::import('Component','Captcha'); //load it
+				$this->Captcha = new CaptchaComponent(); //make instance
+				$this->Captcha->startup($this); //and do some manually calling
+		}
+		
+		$this->User->setCaptcha($this->Captcha->getVerCode()); //getting from component and passing to model to make proper validation check
+		
 		if ($this->request->is('post')) {
-			if ($this->Auth->login()) {
-				$user = $this->User->read('password',$this->Auth->user('id'));
-				$this->Session->write('userpass', $user['User']['password']);
-				$this->redirect($this->Auth->redirect());
+			
+			if ($this->User->getCaptcha()==$this->request->data['User']['captcha']) {
+		
+				if ($this->Auth->login()) {
+					$user = $this->User->read('password',$this->Auth->user('id'));
+					$this->Session->write('userpass', $user['User']['password']);
+					$this->redirect($this->Auth->redirect());
+				} else {
+					$this->Session->setFlash('Su nombre de usuario o la contrase&ntilde;a es incorrecta.');
+				}
 			} else {
-				$this->Session->setFlash('Su nombre de usuario o la contrase&ntilde;a es incorrecta.');
+				$this->Session->setFlash('El captcha ingresado es inv&aacute;lido.');	
 			}
 		}
 	}
@@ -303,5 +318,30 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Provinces/view');
 		
     }
-
+	
+	public function captcha()	{
+	
+		$this->autoRender = false;
+		$this->layout='ajax';
+		if(!isset($this->Captcha))	{ //if Component was not loaded throug $components array()
+			App::import('Component','Captcha'); //load it
+			$this->Captcha = new CaptchaComponent(); //make instance
+			$this->Captcha->startup($this); //and do some manually calling
+		}
+		//$width = isset($_GET['width']) ? $_GET['width'] : '120';
+		//$height = isset($_GET['height']) ? $_GET['height'] : '40';
+		//$characters = isset($_GET['characters']) && $_GET['characters'] > 1 ? $_GET['characters'] : '6';
+		//$this->Captcha->create($width, $height, $characters); //options, default are 120, 40, 6.
+		$this->Captcha->create();
+	}
+	
+	public function reload_captcha(){
+		App::import('Component','Captcha'); //load it
+		$this->Captcha = new CaptchaComponent(); //make instance
+		$this->Captcha->startup($this); //and do some manually calling
+		$this->layout='ajax';
+		Configure::write('debug',0);
+		$this->viewPath = 'elements'.DS;
+		$this->render('reload_captcha');
+	}
 }

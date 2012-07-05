@@ -8,6 +8,21 @@ App::uses('AuthComponent', 'Controller/Component');
  * @property Medics $Medics
  */
 class User extends AppModel {
+
+var $captcha = ''; //intializing captcha var
+
+	function matchCaptcha($inputValue)	{
+		return $inputValue['captcha']==$this->getCaptcha(); //return true or false after comparing submitted value with set value of captcha
+	}
+
+	function setCaptcha($value)	{
+		$this->captcha = $value; //setting captcha value
+	}
+
+	function getCaptcha()	{
+		return $this->captcha; //getting captcha value
+	}
+	
 /**
  * Validation rules
  *
