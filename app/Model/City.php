@@ -7,6 +7,9 @@ App::uses('AppModel', 'Model');
  * @property Address $Address
  */
 class City extends AppModel {
+
+	public $actsAs = array('AuditLog.Auditable');
+
 /**
  * Validation rules
  *
