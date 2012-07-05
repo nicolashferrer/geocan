@@ -179,7 +179,7 @@
 		checkParticular();
 		checkLaboral();
 		
-		options = { serviceUrl:'<?php echo $this->Html->url(array("controller" => "omscodes",	"action" => "sugerencias"));?>/', minChars:2, maxHeight:300, width:400,
+		options = { serviceUrl:'<?php echo $this->Html->url(array("controller" => "oms_codes",	"action" => "sugerencias"));?>/', minChars:2, maxHeight:300, width:400,
 		onSelect: function(value, data){ $('#OmsRegisterOmsCodeId').val(data);
 		}};
 		a = $('#sugerencias').autocomplete(options);
@@ -239,7 +239,7 @@
 		echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
 		echo "<div class=input>";
 		echo "<label class='label_radio required'>C&oacute;digo</label>";
-		echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "omscodes",	"action" => "help"))."'><img src='".$this->webroot."css/images/help.gif' style='vertical-align: middle;' /></a>";
+		echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "oms_codes",	"action" => "help"))."'><img src='".$this->webroot."css/images/help.gif' style='vertical-align: middle;' /></a>";
 		echo "</div>";	
 		
 		echo $this->Form->hidden('oms_code_id');
