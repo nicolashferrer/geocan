@@ -8,6 +8,8 @@ App::uses('AppModel', 'Model');
  * @property OmsRegister $OmsRegister
  */
 class Medic extends AppModel {
+
+	public $actsAs = array('AuditLog.Auditable');
 /**
  * Validation rules
  *

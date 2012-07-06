@@ -9,6 +9,9 @@ App::uses('AppModel', 'Model');
  * @property OmsRegister $OmsRegister
  */
 class Patient extends AppModel {
+
+	public $actsAs = array('AuditLog.Auditable');
+	
 /**
  * Validation rules
  *

@@ -8,6 +8,8 @@ App::uses('AppModel', 'Model');
  */
 class Note extends AppModel {
 
+	public $actsAs = array('AuditLog.Auditable');
+
 		public function beforeSave() {
 			$hoy = new DateTime();
 			$this->data['Note']['fecha'] = $hoy->format('Y-m-d H:i:s');

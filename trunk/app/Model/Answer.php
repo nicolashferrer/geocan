@@ -7,6 +7,8 @@ App::uses('AppModel', 'Model');
  * @property Question $Question
  */
 class Answer extends AppModel {
+
+	public $actsAs = array('AuditLog.Auditable');
 /**
  * Validation rules
  *

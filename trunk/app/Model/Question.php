@@ -3,6 +3,8 @@ App::uses('AppModel', 'Model');
 
 class Question extends AppModel {
 
+	public $actsAs = array('AuditLog.Auditable');
+
 	public $validate = array(
 		'descripcion' => array(
 			'notempty' => array(

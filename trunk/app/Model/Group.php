@@ -48,7 +48,7 @@ class Group extends AppModel {
 	);
 
 	//ACL
-	public $actsAs = array('Acl' => array('type' => 'requester'));
+	public $actsAs = array('AuditLog.Auditable', 'Acl' => array('type' => 'requester'));
 
     public function parentNode() {
         return null;
