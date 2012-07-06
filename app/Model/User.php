@@ -157,7 +157,7 @@ var $captcha = ''; //intializing captcha var
 	
 	//ACL
 	public $name = 'User';
-    public $actsAs = array('Acl' => array('type' => 'requester'));
+    public $actsAs = array('AuditLog.Auditable', 'Acl' => array('type' => 'requester'));
 
     public function parentNode() {
         if (!$this->id && empty($this->data)) {

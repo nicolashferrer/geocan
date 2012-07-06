@@ -11,6 +11,8 @@ App::uses('AppModel', 'Model');
  * @property Note $Note
  */
 class OmsRegister extends AppModel {
+
+	public $actsAs = array('AuditLog.Auditable');
 /**
  * Validation rules
  *

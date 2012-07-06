@@ -7,6 +7,8 @@ App::uses('AppModel', 'Model');
  */
 class OmsCode extends AppModel {
 
+	public $actsAs = array('AuditLog.Auditable');
+
  var $displayField = 'codigo_desc';
  
   	var $virtualFields = array(

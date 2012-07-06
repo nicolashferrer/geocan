@@ -6,6 +6,8 @@ App::uses('AppModel', 'Model');
  * @property Medic $Medic
  */
 class MedicType extends AppModel {
+
+	public $actsAs = array('AuditLog.Auditable');
 /**
  * Validation rules
  *

@@ -1,9 +1,9 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               5.1.37 - Source distribution
--- Server OS:                    Win32
--- HeidiSQL version:             7.0.0.4154
--- Date/time:                    2012-06-28 01:42:59
+-- Host:                         geocan.com.ar
+-- Server version:               5.0.95 - Source distribution
+-- Server OS:                    redhat-linux-gnu
+-- HeidiSQL version:             7.0.0.4053
+-- Date/time:                    2012-07-06 11:36:12
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -12,21 +12,21 @@
 
 -- Dumping database structure for geocan
 DROP DATABASE IF EXISTS `geocan`;
-CREATE DATABASE IF NOT EXISTS `geocan` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE IF NOT EXISTS `geocan` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `geocan`;
 
 
 -- Dumping structure for table geocan.acos
 DROP TABLE IF EXISTS `acos`;
 CREATE TABLE IF NOT EXISTS `acos` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `parent_id` int(10) DEFAULT NULL,
-  `model` varchar(255) DEFAULT '',
-  `foreign_key` int(10) unsigned DEFAULT NULL,
-  `alias` varchar(255) DEFAULT '',
-  `lft` int(10) DEFAULT NULL,
-  `rght` int(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `parent_id` int(10) default NULL,
+  `model` varchar(255) default '',
+  `foreign_key` int(10) unsigned default NULL,
+  `alias` varchar(255) default '',
+  `lft` int(10) default NULL,
+  `rght` int(10) default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.acos: ~98 rows (approximately)
@@ -137,21 +137,20 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 -- Dumping structure for table geocan.addresses
 DROP TABLE IF EXISTS `addresses`;
 CREATE TABLE IF NOT EXISTS `addresses` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL auto_increment,
   `city_id` int(10) unsigned NOT NULL,
   `latitud` double NOT NULL,
   `longitud` double NOT NULL,
-  `direccion` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `direccion` varchar(255) default NULL,
+  PRIMARY KEY  (`id`),
   KEY `FK_address_city` (`city_id`),
   CONSTRAINT `FK_address_city` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.addresses: ~22 rows (approximately)
+-- Dumping data for table geocan.addresses: ~23 rows (approximately)
 DELETE FROM `addresses`;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
 INSERT INTO `addresses` (`id`, `city_id`, `latitud`, `longitud`, `direccion`) VALUES
-	(1, 1, -38.7135327, -62.2691502, '11 de Abril 100'),
 	(2, 1, -38.7190841, -62.2654023, 'Alsina 1'),
 	(3, 1, -38.7058369, -62.2671652, 'Salta 500'),
 	(4, 1, -38.7092936, -62.2700189, 'Alvarado 700'),
@@ -172,19 +171,21 @@ INSERT INTO `addresses` (`id`, `city_id`, `latitud`, `longitud`, `direccion`) VA
 	(19, 1, -38.7189506, -62.2494325, 'Newton 500'),
 	(20, 1, -38.7325851, -62.2363228, 'Punta Alta 600'),
 	(21, 1, -38.6797295, -62.2801819, 'Pigue'),
-	(22, 1, -38.7135327, -62.2691502, '11 de Abril 100');
+	(22, 1, -38.7135327, -62.2691502, '11 de Abril 100'),
+	(23, 1, -38.7225971, -62.2695411, 'O Higgins 300'),
+	(24, 1, -38.7152399, -62.2647057, 'Mitre 100');
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.answers
 DROP TABLE IF EXISTS `answers`;
 CREATE TABLE IF NOT EXISTS `answers` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL auto_increment,
   `patient_id` char(36) NOT NULL,
   `question_id` int(10) unsigned NOT NULL,
   `valor` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_respuesta_paciente` (`patient_id`) USING BTREE,
+  PRIMARY KEY  (`id`),
+  KEY `FK_respuesta_paciente` USING BTREE (`patient_id`),
   KEY `FK_answer_question` (`question_id`),
   CONSTRAINT `FK_answer_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`),
   CONSTRAINT `FK_answer_question` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
@@ -234,40 +235,41 @@ INSERT INTO `answers` (`id`, `patient_id`, `question_id`, `valor`) VALUES
 -- Dumping structure for table geocan.aros
 DROP TABLE IF EXISTS `aros`;
 CREATE TABLE IF NOT EXISTS `aros` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `parent_id` int(10) DEFAULT NULL,
-  `model` varchar(255) DEFAULT '',
-  `foreign_key` int(10) unsigned DEFAULT NULL,
-  `alias` varchar(255) DEFAULT '',
-  `lft` int(10) DEFAULT NULL,
-  `rght` int(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `parent_id` int(10) default NULL,
+  `model` varchar(255) default '',
+  `foreign_key` int(10) unsigned default NULL,
+  `alias` varchar(255) default '',
+  `lft` int(10) default NULL,
+  `rght` int(10) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.aros: ~6 rows (approximately)
+-- Dumping data for table geocan.aros: ~7 rows (approximately)
 DELETE FROM `aros`;
 /*!40000 ALTER TABLE `aros` DISABLE KEYS */;
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
 	(1, NULL, 'Group', 1, '', 1, 4),
 	(2, NULL, 'Group', 2, '', 5, 8),
 	(3, 1, 'User', 1, '', 2, 3),
-	(4, NULL, 'Group', 3, '', 9, 12),
+	(4, NULL, 'Group', 3, '', 9, 14),
 	(5, 2, 'User', 2, '', 6, 7),
-	(6, 4, 'User', 3, '', 10, 11);
+	(6, 4, 'User', 3, '', 10, 11),
+	(7, 4, 'User', 4, '', 12, 13);
 /*!40000 ALTER TABLE `aros` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.aros_acos
 DROP TABLE IF EXISTS `aros_acos`;
 CREATE TABLE IF NOT EXISTS `aros_acos` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL auto_increment,
   `aro_id` int(10) unsigned NOT NULL,
   `aco_id` int(10) unsigned NOT NULL,
-  `_create` char(2) NOT NULL DEFAULT '0',
-  `_read` char(2) NOT NULL DEFAULT '0',
-  `_update` char(2) NOT NULL DEFAULT '0',
-  `_delete` char(2) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
+  `_create` char(2) NOT NULL default '0',
+  `_read` char(2) NOT NULL default '0',
+  `_update` char(2) NOT NULL default '0',
+  `_delete` char(2) NOT NULL default '0',
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.aros_acos: ~59 rows (approximately)
@@ -336,13 +338,51 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 /*!40000 ALTER TABLE `aros_acos` ENABLE KEYS */;
 
 
+-- Dumping structure for table geocan.audits
+DROP TABLE IF EXISTS `audits`;
+CREATE TABLE IF NOT EXISTS `audits` (
+  `id` varchar(36) NOT NULL,
+  `event` varchar(255) NOT NULL,
+  `model` varchar(255) NOT NULL,
+  `entity_id` varchar(36) NOT NULL,
+  `json_object` text NOT NULL,
+  `description` text,
+  `source_id` varchar(255) default NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table geocan.audits: ~0 rows (approximately)
+DELETE FROM `audits`;
+/*!40000 ALTER TABLE `audits` DISABLE KEYS */;
+/*!40000 ALTER TABLE `audits` ENABLE KEYS */;
+
+
+-- Dumping structure for table geocan.audit_deltas
+DROP TABLE IF EXISTS `audit_deltas`;
+CREATE TABLE IF NOT EXISTS `audit_deltas` (
+  `id` varchar(36) NOT NULL,
+  `audit_id` varchar(36) NOT NULL,
+  `property_name` varchar(255) NOT NULL,
+  `old_value` text,
+  `new_value` text,
+  PRIMARY KEY  (`id`),
+  KEY `audit_id` (`audit_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table geocan.audit_deltas: ~0 rows (approximately)
+DELETE FROM `audit_deltas`;
+/*!40000 ALTER TABLE `audit_deltas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `audit_deltas` ENABLE KEYS */;
+
+
 -- Dumping structure for table geocan.cities
 DROP TABLE IF EXISTS `cities`;
 CREATE TABLE IF NOT EXISTS `cities` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL auto_increment,
   `nombre` varchar(100) NOT NULL,
   `province_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   KEY `FK_cities_provinces` (`province_id`),
   CONSTRAINT `FK_cities_provinces` FOREIGN KEY (`province_id`) REFERENCES `provinces` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -352,18 +392,18 @@ DELETE FROM `cities`;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
 INSERT INTO `cities` (`id`, `nombre`, `province_id`) VALUES
 	(1, 'Bahía Blanca', 1),
-	(2, 'Punta Alta', 2);
+	(2, 'San Fernando del VC', 2);
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.groups
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE IF NOT EXISTS `groups` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `name` varchar(100) NOT NULL,
-  `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `created` datetime default NULL,
+  `modified` datetime default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.groups: ~3 rows (approximately)
@@ -379,12 +419,12 @@ INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
 -- Dumping structure for table geocan.medics
 DROP TABLE IF EXISTS `medics`;
 CREATE TABLE IF NOT EXISTS `medics` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL auto_increment,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
   `matricula` varchar(100) NOT NULL,
   `medic_type_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   KEY `FK_medico_tipo_medico` (`medic_type_id`),
   CONSTRAINT `FK_medic_type_medic` FOREIGN KEY (`medic_type_id`) REFERENCES `medic_types` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -401,9 +441,9 @@ INSERT INTO `medics` (`id`, `nombre`, `apellido`, `matricula`, `medic_type_id`) 
 -- Dumping structure for table geocan.medic_types
 DROP TABLE IF EXISTS `medic_types`;
 CREATE TABLE IF NOT EXISTS `medic_types` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL auto_increment,
   `tipo` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.medic_types: ~3 rows (approximately)
@@ -419,12 +459,12 @@ INSERT INTO `medic_types` (`id`, `tipo`) VALUES
 -- Dumping structure for table geocan.notes
 DROP TABLE IF EXISTS `notes`;
 CREATE TABLE IF NOT EXISTS `notes` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL auto_increment,
   `medic_id` int(10) unsigned NOT NULL,
   `oms_register_id` int(10) unsigned NOT NULL,
   `fecha` datetime NOT NULL,
   `descripcion` text NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   KEY `FK_nota_medico` (`medic_id`),
   KEY `FK_nota_oms` (`oms_register_id`),
   KEY `FK_notes_medic` (`medic_id`),
@@ -442,11 +482,11 @@ DELETE FROM `notes`;
 -- Dumping structure for table geocan.oms_codes
 DROP TABLE IF EXISTS `oms_codes`;
 CREATE TABLE IF NOT EXISTS `oms_codes` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL auto_increment,
   `codigo` varchar(10) NOT NULL,
   `descripcion` varchar(300) NOT NULL,
-  `padre` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `padre` varchar(10) default NULL,
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.oms_codes: ~197 rows (approximately)
@@ -699,15 +739,15 @@ INSERT INTO `oms_codes` (`id`, `codigo`, `descripcion`, `padre`) VALUES
 -- Dumping structure for table geocan.oms_registers
 DROP TABLE IF EXISTS `oms_registers`;
 CREATE TABLE IF NOT EXISTS `oms_registers` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL auto_increment,
   `patient_id` char(36) NOT NULL,
   `medic_id` int(10) unsigned NOT NULL,
-  `address_part_id` int(10) unsigned DEFAULT NULL,
-  `address_lab_id` int(10) unsigned DEFAULT NULL,
+  `address_part_id` int(10) unsigned default NULL,
+  `address_lab_id` int(10) unsigned default NULL,
   `oms_code_id` int(10) unsigned NOT NULL,
-  `estadio` tinyint(2) unsigned DEFAULT NULL,
+  `estadio` tinyint(2) unsigned default NULL,
   `fecha` datetime NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY  (`id`),
   KEY `FK_oms_paciente` (`patient_id`),
   KEY `FK_oms_medico` (`medic_id`),
   KEY `FK_oms_direccion1` (`address_part_id`),
@@ -723,9 +763,9 @@ CREATE TABLE IF NOT EXISTS `oms_registers` (
   CONSTRAINT `FK_oms_registers_medic` FOREIGN KEY (`medic_id`) REFERENCES `medics` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_oms_registers_oms_code` FOREIGN KEY (`oms_code_id`) REFERENCES `oms_codes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_oms_registers_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.oms_registers: ~18 rows (approximately)
+-- Dumping data for table geocan.oms_registers: ~19 rows (approximately)
 DELETE FROM `oms_registers`;
 /*!40000 ALTER TABLE `oms_registers` DISABLE KEYS */;
 INSERT INTO `oms_registers` (`id`, `patient_id`, `medic_id`, `address_part_id`, `address_lab_id`, `oms_code_id`, `estadio`, `fecha`) VALUES
@@ -746,7 +786,8 @@ INSERT INTO `oms_registers` (`id`, `patient_id`, `medic_id`, `address_part_id`, 
 	(16, '4feb967b-a8cc-400c-8581-10e8c0a80164', 1, 19, 20, 30, 3, '2012-06-27 00:00:00'),
 	(17, '4feb96ce-7a40-404d-b131-10e8c0a80164', 1, 21, 22, 219, 0, '2012-06-27 00:00:00'),
 	(18, '4feb96ce-7a40-404d-b131-10e8c0a80164', 2, 21, 22, 154, 0, '2012-06-27 00:00:00'),
-	(19, '4feba5aa-0dc4-4ef3-8084-10e8c0a80164', 1, NULL, NULL, 20, 0, '2012-06-27 00:00:00');
+	(19, '4feba5aa-0dc4-4ef3-8084-10e8c0a80164', 1, NULL, NULL, 20, 0, '2012-06-27 00:00:00'),
+	(20, '4fdfcc0a-d64c-42e0-9e2d-160c7be0049b', 1, 23, NULL, 64, 0, '2012-07-05 00:00:00');
 /*!40000 ALTER TABLE `oms_registers` ENABLE KEYS */;
 
 
@@ -754,15 +795,15 @@ INSERT INTO `oms_registers` (`id`, `patient_id`, `medic_id`, `address_part_id`, 
 DROP TABLE IF EXISTS `patients`;
 CREATE TABLE IF NOT EXISTS `patients` (
   `id` char(36) NOT NULL,
-  `iniciales` varchar(5) DEFAULT NULL,
-  `fecha_nacimiento` date DEFAULT NULL,
-  `sexo` enum('M','F') DEFAULT NULL,
-  `address_particular_id` int(10) unsigned DEFAULT NULL,
-  `address_laboral_id` int(10) unsigned DEFAULT NULL,
+  `iniciales` varchar(5) default NULL,
+  `fecha_nacimiento` date default NULL,
+  `sexo` enum('M','F') default NULL,
+  `address_particular_id` int(10) unsigned default NULL,
+  `address_laboral_id` int(10) unsigned default NULL,
   `nro_documento` char(64) NOT NULL,
-  `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `created` datetime default NULL,
+  `modified` datetime default NULL,
+  PRIMARY KEY  (`id`),
   KEY `FK_patient_address1` (`address_particular_id`),
   KEY `FK_patient_address2` (`address_laboral_id`),
   CONSTRAINT `FK_patient_address1` FOREIGN KEY (`address_particular_id`) REFERENCES `addresses` (`id`),
@@ -773,7 +814,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
 DELETE FROM `patients`;
 /*!40000 ALTER TABLE `patients` DISABLE KEYS */;
 INSERT INTO `patients` (`id`, `iniciales`, `fecha_nacimiento`, `sexo`, `address_particular_id`, `address_laboral_id`, `nro_documento`, `created`, `modified`) VALUES
-	('4fdfcc0a-d64c-42e0-9e2d-160c7be0049b', 'GHT', '1985-02-14', 'F', 1, NULL, 'd62bce2760df0b171b2269de45884537a88be6ade7835de091b10c896433aac4', '2012-06-18 21:47:06', '2012-06-18 22:43:23'),
+	('4fdfcc0a-d64c-42e0-9e2d-160c7be0049b', 'GHT2', '1984-02-14', 'M', 24, NULL, 'd62bce2760df0b171b2269de45884537a88be6ade7835de091b10c896433aac4', '2012-06-18 21:47:06', '2012-07-06 13:13:24'),
 	('4fe3efc2-8788-4771-8328-11d47be0049b', 'GEO', '2001-01-11', 'M', NULL, 2, '14080a7bd5cba8e3ad8eb95245115622a325d01a99ee463163abc053a92dafaa', '2012-06-22 01:08:34', '2012-06-22 01:08:34'),
 	('4feb92e1-de74-4680-9ba5-10e8c0a80164', 'SAM', '2012-04-02', 'M', 3, 4, 'a5cb5eb02820ab12dd1d70f777f4c283b2b526ce31e1c2be481fa54f9cbcd3b0', '2012-06-27 20:10:25', '2012-06-27 20:10:25'),
 	('4feb9307-60e8-4384-b436-10e8c0a80164', '555', '1962-06-19', 'F', 5, 6, 'cdec4860f4ebbc8eed9a2e2f6eb4ee5275985134d78c4469ec542ecb3b77774a', '2012-06-27 20:11:03', '2012-06-27 20:11:03'),
@@ -792,9 +833,9 @@ INSERT INTO `patients` (`id`, `iniciales`, `fecha_nacimiento`, `sexo`, `address_
 -- Dumping structure for table geocan.provinces
 DROP TABLE IF EXISTS `provinces`;
 CREATE TABLE IF NOT EXISTS `provinces` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL auto_increment,
   `nombre` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.provinces: ~24 rows (approximately)
@@ -831,10 +872,10 @@ INSERT INTO `provinces` (`id`, `nombre`) VALUES
 -- Dumping structure for table geocan.questions
 DROP TABLE IF EXISTS `questions`;
 CREATE TABLE IF NOT EXISTS `questions` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL auto_increment,
   `descripcion` varchar(255) NOT NULL,
   `visible` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.questions: ~4 rows (approximately)
@@ -851,28 +892,29 @@ INSERT INTO `questions` (`id`, `descripcion`, `visible`) VALUES
 -- Dumping structure for table geocan.users
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL auto_increment,
   `username` varchar(255) NOT NULL,
   `password` char(40) NOT NULL,
   `group_id` int(11) NOT NULL,
-  `created` datetime DEFAULT NULL,
-  `modified` datetime DEFAULT NULL,
-  `medic_id` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `created` datetime default NULL,
+  `modified` datetime default NULL,
+  `medic_id` int(10) unsigned default NULL,
+  PRIMARY KEY  (`id`),
   UNIQUE KEY `username` (`username`),
   KEY `FK_users_group` (`group_id`),
   KEY `FK_users_medic` (`medic_id`),
   CONSTRAINT `FK_users_group` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`),
   CONSTRAINT `FK_users_medic` FOREIGN KEY (`medic_id`) REFERENCES `medics` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.users: ~3 rows (approximately)
+-- Dumping data for table geocan.users: ~4 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `created`, `modified`, `medic_id`) VALUES
 	(1, 'admin', '36bbb6604e4a6d15f31be0fee38b7c0234997f89', 1, '2012-04-13 22:24:30', '2012-06-11 21:11:22', 1),
-	(2, 'medico', '36bbb6604e4a6d15f31be0fee38b7c0234997f89', 2, '2012-04-26 21:05:10', '2012-04-26 21:07:29', 2),
-	(3, 'UsuarioX', '1500c2908e71d66b19bfce3a1b4e042d4c860649', 3, '2012-06-03 20:27:08', '2012-06-03 20:27:08', 2);
+	(2, 'medico', '36bbb6604e4a6d15f31be0fee38b7c0234997f89', 2, '2012-04-26 21:05:10', '2012-07-05 16:15:36', 2),
+	(3, 'UsuarioX', '1500c2908e71d66b19bfce3a1b4e042d4c860649', 3, '2012-06-03 20:27:08', '2012-07-05 16:15:19', NULL),
+	(4, 'ayudanteb', '1500c2908e71d66b19bfce3a1b4e042d4c860649', 3, '2012-07-05 16:16:39', '2012-07-05 16:16:39', NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
