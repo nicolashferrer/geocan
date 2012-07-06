@@ -33,11 +33,12 @@ App::uses('Model', 'Model');
 class AppModel extends Model {
 
 	public function currentUser() {
-	
-	// $user = $this->Auth->user();
-		$result = array('id' => 1);
+		
+		App::import("Component", "SessionComponent");
+		$iduser = SessionComponent::read('Auth.User.id');
+		$result = array('id' => $iduser);
 		return $result;
-	  //return $user[$this->Auth->userModel]; # Return the complete user array
+
 	}
 
 }

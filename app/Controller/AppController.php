@@ -58,17 +58,9 @@ class AppController extends Controller {
 		//Esto hace que la acción 'display' sea pública
 		$this->Auth->allowedActions = array('display','reload_captcha','captcha');
 		
-		
-		
-		
 		$this->currentUser = $this->Auth->user();
 		$this->isAuthed = !empty($this->currentUser); 
 		
-		/*
-		if( !empty( $this->data ) && empty( $this->data[$this->Auth->userModel] ) ) {
-			$this->data[$this->Auth->userModel] = $this->currentUser();
-		}
-		*/
 		
 		// Pregunto si el usuario esta logueado y si su contraseña es la default, le exigo que la cambie y no le dejo hacer mas nada hasta que cambie la contraseña.
 		if (($this->isAuthed) && ($this->params['action']!="editPassword") && ($this->params['action']!="logout"))  {
@@ -85,16 +77,5 @@ class AppController extends Controller {
 	   $this->set('auth', $this->Auth->user());
 	   $this->set('isAuthed', $this->isAuthed); 
 	} 
-	
-	function currentUser() 
-    {
-        $result = array('id' => null);
 
-        if ($this->Session->read('Auth.User') && $this->Auth->user('id') !== null)
-        {
-            $result['id'] = $this->Auth->user('id');
-        }
-
-        return $result;
-    }
 }
