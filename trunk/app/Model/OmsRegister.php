@@ -127,7 +127,7 @@ class OmsRegister extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',
-			'finderQuery' => 'SELECT Note.id,Note.fecha,Note.oms_register_id,Medic.nombre,Medic.apellido FROM geocan.notes AS Note LEFT JOIN medics AS Medic ON Medic.id=Note.medic_id  WHERE Note.oms_register_id ={$__cakeID__$}',
+			'finderQuery' => 'SELECT Note.id,Note.fecha,Note.oms_register_id,Note.medic_id,Medic.nombre,Medic.apellido FROM geocan.notes AS Note LEFT JOIN medics AS Medic ON Medic.id=Note.medic_id  WHERE Note.oms_register_id ={$__cakeID__$}',
 			'counterQuery' => ''
 		)
 	);
