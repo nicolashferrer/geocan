@@ -46,7 +46,7 @@ public $helpers = array('Tinymce');
 				$this->Session->setFlash(__('La nota fue creada correctamente.', null), 
 					'default', 
 					array('class' => 'success'));
-				$this->redirect(array('controller'=>'omsregisters','action' => 'view',$id));
+				$this->redirect(array('controller'=>'oms_registers','action' => 'view',$id));
 				//$this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('La nota no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
