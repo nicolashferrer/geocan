@@ -73,6 +73,13 @@ public $helpers = array('Tinymce');
 		if (!$this->Note->exists()) {
 			throw new NotFoundException(__('Nota no válida'));
 		}
+		
+		$medic_id = $this->Note->read('medic_id');
+		
+		if ($medic_id['Note']['medic_id'] != $this->Auth->user('medic_id')) {
+			exit(0);
+		}
+		
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Note->save($this->request->data)) {
 				$this->Session->setFlash(__('La nota fue modificada correctamente.', null), 
@@ -93,14 +100,22 @@ public $helpers = array('Tinymce');
  * @param string $id
  * @return void
  */
-	public function delete($id = null, $idRegOms = null ) {
+	public function delete($id = null, $idRegOms = null) {
+	
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}
+		
 		$this->Note->id = $id;
 		if (!$this->Note->exists()) {
 			throw new NotFoundException(__('Nota inv&aacute;lida'));
 		}
+		
+		if ($medic_id['Note']['medic_id'] != $this->Auth->user('medic_id')) {
+			exit(0);
+		}
+		
+		
 		if ($this->Note->delete()) {
 			$this->Session->setFlash(__('La nota fue borrada correctamente', null), 
 					'default', 
