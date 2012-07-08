@@ -158,6 +158,20 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 			<div id="footer">
 			<b>GeoCan &copy; 2012</b> <br> Versi&oacute;n BETA - Por favor no ingresar datos reales. <br> La intensi&oacute;n de esta versi&oacute;n es poder probar las caracter&iacute;sticas del sistema y lograr una mejor experiencia de usuario.
 		</div>
+		<script type="text/javascript">
+
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-33234223-1']);
+			  _gaq.push(['_setDomainName', 'geocan.com.ar']);
+			  _gaq.push(['_trackPageview']);
+
+			  (function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+
+</script>
 	<?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>
