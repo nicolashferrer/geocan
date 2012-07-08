@@ -9,7 +9,7 @@
 		if ((estado==false) && ($('#UserGroupId').val()=='2'))
 		{
 			$('#chMedico').attr("checked",true);
-			alert('Un medico debe tener un medico seleccionado');
+			jAlert('Un medico debe tener un medico seleccionado',tituloinfo);
 		}
 		else
 		{
