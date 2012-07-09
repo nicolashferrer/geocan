@@ -67,30 +67,33 @@ $(document).ready(function(){
 		$default = array('type'=>'0','zoom'=>13,'lat'=>'42.5846353751749','long'=>'11.5191650390625');
 		echo $this->GoogleMapV3->map();
 
-		foreach ($addresses as $address){
-		$markerOptions= array(
-		//	'id'=>$address['Patient']['id'],								//Id of the marker
-			'latitude'=>$address['Patient']['latitud'],		//Latitude of the marker
-			'longitude'=>$address['Patient']['longitud'],		//Longitude of the marker
-			'markerIcon'=>($address['Patient']['sexo']=='M'?'/geocan/img/blue-marker.png':'/geocan/img/pink-marker.png'), //Custom icon
-			'shadowIcon'=>'/geocan/img/msmarker.shadow.png', //Custom shadow
-			'infoWindow'=>true,					//Boolean to show an information window when you click the marker or not
-			'windowText'=> '<b>Sexo:</b> '.($address['Patient']['sexo']=='M'?'Masculino':'Femenino').
-							'<br><b>Estadio:</b> '.$address['Patient']['estadio'].
-							'<br><b>Edad:</b> '.$address['Patient']['edad'].
-							'<br><b>Direcci&oacute;n:</b> '. $address['Patient']['direccion']	//Default text inside the information window
-		);
-			echo $this->GoogleMapV3->addMarker($markerOptions);
+		if ($addresses!=null) {
+		
+			foreach ($addresses as $address){
+			$markerOptions= array(
+			//	'id'=>$address['Patient']['id'],								//Id of the marker
+				'latitude'=>$address['Patient']['latitud'],		//Latitude of the marker
+				'longitude'=>$address['Patient']['longitud'],		//Longitude of the marker
+				'markerIcon'=>($address['Patient']['sexo']=='M'? $this->webroot.'img/blue-marker.png':$this->webroot.'img/pink-marker.png'), //Custom icon
+				'shadowIcon'=> $this->webroot.'img/msmarker.shadow.png', //Custom shadow
+				'infoWindow'=>true,					//Boolean to show an information window when you click the marker or not
+				'windowText'=> '<b>Sexo:</b> '.($address['Patient']['sexo']=='M'?'Masculino':'Femenino').
+								'<br><b>Estadio:</b> '.$address['Patient']['estadio'].
+								'<br><b>Edad:</b> '.$address['Patient']['edad'].
+								'<br><b>Direcci&oacute;n:</b> '. $address['Patient']['direccion']	//Default text inside the information window
+			);
+				echo $this->GoogleMapV3->addMarker($markerOptions);
+			}
+			/*
+			$default = array('type'=>'0','zoom'=>13,'lat'=>'42.5846353751749','long'=>'11.5191650390625');
+			$points = array();
+			$points[0]['Point'] = array('longitude' =>$default['long'],'latitude' =>$default['lat']);
+			$key = $this->GoogleMap->key;
+			//echo $javascript->link($this->GoogleMap->url);
+			echo $this->GoogleMap->map($default,'width: 600px; height: 400px');
+			echo $this->GoogleMap->addMarkers($points);
+			echo $this->GoogleMap->moveMarkerOnClick('StructureLongitudine','StructureLatitudine');*/
 		}
-		/*
- 		$default = array('type'=>'0','zoom'=>13,'lat'=>'42.5846353751749','long'=>'11.5191650390625');
-        $points = array();
-        $points[0]['Point'] = array('longitude' =>$default['long'],'latitude' =>$default['lat']);
-        $key = $this->GoogleMap->key;
-		//echo $javascript->link($this->GoogleMap->url);
-        echo $this->GoogleMap->map($default,'width: 600px; height: 400px');
-        echo $this->GoogleMap->addMarkers($points);
-        echo $this->GoogleMap->moveMarkerOnClick('StructureLongitudine','StructureLatitudine');*/
 ?>
 		
 	</div>
