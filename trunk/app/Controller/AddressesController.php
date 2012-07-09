@@ -72,11 +72,11 @@ public $helpers = array('GoogleMapV3');
 			//debug($consulta);
 			//exit;
 			$addresses = $this->Address->query($consulta);
-			
-			
-			$this->set(compact('addresses'));
-			
+					
+		} else {
+			$addresses = null;
 		}
+		$this->set(compact('addresses'));
 		Controller::loadModel('Question');
 		$questions = $this->Question->find('all',array('conditions' => array('Question.visible' => '1')));
 		$this->set(compact('questions'));
