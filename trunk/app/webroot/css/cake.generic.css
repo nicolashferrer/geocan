@@ -983,3 +983,7 @@ fieldset fieldset legend {
 .active {
 	background-position: right 12px;
 }
+
+#loadingDiv {
+	float:right;
+}

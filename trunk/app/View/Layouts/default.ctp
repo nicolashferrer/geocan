@@ -81,13 +81,20 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		$('.submit').append('<input type="button" id="btvolver" value="Volver" onClick="javascript:window.history.back();">');
 		
 		
+		$('#loadingDiv').hide()  // hide it initially
+		.ajaxStart(function() {
+			$(this).show();
+		})
+		.ajaxStop(function() {
+			$(this).hide();
+		});
 				
 	});
 	</script>
 </head>
 <body onLoad="fechaActual()">
 	<div id="container">
-		<div id="header">
+		<div id="header"><div id="loadingDiv">Cargando</div>
 			<div id="header-logo"><a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "search"));?>"><?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?></a></div>
 			<div id="menucontainer">
 				<ul id="nav">
