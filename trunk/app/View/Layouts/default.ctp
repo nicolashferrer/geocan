@@ -94,7 +94,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 </head>
 <body onLoad="fechaActual()">
 	<div id="container">
-		<div id="header"><div id="loadingDiv">Cargando</div>
+		<div id="header"><div id="loadingDiv"><?php echo $this->Html->image('loading.gif', array('alt' => 'Cargando...'))?></div>
 			<div id="header-logo"><a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "search"));?>"><?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?></a></div>
 			<div id="menucontainer">
 				<ul id="nav">
