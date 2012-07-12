@@ -1,13 +1,126 @@
+<?php
+ echo $this->Html->script('markerclusterer_packed'); // Include jQuery library 
+?>
 <script>
-$(document).ready(function(){
+	
+	var map; // EL MAPA!!
+	var markerCluster; // MAPA DE CLUSTERS
 
-	$(".btn-slide").click(function(){
-	  $("#panel").slideToggle("slow");
-	  $(this).toggleClass("active");
+	var mcOptions = {gridSize: 40};
+
+	
+	var defaultWidth="100%";					//Width of the map	
+	var defaultHeight="500px";					//Height of the map
+	var defaultZoom=14;							//Default zoom 
+	var defaultLatitude=-38.717570;		//Default latitude if the browser doesn't support localization or you don't want localization -38.717570, -62.265671
+	var defaultLongitude=-62.265671;	//Default longitude if the browser doesn't support localization or you don't want localization
+	
+	var marcadores = [];
+	
+	function crearMapa() {
+	
+		var noLocation = new google.maps.LatLng(defaultLatitude,defaultLongitude);
+		var initialLocation;
+		var browserSupportFlag =  new Boolean();
+
+		var myOptions = {
+			zoom: defaultZoom,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		
+		$("#map_canvas").css("width",defaultWidth);
+		$("#map_canvas").css("height",defaultHeight);
+		
+		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		map.setCenter(noLocation);
+		
+	}
+	
+	function limpiarMapa() {
+		if (marcadores) {
+			for (i in marcadores) {
+				marcadores[i].setMap(null);
+			}
+			marcadores = [];
+		}
+	}
+
+
+	function agregarMarcador(paciente) {
+	
+		var image = '';
+		var textosexo;
+		
+		if (paciente.sexo=="M") {
+			textosexo = "Masculino";
+			image = '<?php echo $this->webroot ?>img/blue-marker.png';
+		} else {
+			textosexo = "Femenino";
+			image = '<?php echo $this->webroot ?>img/pink-marker.png';
+		}
+		
+		var shadowImage = '<?php echo $this->webroot ?>img/msmarker.shadow.png';
+		
+		var myLatLng = new google.maps.LatLng(paciente.latitud,paciente.longitud);
+		
+		var marcador = new google.maps.Marker({
+			      	position: myLatLng,
+			     	map: map,
+			        icon: image,
+			        shadow: shadowImage
+		});
+		
+		marcadores.push(marcador);
+		
+		var contenido = '<b>Sexo:</b> ' + textosexo;
+		contenido += '<br><b>Edad:</b> ' + paciente.edad;
+		contenido += '<br><b>Direcci&oacute;n:</b> ' + paciente.direccion;
+		contenido += '<br><b>OMS:</b> ' + paciente.codigo + ' - ' + paciente.descripcion;
+		contenido += '<br><b>Estadio:</b> ' + paciente.estadio;
+								
+		var ventana = new google.maps.InfoWindow({
+	            content: contenido
+	    });
+		
+		google.maps.event.addListener(marcador, 'click', function() {
+								ventana.open(map,marcador);
+		        			});
+	}
+
+	function buscar() {
+		var datos = $("#ConsultaReporteForm").serialize();
+		$.getJSON('<?php echo $this->Html->url(array("controller" => "addresses","action" => "reporteBusqueda"));?>?'+datos,
+		function(data){
+				limpiarMapa();
+				$.each(data, function(optionIndex, option) {
+					console.log(option.Patient);
+					agregarMarcador(option.Patient);
+				});
+				markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
+		});
+	}
+	
+	$(document).ready(function(){
+
+		$(".btn-slide").click(function(){
+		  $("#panel").slideToggle("slow");
+		  $(this).toggleClass("active");
+		});
+		
+		crearMapa();
+		
+		$('#ConsultaReporteForm').submit(function(event) {
+			
+			buscar()
+			$("#panel").slideToggle("slow");
+			return false;
+		}
+		);
+
 	});
 	
-});
 </script>
+
 <div id="panel"> <!--the hidden panel -->
 	<div class="patients form">
 		<?php echo $this->Form->create('Consulta');?>
@@ -61,39 +174,4 @@ $(document).ready(function(){
 	</div>
 </div>
 <p class="slide"><a href="#" class="btn-slide">Filtros</a></p> 
-<div id="map" class="addresses index">
-	<?php
-	
-		$default = array('type'=>'0','zoom'=>13,'lat'=>'42.5846353751749','long'=>'11.5191650390625');
-		echo $this->GoogleMapV3->map();
-
-		if ($addresses!=null) {
-		
-			foreach ($addresses as $address){
-			$markerOptions= array(
-			//	'id'=>$address['Patient']['id'],								//Id of the marker
-				'latitude'=>$address['Patient']['latitud'],		//Latitude of the marker
-				'longitude'=>$address['Patient']['longitud'],		//Longitude of the marker
-				'markerIcon'=>($address['Patient']['sexo']=='M'? $this->webroot.'img/blue-marker.png':$this->webroot.'img/pink-marker.png'), //Custom icon
-				'shadowIcon'=> $this->webroot.'img/msmarker.shadow.png', //Custom shadow
-				'infoWindow'=>true,					//Boolean to show an information window when you click the marker or not
-				'windowText'=> '<b>Sexo:</b> '.($address['Patient']['sexo']=='M'?'Masculino':'Femenino').
-								'<br><b>Estadio:</b> '.$address['Patient']['estadio'].
-								'<br><b>Edad:</b> '.$address['Patient']['edad'].
-								'<br><b>Direcci&oacute;n:</b> '. $address['Patient']['direccion']	//Default text inside the information window
-			);
-				echo $this->GoogleMapV3->addMarker($markerOptions);
-			}
-			/*
-			$default = array('type'=>'0','zoom'=>13,'lat'=>'42.5846353751749','long'=>'11.5191650390625');
-			$points = array();
-			$points[0]['Point'] = array('longitude' =>$default['long'],'latitude' =>$default['lat']);
-			$key = $this->GoogleMap->key;
-			//echo $javascript->link($this->GoogleMap->url);
-			echo $this->GoogleMap->map($default,'width: 600px; height: 400px');
-			echo $this->GoogleMap->addMarkers($points);
-			echo $this->GoogleMap->moveMarkerOnClick('StructureLongitudine','StructureLatitudine');*/
-		}
-?>
-		
-	</div>
+<div id="map_canvas"></div>
