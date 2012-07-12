@@ -80,15 +80,79 @@ public $helpers = array('GoogleMapV3');
 			//debug($consulta);
 			//exit;
 			$addresses = $this->Address->query($consulta);
+			
+			//debug($addresses);
+			//debug(json_encode($addresses));
 					
 		} else {
+		
 			$addresses = null;
+			
 		}
 		$this->set(compact('addresses'));
 		Controller::loadModel('Question');
 		$questions = $this->Question->find('all',array('conditions' => array('Question.visible' => '1')));
 		$this->set(compact('questions'));
 		
+	}
+	
+	// Metodo que devuelve resultados en formato json y es invocado mediante ajax!
+	public function reporteBusqueda() {
+		
+		$condiciones = " WHERE 1=1 ";
+		$condedad = " WHERE 1=1 ";
+		$joinpreguntas = "";
+		$condtipdir = "";
+		
+		$aux = $this->request->query['data']['Consulta'];
+		
+		if ($aux['edadMin'] != '') {
+			$condedad .= " AND edad >= ".$aux['edadMin']." ";
+		} 
+		
+		if ($aux['edadMax'] != '') {
+			$condedad .= " AND edad <= ".$aux['edadMax']." ";
+		} 
+
+		if ($aux['sexo'] == 'M') {
+			$condiciones .= " AND p.sexo = 'M' ";
+		}
+		
+		if ($aux['sexo'] == 'F') {
+			$condiciones .= " AND p.sexo = 'F' ";
+		}
+		
+		$preguntas = $this->request->query['data']['Answer'];
+		
+		$ipreg=0;
+		foreach ($preguntas as $preg):
+		
+			if ($preg['valor'] != '') {
+				$ipreg++;	
+				$joinpreguntas .= " JOIN answers AS a".$ipreg." ON a".$ipreg.".patient_id = p.id AND a".$ipreg.".question_id = ".$preg['question_id']." AND a".$ipreg.".valor = ".$preg['valor'];
+			}
+		
+		endforeach;	
+			
+		if ($aux['tipodir'] == '') {
+			$condtipdir = "COALESCE(oms.address_part_id,oms.address_lab_id) ";
+		} else if ($aux['tipodir'] == 'P') {
+			$condtipdir = "oms.address_part_id ";
+		} else {
+			$condtipdir = "oms.address_lab_id ";
+		}
+
+		$consulta = "select Patient.* from ( select p.sexo, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, dir.*,oms.estadio,oms.codigo,oms.descripcion from patients AS p join
+				(select codes.codigo,codes.descripcion,o.address_part_id,o.address_lab_id,o.patient_id,o.estadio from oms_registers as o
+				join oms_codes as codes on codes.id = o.oms_code_id GROUP BY o.patient_id) AS oms on oms.patient_id = p.id join addresses 
+				as dir on dir.id = " . $condtipdir . $joinpreguntas . $condiciones . " ) as Patient".$condedad;
+	
+		$addresses = $this->Address->query($consulta);
+		
+		return new CakeResponse(array('body' => json_encode($addresses)));
+		
+		//return new CakeResponse(array('body' => json_encode($consulta)));
+	
 	}
 	
 /**

@@ -955,9 +955,10 @@ fieldset fieldset legend {
 }
 
 #panel {
-	/*background: #754c24;*/
+	background: #FFFFFF;
 	height: 420px;
 	display: none;
+	
 }
 .slide {
 	margin: 0;
