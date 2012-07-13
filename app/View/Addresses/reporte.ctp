@@ -1,7 +1,7 @@
 <?php
  echo $this->Html->script('markerclusterer_packed'); // Include jQuery library 
 ?>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi" charset="utf-8"></script>
 <script>
 
 	google.load("visualization", "1", {packages:["corechart"]});
@@ -118,7 +118,7 @@
 
         var options = {
           title: 'Edades y Generos ( Total = ' + total + ' )',
-          hAxis: {title: 'Rango de Edades en A&ntilde;os', titleTextStyle: {color: 'red'}}
+          hAxis: {title: 'Rango de Edades en <?php echo utf8_encode('Años'); ?>', titleTextStyle: {color: 'black'}}
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('div_estadisticas'));
