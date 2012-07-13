@@ -1,14 +1,16 @@
 <?php
  echo $this->Html->script('markerclusterer_packed'); // Include jQuery library 
 ?>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script>
+
+	google.load("visualization", "1", {packages:["corechart"]});
 	
 	var map; // EL MAPA!!
 	var markerCluster; // MAPA DE CLUSTERS
 
-	var mcOptions = {gridSize: 40};
+	var mcOptions = {gridSize: 50};
 
-	
 	var defaultWidth="100%";					//Width of the map	
 	var defaultHeight="500px";					//Height of the map
 	var defaultZoom=14;							//Default zoom 
@@ -16,6 +18,29 @@
 	var defaultLongitude=-62.265671;	//Default longitude if the browser doesn't support localization or you don't want localization
 	
 	var marcadores = [];
+	
+	//Estadisticas
+	var total = 0;
+	var hombres = 0;
+	var mujeres = 0;
+	var edades = new Array(11); // De 0 a 10...
+	
+	
+	function limpiarEstadisticas() {
+		
+		var i;
+		
+		for(i=0;i<=10;i++) {
+			edades[i]=new Array(2); // Arreglo para generos: posicion 0 es hombre y 1 es mujer
+			edades[i][0]=0;
+			edades[i][1]=0;
+		}
+		
+		total = 0;
+		hombres = 0;
+		mujeres = 0;
+		
+	}
 	
 	function crearMapa() {
 	
@@ -44,6 +69,78 @@
 			marcadores = [];
 		}
 	}
+	
+	function agregarEstadisticas(paciente) {
+	
+		var pos = 0;
+		var genero = 0; // 0 es hombre, 1 es mujer
+		
+		try {
+			pos = Math.floor(paciente.edad/10);
+		} catch(er) {
+			alert(er);
+		}
+		
+		if (pos>10) {
+			pos = 10;
+		}
+ 
+		if (paciente.sexo=="M") {
+			hombres++;
+			genero = 0;
+		} else {
+			mujeres++;
+			genero = 1;
+		}
+		
+		edades[pos][genero]++;
+		
+		total++;
+	
+	}
+	
+	function dibujarEstadisticas() {
+	
+        var data = google.visualization.arrayToDataTable([
+          ['Rango', 'Hombres', 'Mujeres', 'Total'],
+          ['< 10', edades[0][0], edades[0][1], edades[0][0] + edades[0][1] ],
+          ['10-19', edades[1][0], edades[1][1], edades[1][0] + edades[1][1] ],
+          ['20-29', edades[2][0], edades[2][1], edades[2][0] + edades[2][1] ],
+          ['30-39', edades[3][0], edades[3][1], edades[3][0] + edades[3][1] ],
+          ['40-49', edades[4][0], edades[4][1], edades[4][0] + edades[4][1] ],
+          ['50-59', edades[5][0], edades[5][1], edades[5][0] + edades[5][1] ],
+          ['60-69', edades[6][0], edades[6][1], edades[6][0] + edades[6][1] ],
+          ['70-79', edades[7][0], edades[7][1], edades[7][0] + edades[7][1] ],
+          ['80-89', edades[8][0], edades[8][1], edades[8][0] + edades[8][1] ],
+          ['90-99', edades[9][0], edades[9][1], edades[9][0] + edades[9][1] ],
+          ['> 100', edades[10][0], edades[10][1], edades[10][0] + edades[10][1] ]
+        ]);
+
+        var options = {
+          title: 'Edades y Generos ( Total = ' + total + ' )',
+          hAxis: {title: 'Rango de Edades en A&ntilde;os', titleTextStyle: {color: 'red'}}
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('div_estadisticas'));
+        chart.draw(data, options);
+		
+		
+		var data2 = google.visualization.arrayToDataTable([
+          ['Genero', 'Cantidad'],
+          ['Hombres', hombres],
+          ['Mujeres', mujeres]
+        ]);
+
+        var options2 = {
+			title: 'Generos ( Total = ' + total + ' )',
+			width: 400
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('div_torta'));
+        chart2.draw(data2, options2);
+
+	}
+
 
 
 	function agregarMarcador(paciente) {
@@ -92,11 +189,13 @@
 		$.getJSON('<?php echo $this->Html->url(array("controller" => "addresses","action" => "reporteBusqueda"));?>?'+datos,
 		function(data){
 				limpiarMapa();
+				limpiarEstadisticas();
 				$.each(data, function(optionIndex, option) {
-					console.log(option.Patient);
 					agregarMarcador(option.Patient);
+					agregarEstadisticas(option.Patient);
 				});
 				markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
+				dibujarEstadisticas();
 		});
 	}
 	
@@ -118,6 +217,10 @@
 		);
 
 	});
+	
+	
+	
+	
 	
 </script>
 
@@ -175,3 +278,5 @@
 </div>
 <p class="slide"><a href="#" class="btn-slide">Filtros</a></p> 
 <div id="map_canvas"></div>
+<div id="div_estadisticas"></div>
+<div id="div_torta"></div>
