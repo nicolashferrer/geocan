@@ -194,27 +194,34 @@ class UsersController extends AppController {
 	
 	public function login() {
 	
-		if(!isset($this->Captcha))	{ //if Component was not loaded throug $components array()
-				App::import('Component','Captcha'); //load it
-				$this->Captcha = new CaptchaComponent(); //make instance
-				$this->Captcha->startup($this); //and do some manually calling
-		}
-		
-		$this->User->setCaptcha($this->Captcha->getVerCode()); //getting from component and passing to model to make proper validation check
-		
-		if ($this->request->is('post')) {
+		if ($this->Session->read('Auth.User')) {
 			
-			if ($this->User->getCaptcha()==$this->request->data['User']['captcha']) {
+			$this->redirect(array('controller' => 'patients','action' => 'search'));
 		
-				if ($this->Auth->login()) {
-					$user = $this->User->read('password',$this->Auth->user('id'));
-					$this->Session->write('userpass', $user['User']['password']);
-					$this->redirect($this->Auth->redirect());
+		} else 	{
+		
+			if(!isset($this->Captcha))	{ //if Component was not loaded throug $components array()
+						App::import('Component','Captcha'); //load it
+						$this->Captcha = new CaptchaComponent(); //make instance
+						$this->Captcha->startup($this); //and do some manually calling
+				}	
+			
+			$this->User->setCaptcha($this->Captcha->getVerCode()); //getting from component and passing to model to make proper validation check
+			
+			if ($this->request->is('post')) {
+				
+				if ($this->User->getCaptcha()==$this->request->data['User']['captcha']) {
+			
+					if ($this->Auth->login()) {
+						$user = $this->User->read('password',$this->Auth->user('id'));
+						$this->Session->write('userpass', $user['User']['password']);
+						$this->redirect($this->Auth->redirect());
+					} else {
+						$this->Session->setFlash('Su nombre de usuario o la contrase&ntilde;a es incorrecta.');
+					}
 				} else {
-					$this->Session->setFlash('Su nombre de usuario o la contrase&ntilde;a es incorrecta.');
+					$this->Session->setFlash('El captcha ingresado es inv&aacute;lido.');	
 				}
-			} else {
-				$this->Session->setFlash('El captcha ingresado es inv&aacute;lido.');	
 			}
 		}
 	}
@@ -263,6 +270,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Addresses/add');
 		$this->Acl->allow($group, 'controllers/Addresses/edit');
 		$this->Acl->allow($group, 'controllers/Addresses/reporte');
+		$this->Acl->allow($group, 'controllers/Addresses/reporteBusqueda');
 		$this->Acl->allow($group, 'controllers/Addresses/view');
 		
 		// Permisos sobre Notas
@@ -335,6 +343,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Addresses/edit');
 		$this->Acl->allow($group, 'controllers/Addresses/delete');
 		$this->Acl->allow($group, 'controllers/Addresses/reporte');
+		$this->Acl->allow($group, 'controllers/Addresses/reporteBusqueda');
 		
 		//Permisos de notas
 		$this->Acl->allow($group, 'controllers/Notes/add');

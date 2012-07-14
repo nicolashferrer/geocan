@@ -21,6 +21,7 @@ public $helpers = array('GoogleMapV3');
 	
 	public function reporte() {
 	
+	/*
 		if ($this->request->is('post')) {
 			
 			$condiciones = " WHERE 1=1 ";
@@ -89,6 +90,7 @@ public $helpers = array('GoogleMapV3');
 			$addresses = null;
 			
 		}
+		*/
 		$this->set(compact('addresses'));
 		Controller::loadModel('Question');
 		$questions = $this->Question->find('all',array('conditions' => array('Question.visible' => '1')));
