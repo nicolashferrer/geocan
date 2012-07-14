@@ -7,7 +7,7 @@
 	google.load("visualization", "1", {packages:["corechart"]});
 	
 	var map; // EL MAPA!!
-	var markerCluster; // MAPA DE CLUSTERS
+	var markerCluster = null; // MAPA DE CLUSTERS
 
 	var mcOptions = {gridSize: 50};
 
@@ -68,6 +68,11 @@
 			}
 			marcadores = [];
 		}
+		
+		if (markerCluster!=null) {
+			markerCluster.clearMarkers();
+		}
+		
 	}
 	
 	function agregarEstadisticas(paciente) {
