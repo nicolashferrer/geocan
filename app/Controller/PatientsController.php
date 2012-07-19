@@ -211,23 +211,29 @@ class PatientsController extends AppController {
 			
 			$part_act= null;
 			$lab_act= null;
+			$nueva_part= false;
+			$nueva_lab= false;
+			
 			
 			if ($this->request->data['Control']['cargo_particular'] == 'false') {
 				unset($this->request->data['Primary']);
 			}
 			else{
 				$part_act= $this->request->data['Control']['particular_actual'];
+				$nueva_part= true;
 			}
+			
 			if ($this->request->data['Control']['cargo_laboral'] == 'false') {
 				unset($this->request->data['Secondary']);
 			}
 			else{
 				$lab_act= $this->request->data['Control']['laboral_actual'];
+				$nueva_lab= true;
 			}
 			
 			unset($this->request->data['Control']);
-						
-			if ($this->Patient->saveAll($this->request->data)) {
+	
+			if ($this->Patient->saveAll($this->request->data)){
 				
 				//$this->Session->setFlash(__('The patient has been saved'));
 				$this->Session->setFlash(__('La informaci&oacute;n fue modificada correctamente!', null), 
@@ -242,12 +248,33 @@ class PatientsController extends AppController {
 						$this->Address->Delete($part_act);
 					}
 				}
+				else 
+				{					
+					if ($nueva_part){
+						//no tenia dir particular e ingrese una
+						$id_dir= $this->Patient->Primary->id;
+						$id = $this->Patient->id;
+						$this->Patient->OmsRegister->updateAll( array('address_part_id' => $id_dir),array('OmsRegister.address_part_id' => NULL , 'OmsRegister.patient_id' => $id));
+					
+					}
+				}
+				
 				if (!($lab_act==null)) {
 					//si $lab_act no se usa en ningun registro oms del paciente.. la borro de direcciones
 					$rta= $this->Patient->OmsRegister->Find('all',array('conditions' => array('OmsRegister.address_lab_id' => $lab_act , 'OmsRegister.patient_id' => $id)));
 					if ($rta==null){
 						Controller::loadModel('Address');
 						$this->Address->Delete($lab_act);
+					}
+				}
+				else 
+				{					
+					if ($nueva_lab){
+						//no tenia dir laboral e ingrese una
+						$id_dir= $this->Patient->Secondary->id;
+						$id = $this->Patient->id;
+						$this->Patient->OmsRegister->updateAll( array('address_lab_id' => $id_dir),array('OmsRegister.address_lab_id' => NULL , 'OmsRegister.patient_id' => $id));
+					
 					}
 				}
 				
