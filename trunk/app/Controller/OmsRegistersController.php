@@ -39,30 +39,56 @@ class OmsRegistersController extends AppController {
  */
 	public function add($id = null) {	
 		if ($this->request->is('post')) {
-		
-			//debug($this->request->data);
+			
+			$nueva_part= false;
+			$nueva_lab= false;
+			
+			$id_pat= $this->request->data['OmsRegister']['patient_id'];
 			
 			if ($this->request->data['Control']['misma_particular'] == 'true') {
 				unset($this->request->data['Primary']);
 			} else if ($this->request->data['Control']['cargo_particular'] == 'true') {
 				unset($this->request->data['OmsRegister']['address_part_id']);
+				$nueva_part= true;
 			}
 			
 			if ($this->request->data['Control']['misma_laboral'] == 'true') {
 				unset($this->request->data['Secondary']);
 			} else if ($this->request->data['Control']['cargo_laboral'] == 'true') {
 				unset($this->request->data['OmsRegister']['address_lab_id']);
+				$nueva_lab= true;
 			}
 			unset($this->request->data['Control']);
 			
 			//debug($this->request->data);
 			//exit;	
+			
 			$this->OmsRegister->create();
+			
 			if ($this->OmsRegister->saveAll($this->request->data)) {
 			
 				$this->Session->setFlash(__('El registro Oms fue creado correctamente.', null), 
 					'default', 
 					array('class' => 'success'));
+					
+				if ($nueva_part){
+					$id_dir= $this->OmsRegister->Primary->id;
+					Controller::loadModel('Patient');
+					//si el paciente no tiene direccion particular y agregue un oms con direccion particular.. tambien se lo asigno al paciente
+					$this->Patient->updateAll( array('address_particular_id' => $id_dir),array('Patient.address_particular_id' => NULL ,'Patient.id' => $id_pat));
+					//ahora le asigno esa direccion a todos los oms sin direccion particular
+					$this->OmsRegister->updateAll( array('address_part_id' => $id_dir),array('OmsRegister.address_part_id' => NULL , 'OmsRegister.patient_id' => $id));
+				}	
+					
+				if ($nueva_lab){
+					$id_dir= $this->OmsRegister->Secondary->id;
+					Controller::loadModel('Patient');
+					//si el paciente no tiene direccion laboral y agregue un oms con direccion laboral.. tambien se lo asigno al paciente
+					$this->Patient->updateAll( array('address_laboral_id' => $id_dir),array('Patient.address_laboral_id' => NULL ,'Patient.id' => $id_pat));
+					//ahora le asigno esa direccion a todos los oms sin direccion laboral
+					$this->OmsRegister->updateAll( array('address_lab_id' => $id_dir),array('OmsRegister.address_lab_id' => NULL , 'OmsRegister.patient_id' => $id));
+				}		
+					
 				$this->redirect(array('controller' => 'patients','action' => 'view',$id));
 				
 			} else {

@@ -162,10 +162,10 @@
 		echo $this->Form->hidden('Control.cargo_laboral', array('value' => 'false'));
 		
 		//if (!empty($patient['Primary']['id'])){
-			echo $this->Form->hidden('Control.particular_actual', array('value' => $patient['Primary']['id']));
+		echo $this->Form->hidden('Control.particular_actual', array('value' => $patient['Primary']['id']));
 		//}
 		//if (!empty($patient['Secondary']['id'])){
-			echo $this->Form->hidden('Control.laboral_actual', array('value' => $patient['Secondary']['id']));
+		echo $this->Form->hidden('Control.laboral_actual', array('value' => $patient['Secondary']['id']));
 		//}
 		
 		echo $this->Form->hidden('Primary.city_id');
