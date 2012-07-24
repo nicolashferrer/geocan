@@ -9,17 +9,13 @@
 				<th class="actions"></th>
 		</tr>
 		<?php
-		foreach ($medics as $medic): ?>
+		foreach ($audits as $audit): ?>
 		<tr>
-			<td><?php echo h($medic['Medic']['nombre']); ?>&nbsp;</td>
-			<td><?php echo h($medic['Medic']['apellido']); ?>&nbsp;</td>
-			<td><?php echo h($medic['Medic']['matricula']); ?>&nbsp;</td>
-			<td>
-				<?php echo h($medic['MedicType']['tipo']); ?>
-			</td>
+			<td><?php echo h($audit['Audit']['event']); ?>&nbsp;</td>
+			<td><?php echo h($audit['Audit']['model']); ?>&nbsp;</td>
+			<td><?php echo h($audit['Audit']['entity_id']); ?>&nbsp;</td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('Modificar'), array('action' => 'edit', $medic['Medic']['id'])); ?>
-				<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $medic['Medic']['id']), null, __('Esta seguro que desea eliminar el medico %s %s?', $medic['Medic']['nombre'],$medic['Medic']['apellido'])); ?>
+				
 			</td>
 		</tr>
 	<?php endforeach; ?>
