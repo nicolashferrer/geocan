@@ -37,7 +37,7 @@ var $captcha = ''; //intializing captcha var
                ),
 			'notempty' => array(
 				'rule' => array('notEmpty'),
-				'message' => 'Por favor ingrese un nombre de usuario.',
+				'message' => 'Este campo es obligatorio.',
 				'allowEmpty' => false,
 				'required' => true,
 				'on' => 'create'
@@ -53,7 +53,7 @@ var $captcha = ''; //intializing captcha var
 			),
 			'compare' => array(
                     'rule' => array('compare', array('password_antiguo')),
-                    'message' => 'password antiguo no coincide.'
+                    'message' => 'El password antiguo no coincide.'
             ),
 		),
         'password' => array(

@@ -28,11 +28,11 @@ class Patient extends AppModel {
 			'is_unique' => array(
                     'rule' => array('isUnique'),
 					'on' => 'create',
-                    'message' => 'El DNI ya existe.',
+                    'message' => 'El DNI ingresado ya corresponde a otro paciente.',
                ),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Este campo es obligatorio',
+				'message' => 'Este campo es obligatorio.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -42,7 +42,7 @@ class Patient extends AppModel {
 		'iniciales' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Este campo es obligatorio',
+				'message' => 'Este campo es obligatorio.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
