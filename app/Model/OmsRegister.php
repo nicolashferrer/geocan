@@ -43,7 +43,7 @@ class OmsRegister extends AppModel {
 		'estadio' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Este campo es obligatorio',
+				'message' => 'Este campo es obligatorio.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -53,7 +53,7 @@ class OmsRegister extends AppModel {
 		'fecha' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Este campo es obligatorio',
+				'message' => 'Este campo es obligatorio.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

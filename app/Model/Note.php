@@ -43,7 +43,7 @@ class Note extends AppModel {
 		'descripcion' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Campo requerido',
+				'message' => 'Este campo es obligatorio.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
