@@ -137,6 +137,9 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 								</ul>
 							</li>
 						</ul>
+						<?php if ($auth['group_id']==1) { ?>
+						<li class="top"><a href="<?php echo $this->Html->url(array("controller" => "audits","action" => "index"));?>" class="top_link"><span>Auditor&iacute;a</span></a></li>
+						<?php } ?>
 					</li>
 					<li class="topder"><a href="#" class="top_link"><span id="fechaActual"></span></a></li>					
 					<li class="topder"><a href="#" class="top_link"><span class="down"><?php echo $this->Form->label($auth['username']); ?></span></a>
