@@ -1,5 +1,14 @@
-USE `geocan`;
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               5.5.16 - MySQL Community Server (GPL)
+-- Server OS:                    Win32
+-- HeidiSQL version:             7.0.0.4053
+-- Date/time:                    2012-07-25 15:44:52
+-- --------------------------------------------------------
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
 -- Dumping structure for table geocan.acos
 DROP TABLE IF EXISTS `acos`;
@@ -12,13 +21,13 @@ CREATE TABLE IF NOT EXISTS `acos` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.acos: ~105 rows (approximately)
+-- Dumping data for table geocan.acos: ~106 rows (approximately)
 DELETE FROM `acos`;
 /*!40000 ALTER TABLE `acos` DISABLE KEYS */;
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-	(1, NULL, NULL, NULL, 'controllers', 1, 210),
+	(1, NULL, NULL, NULL, 'controllers', 1, 212),
 	(2, 1, NULL, NULL, 'Addresses', 2, 17),
 	(3, 2, NULL, NULL, 'index', 3, 4),
 	(4, 2, NULL, NULL, 'view', 5, 6),
@@ -122,7 +131,8 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 	(117, 75, NULL, NULL, 'checkDelete', 165, 166),
 	(118, 89, NULL, NULL, 'captcha', 201, 202),
 	(119, 89, NULL, NULL, 'reload_captcha', 203, 204),
-	(120, 1, NULL, NULL, 'AuditLog', 208, 209);
+	(120, 1, NULL, NULL, 'AuditLog', 208, 209),
+	(121, 1, NULL, NULL, 'AuditsControllers', 210, 211);
 /*!40000 ALTER TABLE `acos` ENABLE KEYS */;
 
 
@@ -137,19 +147,23 @@ CREATE TABLE IF NOT EXISTS `aros` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.aros: ~7 rows (approximately)
+-- Dumping data for table geocan.aros: ~11 rows (approximately)
 DELETE FROM `aros`;
 /*!40000 ALTER TABLE `aros` DISABLE KEYS */;
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-	(1, NULL, 'Group', 1, '', 1, 6),
-	(2, NULL, 'Group', 2, '', 7, 10),
+	(1, NULL, 'Group', 1, '', 1, 4),
+	(2, NULL, 'Group', 2, '', 5, 10),
 	(3, 1, 'User', 1, '', 2, 3),
-	(4, NULL, 'Group', 3, '', 11, 14),
-	(5, 2, 'User', 2, '', 8, 9),
-	(6, 1, 'User', 3, '', 4, 5),
-	(7, 4, 'User', 4, '', 12, 13);
+	(4, NULL, 'Group', 3, '', 11, 22),
+	(8, 4, 'User', 5, '', 12, 13),
+	(9, 4, 'User', 6, '', 14, 15),
+	(10, 4, 'User', 7, '', 16, 17),
+	(11, 4, 'User', 8, '', 18, 19),
+	(12, 4, 'User', 9, '', 20, 21),
+	(13, 2, 'User', 10, '', 6, 7),
+	(14, 2, 'User', 11, '', 8, 9);
 /*!40000 ALTER TABLE `aros` ENABLE KEYS */;
 
 
@@ -164,9 +178,9 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   `_update` char(2) NOT NULL DEFAULT '0',
   `_delete` char(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.aros_acos: ~91 rows (approximately)
+-- Dumping data for table geocan.aros_acos: ~89 rows (approximately)
 DELETE FROM `aros_acos`;
 /*!40000 ALTER TABLE `aros_acos` DISABLE KEYS */;
 INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`, `_delete`) VALUES
@@ -258,9 +272,7 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 	(86, 4, 24, '1', '1', '1', '1'),
 	(87, 4, 32, '1', '1', '1', '1'),
 	(88, 2, 31, '1', '1', '1', '1'),
-	(89, 4, 31, '1', '1', '1', '1'),
-	(90, 2, 114, '1', '1', '1', '1'),
-	(91, 4, 114, '1', '1', '1', '1');
+	(89, 4, 31, '1', '1', '1', '1');
 /*!40000 ALTER TABLE `aros_acos` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
