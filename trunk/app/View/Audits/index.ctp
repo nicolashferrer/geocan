@@ -1,79 +1,139 @@
+<script>
+
+	$(document).ready(function(){
+		generarToolTips();
+	}); 
+	
+	function generarToolTips() {
+		// Tooltip only Text
+		$('.detallestip').hover(function() {
+
+			// Hover over code
+			var title = $(this).attr('det');
+
+			if (title == null) {
+				title = "";
+			}
+
+			$('<p class="tip2"></p>').html(title).appendTo('body').fadeIn('slow');
+
+		}, function() {
+			// Hover out code
+			$('.tip2').remove();
+		}).mousemove(function(e) {
+			var mousex = e.pageX + 10;
+			//Get X coordinates
+			var mousey = e.pageY + 10;
+			//Get Y coordinates
+			$('.tip2').css({
+				top : mousey,
+				left : mousex
+			})
+		});
+	}
+</script>
+
 <?php
 
- function traducirEvento($evento) {
- 	
+function traducirEvento($evento) {
+
 	$evento = strtolower($evento);
- 	
+
 	switch ($evento) {
-		case 'edit':
+		case 'edit' :
 			return 'Edici&oacute;n';
 			break;
-		
-		case 'create':
+
+		case 'create' :
 			return 'Creaci&oacute;n';
 			break;
-			
-		case 'delete':
+
+		case 'delete' :
 			return 'Eliminaci&oacute;n';
 			break;
-			
-		default:
+
+		default :
 			return '';
 			break;
 	}
- }
- 
-  function traducirModelo($modelo) {
- 	
+}
+
+function traducirModelo($modelo) {
+
 	$modelo = strtolower($modelo);
- 	
+
 	switch ($modelo) {
-		case 'primary':
+		case 'primary' :
 			return 'Direcci&oacute;n';
 			break;
-		
-		case 'secondary':
+
+		case 'secondary' :
 			return 'Direcci&oacute;n';
 			break;
-			
-		case 'address':
+
+		case 'address' :
 			return 'Direcci&oacute;n';
 			break;
-			
-		case 'user':
+
+		case 'user' :
 			return 'Usuario';
 			break;
-			
-		case 'answer':
+
+		case 'answer' :
 			return 'Respuesta';
 			break;
-			
-		case 'patient':
+
+		case 'patient' :
 			return 'Paciente';
 			break;
-		
-		case 'omsregister':
+
+		case 'omsregister' :
 			return 'OMS';
 			break;
-			
-		case 'note':
+
+		case 'note' :
 			return 'Nota';
 			break;
-			
-		case 'city':
+
+		case 'city' :
 			return 'Ciudad';
 			break;
-			
-		case 'province':
+
+		case 'province' :
 			return 'Provincia';
 			break;
-					
-		default:
+
+		default :
 			return $modelo;
 			break;
 	}
- }
+}
 
+function procesarJSON($cadena) {
+
+	$obj = json_decode($cadena, true);
+
+	//debug($obj);
+
+	$salida = "";
+
+	foreach ($obj as $o) {
+
+		foreach ($o as $clave => $valor) {
+
+			if (strlen($valor) > 25) {
+				$valor = substr($valor, 0,30) . "[...]";
+			}
+
+			$salida .= "<b>" . $clave . "</b> => " . $valor . "<br/>\n";
+
+		}
+
+	}
+
+	return $salida;
+
+}
 ?>
 
 <div class="medics index">
@@ -81,11 +141,11 @@
 		<legend><?php echo __('Auditor&iacute;a'); ?></legend>
 		<table cellpadding="0" cellspacing="0">
 		<tr>
-				<th><?php echo $this->Paginator->sort('event','Acción');?></th>
-				<th><?php echo $this->Paginator->sort('model','Modelo');?></th>
-				<th><?php echo $this->Paginator->sort('entity_id','ID Entidad');?></th>
-				<th><?php echo $this->Paginator->sort('created','Fecha');?></th>
-				<th><?php echo $this->Paginator->sort('User.username','Usuario');?></th>
+				<th><?php echo $this -> Paginator -> sort('event', 'Acción'); ?></th>
+				<th><?php echo $this -> Paginator -> sort('model', 'Modelo'); ?></th>
+				<th><?php echo $this -> Paginator -> sort('entity_id', 'ID Entidad'); ?></th>
+				<th><?php echo $this -> Paginator -> sort('created', 'Fecha'); ?></th>
+				<th><?php echo $this -> Paginator -> sort('User.username', 'Usuario'); ?></th>
 				<th class="actions"></th>
 		</tr>
 		<?php foreach ($audits as $audit): ?>
@@ -96,23 +156,23 @@
 			<td><?php echo h($audit['Audit']['created']); ?>&nbsp;</td>
 			<td><?php echo h($audit['User']['username']); ?>&nbsp;</td>
 			<td class="actions">
-				
+				<img class="detallestip" src="<?php echo $this->webroot; ?>img/add.png" style="vertical-align: middle;" det="<?php echo procesarJSON($audit['Audit']['json_object']); ?>"/>
 			</td>
 		</tr>
-	<?php endforeach; ?>
+	<?php
+
+			endforeach;
+ ?>
 		</table>
 		<p>
 		<?php
-		echo $this->Paginator->counter(array(
-		'format' => __('Pagina {:page} de {:pages}')
-		));
+		echo $this -> Paginator -> counter(array('format' => __('Pagina {:page} de {:pages}')));
 		?>	</p>
 
 		<div class="paging">
-		<?php
-			echo $this->Paginator->prev('< ' . __('anterior'), array(), null, array('class' => 'prev disabled'));
-			echo $this->Paginator->numbers(array('separator' => ''));
-			echo $this->Paginator->next(__('siguiente') . ' >', array(), null, array('class' => 'next disabled'));
+		<?php echo $this -> Paginator -> prev('< ' . __('anterior'), array(), null, array('class' => 'prev disabled'));
+			echo $this -> Paginator -> numbers(array('separator' => ''));
+			echo $this -> Paginator -> next(__('siguiente') . ' >', array(), null, array('class' => 'next disabled'));
 		?>
 		</div>
 	</fieldset>

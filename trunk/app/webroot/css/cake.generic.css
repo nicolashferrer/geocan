@@ -935,7 +935,19 @@ pre {
 
 .tip {
 	width:250px;	
-	height:250px
+	height:250px;
+	display:none;
+	position:absolute;
+	padding:10px;
+	font-size:12px Arial;
+	color: #303030;
+	background-color: #f5f5b5;
+	border: 1px solid #DECA7E;
+	border-radius: 5px;
+}
+
+.tip2 {
+	min-width:200px;	
 	display:none;
 	position:absolute;
 	padding:10px;
