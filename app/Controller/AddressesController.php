@@ -93,7 +93,7 @@ public $helpers = array('GoogleMapV3');
 		*/
 		$this->set(compact('addresses'));
 		Controller::loadModel('Question');
-		$questions = $this->Question->find('all',array('conditions' => array('Question.visible' => '1')));
+		$questions = $this->Question->find('all',array('recursive' => 0,'conditions' => array('Question.visible' => '1')));
 		$this->set(compact('questions'));
 		
 	}
@@ -105,6 +105,8 @@ public $helpers = array('GoogleMapV3');
 		$condedad = " WHERE 1=1 ";
 		$joinpreguntas = "";
 		$condtipdir = "";
+		$selectorpreguntas = "";
+		$condicionpreguntas = "";
 		
 		$aux = $this->request->query['data']['Consulta'];
 		
@@ -123,15 +125,20 @@ public $helpers = array('GoogleMapV3');
 		if ($aux['sexo'] == 'F') {
 			$condiciones .= " AND p.sexo = 'F' ";
 		}
+			
+		Controller::loadModel('Question');
+		$questions = $this->Question->find('all',array('recursive' => 0,'conditions' => array('Question.visible' => '1')));
+		foreach ($questions as $q):
+			$ipreg = $q['Question']['id'];
+			$joinpreguntas .= " LEFT JOIN answers AS a".$ipreg." ON a".$ipreg.".patient_id = p.id AND a".$ipreg.".question_id = ".$ipreg;
+			$selectorpreguntas .= " , a".$ipreg.".valor as '".$ipreg."'";
+		endforeach;
 		
-		$preguntas = $this->request->query['data']['Answer'];
-		
-		$ipreg=0;
+		$preguntas = $this->request->query['data']['Answer'];			
 		foreach ($preguntas as $preg):
 		
 			if ($preg['valor'] != '') {
-				$ipreg++;	
-				$joinpreguntas .= " JOIN answers AS a".$ipreg." ON a".$ipreg.".patient_id = p.id AND a".$ipreg.".question_id = ".$preg['question_id']." AND a".$ipreg.".valor = ".$preg['valor'];
+				$condicionpreguntas .= " AND a" . $preg['question_id'] . ".valor = " .$preg['valor'];
 			}
 		
 		endforeach;	
@@ -144,10 +151,12 @@ public $helpers = array('GoogleMapV3');
 			$condtipdir = "oms.address_lab_id ";
 		}
 
-		$consulta = "select Patient.* from ( select p.sexo, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, dir.*,oms.estadio,oms.codigo,oms.descripcion from patients AS p join
+		$consulta = "select Patient.* from ( select p.sexo, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, dir.*,oms.estadio,oms.codigo,oms.descripcion " . $selectorpreguntas . " from patients AS p join
 				(select codes.codigo,codes.descripcion,o.address_part_id,o.address_lab_id,o.patient_id,o.estadio from oms_registers as o
 				join oms_codes as codes on codes.id = o.oms_code_id GROUP BY o.patient_id) AS oms on oms.patient_id = p.id join addresses 
-				as dir on dir.id = " . $condtipdir . $joinpreguntas . $condiciones . " ) as Patient".$condedad;
+				as dir on dir.id = " . $condtipdir . $joinpreguntas . $condiciones . $condicionpreguntas . " ) as Patient".$condedad;
+	
+		//debug($consulta);
 	
 		$addresses = $this->Address->query($consulta);
 		

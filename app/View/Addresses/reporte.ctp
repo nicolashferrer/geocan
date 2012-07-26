@@ -1,5 +1,7 @@
 <?php
  echo $this->Html->script('markerclusterer_packed'); // Include jQuery library 
+ 
+ //debug(sizeof($questions));
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi" charset="utf-8"></script>
 <script>
@@ -19,21 +21,49 @@
 	
 	var marcadores = [];
 	
+	var cantpreguntas = <?php echo sizeof($questions); ?>;
+	
+	var preguntasactivas = new Array(cantpreguntas);
+	
+	var iaux = 0;
+	<?php
+		
+	foreach ($questions as $question):
+	
+	?>
+	
+		preguntasactivas[iaux] = new Array(2);
+		preguntasactivas[iaux][0] = '<?php echo $question['Question']['id']; ?>';
+		preguntasactivas[iaux][1] = '<?php echo $question['Question']['descripcion']; ?>';
+		iaux++;
+		
+	<?php
+	endforeach;	
+			
+	?>
 	//Estadisticas
 	var total = 0;
 	var hombres = 0;
 	var mujeres = 0;
 	var edades = new Array(11); // De 0 a 10...
+	var respuestas = new Array(cantpreguntas); // Arreglo que contendra info sobre las respuestas de los pacientes sobre las preguntas activas
 	
 	
 	function limpiarEstadisticas() {
 		
 		var i;
 		
-		for(i=0;i<=10;i++) {
+		for(i=0;i<11;i++) {
 			edades[i]=new Array(2); // Arreglo para generos: posicion 0 es hombre y 1 es mujer
 			edades[i][0]=0;
 			edades[i][1]=0;
+		}
+		
+		for(i=0;i<cantpreguntas;i++) {
+			respuestas[i]=new Array(3); // Arreglo para posibles respuestas de la pregunta i: posicion 0 es SI, 1 es NO y 2 es NO CONTESTA
+			respuestas[i][0]=0; // Si
+			respuestas[i][1]=0; // No
+			respuestas[i][2]=0; // No Contesta
 		}
 		
 		total = 0;
@@ -79,6 +109,7 @@
 	
 		var pos = 0;
 		var genero = 0; // 0 es hombre, 1 es mujer
+		var resp = 2; // 0 es SI, 1 es NO, 2 es NO CONTESTA
 		
 		try {
 			pos = Math.floor(paciente.edad/10);
@@ -98,6 +129,23 @@
 			genero = 1;
 		}
 		
+		
+		var iaux = 0;
+		var pactual;
+		for (iaux=0;iaux<cantpreguntas;iaux++) {
+			pactual = preguntasactivas[iaux][0]; // Obtengo el ID de la pregunta que tengo guardada en el arreglo de preguntas
+			
+			if (paciente[pactual] == null) { // NO CONTESTA
+				respuestas[iaux][2]++;
+			} else if (paciente[pactual] == true) { // SI
+				respuestas[iaux][0]++;
+			} else { // NO
+				respuestas[iaux][1]++;
+			}
+		}
+		
+		//alert(paciente['1']);
+		
 		edades[pos][genero]++;
 		
 		total++;
@@ -107,7 +155,7 @@
 	function dibujarEstadisticas() {
 	
         var data = google.visualization.arrayToDataTable([
-          ['Rango', 'Hombres', 'Mujeres', 'Total'],
+          ['Rango', 'Hombres', 'Mujeres', 'SubTotal'],
           ['< 10', edades[0][0], edades[0][1], edades[0][0] + edades[0][1] ],
           ['10-19', edades[1][0], edades[1][1], edades[1][0] + edades[1][1] ],
           ['20-29', edades[2][0], edades[2][1], edades[2][0] + edades[2][1] ],
@@ -123,7 +171,7 @@
 
         var options = {
           title: 'Edades y Generos ( Total = ' + total + ' )',
-          hAxis: {title: 'Rango de Edades en <?php echo utf8_encode('Años'); ?>', titleTextStyle: {color: 'black'}}
+          hAxis: {title: 'Rango de Edades en <?php echo utf8_encode('Aï¿½os'); ?>', titleTextStyle: {color: 'black'}}
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('div_estadisticas'));
@@ -201,6 +249,7 @@
 				});
 				markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
 				dibujarEstadisticas();
+				
 		});
 	}
 	
