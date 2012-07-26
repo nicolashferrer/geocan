@@ -59,6 +59,9 @@
 			edades[i][1]=0;
 		}
 		
+		// Borro los divs temporales de los graficos por si ya estan creados
+		$("div[id^='div_pregunta_']").remove();
+		
 		for(i=0;i<cantpreguntas;i++) {
 			respuestas[i]=new Array(3); // Arreglo para posibles respuestas de la pregunta i: posicion 0 es SI, 1 es NO y 2 es NO CONTESTA
 			respuestas[i][0]=0; // Si
@@ -191,6 +194,35 @@
 
         var chart2 = new google.visualization.PieChart(document.getElementById('div_torta'));
         chart2.draw(data2, options2);
+        
+        // Generacion dinamica de los graficos de las respuestas!
+        for (iaux=0;iaux<cantpreguntas;iaux++) {
+        	
+        	// #1 - Creo el div dinamicanete donde va a ir el grafico
+        	$("#div_torta").after("<div style='float:left;' id='div_pregunta_"+ iaux +"'></div>");
+        	
+        	// #2 - Genero la tabla de google con los datos de una respuesta
+        	var dataaux = google.visualization.arrayToDataTable([
+          		['Respuesta', 'Cantidad'],
+          		['Si', respuestas[iaux][0]],
+          		['No', respuestas[iaux][1]],
+          		['No Contesta', respuestas[iaux][2]]
+        	]);
+        	
+        	// #3 - Genero las opciones para el chart
+        	var optionsaux = {
+				title: '' + preguntasactivas[iaux][1] + ' ( Total = ' + total + ' )',
+				width: 400
+       		 };
+       		 
+       		 // #4 Creo el grafico....
+       		var chartaux = new google.visualization.PieChart(document.getElementById('div_pregunta_'+iaux));
+       		
+        	chartaux.draw(dataaux, optionsaux);
+        	
+        }
+        
+        
 
 	}
 
