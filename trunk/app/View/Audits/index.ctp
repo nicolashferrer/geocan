@@ -82,6 +82,10 @@ function traducirModelo($modelo) {
 		case 'answer' :
 			return 'Respuesta';
 			break;
+			
+		case 'question' :
+			return 'Pregunta';
+			break;
 
 		case 'patient' :
 			return 'Paciente';
@@ -143,20 +147,20 @@ function procesarJSON($cadena) {
 		<tr>
 				<th><?php echo $this -> Paginator -> sort('event', 'Acción'); ?></th>
 				<th><?php echo $this -> Paginator -> sort('model', 'Modelo'); ?></th>
-				<th><?php echo $this -> Paginator -> sort('entity_id', 'ID Entidad'); ?></th>
+				<th><?php echo $this -> Paginator -> sort('entity_id', 'Entidad'); ?></th>
 				<th><?php echo $this -> Paginator -> sort('created', 'Fecha'); ?></th>
 				<th><?php echo $this -> Paginator -> sort('User.username', 'Usuario'); ?></th>
-				<th class="actions"></th>
+				<th><center>Detalles</center></th>
 		</tr>
 		<?php foreach ($audits as $audit): ?>
 		<tr>
 			<td><?php echo traducirEvento(h($audit['Audit']['event'])); ?>&nbsp;</td>
 			<td><?php echo traducirModelo(h($audit['Audit']['model'])); ?>&nbsp;</td>
-			<td><?php echo h($audit['Audit']['entity_id']); ?>&nbsp;</td>
+			<td><?php echo h($audit['Audit']['entity_id']); ?> <img class="detallestip" src="<?php echo $this->webroot; ?>img/view.png" style="vertical-align: middle;" det="<?php echo procesarJSON($audit['Audit']['json_object']); ?>"/>&nbsp;</td>
 			<td><?php echo h($audit['Audit']['created']); ?>&nbsp;</td>
 			<td><?php echo h($audit['User']['username']); ?>&nbsp;</td>
-			<td class="actions">
-				<img class="detallestip" src="<?php echo $this->webroot; ?>img/add.png" style="vertical-align: middle;" det="<?php echo procesarJSON($audit['Audit']['json_object']); ?>"/>
+			<td>
+				<center></center>
 			</td>
 		</tr>
 	<?php
