@@ -48,7 +48,6 @@
 	var edades = new Array(11); // De 0 a 10...
 	var respuestas = new Array(cantpreguntas); // Arreglo que contendra info sobre las respuestas de los pacientes sobre las preguntas activas
 	
-	
 	function limpiarEstadisticas() {
 		
 		var i;
