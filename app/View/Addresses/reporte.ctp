@@ -173,7 +173,7 @@
 
         var options = {
           title: 'Edades y Generos ( Total = ' + total + ' )',
-          hAxis: {title: 'Rango de Edades en <?php echo utf8_encode('A�os'); ?>', titleTextStyle: {color: 'black'}}
+          hAxis: {title: 'Rango de Edades en <?php echo utf8_encode('Años'); ?>', titleTextStyle: {color: 'black'}}
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('div_estadisticas'));
