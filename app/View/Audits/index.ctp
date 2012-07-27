@@ -139,8 +139,32 @@ function procesarJSON($cadena) {
 
 }
 ?>
+	<div class="audits form">
+		<?php echo $this->Form->create('Audits');?>
+		<fieldset>
+				<legend><?php echo __('Filtrado de Logs'); ?></legend>
+		<?php
 
-<div class="medics index">
+				echo "<div>";
+				echo $this->Form->input('Audit.event',
+    			array('label' => 'Acción',
+      			'options' => array('' => 'Todas','EDIT' => 'Edición', 'CREATE' => 'Creación', 'DELETE' => 'Eliminación'),
+      			'default' => !empty($this->request->data) ? $this->request->data['Audit']['event'] : ''));
+				echo "</div>";
+				
+				echo "<div>";
+				echo $this->Form->input('Audit.model',
+    			array('label' => 'Modelo',
+      			'options' => array('' => 'Todos','User' => 'Usuario', 'Patient' => 'Paciente', 'Question' => 'Pregunta'),
+      			'default' => !empty($this->request->data) ? $this->request->data['Audit']['model'] : ''));
+				echo "</div>";
+		
+
+		?>
+		</fieldset>
+		<?php echo $this->Form->end(__('Filtrar'));?>
+	</div>
+<div class="audits index">
 	<fieldset>
 		<legend><?php echo __('Auditor&iacute;a'); ?></legend>
 		<table cellpadding="0" cellspacing="0">
@@ -174,7 +198,9 @@ function procesarJSON($cadena) {
 		?>	</p>
 
 		<div class="paging">
-		<?php echo $this -> Paginator -> prev('< ' . __('anterior'), array(), null, array('class' => 'prev disabled'));
+		<?php 
+		
+			echo $this -> Paginator -> prev('< ' . __('anterior'), array(), null, array('class' => 'prev disabled'));
 			echo $this -> Paginator -> numbers(array('separator' => ''));
 			echo $this -> Paginator -> next(__('siguiente') . ' >', array(), null, array('class' => 'next disabled'));
 		?>
