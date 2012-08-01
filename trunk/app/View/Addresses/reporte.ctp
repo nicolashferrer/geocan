@@ -1,7 +1,6 @@
 <?php
  echo $this->Html->script('markerclusterer_packed'); // Include jQuery library 
  
- //debug(sizeof($questions));
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi" charset="utf-8"></script>
 <script>
