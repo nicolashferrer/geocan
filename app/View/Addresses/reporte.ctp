@@ -1,13 +1,16 @@
 <?php
  echo $this->Html->script('markerclusterer_packed'); // Include jQuery library 
  
+
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi" charset="utf-8"></script>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization">/*2*/</script>
 <script>
 
 	google.load("visualization", "1", {packages:["corechart"]});
-	
+	var pointarray, heatmap;//2
 	var map; // EL MAPA!!
+	
 	var markerCluster = null; // MAPA DE CLUSTERS
 
 	var mcOptions = {gridSize: 50};
@@ -19,7 +22,7 @@
 	var defaultLongitude=-62.265671;	//Default longitude if the browser doesn't support localization or you don't want localization
 	
 	var marcadores = [];
-	
+	var marcadoresHeatmap=[];
 	var cantpreguntas = <?php echo sizeof($questions); ?>;
 	
 	var preguntasactivas = new Array(cantpreguntas);
@@ -72,7 +75,8 @@
 		mujeres = 0;
 		
 	}
-	
+	//2
+
 	function crearMapa() {
 	
 		var noLocation = new google.maps.LatLng(defaultLatitude,defaultLongitude);
@@ -100,11 +104,29 @@
 			marcadores = [];
 		}
 		
-		if (markerCluster!=null) {
+		if (marcadores&&markerCluster!=null) {
 			markerCluster.clearMarkers();
 		}
+		if (heatmap!=null) {
+			heatmap.setMap(null);}
+					marcadoresHeatmap=[];
 		
 	}
+	function toggleHeatmap() {
+		
+		if (marcadores) {
+			for (i in marcadores) {
+				marcadores[i].setMap(heatmap.getMap() ? map : null);
+			}
+			
+		}
+		
+		if (!heatmap.getMap()&&markerCluster!=null) {
+			markerCluster.clearMarkers();
+		}else markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
+	
+        heatmap.setMap(heatmap.getMap() ? null : map);
+      }
 	
 	function agregarEstadisticas(paciente) {
 	
@@ -242,7 +264,8 @@
 		var shadowImage = '<?php echo $this->webroot ?>img/msmarker.shadow.png';
 		
 		var myLatLng = new google.maps.LatLng(paciente.latitud,paciente.longitud);
-		
+		 marcadoresHeatmap.push(myLatLng);
+		//aca saco los marcadores de aca
 		var marcador = new google.maps.Marker({
 			      	position: myLatLng,
 			     	map: map,
@@ -277,7 +300,14 @@
 					agregarMarcador(option.Patient);
 					agregarEstadisticas(option.Patient);
 				});
+				
 				markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
+				pointArray = new google.maps.MVCArray(marcadoresHeatmap);
+				heatmap = new google.maps.visualization.HeatmapLayer({
+					data: pointArray
+				});
+					
+				//heatmap.setMap(map);
 				dibujarEstadisticas();
 				
 		});
@@ -362,5 +392,6 @@
 </div>
 <p class="slide"><a href="#" class="btn-slide">Filtros</a></p> 
 <div id="map_canvas"></div>
+<div id="opcionbutton"> <button onclick="toggleHeatmap()">Mostrar Heatmap</button></div>
 <div id="div_estadisticas"></div>
 <div id="div_torta"></div>
