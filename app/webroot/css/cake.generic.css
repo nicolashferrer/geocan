@@ -969,23 +969,34 @@ fieldset fieldset legend {
 	font-weight:bold;
 }
 
-#panel {
-	background: #FFFFFF;
-	height: 420px;
-	display: none;
-	
+/* sliding panel */
+#toppanel {
+    position: absolute;   /*Panel will overlap  content */
+    /*position: relative;*/   /*Panel will "push" the content down */
+    top: 147px;
+    width: 97%;
+    z-index: 200;
+	overflow: hidden;
 }
-.slide {
-	margin: 0;
-	padding: 0;
+#panel{
+	background: rgba(255, 255, 255, 0.8);
+	overflow: hidden;
+	position: relative;
+	z-index: 3;
+	display: none;
+}
+
+.slide2 {
+	/*margin: 0;
+	padding: 0;*/
 	border-top: solid 4px #F68E1C;
 	background: url(../img/btn-slide.gif) no-repeat center top;
 }
 .btn-slide {
 	background: url(../img/white-arrow.gif) no-repeat right -50px;
 	text-align: center;
-	width: 144px;
-	height: 31px;
+	width: 142px;
+	height: 27px;
 	padding: 10px 10px 0 0;
 	margin: 0 auto;
 	display: block;
@@ -999,6 +1010,64 @@ fieldset fieldset legend {
 .active {
 	background-position: right 12px;
 }
+
+
+/* Panel Tab/button */
+.tab {
+  	background: url(../img/tab_b.png) repeat-x 0 0;
+	height: 42px;
+	position: relative;
+    top: 0;
+    z-index: 999;
+	width:100%;
+}
+
+.tab ul.login {
+	display: block;
+	position: relative;
+  	height: 42px;
+	width: auto;
+  	font-weight: bold;
+	line-height: 42px;
+	margin: 0;
+	padding:0;
+  	color: white;
+  	font-size: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30em;
+}
+
+.tab ul.login li.left {
+  	background: url(../img/tab_l.png) no-repeat left 0;
+  	height: 42px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+  	display: block;
+	float: left;
+}
+
+.tab ul.login li.right {
+  	background: url(../img/tab_r.png) no-repeat left 0;
+  	height: 42px;
+	width: 30px;
+	padding: 0;
+	margin: 0;
+  	display: block;
+	float: left;
+}
+
+.tab ul.login li {
+ 	text-align: left;
+  	padding: 0 6px;
+	display: block;
+	float: left;
+	height: 42px;
+  	background: url(../img/tab_m.png) repeat-x 0 0;
+}
+
+
 
 #loadingDiv {
 	float:right;
