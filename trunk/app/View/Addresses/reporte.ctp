@@ -196,6 +196,7 @@
 
         var options = {
           title: 'Edades y Generos ( Total = ' + total + ' )',
+          height: 300,
           hAxis: {title: 'Rango de Edades en <?php echo utf8_encode('Años'); ?>', titleTextStyle: {color: 'black'}}
         };
 
@@ -306,7 +307,8 @@
 				markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
 				pointArray = new google.maps.MVCArray(marcadoresHeatmap);
 				heatmap = new google.maps.visualization.HeatmapLayer({
-					data: pointArray
+					data: pointArray,
+					radius: 50
 				});
 					
 				//heatmap.setMap(map);
@@ -430,24 +432,23 @@
 		<li>
 			<h2><span>Mapa</span></h2>
 			<div id="map_canvas" style="margin-left:48px;"></div>
+			<div id="opcionbutton"> <button onclick="toggleHeatmap()">Mapa de Calor: OFF</button></div>		
 		</li>
 		<li>
-			<h2><span>Estad&iacute;sticas</span></h2>
-			<div style="height:100%;">
-			<div id="div_estadisticas"></div>
+			<h2><span>Estad&iacute;sticas de G&eacute;nero y Edad</span></h2>
+			<div>
+				<div id="div_estadisticas"></div>
+				<div id="div_torta"></div>
 			</div>
 		</li>
 		<li>
-			<h2><span>Genero</span></h2>
-			<div id="div_torta"></div>
-		</li>
-				<li>
-			<h2><span>Preguntas</span></h2>
-			<div id="div_preguntas"></div>
+			<h2><span>Estad&iacute;sticas de informaci&oacute;n de Pacientes</span></h2>
+			<div>
+				<div id="div_preguntas"></div>
+			</div>
 		</li>
 	</ol>
 	<noscript>
 		<p>Por favor habilite JavaScript para una experiencia completa.</p>
 	</noscript>
 </div>
-<div id="opcionbutton"> <button onclick="toggleHeatmap()">Mostrar Heatmap</button></div>
