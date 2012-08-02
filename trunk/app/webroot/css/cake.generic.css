@@ -351,7 +351,7 @@ input, textarea {
 	padding: 5px;
 	/*width: 200px;*/
 	margin-right:5px;
-	resize:none;
+	/*resize:none;*/
 }
 
 .inputcorto {
@@ -363,13 +363,16 @@ input, textarea {
 }
 
 .ayudaCodigos {
+	overflow:auto;
 	width: 100%;
 	height: 85px;
 	margin: 5px;
 	background-color: #EFEFEF;
-	border: 1px solid #cccccc;
+	border: 1px solid #cccccc;*/
 }
-
+.ayudaCodigos select{
+   border: none;
+ }
 select {
 	padding: 5px;
 	margin-right:5px;
