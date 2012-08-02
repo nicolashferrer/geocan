@@ -7,22 +7,24 @@
 			$('#resultadoOK').hide();
 			$('#resultadoKO').hide();
 	
-			var $dni = $('#dni').val();
+			var dni = $('#dni').val();
 		
-			if ( ($dni == "") ||  ($dni == null) ) {
+			if ( (dni == "") ||  (dni == null) ) {
 			
 				jAlert("Debe ingresar un n&uacute;mero de documento.","Ingresar Datos");
 				
 			} else {
 
-			$.getJSON('<?php echo $this->Html->url(array("controller" => "patients","action" => "recuperarPaciente"));?>' + '/' + $dni, function(data){
+			dni = dni.replace(/\./gi, ""); 
+			
+			$.getJSON('<?php echo $this->Html->url(array("controller" => "patients","action" => "recuperarPaciente"));?>' + '/' + dni, function(data){
 					if(data.encontre==true) {
 						//$('#elid').html(data.id);
 						$('#linkVer').html('<a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "view"));?>/' + data.id+'">Ver Ficha Paciente</a>');
 						$('#linkOms').html('<a href="<?php echo $this->Html->url(array("controller" => "oms_registers","action" => "add"));?>/' + data.id+'">Cargar Oms</a>');
 						$('#resultadoOK').show();
 					} else {
-						$('#linkCrear').html('<a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "add"));?>/' + $dni+'">Nuevo Paciente</a>');
+						$('#linkCrear').html('<a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "add"));?>/' + dni+'">Nuevo Paciente</a>');
 						$('#resultadoKO').show();
 					}
 			});
