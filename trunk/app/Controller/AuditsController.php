@@ -2,7 +2,9 @@
 App::uses('AppController', 'Controller');
 
 class AuditsController extends AppController {
-
+ 
+ 	var $components = array('PaginationRecall'); 
+		
 /**
  * index method
  *
@@ -26,7 +28,7 @@ class AuditsController extends AppController {
 		}
 					
 		$this->Audit->recursive = 0;
-		$this->set('audits', $this->paginate(null,$condiciones));
+		$this->set('audits', $this->paginate('Audit',$condiciones));
 
 	}
 
