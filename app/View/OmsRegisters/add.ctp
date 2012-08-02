@@ -184,7 +184,7 @@
 		}};
 		a = $('#sugerencias').autocomplete(options);
 	
-		$(".iframe").colorbox({iframe:true, width:"400px", height:"400px", scrolling:false});
+		$(".iframe").colorbox({iframe:true, width:"800px", height:"400px", scrolling:true});
 	});
 	
 	function cambiarCodigo(id, desc ) {
@@ -243,7 +243,7 @@
 		echo "</div>";	
 		
 		echo $this->Form->hidden('oms_code_id');
-		echo $this->Form->input('fecha',array('label' => '&nbsp; Fecha','type' => 'text','value' => $hoyformateado));
+		echo $this->Form->input('fecha',array('label' => '&nbsp; Fecha Diagnositico','type' => 'text','value' => $hoyformateado));
 		
 		$options=array('0'=>'Desconocido','1'=>'1','2'=>'2','3'=>'3','4'=>'4');
 		$attributes=array('legend'=>false,'value'=>'0','separator'=>'');	
