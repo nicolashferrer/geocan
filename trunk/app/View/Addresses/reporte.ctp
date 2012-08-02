@@ -1,12 +1,14 @@
 <?php
- echo $this->Html->script('markerclusterer_packed'); // Include jQuery library 
- 
+	echo $this->Html->script('markerclusterer_packed'); // Include jQuery library
+	echo $this->Html->css('liteaccordion');
+	echo $this->Html->script('jquery.easing.1.3');
+	echo $this->Html->script('liteaccordion.jquery');
 
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi" charset="utf-8"></script>
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization">/*2*/</script>
 <script>
-
+	
 	google.load("visualization", "1", {packages:["corechart"]});
 	var pointarray, heatmap;//2
 	var map; // EL MAPA!!
@@ -15,7 +17,7 @@
 
 	var mcOptions = {gridSize: 50};
 
-	var defaultWidth="100%";					//Width of the map	
+	var defaultWidth=$('#content').width()-207+"px";					//Width of the map	
 	var defaultHeight="500px";					//Height of the map
 	var defaultZoom=14;							//Default zoom 
 	var defaultLatitude=-38.717570;		//Default latitude if the browser doesn't support localization or you don't want localization -38.717570, -62.265671
@@ -219,7 +221,7 @@
         for (iaux=0;iaux<cantpreguntas;iaux++) {
         	
         	// #1 - Creo el div dinamicanete donde va a ir el grafico
-        	$("#div_torta").after("<div style='float:left;' id='div_pregunta_"+ iaux +"'></div>");
+        	$("#div_preguntas").append("<div style='float:left;' id='div_pregunta_"+ iaux +"'></div>");
         	
         	// #2 - Genero la tabla de google con los datos de una respuesta
         	var dataaux = google.visualization.arrayToDataTable([
@@ -315,6 +317,14 @@
 	
 	$(document).ready(function(){
 
+		$("#accordion").liteAccordion({
+			theme : 'basic',                        // basic, dark, light, or stitch  
+			headerWidth: 48,
+			slideSpeed : 800,                       // slide animation speed 
+			containerWidth : $('#content').width()-15,                   // fixed (px)  
+            containerHeight : 500,                  // fixed (px)  
+		});//El Acordion
+	
 		$(".btn-slide").click(function(){
 		  $("#panel").slideToggle("slow");
 		  $(this).toggleClass("active");
@@ -338,60 +348,106 @@
 	
 </script>
 
-<div id="panel"> <!--the hidden panel -->
-	<div class="patients form">
-		<?php echo $this->Form->create('Consulta');?>
-		<fieldset>
-				<legend><?php echo __('Informaci&oacute;n B&aacute;sica'); ?></legend>
-		<?php
 
-				$options=array(''=>'Indistinto','M'=>'Masculino','F'=>'Femenino');
-				$attributes=array('legend'=>false,'value'=>'','separator'=>'');
-				
-				echo "<div>";
-				echo "<label class='label_radio'>Genero</label>";
-				echo $this->Form->radio('sexo',$options,$attributes);
-				echo "</div>";
-				
-				$options=array(''=>'Indistinto (Prioridad Particular)','P'=>'Particular','L'=>'Laboral');
-				$attributes=array('legend'=>false,'value'=>'','separator'=>'');
-				
-				echo "<div>";
-				echo "<label class='label_radio'>Domicilio</label>";
-				echo $this->Form->radio('tipodir',$options,$attributes);
-				echo "</div>";
-				
-				echo "<div class=input>";
-				echo "<label>Edad Entre </label><input type='text' size='5' name='data[Consulta][edadMin]' id='edadMin' />y&nbsp;<input type='text' size='5' name='data[Consulta][edadMax]' id='edadMax' />";
-				echo "</div>";
-		?>
-		</fieldset>
-		<fieldset>
-			<legend><?php echo __('Informaci&oacute;n Adicional'); ?></legend>
+			<!-- syntax highlighter -->
+        <script src="http://nicolahibbert.com/demo/liteAccordion/js/shCore.js"></script>
+        <script src="http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/3.0.83/scripts/shBrushXml.js"></script>
+        <script src="http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/3.0.83/scripts/shBrushJScript.js"></script>
+        <script>SyntaxHighlighter.all();</script> 
+
+
+<div id="toppanel">
+	<div id="panel"> <!--the hidden panel -->
+		<div class="patients form">
+			<?php echo $this->Form->create('Consulta');?>
+			<fieldset>
+					<legend><?php echo __('Informaci&oacute;n B&aacute;sica'); ?></legend>
 			<?php
-			
-			$i = 0;
-			foreach ($questions as $question):
-			
-				$opciones=array('1'=>'Si','0'=>'No',''=>'Indistinto');
-				$atributos=array('legend'=>false,'value'=>'','separator'=>'');
-				echo "<div>";
-				echo "<label class='label_radio'>".$question['Question']['descripcion']."</label>";
-				echo $this->Form->hidden('Answer.'.$i.'.question_id', array('value' => $question['Question']['id']));
-				//echo $this->Form->hidden('Answer.'.$i.'patient_id', array('value' => ''));
-				echo $this->Form->radio('Answer.'.$i.'.valor',$opciones,$atributos);
-				echo "</div>";
-				//echo '<br>';
-				$i++;
-			
-			endforeach;	
+
+					$options=array(''=>'Indistinto','M'=>'Masculino','F'=>'Femenino');
+					$attributes=array('legend'=>false,'value'=>'','separator'=>'');
+					
+					echo "<div>";
+					echo "<label class='label_radio'>Genero</label>";
+					echo $this->Form->radio('sexo',$options,$attributes);
+					echo "</div>";
+					
+					$options=array(''=>'Indistinto (Prioridad Particular)','P'=>'Particular','L'=>'Laboral');
+					$attributes=array('legend'=>false,'value'=>'','separator'=>'');
+					
+					echo "<div>";
+					echo "<label class='label_radio'>Domicilio</label>";
+					echo $this->Form->radio('tipodir',$options,$attributes);
+					echo "</div>";
+					
+					echo "<div class=input>";
+					echo "<label>Edad Entre </label><input type='text' size='5' name='data[Consulta][edadMin]' id='edadMin' />y&nbsp;<input type='text' size='5' name='data[Consulta][edadMax]' id='edadMax' />";
+					echo "</div>";
 			?>
-		</fieldset>
-		<?php echo $this->Form->end(__('Consultar'));?>
+			</fieldset>
+			<fieldset>
+				<legend><?php echo __('Informaci&oacute;n Adicional'); ?></legend>
+				<?php
+				
+				$i = 0;
+				foreach ($questions as $question):
+				
+					$opciones=array('1'=>'Si','0'=>'No',''=>'Indistinto');
+					$atributos=array('legend'=>false,'value'=>'','separator'=>'');
+					echo "<div>";
+					echo "<label class='label_radio'>".$question['Question']['descripcion']."</label>";
+					echo $this->Form->hidden('Answer.'.$i.'.question_id', array('value' => $question['Question']['id']));
+					//echo $this->Form->hidden('Answer.'.$i.'patient_id', array('value' => ''));
+					echo $this->Form->radio('Answer.'.$i.'.valor',$opciones,$atributos);
+					echo "</div>";
+					//echo '<br>';
+					$i++;
+				
+				endforeach;	
+				?>
+			</fieldset>
+			<?php echo $this->Form->end(__('Consultar'));?>
+		</div>
 	</div>
+	<!--
+	<p class="slide"><a href="#" class="btn-slide">Filtros</a></p> 
+	-->
+	
+	<!-- The tab on top -->	
+	<div class="tab">
+		<ul class="login">
+			<li class="left">&nbsp;</li>
+			<li id="toggle">
+				<a href="#" class="btn-slide">Filtros</a>	
+			</li>
+			<li class="right">&nbsp;</li>
+		</ul> 
+	</div> <!-- / top -->
+	
 </div>
-<p class="slide"><a href="#" class="btn-slide">Filtros</a></p> 
-<div id="map_canvas"></div>
+<div id="accordion" style="margin-top:42px;">
+	<ol>
+		<li>
+			<h2><span>Mapa</span></h2>
+			<div id="map_canvas" style="margin-left:48px;"></div>
+		</li>
+		<li>
+			<h2><span>Estad&iacute;sticas</span></h2>
+			<div style="height:100%;">
+			<div id="div_estadisticas"></div>
+			</div>
+		</li>
+		<li>
+			<h2><span>Genero</span></h2>
+			<div id="div_torta"></div>
+		</li>
+				<li>
+			<h2><span>Preguntas</span></h2>
+			<div id="div_preguntas"></div>
+		</li>
+	</ol>
+	<noscript>
+		<p>Por favor habilite JavaScript para una experiencia completa.</p>
+	</noscript>
+</div>
 <div id="opcionbutton"> <button onclick="toggleHeatmap()">Mostrar Heatmap</button></div>
-<div id="div_estadisticas"></div>
-<div id="div_torta"></div>
