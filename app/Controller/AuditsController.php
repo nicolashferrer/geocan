@@ -3,7 +3,29 @@ App::uses('AppController', 'Controller');
 
 class AuditsController extends AppController {
  
- 	var $components = array('PaginationRecall'); 
+	var $components = array('Filter.Filter');
+
+		var $filters = array
+		(
+            'index' => array  
+            (  
+                'Audit' => array  
+                (  
+                    'Audit.event'  => array  
+                    (  
+                        'type' => 'select',  
+                        'label' => 'Acción',                     
+                        'selector' => 'getAcciones'  
+                    ),
+                    'Audit.model' => array  
+                    (  
+                        'type' => 'select',  
+                        'label' => 'Modelos',                     
+                        'selector' => 'getModelos'  
+                    )    
+                )  
+            )  
+        ); 
 		
 /**
  * index method
