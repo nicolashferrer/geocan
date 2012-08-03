@@ -16,5 +16,16 @@ class Audit extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	
+	public function getModelos() {
+		
+		return array('Note' => 'Nota','Question' => 'Pregunta');
+	}
+
+	public function getAcciones() {
+		
+		return array('CREATE' => 'Creación','DELETE' => 'Eliminación','EDIT' => 'Edición');
+	}
 
 }
