@@ -20,7 +20,12 @@ class Audit extends AppModel {
 	
 	public function getModelos() {
 		
-		return array('Note' => 'Nota','Question' => 'Pregunta');
+		$opciones = array('OmsCode' => 'Código OMS','Province' =>'Provincia','OmsRegister' => 'OMS','City' => 'Ciudad','Primary' => 'Dirección Particular', 'Secondary' => 'Dirección Laboral','Medic' => 'Médico','MedicType' => 'Tipo de Médico', 'Patient' => 'Paciente','User' => 'Usuario','Note' => 'Nota','Answer' => 'Respuesta','Question' => 'Pregunta');
+		 
+		asort($opciones);
+		 
+		return $opciones;
+		
 	}
 
 	public function getAcciones() {
