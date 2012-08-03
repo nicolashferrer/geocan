@@ -138,32 +138,10 @@ function procesarJSON($cadena) {
 	return $salida;
 
 }
+
+echo $this->Filter->filterForm('Audit', array('legend' => 'Filtrado de Logs'));  
+
 ?>
-	<div class="audits form">
-		<?php echo $this->Form->create('Audits');?>
-		<fieldset>
-				<legend><?php echo __('Filtrado de Logs'); ?></legend>
-		<?php
-
-				echo "<div>";
-				echo $this->Form->input('Audit.event',
-    			array('label' => 'Acción',
-      			'options' => array('' => 'Todas','EDIT' => 'Edición', 'CREATE' => 'Creación', 'DELETE' => 'Eliminación'),
-      			'default' => !empty($this->request->data) ? $this->request->data['Audit']['event'] : ''));
-				echo "</div>";
-				
-				echo "<div>";
-				echo $this->Form->input('Audit.model',
-    			array('label' => 'Modelo',
-      			'options' => array('' => 'Todos','User' => 'Usuario', 'Patient' => 'Paciente', 'Question' => 'Pregunta'),
-      			'default' => !empty($this->request->data) ? $this->request->data['Audit']['model'] : ''));
-				echo "</div>";
-		
-
-		?>
-		</fieldset>
-		<?php echo $this->Form->end(__('Filtrar'));?>
-	</div>
 <div class="audits index">
 	<fieldset>
 		<legend><?php echo __('Auditor&iacute;a'); ?></legend>
@@ -174,7 +152,6 @@ function procesarJSON($cadena) {
 				<th><?php echo $this -> Paginator -> sort('entity_id', 'Entidad'); ?></th>
 				<th><?php echo $this -> Paginator -> sort('created', 'Fecha'); ?></th>
 				<th><?php echo $this -> Paginator -> sort('User.username', 'Usuario'); ?></th>
-				<th><center>Detalles</center></th>
 		</tr>
 		<?php foreach ($audits as $audit): ?>
 		<tr>
@@ -183,9 +160,6 @@ function procesarJSON($cadena) {
 			<td><?php echo h($audit['Audit']['entity_id']); ?> <img class="detallestip" src="<?php echo $this->webroot; ?>img/view.png" style="vertical-align: middle;" det="<?php echo procesarJSON($audit['Audit']['json_object']); ?>"/>&nbsp;</td>
 			<td><?php echo h($audit['Audit']['created']); ?>&nbsp;</td>
 			<td><?php echo h($audit['User']['username']); ?>&nbsp;</td>
-			<td>
-				<center></center>
-			</td>
 		</tr>
 	<?php
 
