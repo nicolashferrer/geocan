@@ -64,11 +64,11 @@ function traducirModelo($modelo) {
 
 	switch ($modelo) {
 		case 'primary' :
-			return 'Direcci&oacute;n';
+			return 'Dirección Particular';
 			break;
 
 		case 'secondary' :
-			return 'Direcci&oacute;n';
+			return 'Dirección Laboral';
 			break;
 
 		case 'address' :
@@ -78,7 +78,11 @@ function traducirModelo($modelo) {
 		case 'user' :
 			return 'Usuario';
 			break;
-
+			
+		case 'medic' :
+			return 'Médico';
+			break;
+			
 		case 'answer' :
 			return 'Respuesta';
 			break;
@@ -105,6 +109,10 @@ function traducirModelo($modelo) {
 
 		case 'province' :
 			return 'Provincia';
+			break;
+			
+		case 'medictype' :
+			return 'Tipo de Médico';
 			break;
 
 		default :
