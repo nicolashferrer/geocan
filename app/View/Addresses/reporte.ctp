@@ -124,8 +124,16 @@
 		}
 		
 		if (!heatmap.getMap()&&markerCluster!=null) {
+			
+			$("#btncalor").addClass('active');
 			markerCluster.clearMarkers();
-		}else markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
+			
+		}else {
+			
+			$("#btncalor").removeClass('active');
+			markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
+			
+		} 
 	
         heatmap.setMap(heatmap.getMap() ? null : map);
       }
@@ -217,6 +225,31 @@
 
         var chart2 = new google.visualization.PieChart(document.getElementById('div_torta'));
         chart2.draw(data2, options2);
+        
+        
+        var data3 = google.visualization.arrayToDataTable([
+          ['Rango de Edad', 'Total'],
+          ['< 10' , edades[0][0] + edades[0][1] ],
+          ['10-19', edades[1][0] + edades[1][1] ],
+          ['20-29', edades[2][0] + edades[2][1] ],
+          ['30-39', edades[3][0] + edades[3][1] ],
+          ['40-49', edades[4][0] + edades[4][1] ],
+          ['50-59', edades[5][0] + edades[5][1] ],
+          ['60-69', edades[6][0] + edades[6][1] ],
+          ['70-79', edades[7][0] + edades[7][1] ],
+          ['80-89', edades[8][0] + edades[8][1] ],
+          ['90-99', edades[9][0] + edades[9][1] ],
+          ['> 100', edades[10][0] + edades[10][1]]
+        ]);
+        
+        var options3 = {
+			title: 'Personas por Rango de Edades ( Total = ' + total + ' )',
+			width: 400
+        };
+
+        var chart3 = new google.visualization.PieChart(document.getElementById('div_torta2'));
+        chart3.draw(data3, options3);
+        
         
         // Generacion dinamica de los graficos de las respuestas!
         for (iaux=0;iaux<cantpreguntas;iaux++) {
@@ -341,6 +374,8 @@
 			return false;
 		}
 		);
+		
+		buscar(); //Disparamos una bsqueda global al entrar a la pantalla
 
 	});
 	
@@ -432,13 +467,14 @@
 		<li>
 			<h2><span>Mapa</span></h2>
 			<div id="map_canvas" style="margin-left:48px;"></div>
-			<div id="opcionbutton"> <button onclick="toggleHeatmap()">Mapa de Calor: OFF</button></div>		
+			<div id="opcionbutton"> <a id="btncalor" class="button long" href="JavaScript:toggleHeatmap();">Mapa de Calor</a></div>		
 		</li>
 		<li>
 			<h2><span>Estad&iacute;sticas de G&eacute;nero y Edad</span></h2>
 			<div>
 				<div id="div_estadisticas"></div>
-				<div id="div_torta"></div>
+				<div style='float:left;' id="div_torta"></div>
+				<div style='float:left;' id="div_torta2"></div>
 			</div>
 		</li>
 		<li>
