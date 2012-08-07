@@ -25,6 +25,8 @@ class Patient extends AppModel {
 
 	public $validate = array(
 		'nro_documento' => array(
+		    'rule' => 'numeric',
+			'message' => 'Ingrese solo numeros, sin puntos ni comas.' ,  
 			'is_unique' => array(
                     'rule' => array('isUnique'),
 					'on' => 'create',
