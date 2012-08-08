@@ -944,6 +944,14 @@ pre {
 	border-radius: 5px;
 }
 
+.tipParticular, .tipLaboral {
+	position:absolute;
+	border-radius: 5px;
+	border: 1px solid #000000;
+}
+
+
+
 .tip2 {
 	min-width:200px;	
 	display:none;

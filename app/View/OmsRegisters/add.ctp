@@ -264,7 +264,7 @@
 			<?php endforeach; ?>
 			</select><select id="localidadesParticular">
 				<option value="0" selected>Seleccionar</option>
-			</select><input type="text" size="25" value="Nombre de la Calle" id="calleParticular" class="clear-text-field">
+			</select><input type="text" size="25" value="Calle" id="calleParticular" class="clear-text-field">
 			<input type="text" size="5" value="Altura" id="alturaParticular" class="clear-text-field">
 			<a href="JavaScript:buscar('Particular');" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 		</fieldset>
@@ -280,7 +280,7 @@
 			</select> 
 			<select id="localidadesLaboral">
 				<option value="0" selected>Seleccionar</option>
-			</select><input type="text" size="25" value="Nombre de la Calle" id="calleLaboral" class="clear-text-field">
+			</select><input type="text" size="25" value="Calle" id="calleLaboral" class="clear-text-field">
 			<input type="text" size="5" value="Altura" id="alturaLaboral" class="clear-text-field">
 			<a href="JavaScript:buscar('Laboral');" id="comprobarLaboral"><img id="imgbusquedaLaboral" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 		</fieldset>

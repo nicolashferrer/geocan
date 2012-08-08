@@ -53,14 +53,14 @@ function buscar(tipoDireccion) {
 	//tipoDireccion = "laboral" o "particular"
     function processGeocoding(location, callback, tipoDireccion)  
     {  
-        // Propiedades de la georreferenciación  
+        // Propiedades de la georreferenciació®  
         var request = {  
             address: location  
         }  
 		
 		var geocoder = new google.maps.Geocoder();
 		
-        // Invocación a la georreferenciación (proceso asíncrono)  
+        // Invocació® ¡ la georreferenciació® ¨proceso asî¯£rono)  
         geocoder.geocode(request, function(results, status) {  
             /* 
              * OK 
@@ -118,20 +118,21 @@ function buscar(tipoDireccion) {
 				
 				$("#comprobar"+tipoDireccion).after('<img id="imgmapa'+tipoDireccion+'" src="/geocan/img/map.png" style="vertical-align: middle;" />');
 				
+				
 				// Le asocio el evento para que muestre el mapa al pasar sobre la imagen del mapita...
 				$('#imgmapa'+tipoDireccion).hover(function(){
 								
-					var tool = $('<div id="mapita'+tipoDireccion+'" class="tip" style="width:250px; height:250px"></div>').appendTo('body');
+					var tool = $('<div id="mapita'+tipoDireccion+'" class="tip'+tipoDireccion+'" style="width:250px; height:250px"></div>').appendTo('body');
 					minimap(lat,lng,tipoDireccion);
 					tool.fadeIn('slow');
 				   
 				}, function() {
 						// Hover out code
-						$('.tip').remove();
+						$('.tip'+tipoDireccion).remove();
 				}).mousemove(function(e) {
 						var mousex = e.pageX + 20; //Get X coordinates
 						var mousey = e.pageY - 125; //Get Y coordinates
-						$('.tip').css({ top: mousey, left: mousex })
+						$('.tip'+tipoDireccion).css({ top: mousey, left: mousex })
 				});
 				
 			} else {
@@ -164,14 +165,16 @@ function buscar(tipoDireccion) {
 	
 	function minimap(latitud,longitud,cual) {
 	
+		var p = new google.maps.LatLng(latitud, longitud);
+	
 		 var map = new google.maps.Map(document.getElementById('mapita'+cual), {
 		  zoom: 16,
-		  center: new google.maps.LatLng(latitud, longitud),
+		  center: p,
 		  mapTypeId: google.maps.MapTypeId.ROADMAP 
 		});
 		
 		 var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(latitud, longitud),
+        position: p,
         map: map
       });
 

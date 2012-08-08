@@ -37,7 +37,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->css('colorbox'); // Css de Plugin jquery para ventanas modales
 		echo $this->Html->css('menu');
 		echo $this->Html->css('jquery.alerts');
-		
+	
 	
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -88,8 +88,14 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		.ajaxStop(function() {
 			$(this).hide();
 		});
-				
+
 	});
+	
+	
+	function poneralgo(){
+		
+	$("#pepito").html("Contenido dinamico"); 
+	}	
 	</script>
 </head>
 <body onLoad="fechaActual()">
@@ -121,8 +127,8 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 							</li>
 							<li><a href="#" class="fly">M&eacute;dicos</a>
 								<ul>
-									<li><?php echo $this->Html->link(utf8_encode('Médicos'),array('controller' => 'medics', 'action' => 'index'))?></li>
-									<li><?php echo $this->Html->link(utf8_encode('Tipos de Médicos'),array('controller' => 'medic_types', 'action' => 'index'))?></li>
+									<li><?php echo $this->Html->link(utf8_encode('Mï¿½dicos'),array('controller' => 'medics', 'action' => 'index'))?></li>
+									<li><?php echo $this->Html->link(utf8_encode('Tipos de Mï¿½dicos'),array('controller' => 'medic_types', 'action' => 'index'))?></li>
 								</ul>
 							</li>
 							<li><a href="#" class="fly">Pacientes</a>
@@ -144,7 +150,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 					<li class="topder"><a href="#" class="top_link"><span id="fechaActual"></span></a></li>					
 					<li class="topder"><a href="#" class="top_link"><span class="down"><?php echo $this->Form->label($auth['username']); ?></span></a>
 					<ul class="sub">
-						<li><?php echo $this->Html->link(utf8_encode('Cambiar Contraseña'),array('controller' => 'users', 'action' => 'editPassword', $auth['id']))?></li>
+						<li><?php echo $this->Html->link(utf8_encode('Cambiar Contraseï¿½a'),array('controller' => 'users', 'action' => 'editPassword', $auth['id']))?></li>
 						<li><?php echo $this->Html->link('Salir',array('controller' => 'users', 'action' => 'logout'))?></li>
 					</ul>
 					</li>
@@ -162,7 +168,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $this->Session->flash('auth'); ?>
 
-			<?php echo $this->fetch('content'); ?>
+			<?php echo $this->fetch('content'); ?>			
 		</div>
 	</div>
 			<div id="footer">
@@ -183,5 +189,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 
 </script>
 	<?php //echo $this->element('sql_dump'); ?>
+	
 </body>
+
 </html>
