@@ -50,7 +50,12 @@ $(document).ready(function() {
 			$('#localidadesLaboral').empty();
 		}
 		
-		
+				
+			$("#calleParticular").Watermark("Calle");
+			$("#alturaParticular").Watermark("Altura");
+			$("#calleLaboral").Watermark("Calle");
+			$("#alturaLaboral").Watermark("Altura");
+				
 	});
 	
 	$('#PatientAddForm').submit(function(event) {
@@ -125,7 +130,7 @@ $(document).ready(function() {
 			$('#imgmapaParticular').remove();
 			
 		} else {
-		
+			
 			$('#provinciasParticular').removeAttr("disabled");
 			$('#localidadesParticular').removeAttr("disabled");
 			$('#calleParticular').removeAttr("disabled");
@@ -155,6 +160,8 @@ $(document).ready(function() {
 				
 			} else {
 			
+
+				
 				$('#provinciasLaboral').removeAttr("disabled");
 				$('#localidadesLaboral').removeAttr("disabled");
 				$('#calleLaboral').removeAttr("disabled");
@@ -164,12 +171,7 @@ $(document).ready(function() {
 			}
 	}
 
-	jQuery(function(){
-		$("#calleParticular").Watermark("Calle");
-		$("#alturaParticular").Watermark("Altura");
-		$("#calleLaboral").Watermark("Calle");
-		$("#alturaLaboral").Watermark("Altura");
-	});
+	
 </script>
 <div class="patients form">
 <?php echo $this->Form->create('Patient');?>
