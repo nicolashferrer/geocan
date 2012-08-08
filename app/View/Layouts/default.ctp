@@ -127,8 +127,8 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 							</li>
 							<li><a href="#" class="fly">M&eacute;dicos</a>
 								<ul>
-									<li><?php echo $this->Html->link(utf8_encode('Mï¿½dicos'),array('controller' => 'medics', 'action' => 'index'))?></li>
-									<li><?php echo $this->Html->link(utf8_encode('Tipos de Mï¿½dicos'),array('controller' => 'medic_types', 'action' => 'index'))?></li>
+									<li><?php echo $this->Html->link(utf8_encode('Médicos'),array('controller' => 'medics', 'action' => 'index'))?></li>
+									<li><?php echo $this->Html->link(utf8_encode('Tipos de Médicos'),array('controller' => 'medic_types', 'action' => 'index'))?></li>
 								</ul>
 							</li>
 							<li><a href="#" class="fly">Pacientes</a>
@@ -150,7 +150,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 					<li class="topder"><a href="#" class="top_link"><span id="fechaActual"></span></a></li>					
 					<li class="topder"><a href="#" class="top_link"><span class="down"><?php echo $this->Form->label($auth['username']); ?></span></a>
 					<ul class="sub">
-						<li><?php echo $this->Html->link(utf8_encode('Cambiar Contraseï¿½a'),array('controller' => 'users', 'action' => 'editPassword', $auth['id']))?></li>
+						<li><?php echo $this->Html->link(utf8_encode('Cambiar Contraseña'),array('controller' => 'users', 'action' => 'editPassword', $auth['id']))?></li>
 						<li><?php echo $this->Html->link('Salir',array('controller' => 'users', 'action' => 'logout'))?></li>
 					</ul>
 					</li>
