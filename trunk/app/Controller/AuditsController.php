@@ -22,11 +22,22 @@ class AuditsController extends AppController {
                         'type' => 'select',  
                         'label' => 'Modelos',                     
                         'selector' => 'getModelos'  
-                    )    
+                    ),   
+					'Audit.created_from' => array
+					(
+						'condition' => '',
+						'label' => 'Fecha Desde'			
+					),
+					'Audit.created_to' => array
+					(
+						'condition' => '',
+						'label' => 'Fecha Hasta'					
+					)
                 )  
             )  
         ); 
 		
+  		
 /**
  * index method
  *
@@ -39,6 +50,7 @@ class AuditsController extends AppController {
 			
 			$accion = $this->request->data['Audit']['event'];
 			$modelo = $this->request->data['Audit']['model'];
+			$fecha = $this->request->data['Audit']['create'];
 			
 			if ($accion!='') {
 				$condiciones[] = array('Audit.event' => $accion);
@@ -47,7 +59,16 @@ class AuditsController extends AppController {
 			if ($modelo!='') {
 				$condiciones[] = array('Audit.model' => $modelo);
 			}
+			
+			if ($fecha!='') {
+				$condiciones[] = array('Audit.create' => $fecha);
+			}
+			
+			debug($condiciones);
+			exit();
 		}
+		
+		
 					
 		$this->Audit->recursive = 0;
 		$this->set('audits', $this->paginate('Audit',$condiciones));

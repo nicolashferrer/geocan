@@ -15,8 +15,7 @@ class Audit extends AppModel {
 			'fields' => 'username',
 			'order' => ''
 		)
-	);
-	
+	);	
 	
 	public function getModelos() {
 		
@@ -25,12 +24,35 @@ class Audit extends AppModel {
 		asort($opciones);
 		 
 		return $opciones;
-		
 	}
 
 	public function getAcciones() {
 		
 		return array('CREATE' => 'Creación','DELETE' => 'Eliminación','EDIT' => 'Edición');
 	}
+	
+	function afterDataFilter($query, $options)  
+	{  
 
+		if ((!empty($options['values']['Audit']['created_from'])) && (!empty($options['values']['Audit']['created_to'])))
+		{
+			$query['conditions']['Audit.created between ? AND ?'] = array(implode('-', array_reverse(explode('/', $options['values']['Audit']['created_from']))) . ' 00:00:00',implode('-', array_reverse(explode('/', $options['values']['Audit']['created_to'])))  . ' 23:59:59');
+		}
+		else
+		{
+			if (!empty($options['values']['Audit']['created_from']))
+			{
+				$query['conditions']['Audit.created >='] = implode('-', array_reverse(explode('/', $options['values']['Audit']['created_from']))) . ' 00:00:00';
+			}
+			if (!empty($options['values']['Audit']['created_to']))
+			{
+				$query['conditions']['Audit.created <='] = implode('-', array_reverse(explode('/', $options['values']['Audit']['created_to'])))  . ' 23:59:59';
+			}
+		}
+		
+		unset($query['conditions']['Audit.created_from ']);
+		unset($query['conditions']['Audit.created_to ']);
+	   
+		return $query;  
+	}  
 }
