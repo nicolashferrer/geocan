@@ -1,6 +1,9 @@
 <script>
 
 	$(document).ready(function(){
+	
+		$('#AuditCreatedFrom').datepicker(datepicker_config);
+		$('#AuditCreatedTo').datepicker(datepicker_config);
 		generarToolTips();
 	}); 
 	
