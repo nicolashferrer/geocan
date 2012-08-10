@@ -107,11 +107,11 @@ public $helpers = array('GoogleMapV3');
 		$condtipdir = "";
 		$selectorpreguntas = "";
 		$condicionpreguntas = "";
+		$listaCodigos = "0";
+		$condicioncodigos = " ";
 		
 		$aux = $this->request->query['data']['Consulta'];
-		
-		debug($this->request->query['data']);
-		
+			
 		if ($aux['edadMin'] != '') {
 			$condedad .= " AND edad >= ".$aux['edadMin']." ";
 		} 
@@ -136,14 +136,19 @@ public $helpers = array('GoogleMapV3');
 			$selectorpreguntas .= " , a".$ipreg.".valor as '".$ipreg."'";
 		endforeach;
 		
-		$preguntas = $this->request->query['data']['Answer'];			
-		foreach ($preguntas as $preg):
+		if (isset($this->request->query['data']['Answer'])) {
 		
-			if ($preg['valor'] != '') {
-				$condicionpreguntas .= " AND a" . $preg['question_id'] . ".valor = " .$preg['valor'];
-			}
-		
-		endforeach;	
+			$preguntas = $this->request->query['data']['Answer'];	
+				
+			foreach ($preguntas as $preg):
+			
+				if ($preg['valor'] != '') {
+					$condicionpreguntas .= " AND a" . $preg['question_id'] . ".valor = " .$preg['valor'];
+				}
+			
+			endforeach;		
+		}
+
 			
 		if ($aux['tipodir'] == '') {
 			$condtipdir = "COALESCE(oms.address_part_id,oms.address_lab_id) ";
@@ -153,9 +158,25 @@ public $helpers = array('GoogleMapV3');
 			$condtipdir = "oms.address_lab_id ";
 		}
 
+
+		if (isset($this->request->query['data']['Codigo'])) {
+		
+			$codigosOms = $this->request->query['data']['Codigo'];
+		
+			foreach ($codigosOms as $cod):
+				
+				$listaCodigos .= "," . $cod['item'];	
+			
+			endforeach;
+			
+			$condicioncodigos = " AND o.oms_code_id IN ( " . $listaCodigos . " ) ";	
+						
+		} 
+
+
 		$consulta = "select Patient.* from ( select p.sexo, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, dir.*,oms.estadio,oms.codigo,oms.descripcion " . $selectorpreguntas . " from patients AS p join
 				(select codes.codigo,codes.descripcion,o.address_part_id,o.address_lab_id,o.patient_id,o.estadio from oms_registers as o
-				join oms_codes as codes on codes.id = o.oms_code_id GROUP BY o.patient_id) AS oms on oms.patient_id = p.id join addresses 
+				join oms_codes as codes on codes.id = o.oms_code_id " . $condicioncodigos . " GROUP BY o.patient_id) AS oms on oms.patient_id = p.id join addresses 
 				as dir on dir.id = " . $condtipdir . $joinpreguntas . $condiciones . $condicionpreguntas . " ) as Patient".$condedad;
 	
 		//debug($consulta);
