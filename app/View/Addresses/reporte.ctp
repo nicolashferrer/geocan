@@ -9,6 +9,8 @@
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization">/*2*/</script>
 <script>
 	
+	var codigosAgregados = 0;
+	
 	google.load("visualization", "1", {packages:["corechart"]});
 	var pointarray, heatmap;//2
 	var map; // EL MAPA!!
@@ -328,6 +330,9 @@
 
 	function buscar() {
 		var datos = $("#ConsultaReporteForm").serialize();
+		
+		alert(datos);
+		
 		$.getJSON('<?php echo $this->Html->url(array("controller" => "addresses","action" => "reporteBusqueda"));?>?'+datos,
 		function(data){
 				limpiarMapa();
@@ -407,8 +412,10 @@
 		
 		
 		if (id!=null && id!="" && !existeOms(id)) {
+			
+			codigosAgregados++;
 		
-			var item = "<div class='ayudaCodigosItem' style='padding:0px;' value=\"" + id + "\">" + contenido + "</div>";
+			var item = "<div class='ayudaCodigosItem' style='padding:0px;' value=\"" + id + "\"><input type='hidden' id='CodigoItem"+codigosAgregados+"' name='data[Codigo]["+codigosAgregados+"][item]' value='"+id+"'>" + contenido + "</div>";
 	
 			$('#listaCodigos').append(item);
 		
