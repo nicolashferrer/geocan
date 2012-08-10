@@ -330,13 +330,16 @@
 
 	function buscar() {
 		var datos = $("#ConsultaReporteForm").serialize();
-		
-		alert(datos);
-		
+
 		$.getJSON('<?php echo $this->Html->url(array("controller" => "addresses","action" => "reporteBusqueda"));?>?'+datos,
 		function(data){
 				limpiarMapa();
 				limpiarEstadisticas();
+				
+				if (data.length == 0) {
+					jAlert("No se encontraron pacientes con los filtros ingresados.","No hay Datos.");
+				}
+				
 				$.each(data, function(optionIndex, option) {
 					agregarMarcador(option.Patient);
 					agregarEstadisticas(option.Patient);
@@ -358,6 +361,11 @@
 	$(document).ready(function(){
 		
 		$(".iframe").colorbox({iframe:true, width:"700px", height:"450px", scrolling:true});
+		
+		options = { serviceUrl:'<?php echo $this->Html->url(array("controller" => "oms_codes",	"action" => "sugerencias"));?>/', minChars:2, maxHeight:300, width:400,
+		onSelect: function(value, data){ $('#OmsCodeId').val(data);
+		}};
+		a = $('#sugerencias').autocomplete(options);
 		
 		$(".ayudaCodigosItem").live( "click", function() { 
 			
@@ -414,6 +422,9 @@
 		if (id!=null && id!="" && !existeOms(id)) {
 			
 			codigosAgregados++;
+			
+			$("#sugerencias").val("");
+			$('#OmsCodeId').val("");
 		
 			var item = "<div class='ayudaCodigosItem' style='padding:0px;' value=\"" + id + "\"><input type='hidden' id='CodigoItem"+codigosAgregados+"' name='data[Codigo]["+codigosAgregados+"][item]' value='"+id+"'>" + contenido + "</div>";
 	
