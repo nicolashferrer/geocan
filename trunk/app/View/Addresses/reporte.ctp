@@ -351,6 +351,19 @@
 	}
 	
 	$(document).ready(function(){
+		
+		$(".iframe").colorbox({iframe:true, width:"700px", height:"450px", scrolling:true});
+		
+		$(".ayudaCodigosItem").live( "click", function() { 
+			
+		//Despinto todos los items
+		$(".ayudaCodigosItem").removeClass('selected');
+		
+		//Pinto el item clickeado
+		$(this).addClass('selected');
+		
+		} )
+	
 
 		$("#accordion").liteAccordion({
 			theme : 'basic',                        // basic, dark, light, or stitch  
@@ -380,7 +393,40 @@
 	});
 	
 	
+	function cambiarCodigo(id, desc ) {
+		$("#sugerencias").val(desc);
+		$('#OmsCodeId').val(id);
+		$(".iframe").colorbox.close();
+	}
 	
+	function agregarOms() {
+			
+		var contenido = $("#sugerencias").val();
+		var id = $('#OmsCodeId').val();
+		
+		
+		
+		if (id!=null && id!="" && !existeOms(id)) {
+		
+			var item = "<div class='ayudaCodigosItem' style='padding:0px;' value=\"" + id + "\">" + contenido + "</div>";
+	
+			$('#listaCodigos').append(item);
+		
+		}
+		
+	}
+	
+	function existeOms(id) {
+		
+		return $('div[value='+id+']').attr("value") != null;
+
+	}
+	
+	function removerOms() {
+		
+	 	$(".ayudaCodigosItem.selected").remove();	
+		
+	}
 	
 	
 </script>
@@ -421,6 +467,17 @@
 					echo "<label>Edad Entre </label><input type='text' size='5' name='data[Consulta][edadMin]' id='edadMin' />y&nbsp;<input type='text' size='5' name='data[Consulta][edadMax]' id='edadMax' />";
 					echo "</div>";
 			?>
+			</fieldset>
+			<fieldset>
+				<legend><?php echo __('OMS'); ?></legend>
+				<?php
+					echo "<div class=input>";
+					echo "<label class='label_radio'>C&oacute;digo</label>";
+					echo "<input type='hidden' id='OmsCodeId' value=''>";
+					echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "oms_codes",	"action" => "help"))."'><img src='".$this->webroot."css/images/help.gif' style='vertical-align: middle;' /></a><a href='JavaScript:agregarOms();'>Agregar</a>";
+					echo "</div>";
+					echo "<div class='ayudaCodigos' style='width:98%;height:50px;padding:0px;' id='listaCodigos'></div><a href='JavaScript:removerOms()'>Remover</a>";
+				?>	
 			</fieldset>
 			<fieldset>
 				<legend><?php echo __('Informaci&oacute;n Adicional'); ?></legend>
