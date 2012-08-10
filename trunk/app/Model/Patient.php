@@ -25,16 +25,16 @@ class Patient extends AppModel {
 
 	public $validate = array(
 		'nro_documento' => array(
-		    /*'numeric'=>array(
-			'rule' => 'numeric',
-			'on' => 'create',
-			'message' => 'Ingrese solo numeros, sin puntos ni comas.',
-			) , */ 
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'on' => 'create',
+				'message' => 'Debe ingresar unicamente numeros, sin puntos.',
+		    ),
 			'is_unique' => array(
-                    'rule' => array('isUnique'),
-					'on' => 'create',
-                    'message' => 'El DNI ingresado ya corresponde a otro paciente.',
-               ),
+				'rule' => array('esunico'),
+				'on' => 'create',
+				'message' => 'El DNI ingresado ya corresponde a otro paciente.',
+            ),
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'Este campo es obligatorio.',
@@ -105,7 +105,8 @@ class Patient extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
+	
+	
         function beforeSave()
         {
             if (!empty($this->data['Patient']['fecha_nacimiento']))
@@ -122,6 +123,36 @@ class Patient extends AppModel {
             return true;
         }
 		
+		public function esunico($value, $options = array(), $rule = array()) {
+           
+		   
+		   //Encriptacion del documento
+			
+			if (empty($this->data['Patient']['id'])) { // Si es una alta de nuevo paciente...
+				if (!empty($this->data['Patient']['nro_documento']))
+				{
+					$documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
+					
+					$this->data['Patient']['nro_documento'] = $documentoEncriptado;
+					$resultado= $this-> find('list', array('conditions' => array('nro_documento' => $documentoEncriptado)));
+					
+					if ( count($resultado)==0)
+					{
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+			
+
+		  
+           return $valid;
+        }
+		
+		/*
 		public function beforeValidate(){
 			//Encriptacion del documento
 			
@@ -133,7 +164,7 @@ class Patient extends AppModel {
 				}
 			}
             return true;
-		}
+		}*/
 				
 		function afterFind($resultados) {
 			foreach ($resultados as $clave => $valor) {
