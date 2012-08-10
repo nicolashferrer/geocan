@@ -360,14 +360,28 @@ input, textarea {
 .ayudaCodigos {
 	overflow:auto;
 	width: 100%;
-	height: 85px;
+	height: 95px;
 	margin: 5px;
 	background-color: #EFEFEF;
 	border: 1px solid #cccccc;*/
 }
+
+.ayudaCodigosItem {
+	white-space:nowrap;
+	
+}
+
+.ayudaCodigosItem.selected {
+	color: #FFFFFF;
+	background-color: #404040;
+	font-weight: bold;
+	
+}
+
 .ayudaCodigos select{
    border: none;
  }
+ 
 select {
 	padding: 5px;
 	margin-right:5px;
