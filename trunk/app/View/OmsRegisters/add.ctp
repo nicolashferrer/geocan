@@ -184,7 +184,7 @@
 		}};
 		a = $('#sugerencias').autocomplete(options);
 	
-		$(".iframe").colorbox({iframe:true, width:"800px", height:"400px", scrolling:true});
+		$(".iframe").colorbox({iframe:true, width:"700px", height:"450px", scrolling:true});
 	});
 	
 	function cambiarCodigo(id, desc ) {
