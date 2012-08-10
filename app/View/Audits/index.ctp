@@ -168,7 +168,7 @@ echo $this->Filter->filterForm('Audit', array('legend' => 'Filtrado de Logs'));
 		<tr>
 			<td><?php echo traducirEvento(h($audit['Audit']['event'])); ?>&nbsp;</td>
 			<td><?php echo traducirModelo(h($audit['Audit']['model'])); ?>&nbsp;</td>
-			<td><?php echo h($audit['Audit']['entity_id']); ?> <img class="detallestip" src="<?php echo $this->webroot; ?>img/view.png" style="vertical-align: middle;" det="<?php echo procesarJSON($audit['Audit']['json_object']); ?>"/>&nbsp;</td>
+			<td><img class="detallestip" src="<?php echo $this->webroot; ?>img/view.png" style="vertical-align: middle;" det="<?php echo procesarJSON($audit['Audit']['json_object']); ?>"/>&nbsp;</td>
 			<td><?php echo h($audit['Audit']['created']); ?>&nbsp;</td>
 			<td><?php echo h($audit['User']['username']); ?>&nbsp;</td>
 		</tr>
