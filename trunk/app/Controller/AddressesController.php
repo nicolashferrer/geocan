@@ -110,6 +110,8 @@ public $helpers = array('GoogleMapV3');
 		
 		$aux = $this->request->query['data']['Consulta'];
 		
+		debug($this->request->query['data']);
+		
 		if ($aux['edadMin'] != '') {
 			$condedad .= " AND edad >= ".$aux['edadMin']." ";
 		} 
