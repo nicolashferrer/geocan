@@ -130,14 +130,14 @@ public $helpers = array('GoogleMapV3');
 		}
 		
 		if (($aux['fechaFrom'] != '') AND ($aux['fechaTo'] != '')) {
-			$condfecha .= " AND o.fecha BETWEEN ". implode('-',array_reverse(explode('/', $aux['fechaFrom']))). ' 00:00:00 AND '. implode('-',array_reverse(explode('/', $aux['fechaTo']))).' 23:59:59';
+			$condfecha .= " AND o.fecha BETWEEN '". implode('-',array_reverse(explode('/', $aux['fechaFrom']))). " 00:00:00' AND '". implode('-',array_reverse(explode('/', $aux['fechaTo'])))." 23:59:59'";
 		}
 		else {
 			if ($aux['fechaFrom'] != '') {
-				$condfecha .= " AND o.fecha >= ". implode('-',array_reverse(explode('/', $aux['fechaFrom']))). ' 00:00:00';
+				$condfecha .= " AND o.fecha >= '". implode('-',array_reverse(explode('/', $aux['fechaFrom']))). " 00:00:00'";
 			}
 			if ($aux['fechaTo'] != '') {
-				$condfecha .= " AND o.fecha <= ". implode('-',array_reverse(explode('/', $aux['fechaTo']))). ' 23:59:59';
+				$condfecha .= " AND o.fecha <= '". implode('-',array_reverse(explode('/', $aux['fechaTo']))). " 23:59:59'";
 			}
 		}
 		
