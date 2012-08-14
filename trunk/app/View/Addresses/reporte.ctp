@@ -482,9 +482,9 @@
 					echo "<label>Edad Entre </label><input type='text' size='5' name='data[Consulta][edadMin]' id='edadMin' />y&nbsp;<input type='text' size='5' name='data[Consulta][edadMax]' id='edadMax' />";
 					echo "</div>";
 					
-					echo $this->Form->input('fecha_from',array('label' => 'Fecha Desde', 'type' => 'text'));
+					echo $this->Form->input('fecha_from',array('label' => 'Fecha Alta Desde', 'type' => 'text'));
 					
-					echo $this->Form->input('fecha_to',array('label' => 'Fecha Hasta', 'type' => 'text'));
+					echo $this->Form->input('fecha_to',array('label' => 'Fecha Alta Hasta', 'type' => 'text'));
 			?>
 			</fieldset>
 			<fieldset>

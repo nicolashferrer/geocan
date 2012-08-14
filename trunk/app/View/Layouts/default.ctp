@@ -51,6 +51,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->script('geocan-utils');
 		echo $this->Html->script('jquery.alerts');
 		echo $this->Html->script('jquery.watermarkinput');
+		
 	?>
 		<script type="text/javascript">
 		var timer = null
