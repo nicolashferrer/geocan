@@ -6,7 +6,7 @@
 
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi" charset="utf-8"></script>
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization">/*2*/</script>
+  
 <script>
 	
 	var codigosAgregados = 0;
@@ -459,12 +459,6 @@
 	
 </script>
 
-
-		<!-- syntax highlighter -->
-        <script src="http://nicolahibbert.com/demo/liteAccordion/js/shCore.js"></script>
-        <script src="http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/3.0.83/scripts/shBrushXml.js"></script>
-        <script src="http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/3.0.83/scripts/shBrushJScript.js"></script>
-        <script>SyntaxHighlighter.all();</script> 
 
 
 <div id="toppanel">
