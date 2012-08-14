@@ -26,7 +26,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
-	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=es&libraries=places""></script>  
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=es&libraries=places&libraries=visualization"></script>
 
 	<?php
 		echo $this->Html->meta('icon');
