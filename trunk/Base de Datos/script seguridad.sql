@@ -1,9 +1,9 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               5.5.16 - MySQL Community Server (GPL)
+-- Server version:               5.1.37 - Source distribution
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-07-25 15:44:52
+-- Date/time:                    2012-08-14 20:35:28
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -147,23 +147,25 @@ CREATE TABLE IF NOT EXISTS `aros` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.aros: ~11 rows (approximately)
 DELETE FROM `aros`;
 /*!40000 ALTER TABLE `aros` DISABLE KEYS */;
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
 	(1, NULL, 'Group', 1, '', 1, 4),
-	(2, NULL, 'Group', 2, '', 5, 10),
+	(2, NULL, 'Group', 2, '', 5, 14),
 	(3, 1, 'User', 1, '', 2, 3),
-	(4, NULL, 'Group', 3, '', 11, 22),
-	(8, 4, 'User', 5, '', 12, 13),
-	(9, 4, 'User', 6, '', 14, 15),
-	(10, 4, 'User', 7, '', 16, 17),
-	(11, 4, 'User', 8, '', 18, 19),
-	(12, 4, 'User', 9, '', 20, 21),
+	(4, NULL, 'Group', 3, '', 15, 26),
+	(8, 2, 'User', 5, '', 12, 13),
+	(9, 4, 'User', 6, '', 16, 17),
+	(10, 4, 'User', 7, '', 18, 19),
+	(11, 4, 'User', 8, '', 20, 21),
+	(12, 4, 'User', 9, '', 22, 23),
 	(13, 2, 'User', 10, '', 6, 7),
-	(14, 2, 'User', 11, '', 8, 9);
+	(14, 2, 'User', 11, '', 8, 9),
+	(15, 2, 'User', 5, '', 10, 11),
+	(16, 4, 'User', 6, '', 24, 25);
 /*!40000 ALTER TABLE `aros` ENABLE KEYS */;
 
 
@@ -178,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   `_update` char(2) NOT NULL DEFAULT '0',
   `_delete` char(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.aros_acos: ~89 rows (approximately)
 DELETE FROM `aros_acos`;
@@ -272,7 +274,57 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 	(86, 4, 24, '1', '1', '1', '1'),
 	(87, 4, 32, '1', '1', '1', '1'),
 	(88, 2, 31, '1', '1', '1', '1'),
-	(89, 4, 31, '1', '1', '1', '1');
+	(89, 4, 31, '1', '1', '1', '1'),
+	(90, 2, 114, '1', '1', '1', '1'),
+	(91, 4, 114, '1', '1', '1', '1');
 /*!40000 ALTER TABLE `aros_acos` ENABLE KEYS */;
+
+
+-- Dumping structure for table geocan.groups
+DROP TABLE IF EXISTS `groups`;
+CREATE TABLE IF NOT EXISTS `groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table geocan.groups: ~3 rows (approximately)
+DELETE FROM `groups`;
+/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
+INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
+	(1, 'Administradores', '2012-04-13 22:22:17', '2012-04-13 22:22:17'),
+	(2, 'Médicos', '2012-04-13 22:22:42', '2012-04-15 23:01:42'),
+	(3, 'Ayudantes', '2012-04-15 23:01:27', '2012-05-26 18:24:41');
+/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
+
+
+-- Dumping structure for table geocan.users
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` char(40) NOT NULL,
+  `group_id` int(11) NOT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `medic_id` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  KEY `FK_users_group` (`group_id`),
+  KEY `FK_users_medic` (`medic_id`),
+  CONSTRAINT `FK_users_group` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`),
+  CONSTRAINT `FK_users_medic` FOREIGN KEY (`medic_id`) REFERENCES `medics` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table geocan.users: ~4 rows (approximately)
+DELETE FROM `users`;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `created`, `modified`, `medic_id`) VALUES
+	(1, 'admin', '3784364f60b0989c0059deb3210dc30966a4ec6c', 1, '2012-04-13 22:24:30', '2012-07-08 19:09:17', 1),
+	(5, 'medico', '3784364f60b0989c0059deb3210dc30966a4ec6c', 2, '2012-08-14 20:24:14', '2012-08-14 20:25:41', 2),
+	(6, 'ayudante', '3784364f60b0989c0059deb3210dc30966a4ec6c', 3, '2012-08-14 20:30:37', '2012-08-14 20:30:37', NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
