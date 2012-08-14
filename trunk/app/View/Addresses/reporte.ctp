@@ -279,12 +279,7 @@
         	chartaux.draw(dataaux, optionsaux);
         	
         }
-        
-        
-
 	}
-
-
 
 	function agregarMarcador(paciente) {
 	
@@ -377,6 +372,8 @@
 		
 		} )
 	
+		$('#ConsultaFechaFrom').datepicker(datepicker_config); 
+		$('#ConsultaFechaTo').datepicker(datepicker_config); 
 
 		$("#accordion").liteAccordion({
 			theme : 'basic',                        // basic, dark, light, or stitch  
@@ -450,7 +447,7 @@
 </script>
 
 
-			<!-- syntax highlighter -->
+		<!-- syntax highlighter -->
         <script src="http://nicolahibbert.com/demo/liteAccordion/js/shCore.js"></script>
         <script src="http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/3.0.83/scripts/shBrushXml.js"></script>
         <script src="http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/3.0.83/scripts/shBrushJScript.js"></script>
@@ -484,6 +481,10 @@
 					echo "<div class=input>";
 					echo "<label>Edad Entre </label><input type='text' size='5' name='data[Consulta][edadMin]' id='edadMin' />y&nbsp;<input type='text' size='5' name='data[Consulta][edadMax]' id='edadMax' />";
 					echo "</div>";
+					
+					echo $this->Form->input('fecha_from',array('label' => 'Fecha Desde', 'type' => 'text'));
+					
+					echo $this->Form->input('fecha_to',array('label' => 'Fecha Hasta', 'type' => 'text'));
 			?>
 			</fieldset>
 			<fieldset>
