@@ -113,11 +113,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 							<li><?php echo $this->Html->link('Nuevo Paciente',array('controller' => 'patients', 'action' => 'add'))?></li>
 						</ul>
 					</li>
-					<li class="top"><a href="#nogo2" id="reportes" class="top_link"><span class="down">Reportes</span></a>
-						<ul class="sub">
-							<li><?php echo $this->Html->link('Prueba',array('controller' => 'addresses', 'action' => 'reporte'))?></li>
-						</ul>
-					</li>
+					<li class="top"><a href="<?php echo $this->Html->url(array("controller" => "addresses","action" => "reporte"));?>" class="top_link"><span>Reporte</span></a></li>
 					<li class="top"><a href="#nogo2" id="administration" class="top_link"><span class="down">Administraci&oacute;n</span></a>
 						<ul class="sub">
 							<li><a href="#" class="fly">Geolocaci&oacute;n</a>
