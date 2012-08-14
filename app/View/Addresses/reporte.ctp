@@ -372,7 +372,7 @@
 		
 		} )
 	
-		$('#ConsultaFechaFrom').datepicker(datepicker_config); 
+		$('#ConsultaFechaFrom').datepicker(datepicker_config);
 		$('#ConsultaFechaTo').datepicker(datepicker_config); 
 		
 		
@@ -495,10 +495,12 @@
 					echo "<label>Edad Entre </label><input type='text' size='5' name='data[Consulta][edadMin]' id='edadMin' />y&nbsp;<input type='text' size='5' name='data[Consulta][edadMax]' id='edadMax' />";
 					echo "</div>";
 					
-					echo $this->Form->input('fecha_from',array('label' => 'Fecha Alta Desde', 'type' => 'text'));
+					echo "<div class=input>";
+					echo "<label>Fecha Entre </label><input type='text' size='10' name='data[Consulta][fechaFrom]' id='ConsultaFechaFrom' />  y&nbsp;<input type='text' size='10' name='data[Consulta][fechaTo]' id='ConsultaFechaTo' />";
+					echo "</div>";
 					
-					echo $this->Form->input('fecha_to',array('label' => 'Fecha Alta Hasta', 'type' => 'text'));
 			?>
+			
 			</fieldset>
 			<fieldset>
 				<legend><?php echo __('OMS'); ?></legend>
