@@ -508,7 +508,7 @@
 					echo "<div class=input>";
 					echo "<label class='label_radio'>C&oacute;digo</label>";
 					echo "<input type='hidden' id='OmsCodeId' value=''>";
-					echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "oms_codes",	"action" => "help"))."'><img src='".$this->webroot."css/images/help.gif' style='vertical-align: middle;' width='28px' height='28px'/></a>";
+					echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "oms_codes",	"action" => "help"))."'><img src='".$this->webroot."css/images/search.png' style='vertical-align: middle;' width='28px' height='28px'/></a>";
 					echo "</div>";
 					echo "<div style='width:100%;height:50px; clear:right !important;'><div class='ayudaCodigos' style='float:left;width:640px;height:50px;padding:0px;' id='listaCodigos'></div><div style='width: 30px;float:left;'><a href='JavaScript:agregarOms();' title='Agregar a la lista'><img src='".$this->webroot."img/icon_add.png' style='vertical-align: middle;'/></a><a href='JavaScript:removerOms()' title='Remover de la lista'><img src='".$this->webroot."img/icon_delete.png' style='vertical-align: middle;'/></a></div></div>";
 				?>	
