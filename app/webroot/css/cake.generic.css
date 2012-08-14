@@ -999,7 +999,7 @@ fieldset fieldset legend {
 	background: rgba(255, 255, 255, 0.9);
 	overflow: hidden;
 	position: relative;
-	z-index: 3;
+	z-index: 0;
 	display: none;
 }
 
