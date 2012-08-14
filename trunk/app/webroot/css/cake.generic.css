@@ -362,20 +362,27 @@ input, textarea {
 	width: 100%;
 	height: 95px;
 	margin: 5px;
-	background-color: #EFEFEF;
+	/*background-color: #EFEFEF;*/
 	border: 1px solid #cccccc;*/
 }
 
 .ayudaCodigosItem {
 	white-space:nowrap;
-	
+	cursor:pointer;cursor:hand;
 }
 
 .ayudaCodigosItem.selected {
 	color: #FFFFFF;
 	background-color: #404040;
 	font-weight: bold;
-	
+}
+
+.ayudaCodigosItem:hover {
+	background-color: #EFEFEF;
+}
+
+.ayudaCodigosItem.selected:hover {
+	background-color: #404040;
 }
 
 .ayudaCodigos select{
