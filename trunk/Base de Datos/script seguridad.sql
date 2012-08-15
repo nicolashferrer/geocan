@@ -1,14 +1,20 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               5.1.37 - Source distribution
+-- Server version:               5.5.8 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-08-14 20:35:28
+-- Date/time:                    2012-08-15 04:31:35
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!40014 SET FOREIGN_KEY_CHECKS=0 */;
+
+-- Dumping database structure for geocan
+DROP DATABASE IF EXISTS `geocan`;
+CREATE DATABASE IF NOT EXISTS `geocan` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `geocan`;
+
 
 -- Dumping structure for table geocan.acos
 DROP TABLE IF EXISTS `acos`;
@@ -149,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `aros` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.aros: ~11 rows (approximately)
+-- Dumping data for table geocan.aros: ~13 rows (approximately)
 DELETE FROM `aros`;
 /*!40000 ALTER TABLE `aros` DISABLE KEYS */;
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
@@ -180,9 +186,9 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   `_update` char(2) NOT NULL DEFAULT '0',
   `_delete` char(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.aros_acos: ~89 rows (approximately)
+-- Dumping data for table geocan.aros_acos: ~91 rows (approximately)
 DELETE FROM `aros_acos`;
 /*!40000 ALTER TABLE `aros_acos` DISABLE KEYS */;
 INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`, `_delete`) VALUES
@@ -276,7 +282,13 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 	(88, 2, 31, '1', '1', '1', '1'),
 	(89, 4, 31, '1', '1', '1', '1'),
 	(90, 2, 114, '1', '1', '1', '1'),
-	(91, 4, 114, '1', '1', '1', '1');
+	(91, 4, 114, '1', '1', '1', '1'),
+	(92, 1, 26, '-1', '-1', '-1', '-1'),
+	(93, 1, 27, '-1', '-1', '-1', '-1'),
+	(94, 2, 19, '1', '1', '1', '1'),
+	(95, 2, 76, '-1', '-1', '-1', '-1'),
+	(96, 4, 26, '-1', '-1', '-1', '-1'),
+	(97, 4, 27, '-1', '-1', '-1', '-1');
 /*!40000 ALTER TABLE `aros_acos` ENABLE KEYS */;
 
 
@@ -318,7 +330,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   CONSTRAINT `FK_users_medic` FOREIGN KEY (`medic_id`) REFERENCES `medics` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.users: ~4 rows (approximately)
+-- Dumping data for table geocan.users: ~3 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `created`, `modified`, `medic_id`) VALUES
