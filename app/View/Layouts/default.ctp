@@ -38,7 +38,6 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		echo $this->Html->css('menu');
 		echo $this->Html->css('jquery.alerts');
 	
-	
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
@@ -118,27 +117,32 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 						<ul class="sub">
 							<li><a href="#" class="fly">Geolocaci&oacute;n</a>
 								<ul>
-									<li><?php echo $this->Html->link('Provincias',array('controller' => 'provinces', 'action' => 'index'))?></li>
+									<?php if ($auth['group_id']==1) { ?>
+										<li><?php echo $this->Html->link('Provincias',array('controller' => 'provinces', 'action' => 'index'))?></li>
+									<?php } ?>
 									<li><?php echo $this->Html->link('Ciudades',array('controller' => 'cities', 'action' => 'index'))?></li>
 								</ul>
 							</li>
-							<li><a href="#" class="fly">M&eacute;dicos</a>
-								<ul>
-									<li><?php echo $this->Html->link(utf8_encode('Médicos'),array('controller' => 'medics', 'action' => 'index'))?></li>
-									<li><?php echo $this->Html->link(utf8_encode('Tipos de Médicos'),array('controller' => 'medic_types', 'action' => 'index'))?></li>
-								</ul>
-							</li>
+							<?php if ($auth['group_id']==1) { ?>
+								<li><a href="#" class="fly">M&eacute;dicos</a>
+									<ul>
+										<li><?php echo $this->Html->link(utf8_encode('Médicos'),array('controller' => 'medics', 'action' => 'index'))?></li>
+										<li><?php echo $this->Html->link(utf8_encode('Tipos de Médicos'),array('controller' => 'medic_types', 'action' => 'index'))?></li>
+									</ul>
+								</li>
+							<?php } ?>
 							<li><a href="#" class="fly">Pacientes</a>
 								<ul>
 									<li><?php echo $this->Html->link(utf8_encode('Preguntas'),array('controller' => 'questions', 'action' => 'index'))?></li>
 								</ul>
 							</li>
-							<li><a href="#" class="fly">Usuarios</a>
-								<ul>
-									<li><?php echo $this->Html->link('Usuarios',array('controller' => 'users', 'action' => 'index'))?></li>
-									<li><?php echo $this->Html->link('Grupos',array('controller' => 'groups', 'action' => 'index'))?></li>
-								</ul>
-							</li>
+							<?php if ($auth['group_id']==1) { ?>
+								<li><a href="#" class="fly">Usuarios</a>
+									<ul>
+										<li><?php echo $this->Html->link('Usuarios',array('controller' => 'users', 'action' => 'index'))?></li>
+									</ul>
+								</li>
+							<?php } ?>
 						</ul>
 						<?php if ($auth['group_id']==1) { ?>
 						<li class="top"><a href="<?php echo $this->Html->url(array("controller" => "audits","action" => "index"));?>" class="top_link"><span>Auditor&iacute;a</span></a></li>

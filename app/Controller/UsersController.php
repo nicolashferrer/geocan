@@ -74,7 +74,7 @@ class UsersController extends AppController {
 		$this->User->id = $id;
 		
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Usuario no válido'));
+			throw new NotFoundException(__('Usuario no vï¿½lido'));
 		}
 		else
 		{
@@ -145,7 +145,7 @@ class UsersController extends AppController {
 	public function editPassword($id =null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Usuario no válido'));
+			throw new NotFoundException(__('Usuario no vï¿½lido'));
 		}
 		if ($this->request->is('post')) {	
 			
@@ -245,6 +245,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers');
 		$this->Acl->deny($group, 'controllers/Groups/add');
 		$this->Acl->deny($group, 'controllers/Groups/edit');
+		$this->Acl->deny($group, 'controllers/Groups/delete');
 		
 		// ------------ Permisos de los medicos ------------- //
 		
@@ -274,6 +275,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Addresses/reporte');
 		$this->Acl->allow($group, 'controllers/Addresses/reporteBusqueda');
 		$this->Acl->allow($group, 'controllers/Addresses/view');
+		$this->Acl->allow($group, 'controllers/Addresses/reporte');
+		$this->Acl->allow($group, 'controllers/Addresses/reporteBusqueda');
 		
 		// Permisos sobre Notas
 		$this->Acl->allow($group, 'controllers/Notes/add');
@@ -288,6 +291,7 @@ class UsersController extends AppController {
 		
 		// Permisos sobre Preguntas y respuestas
 		$this->Acl->allow($group, 'controllers/Questions/view');
+		$this->Acl->allow($group, 'controllers/Questions/index');
 		//$this->Acl->allow($group, 'controllers/Questions/add');
 		$this->Acl->allow($group, 'controllers/Answers/add');
 		$this->Acl->allow($group, 'controllers/Answers/edit');
@@ -307,6 +311,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Cities/getCiudades');
 		$this->Acl->allow($group, 'controllers/Cities/view');
 		$this->Acl->allow($group, 'controllers/Cities/add');
+		$this->Acl->allow($group, 'controllers/Provinces/view');
 		$this->Acl->deny($group, 'controllers/Provinces/index');
 
 		// ------------ Permisos de los ayudantes ------------- //
@@ -315,6 +320,7 @@ class UsersController extends AppController {
 		$this->Acl->deny($group, 'controllers');
 		$this->Acl->deny($group, 'controllers/Groups/add');
 		$this->Acl->deny($group, 'controllers/Groups/edit');
+		$this->Acl->deny($group, 'controllers/Groups/delete');
 		
 		// Permisos sobre Usuarios
 		$this->Acl->allow($group, 'controllers/Users/editPassword');
@@ -372,7 +378,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Cities/view');
 		$this->Acl->allow($group, 'controllers/Cities/edit');
 		$this->Acl->allow($group, 'controllers/Cities/delete');
-		//$this->Acl->allow($group, 'controllers/Provinces/view');
+		$this->Acl->allow($group, 'controllers/Provinces/view');
+		$this->Acl->deny($group, 'controllers/Provinces/index');
 		
 		// Permisos sobre Medicos y Tipos de medicos
 		//$this->Acl->allow($group, 'controllers/Medics/view');

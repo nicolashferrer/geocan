@@ -55,14 +55,14 @@ class AppController extends Controller {
 		//Defino el root
 		$this->Auth->actionPath = 'controllers/';
 		
-		//Esto hace que la acción 'display' sea pública
+		//Esto hace que la acciï¿½n 'display' sea pï¿½blica
 		$this->Auth->allowedActions = array('display','captcha','login','logout');
 		
 		$this->currentUser = $this->Auth->user();
 		$this->isAuthed = !empty($this->currentUser); 
 		
 		
-		// Pregunto si el usuario esta logueado y si su contraseña es la default, le exigo que la cambie y no le dejo hacer mas nada hasta que cambie la contraseña.
+		// Pregunto si el usuario esta logueado y si su contraseï¿½a es la default, le exigo que la cambie y no le dejo hacer mas nada hasta que cambie la contraseï¿½a.
 		if (($this->isAuthed) && ($this->params['action']!="editPassword") && ($this->params['action']!="logout"))  {
 			if (AuthComponent::password('geocan2012') == $this->Session->read('userpass')) {
 				$this->Session->setFlash(__('Por cuestiones de seguridad le pedimos que cambie su contrase&ntilde;a por una m&aacute;s segura.', null), 'default', array('class' => 'warning'));
