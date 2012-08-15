@@ -236,11 +236,19 @@
 		echo $this->Form->hidden('address_part_id', array('value' => $patient['Primary']['id']));
 		echo $this->Form->hidden('address_lab_id', array('value' => $patient['Secondary']['id']));
 
-		echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
-		echo "<div class=input>";
+		//echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
+				
+		if ($auth['group_id']!=2) {
+			echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
+		} else {
+			echo "<div><label class='label_radio required'>M&eacute;dico</label>".$medic['Medic']['nombrecompleto']."</div>";
+			echo $this->Form->hidden('medic_id',array('value'=>$auth['medic_id']));
+		}
+		
+		echo "<div class=input>"; 
 		echo "<label class='label_radio required'>C&oacute;digo</label>";
 		echo "<input type='text' size='25' value='' id='sugerencias' class='inputlargo'><a class='iframe' title='Selector de C&oacute;digos OMS' href='".$this->Html->url(array("controller" => "oms_codes",	"action" => "help"))."'><img src='".$this->webroot."css/images/search.png' style='vertical-align: middle;' /></a>";
-		echo "</div>";	
+		echo "</div>";
 		
 		echo $this->Form->hidden('oms_code_id');
 		echo $this->Form->input('fecha',array('label' => '&nbsp; Fecha Diagnositico','type' => 'text','value' => $hoyformateado));

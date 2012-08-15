@@ -13,7 +13,16 @@
 	
 		echo $this->Form->hidden('id',array('value' => $omsregister['OmsRegister']['id']));
 		//echo $this->Form->hidden('patient_id',array('value' => $omsregister['OmsRegister']['patient_id']));
-		echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico','value' => $omsregister['OmsRegister']['medic_id']));
+		
+		//echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico','value' => $omsregister['OmsRegister']['medic_id']));
+		
+		if ($auth['group_id']!=2) {
+			echo $this->Form->input('medic_id',array('label'=>'M&eacute;dico'));
+		} else {
+			echo "<div><label class='label_radio required'>M&eacute;dico</label>".$medic['Medic']['nombrecompleto']."</div>";
+			echo $this->Form->hidden('medic_id',array('value'=>$auth['medic_id']));
+		}
+		
 		//echo $this->Form->input('address_part_id');
 		//echo $this->Form->input('address_lab_id');
 		//echo $this->Form->input('oms_code_id');
