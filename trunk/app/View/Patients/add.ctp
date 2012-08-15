@@ -192,7 +192,7 @@ $(document).ready(function() {
 		echo $this->Form->hidden('Secondary.longitud');
 		echo $this->Form->hidden('Secondary.direccion');
 		
-		echo $this->Form->input('nro_documento',array('label' => 'N&uacute;mero De Documento', /*'value' => $id*/));
+		echo $this->Form->input('nro_documento',array('label' => 'N&uacute;mero De Documento', 'value' => $id));
 		echo $this->Form->input('iniciales');
 		echo $this->Form->input('fecha_nacimiento',array('label' => 'Fecha De Nacimiento', 'type' => 'text'));
 		$options=array('M'=>'Masculino','F'=>'Femenino');
