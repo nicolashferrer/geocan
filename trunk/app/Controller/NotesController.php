@@ -110,7 +110,7 @@ public $helpers = array('Tinymce');
 		if (!$this->Note->exists()) {
 			throw new NotFoundException(__('Nota inv&aacute;lida'));
 		}
-		
+		$medic_id = $this->Note->read('medic_id');
 		if ($medic_id['Note']['medic_id'] != $this->Auth->user('medic_id')) {
 			exit(0);
 		}

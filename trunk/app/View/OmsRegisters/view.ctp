@@ -34,9 +34,10 @@
 			</dd>
 		</dl>
 		<div class="actions">
-			<ul>
-				<li><?php echo $this->Html->link(__('Editar Oms'), array('action' => 'edit', $omsRegister['OmsRegister']['id'],$omsRegister['Patient']['id'])); ?> </li>
-			</ul>
+			<ul><?php if (($auth['group_id']==1)||(($auth['group_id']==2) && ($auth['medic_id']==$omsRegister['Medic']['id']))){?>
+						<li><?php echo $this->Html->link(__('Editar Oms'), array('action' => 'edit', $omsRegister['OmsRegister']['id'],$omsRegister['Patient']['id']));} ?> </li>
+				
+					</ul>
 		</div>
 	</fieldset>
 

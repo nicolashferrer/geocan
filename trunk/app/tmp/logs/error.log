@@ -1,3 +1,24 @@
 2012-07-08 21:33:25 Error: [MissingControllerException] Controller class AddressController could not be found.
 #0 C:\xampp\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
+2012-08-14 21:51:48 Error: [MethodNotAllowedException] Method Not Allowed
+#0 [internal function]: OmsRegistersController->delete('20')
+#1 C:\xampp\htdocs\geocan\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(OmsRegistersController), Array)
+#2 C:\xampp\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(OmsRegistersController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-08-14 21:52:22 Error: [MethodNotAllowedException] Method Not Allowed
+#0 [internal function]: OmsRegistersController->delete('20', '20')
+#1 C:\xampp\htdocs\geocan\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(OmsRegistersController), Array)
+#2 C:\xampp\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(OmsRegistersController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2012-08-14 21:55:45 Error: [MethodNotAllowedException] Method Not Allowed
+#0 [internal function]: OmsRegistersController->delete('20', '1')
+#1 C:\xampp\htdocs\geocan\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(OmsRegistersController), Array)
+#2 C:\xampp\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(103): Controller->invokeAction(Object(CakeRequest))
+#3 C:\xampp\htdocs\geocan\lib\Cake\Routing\Dispatcher.php(85): Dispatcher->_invoke(Object(OmsRegistersController), Object(CakeRequest), Object(CakeResponse))
+#4 C:\xampp\htdocs\geocan\app\webroot\index.php(96): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
