@@ -177,9 +177,9 @@ var $captcha = ''; //intializing captcha var
 	//ACL***
 	
 	// En caso que queramos permisos por grupo solamente
-/*
+
 	function bindNode($user) {
 		return array('model' => 'Group', 'foreign_key' => $user['User']['group_id']);
     }
-*/
+
 }
