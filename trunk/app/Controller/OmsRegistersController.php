@@ -98,9 +98,19 @@ class OmsRegistersController extends AppController {
 		Controller::loadModel('Province');
 		$provinces = $this->Province->find('list');
 		$this->set('patient', $this->OmsRegister->Patient->read(null, $id));
-		$medics = $this->OmsRegister->Medic->find('list');
+		//$medics = $this->OmsRegister->Medic->find('list');
 		$omsCodes = $this->OmsRegister->OmsCode->find('list');
-		$this->set(compact('medics','omsCodes','provinces'));
+		//$this->set(compact('medics','omsCodes','provinces'));
+		
+		
+		if  ($this->Auth->user('group_id')!=2) { // Si no es un medico...
+			$medics = $this->OmsRegister->Medic->find('list',array('fields'=>array('Medic.nombrecompleto')));
+			$this->set(compact('medics','omsCodes','provinces'));
+		} else {
+			Controller::loadModel('Medic');
+			$medic = $this->OmsRegister->Medic->read('nombrecompleto',$this->Auth->user('medic_id'));
+			$this->set(compact('medic','omsCodes','provinces'));
+		}
 	}
 
 /**
@@ -116,7 +126,7 @@ class OmsRegistersController extends AppController {
 		}
 		$medic_id = $this->OmsRegister->read('medic_id');
 		
-		if ($medic_id['OmsRegister']['medic_id'] != $this->Auth->user('medic_id')) {
+		if (($this->Auth->user('group_id')==2) && ($medic_id['OmsRegister']['medic_id'] != $this->Auth->user('medic_id'))) {
 			exit(0);
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
@@ -131,8 +141,15 @@ class OmsRegistersController extends AppController {
 		} else {
 			$this->set('omsregister', $this->OmsRegister->read(null, $id));
 		}
-		$medics = $this->OmsRegister->Medic->find('list');
-		$this->set(compact('medics'));
+		//$medics = $this->OmsRegister->Medic->find('list');
+		//$this->set(compact('medics'));
+		if  ($this->Auth->user('group_id')!=2) { // Si no es un medico...
+			$medics = $this->OmsRegister->Medic->find('list',array('fields'=>array('Medic.nombrecompleto')));
+			$this->set(compact('medics'));
+		} else {
+			$medic = $this->OmsRegister->Medic->read('nombrecompleto',$this->Auth->user('medic_id'));
+			$this->set(compact('medic'));
+		}
 	}
 
 /**
@@ -151,7 +168,7 @@ class OmsRegistersController extends AppController {
 		}
 		$medic_id = $this->OmsRegister->read('medic_id');
 		
-		if ($medic_id['OmsRegister']['medic_id'] != $this->Auth->user('medic_id')) {
+		if (($this->Auth->user('group_id')==2) && ($medic_id['OmsRegister']['medic_id'] != $this->Auth->user('medic_id'))) {
 			exit(0);
 		}
 		if ($this->OmsRegister->delete()) {
