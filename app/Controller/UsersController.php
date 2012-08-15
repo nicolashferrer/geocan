@@ -243,20 +243,22 @@ class UsersController extends AppController {
 		
 		$group->id = 1;
 		$this->Acl->allow($group, 'controllers');
+		$this->Acl->deny($group, 'controllers/Groups/add');
+		$this->Acl->deny($group, 'controllers/Groups/edit');
 		
 		// ------------ Permisos de los medicos ------------- //
 		
 		$group->id = 2;
 		$this->Acl->deny($group, 'controllers');
-		
+
 		// Permisos sobre Usuarios
 		$this->Acl->allow($group, 'controllers/Users/editPassword');
-		$this->Acl->allow($group, 'controllers/Users/view');
+		//$this->Acl->allow($group, 'controllers/Users/view');
 		$this->Acl->allow($group, 'controllers/Users/login');
-		$this->Acl->allow($group, 'controllers/Users/index');
+		//$this->Acl->allow($group, 'controllers/Users/index');
 		$this->Acl->allow($group, 'controllers/Users/logout');
-		$this->Acl->allow($group, 'controllers/Groups/view');
-		$this->Acl->allow($group, 'controllers/Groups/index');
+		//$this->Acl->allow($group, 'controllers/Groups/view');
+		//$this->Acl->allow($group, 'controllers/Groups/index');
 		
 		// Permisos sobre pacientes
 		$this->Acl->allow($group, 'controllers/Patients/add');
@@ -280,12 +282,13 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Notes/view');
 		
 		// Permisos sobre Medicos y Tipos de Medicos
-		$this->Acl->allow($group, 'controllers/Medics/view');
-		$this->Acl->allow($group, 'controllers/MedicTypes/view');
-		$this->Acl->allow($group, 'controllers/MedicTypes/index');
+		//$this->Acl->allow($group, 'controllers/Medics/view');
+		//$this->Acl->allow($group, 'controllers/MedicTypes/view');
+		//$this->Acl->allow($group, 'controllers/MedicTypes/index');
 		
 		// Permisos sobre Preguntas y respuestas
 		$this->Acl->allow($group, 'controllers/Questions/view');
+		//$this->Acl->allow($group, 'controllers/Questions/add');
 		$this->Acl->allow($group, 'controllers/Answers/add');
 		$this->Acl->allow($group, 'controllers/Answers/edit');
 		$this->Acl->allow($group, 'controllers/Answers/view');
@@ -303,21 +306,24 @@ class UsersController extends AppController {
 		// Ciudades y Provincias
 		$this->Acl->allow($group, 'controllers/Cities/getCiudades');
 		$this->Acl->allow($group, 'controllers/Cities/view');
-		$this->Acl->allow($group, 'controllers/Provinces/view');
+		$this->Acl->allow($group, 'controllers/Cities/add');
+		$this->Acl->deny($group, 'controllers/Provinces/index');
 
 		// ------------ Permisos de los ayudantes ------------- //
 		
 		$group->id = 3;
 		$this->Acl->deny($group, 'controllers');
+		$this->Acl->deny($group, 'controllers/Groups/add');
+		$this->Acl->deny($group, 'controllers/Groups/edit');
 		
 		// Permisos sobre Usuarios
 		$this->Acl->allow($group, 'controllers/Users/editPassword');
-		$this->Acl->allow($group, 'controllers/Users/view');
-		$this->Acl->allow($group, 'controllers/Users/index');
+		//$this->Acl->allow($group, 'controllers/Users/view');
+		//$this->Acl->allow($group, 'controllers/Users/index');
 		$this->Acl->allow($group, 'controllers/Users/login');
 		$this->Acl->allow($group, 'controllers/Users/logout');
-		$this->Acl->allow($group, 'controllers/Groups/view');
-		$this->Acl->allow($group, 'controllers/Groups/index');
+		//$this->Acl->allow($group, 'controllers/Groups/view');
+		//$this->Acl->allow($group, 'controllers/Groups/index');
 				
 		// Permisos sobre pacientes
 		$this->Acl->allow($group, 'controllers/Patients/add');
@@ -366,12 +372,12 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Cities/view');
 		$this->Acl->allow($group, 'controllers/Cities/edit');
 		$this->Acl->allow($group, 'controllers/Cities/delete');
-		$this->Acl->allow($group, 'controllers/Provinces/view');
+		//$this->Acl->allow($group, 'controllers/Provinces/view');
 		
 		// Permisos sobre Medicos y Tipos de medicos
-		$this->Acl->allow($group, 'controllers/Medics/view');
-		$this->Acl->allow($group, 'controllers/MedicTypes/view');
-		$this->Acl->allow($group, 'controllers/MedicTypes/index');
+		//$this->Acl->allow($group, 'controllers/Medics/view');
+		//$this->Acl->allow($group, 'controllers/MedicTypes/view');
+		//$this->Acl->allow($group, 'controllers/MedicTypes/index');
 		
     }
 	
