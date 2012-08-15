@@ -114,6 +114,11 @@ class OmsRegistersController extends AppController {
 		if (!$this->OmsRegister->exists()) {
 			throw new NotFoundException(__('Registro Oms inv&aacute;lido'));
 		}
+		$medic_id = $this->OmsRegister->read('medic_id');
+		
+		if ($medic_id['OmsRegister']['medic_id'] != $this->Auth->user('medic_id')) {
+			exit(0);
+		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->OmsRegister->save($this->request->data)) {
 				$this->Session->setFlash(__('El registro Oms fue modificado correctamente.', null), 
@@ -143,6 +148,11 @@ class OmsRegistersController extends AppController {
 		$this->OmsRegister->id = $id;
 		if (!$this->OmsRegister->exists()) {
 			throw new NotFoundException(__('Registro Oms inv&aacute;lido'));
+		}
+		$medic_id = $this->OmsRegister->read('medic_id');
+		
+		if ($medic_id['OmsRegister']['medic_id'] != $this->Auth->user('medic_id')) {
+			exit(0);
 		}
 		if ($this->OmsRegister->delete()) {
 			$this->Session->setFlash(__('El registro Oms fue borrado correctamente', null), 
