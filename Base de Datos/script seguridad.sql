@@ -11,8 +11,6 @@
 /*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
 -- Dumping database structure for geocan
-DROP DATABASE IF EXISTS `geocan`;
-CREATE DATABASE IF NOT EXISTS `geocan` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `geocan`;
 
 
