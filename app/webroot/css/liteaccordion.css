@@ -58,7 +58,7 @@
     filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 .accordion .slide > h2:hover { cursor: pointer }
-.accordion .slide > div { height: 100%; position: absolute; top: 0; z-index: 10; overflow: hidden; background: white }
+.accordion .slide > div { height: 100%; position: absolute; top: 0; z-index: 10; overflow: auto; background: white }
 .accordion noscript p { padding: 10px; margin: 0; background: white }
 
 /****************************************** Basic */
