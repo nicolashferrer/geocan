@@ -85,6 +85,7 @@
 				<tr>
 					<th><?php echo __('C&oacute;digo'); ?></th>
 					<th><?php echo __('Fecha'); ?></th>
+					<th><?php echo __('Edad'); ?></th>
 					<th><?php echo __('M&eacute;dico'); ?></th>
 					<!--
 					<th><?php // echo __('Dir. Particular'); ?></th>
@@ -95,16 +96,20 @@
 				</tr>
 				<?php
 					$i = 0;
+				//	debug($patient['OmsRegister']);
 					foreach ($patient['OmsRegister'] as $omsRegister): ?>
 					<tr>
 						<td><?php echo $omsRegister['Oms']['codigo'];?></td>
 						<td><?php echo $omsRegister['fecha'];?></td>
+						<td><?php echo $omsRegister['OmsRegister'][0]['edad'];?></td>
 						<td><?php echo $omsRegister['Medic']['nombre'].' '.$omsRegister['Medic']['apellido']; ?></td>
 						<!--
 						
 						<td><?php // echo $omsRegister['AddressPart']['direccion'];?></td>
 						<td><?php // echo $omsRegister['AddressLab']['direccion'];?></td>
 						-->
+						
+						
 						
 						<td class="actions">
 							<?php echo $this->Html->link(__('Detalles y Notas'), array('controller' => 'oms_registers', 'action' => 'view', $omsRegister['id'])); ?>
