@@ -101,7 +101,8 @@ class Patient extends AppModel {
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',
-			'finderQuery' => 'SELECT OmsRegister.*,Medic.nombre,Medic.apellido,Oms.codigo,AddressPart.direccion,AddressLab.direccion FROM geocan.oms_registers AS OmsRegister LEFT JOIN medics AS Medic ON Medic.id=OmsRegister.medic_id LEFT JOIN oms_codes AS Oms ON Oms.id=OmsRegister.oms_code_id LEFT JOIN addresses AS AddressPart ON AddressPart.id=OmsRegister.address_part_id LEFT JOIN addresses AS AddressLab ON AddressLab.id=OmsRegister.address_lab_id WHERE OmsRegister.patient_id ={$__cakeID__$}',
+			//'finderQuery' => 'SELECT OmsRegister.*,Medic.nombre,Medic.apellido,Oms.codigo,AddressPart.direccion,AddressLab.direccion FROM geocan.oms_registers AS OmsRegister LEFT JOIN medics AS Medic ON Medic.id=OmsRegister.medic_id LEFT JOIN oms_codes AS Oms ON Oms.id=OmsRegister.oms_code_id LEFT JOIN addresses AS AddressPart ON AddressPart.id=OmsRegister.address_part_id LEFT JOIN addresses AS AddressLab ON AddressLab.id=OmsRegister.address_lab_id WHERE OmsRegister.patient_id ={$__cakeID__$}',
+			'finderQuery' => 'SELECT OmsRegister.*,Medic.nombre,Medic.apellido,Oms.codigo, (DATE_FORMAT(FROM_DAYS(TO_DAYS(OmsRegister.fecha) - TO_DAYS(Patient.fecha_nacimiento)), "%Y")+0) AS edad FROM geocan.oms_registers AS OmsRegister LEFT JOIN medics AS Medic ON Medic.id=OmsRegister.medic_id LEFT JOIN oms_codes AS Oms ON Oms.id=OmsRegister.oms_code_id LEFT JOIN patients AS Patient ON Patient.id=OmsRegister.patient_id  WHERE OmsRegister.patient_id ={$__cakeID__$}',
 			'counterQuery' => ''
 		)
 	);

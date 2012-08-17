@@ -13,6 +13,7 @@ App::uses('AppModel', 'Model');
 class OmsRegister extends AppModel {
 
 	public $actsAs = array('AuditLog.Auditable');
+	
 /**
  * Validation rules
  *
@@ -78,7 +79,7 @@ class OmsRegister extends AppModel {
 			'className' => 'Patient',
 			'foreignKey' => 'patient_id',
 			'conditions' => '',
-			'fields' => '',
+			'fields' => 'fecha_nacimiento',
 			'order' => ''
 		),
 		'Medic' => array(
