@@ -92,6 +92,9 @@ class PatientsController extends AppController {
 		if (!$this->Patient->exists()) {
 			throw new NotFoundException(__('Paciente inv&aacute;lido'));
 		}
+		
+		$this->Session->write('PacienteActual', $id);
+		
 		$this->set('patient', $this->Patient->read(null, $id));
 		$result = $this->Patient->Query('select * from questions left join answers on answers.question_id=questions.id and answers.patient_id="'.$id.'" where questions.visible=true;');
 		$this->set('results',$result);
@@ -283,7 +286,7 @@ class PatientsController extends AppController {
 				
 			} else {
 				// echo "<script language='JavaScript'> alert('lalal'); </script>";
-				$this->Session->setFlash(__('El paciente no se pudo guardar. Por favor, inténtelo de nuevo.'));
+				$this->Session->setFlash(__('El paciente no se pudo guardar. Por favor, intï¿½ntelo de nuevo.'));
 			}
 		} else {
 			$this->request->data = $this->Patient->read(null, $id);
