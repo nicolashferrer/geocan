@@ -181,6 +181,8 @@ class UsersController extends AppController {
 	public function login() {
 
 		if ($this -> Session -> read('Auth.User')) {
+			
+			$this->Session->write('PacienteActual', '');
 
 			$this -> redirect(array('controller' => 'patients', 'action' => 'search'));
 
@@ -208,6 +210,9 @@ class UsersController extends AppController {
 							$this -> redirect($this -> Auth -> logout());
 						}
 						
+						// Aca hice login correctamente
+						$this->Session->write('PacienteActual', '');
+						
 						$user = $this -> User -> read('password', $this -> Auth -> user('id'));
 						$this -> Session -> write('userpass', $user['User']['password']);
 						$this -> redirect($this -> Auth -> redirect());
@@ -222,6 +227,7 @@ class UsersController extends AppController {
 	}
 
 	public function logout() {
+		$this->Session->write('PacienteActual', '');
 		$this -> Session -> setFlash('Gracias por utilizar Geocan&copy;');
 		$this -> redirect($this -> Auth -> logout());
 	}
