@@ -315,6 +315,14 @@ class UsersController extends AppController {
 		$this -> Acl -> allow($group, 'controllers/Provinces/view');
 		$this -> Acl -> deny($group, 'controllers/Provinces/index');
 
+
+		// Permisos de Jobs
+		$this -> Acl -> allow($group, 'controllers/Jobs/index');
+		$this -> Acl -> allow($group, 'controllers/Jobs/add');
+		$this -> Acl -> allow($group, 'controllers/Jobs/view');
+		$this -> Acl -> allow($group, 'controllers/Jobs/delete');
+		$this -> Acl -> deny($group, 'controllers/Jobs/edit');
+
 		// ------------ Permisos de los ayudantes ------------- //
 
 		$group -> id = 3;
@@ -386,6 +394,14 @@ class UsersController extends AppController {
 		//$this->Acl->allow($group, 'controllers/Medics/view');
 		//$this->Acl->allow($group, 'controllers/MedicTypes/view');
 		//$this->Acl->allow($group, 'controllers/MedicTypes/index');
+		
+		// Permisos de Jobs
+		$this -> Acl -> allow($group, 'controllers/Jobs/index');
+		$this -> Acl -> allow($group, 'controllers/Jobs/add');
+		$this -> Acl -> allow($group, 'controllers/Jobs/view');
+		$this -> Acl -> allow($group, 'controllers/Jobs/delete');
+		$this -> Acl -> deny($group, 'controllers/Jobs/edit');
+		
 
 	}
 
