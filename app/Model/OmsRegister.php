@@ -79,7 +79,7 @@ class OmsRegister extends AppModel {
 			'className' => 'Patient',
 			'foreignKey' => 'patient_id',
 			'conditions' => '',
-			'fields' => 'fecha_nacimiento',
+			'fields' => 'id,fecha_nacimiento,iniciales',
 			'order' => ''
 		),
 		'Medic' => array(
