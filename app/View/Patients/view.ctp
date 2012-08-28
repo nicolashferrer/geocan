@@ -25,6 +25,16 @@
 							echo 'Femenino'; ?>
 					&nbsp;
 				</dd>
+				<dt><?php echo __('Peso'); ?></dt>
+				<dd>
+					<?php echo h($patient['Patient']['peso']); ?>
+					&nbsp;
+				</dd>
+				<dt><?php echo __('Altura'); ?></dt>
+				<dd>
+					<?php echo h($patient['Patient']['altura']); ?>
+					&nbsp;
+				</dd>
 				<dt><?php echo __('Dir. Particular'); ?></dt>
 				<dd>
 					<?php echo h($patient['Primary']['direccion']); ?>
