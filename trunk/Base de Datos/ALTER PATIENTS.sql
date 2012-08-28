@@ -1,6 +1,6 @@
-ALTER TABLE patients ADD peso decimal(2,2) DEFAULT 0;
+ALTER TABLE patients ADD peso decimal(5,2) DEFAULT 0;
 
-ALTER TABLE patients ADD altura decimal(2,2) DEFAULT 0;
+ALTER TABLE patients ADD altura decimal(3,2) DEFAULT 0;
 
 ALTER TABLE patients ADD vive tinyint(1) DEFAULT 1;
 
