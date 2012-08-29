@@ -66,13 +66,15 @@ class Patient extends AppModel {
 				//'allowEmpty' => true
 			)
 		),
-		'peso' => array(
-			//	'rule' => array('decimal',2),
-			'sosnumero' => array(
-				'rule' => '/^\d{0,3}(\.\d{0,2})?$/i',
-				'message' => 'Solo se permiten n&uacute;meros decimales entre 0 y 999.99',
-				'allowEmpty' => true
-			)
+		 'peso' => array(
+			'rule' => '/^\d{0,3}(\.\d{0,2})?$/i',
+			'message' => 'Solo se permiten n&uacute;meros decimales entre 0 y 999.99',
+			'allowEmpty' => true
+		),
+		'altura' => array(
+			'rule' => '/^\d{1}(\.\d{0,2})?$/i',
+			'message' => 'Solo se permiten n&uacute;meros decimales entre 0 y 9.99',
+			'allowEmpty' => true
 		)
 	);
 
