@@ -1,44 +1,43 @@
 <div class="jobs index">
-	<h2><?php echo __('Jobs');?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('descripcion');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
-	</tr>
-	<?php
-	foreach ($jobs as $job): ?>
-	<tr>
-		<td><?php echo h($job['Job']['id']); ?>&nbsp;</td>
-		<td><?php echo h($job['Job']['descripcion']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $job['Job']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $job['Job']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $job['Job']['id']), null, __('Are you sure you want to delete # %s?', $job['Job']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
+	<fieldset>
+		<legend><?php echo __('Trabajos'); ?></legend>
+		<div class="actions">
+			<ul>
+				<li><?php echo $this->Html->link(__('Nuevo Trabajo'), array('action' => 'add')); ?></li>
+			</ul>
+		</div>
+		<table cellpadding="0" cellspacing="0">
+		<tr>
+				<th><?php echo $this->Paginator->sort('id');?></th>
+				<th><?php echo $this->Paginator->sort('descripcion');?></th>
+				<th class="actions"></th>
+		</tr>
+		<?php
+		foreach ($jobs as $job): ?>
+			<tr>
+				<td><?php echo h($job['Job']['id']); ?>&nbsp;</td>
+				<td><?php echo h($job['Job']['descripcion']); ?>&nbsp;</td>
+				<td class="actions">
+					<?php echo $this->Html->link(__('Modificar'), array('action' => 'edit', $job['Job']['id'])); ?>
+					<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $job['Job']['id']), null, __('Esta seguro que desea eliminar el trabajo # %s?', $job['Job']['descripcion'])); ?>
+				</td>
+			</tr>
+		<?php endforeach; ?>
+		</table>
+		<p>
+		<?php
+		echo $this->Paginator->counter(array(
+		'format' => __('Pagina {:page} de {:pages}')
+		));
+		?>	</p>
 
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
+		<div class="paging">
+		<?php
+			echo $this->Paginator->prev('< ' . __('anterior'), array(), null, array('class' => 'prev disabled'));
+			echo $this->Paginator->numbers(array('separator' => ''));
+			echo $this->Paginator->next(__('siguiente') . ' >', array(), null, array('class' => 'next disabled'));
+		?>
+		</div>
+	</fieldset>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Job'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Patients'), array('controller' => 'patients', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Patient'), array('controller' => 'patients', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+

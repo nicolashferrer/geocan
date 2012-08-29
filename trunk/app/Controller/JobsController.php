@@ -27,7 +27,7 @@ class JobsController extends AppController {
 	public function view($id = null) {
 		$this->Job->id = $id;
 		if (!$this->Job->exists()) {
-			throw new NotFoundException(__('Invalid job'));
+			throw new NotFoundException(__('Trabajo inv&aacute;lido'));
 		}
 		$this->set('job', $this->Job->read(null, $id));
 	}
@@ -41,10 +41,12 @@ class JobsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Job->create();
 			if ($this->Job->save($this->request->data)) {
-				$this->Session->setFlash(__('The job has been saved'));
+				$this->Session->setFlash(__('El trabajo fue creado correctamente.', null), 
+					'default', 
+				array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The job could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El trabajo no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		}
 	}
@@ -58,14 +60,16 @@ class JobsController extends AppController {
 	public function edit($id = null) {
 		$this->Job->id = $id;
 		if (!$this->Job->exists()) {
-			throw new NotFoundException(__('Invalid job'));
+			throw new NotFoundException(__('Trabajo inv&aacute;lido'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Job->save($this->request->data)) {
-				$this->Session->setFlash(__('The job has been saved'));
+				$this->Session->setFlash(__('El trabajo fue modificado correctamente.', null), 
+					'default', 
+					array('class' => 'success'));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The job could not be saved. Please, try again.'));
+				$this->Session->setFlash(__('El trabajo no se ha podido guardar. Por favor, int&eacute;ntelo de nuevo.'));
 			}
 		} else {
 			$this->request->data = $this->Job->read(null, $id);
@@ -84,13 +88,16 @@ class JobsController extends AppController {
 		}
 		$this->Job->id = $id;
 		if (!$this->Job->exists()) {
-			throw new NotFoundException(__('Invalid job'));
+			throw new NotFoundException(__('Trabajo inv&aacute;lido'));
 		}
 		if ($this->Job->delete()) {
-			$this->Session->setFlash(__('Job deleted'));
-			$this->redirect(array('action' => 'index'));
+			$this->Session->setFlash(__('El trabajo fue borrado correctamente', null), 
+					'default', 
+					array('class' => 'success'));
 		}
-		$this->Session->setFlash(__('Job was not deleted'));
+		if (!$this->checkDelete())
+			$this->Session->setFlash(__('El trabajo no pudo ser borrado. Tiene pacientes asociados.'));
+		
 		$this->redirect(array('action' => 'index'));
 	}
 }
