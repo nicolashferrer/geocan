@@ -11,6 +11,8 @@
 	<?php
 		//debug($omsregister);
 	
+		//echo $this->Form->input('OmsRegister.id', array( 'value' => $omsregister['OmsRegister']['id']  , 'type' => 'hidden') ); 
+		
 		echo $this->Form->hidden('id',array('value' => $omsregister['OmsRegister']['id']));
 		//echo $this->Form->hidden('patient_id',array('value' => $omsregister['OmsRegister']['patient_id']));
 		

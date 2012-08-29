@@ -152,7 +152,9 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 							<li><a href="#" class="fly">Pacientes</a>
 								<ul>
 									<li><?php echo $this->Html->link(utf8_encode('Preguntas'),array('controller' => 'questions', 'action' => 'index'))?></li>
+									<li><?php echo $this->Html->link(utf8_encode('Ocupaciones'),array('controller' => 'jobs', 'action' => 'index'))?></li>
 								</ul>
+								
 							</li>
 							<?php if ($auth['group_id']==1) { ?>
 								<li><a href="#" class="fly">Usuarios</a>
