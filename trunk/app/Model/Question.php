@@ -15,6 +15,10 @@ class Question extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'is_unique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'La Pregunta ingresada ya existe.',
+            )
 		),
 		'visible' => array(
 			'boolean' => array(
