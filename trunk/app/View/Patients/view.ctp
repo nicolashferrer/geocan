@@ -58,13 +58,19 @@
 					<?php 
 					
 						$alturacuadrado = pow($patient['Patient']['altura'],2);
-						
-						$masa = $patient['Patient']['peso'];
-						
-						$indice = ($masa/$alturacuadrado);
 					
-						echo $indice ; 
-					
+						if ($alturacuadrado == 0) {
+							
+							 echo 0;
+							
+						} else {
+						
+							$masa = $patient['Patient']['peso'];
+							
+							$indice = ($masa/$alturacuadrado);
+						
+							echo $indice ; 
+						}
 					
 					?>
 					&nbsp;
