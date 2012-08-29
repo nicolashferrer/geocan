@@ -191,9 +191,11 @@ class PatientsController extends AppController {
 		}
 		Controller::loadModel('Province');
 		$provinces = $this->Province->find('list');
+		Controller::loadModel('Job');
+		$jobs = $this->Job->find('list');
 		Controller::loadModel('Question');
 		$questions = $this->Question->find('all',array('conditions' => array('Question.visible' => '1')));
-		$this->set(compact('provinces','questions','id'));
+		$this->set(compact('provinces','questions','id','jobs'));
 		
 	}
 
@@ -286,7 +288,7 @@ class PatientsController extends AppController {
 				
 			} else {
 				// echo "<script language='JavaScript'> alert('lalal'); </script>";
-				$this->Session->setFlash(__('El paciente no se pudo guardar. Por favor, int�ntelo de nuevo.'));
+				$this->Session->setFlash(__('El paciente no se pudo guardar. Por favor, inténtelo de nuevo.'));
 			}
 		} else {
 			$this->request->data = $this->Patient->read(null, $id);

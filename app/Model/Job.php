@@ -7,6 +7,9 @@ App::uses('AppModel', 'Model');
  * @property Test $Test
  */
 class Job extends AppModel {
+	
+	
+		var $displayField = 'descripcion';
 /**
  * Validation rules
  *

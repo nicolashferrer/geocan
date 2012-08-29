@@ -203,6 +203,10 @@ $(document).ready(function() {
 		echo $this->Form->radio('sexo',$options,$attributes);
 		echo "</div>";
 		
+		echo $this->Form->input('Patient.peso');
+		echo $this->Form->input('Patient.altura');
+		echo $this->Form->input('Patient.job_id',array('label' =>'Ocupación'));
+		
 		?>
 				<div class=input>
 				<fieldset>
