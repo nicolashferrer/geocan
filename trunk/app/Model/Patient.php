@@ -78,7 +78,8 @@ class Patient extends AppModel {
 
 	public $belongsTo = array(
 		'Primary' => array('className' => 'Address', 'foreignKey' => 'address_particular_id'),
-		'Secondary' => array('className' => 'Address', 'foreignKey' => 'address_laboral_id')
+		'Secondary' => array('className' => 'Address', 'foreignKey' => 'address_laboral_id'),
+		'Job' => array('className' => 'Job', 'foreignKey' => 'job_id')
 		);
 
 /**
