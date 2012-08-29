@@ -26,6 +26,10 @@ class MedicType extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'is_unique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'El Tipo de medico ingresado ya existe.',
+            )
 		),
 	);
 

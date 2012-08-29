@@ -25,6 +25,10 @@ class City extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'is_unique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'La ciudad ingresada ya existe.',
+            )
 		),
 		'province_id' => array(
 			'numeric' => array(
