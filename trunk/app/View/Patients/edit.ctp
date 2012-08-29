@@ -123,7 +123,7 @@
 			var cargoLaboral = $('#ControlCargoLaboral').val();	
 			
 			if (estadoParticular == false && cargoParticular == "false") {
-				alert("Debe ingresar la nueva dirección particular.");
+				alert("Debe ingresar la nueva direcciï¿½n particular.");
 				return false;
 			}
 			
@@ -157,6 +157,11 @@
 		echo $this->Form->input('id');
 		
 		echo $this->Form->input('iniciales');
+		
+		echo $this->Form->input('Patient.peso');
+	//	echo $this->Form->error('Patient.peso');
+		
+		echo $this->Form->input('Patient.altura');
 		
 		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
 		echo $this->Form->hidden('Control.cargo_laboral', array('value' => 'false'));

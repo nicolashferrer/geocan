@@ -35,6 +35,40 @@
 					<?php echo h($patient['Patient']['altura']); ?>
 					&nbsp;
 				</dd>
+				<dt><?php echo __('Superficie Corporal'); ?></dt>
+				<dd>
+					<?php 
+						
+						// Paso la altura de metros a centimetros...
+						$altura = $patient['Patient']['altura']*100;
+						
+						$peso = $patient['Patient']['peso'];
+						
+						$sup = sqrt(($altura * $peso)/3600);
+					
+						echo $sup; 
+					
+					
+					
+					?>
+					&nbsp;
+				</dd>
+				<dt><?php echo __('&Iacute;ndice masa corporal'); ?></dt>
+				<dd>
+					<?php 
+					
+						$alturacuadrado = pow($patient['Patient']['altura'],2);
+						
+						$masa = $patient['Patient']['peso'];
+						
+						$indice = ($masa/$alturacuadrado);
+					
+						echo $indice ; 
+					
+					
+					?>
+					&nbsp;
+				</dd>
 				<dt><?php echo __('Dir. Particular'); ?></dt>
 				<dd>
 					<?php echo h($patient['Primary']['direccion']); ?>
