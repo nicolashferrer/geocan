@@ -62,7 +62,16 @@ class Patient extends AppModel {
 			),
 			'date' => array(
 				'rule' => '/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/i',
-				'message' => 'Por favor ingrese la fecha en este formato: DD/MM/AAAA'
+				'message' => 'Por favor ingrese la fecha en este formato: DD/MM/AAAA',
+				//'allowEmpty' => true
+			)
+		),
+		'peso' => array(
+			//	'rule' => array('decimal',2),
+			'sosnumero' => array(
+				'rule' => '/^\d{0,3}(\.\d{0,2})?$/i',
+				'message' => 'Solo se permiten n&uacute;meros decimales entre 0 y 999.99',
+				'allowEmpty' => true
 			)
 		)
 	);
