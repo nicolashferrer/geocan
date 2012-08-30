@@ -131,13 +131,14 @@ class Patient extends AppModel {
             {
                 $this->data['Patient']['fecha_defuncion'] = implode('-', array_reverse(explode('/', $this->data['Patient']['fecha_defuncion'])));
             }
-			/*if (empty($this->data['Patient']['id'])) { // Si es una alta de nuevo paciente...
-				if (!empty($this->data['Patient']['nro_documento']))
-				{
-					$documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
-					$this->data['Patient']['nro_documento'] = $documentoEncriptado;
-				}
-			}*/
+            if (empty($this->data['Patient']['peso']))
+            {
+                $this->data['Patient']['peso'] = 0.00;
+            }
+            if (empty($this->data['Patient']['altura']))
+            {
+                $this->data['Patient']['altura'] = 0.00;
+            }
             return true;
         }
 		
