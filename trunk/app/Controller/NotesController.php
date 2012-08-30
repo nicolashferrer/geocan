@@ -71,7 +71,7 @@ public $helpers = array('Tinymce');
 	public function edit($id = null, $idRegOms = null) {
 		$this->Note->id = $id;
 		if (!$this->Note->exists()) {
-			throw new NotFoundException(__('Nota no válida'));
+			throw new NotFoundException(__('Nota no vï¿½lida'));
 		}
 		
 		$medic_id = $this->Note->read('medic_id');
