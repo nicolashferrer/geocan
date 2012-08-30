@@ -126,9 +126,6 @@ class OmsRegistersController extends AppController {
 		}
 		$medic_id = $this->OmsRegister->read('medic_id');
 		
-		if (($this->Auth->user('group_id')==2) && ($medic_id['OmsRegister']['medic_id'] != $this->Auth->user('medic_id'))) {
-			exit(0);
-		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->OmsRegister->save($this->request->data)) {
 				$this->Session->setFlash(__('El registro Oms fue modificado correctamente.', null), 
@@ -136,21 +133,15 @@ class OmsRegistersController extends AppController {
 					array('class' => 'success'));
 				$this->redirect(array('controller' => 'patients','action' => 'view',$paciente));
 			} else {
-			//	$this->set('omsregister', $this->request->data);
 				$this->Session->setFlash(__('El registro Oms no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
 		} else {
-			//$this->set('omsregister', $this->OmsRegister->read(null, $id));
 			$this->request->data = $this->OmsRegister->read(null, $id);
 		}
-		//$medics = $this->OmsRegister->Medic->find('list');
-		//$this->set(compact('medics'));
+
 		if  ($this->Auth->user('group_id')!=2) { // Si no es un medico...
 			$medics = $this->OmsRegister->Medic->find('list',array('fields'=>array('Medic.nombrecompleto')));
 			$this->set(compact('medics'));
-		} else {
-		//	$medic = $this->OmsRegister->Medic->read('nombrecompleto',$this->Auth->user('medic_id'));
-		//	$this->set(compact('medic'));
 		}
 	}
 

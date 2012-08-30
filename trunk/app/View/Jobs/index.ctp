@@ -1,9 +1,9 @@
 <div class="jobs index">
 	<fieldset>
-		<legend><?php echo __('Trabajos'); ?></legend>
+		<legend><?php echo __('Ocupaciones'); ?></legend>
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('Nuevo Trabajo'), array('action' => 'add')); ?></li>
+				<li><?php echo $this->Html->link(__('Nueva Ocupacion'), array('action' => 'add')); ?></li>
 			</ul>
 		</div>
 		<table cellpadding="0" cellspacing="0">
@@ -19,7 +19,7 @@
 				<td><?php echo h($job['Job']['descripcion']); ?>&nbsp;</td>
 				<td class="actions">
 					<?php echo $this->Html->link(__('Modificar'), array('action' => 'edit', $job['Job']['id'])); ?>
-					<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $job['Job']['id']), null, __('Esta seguro que desea eliminar el trabajo # %s?', $job['Job']['descripcion'])); ?>
+					<?php echo $this->Form->postLink(__('Eliminar'), array('action' => 'delete', $job['Job']['id']), null, __('Esta seguro que desea eliminar la ocupacion # %s?', $job['Job']['descripcion'])); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

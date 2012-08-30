@@ -32,12 +32,34 @@
 				<?php echo h($omsRegister['OmsRegister']['fecha']); ?>
 				&nbsp;
 			</dd>
+			<dt><?php echo __('Estadio'); ?></dt>
+			<dd>
+				<?php 
+					$estadio = $omsRegister['OmsRegister']['estadio']; 
+					if ($estadio == 0)
+						echo 'Desconocido';
+					else
+						echo $estadio;
+				?>
+				&nbsp;
+			</dd>
 		</dl>
 		<div class="actions">
-			<ul><?php if (($auth['group_id']==1)||(($auth['group_id']==2) && ($auth['medic_id']==$omsRegister['Medic']['id']))){?>
-						<li><?php echo $this->Html->link(__('Editar Oms'), array('action' => 'edit', $omsRegister['OmsRegister']['id'],$omsRegister['Patient']['id']));} ?> </li>
-				
-					</ul>
+			<ul>
+				<li>
+					<?php
+						if (($auth['group_id']==1)||($auth['group_id']==3)||(($auth['group_id']==2) && ($auth['medic_id']==$omsRegister['Medic']['id'])))
+						{
+							echo $this->Html->link(__('Editar Oms'), array('action' => 'edit', $omsRegister['OmsRegister']['id'],$omsRegister['Patient']['id']));
+						} 
+						else
+						{
+							if ($auth['group_id']==2)
+								echo $this->Html->link(__('Editar Estadio'), array('action' => 'edit', $omsRegister['OmsRegister']['id'],$omsRegister['Patient']['id']));
+						}
+					?> 
+				</li>
+			</ul>
 		</div>
 	</fieldset>
 
