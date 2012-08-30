@@ -296,7 +296,7 @@ class PatientsController extends AppController {
 //		$addressParticulars = $this->Patient->AddressParticular->find('list');
 //		$addressLaborals = $this->Patient->AddressLaboral->find('list');
 //		$this->set(compact('addressParticulars', 'addressLaborals'));
-		$this->set('patient', $this->Patient->read(null, $id));
+		//$this->set('patient', $this->Patient->read(null, $id));
 		Controller::loadModel('Province');
 		$provinces = $this->Province->find('list');
 		$this->set(compact('provinces'));
