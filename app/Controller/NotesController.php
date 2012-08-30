@@ -76,7 +76,7 @@ public $helpers = array('Tinymce');
 		
 		$medic_id = $this->Note->read('medic_id');
 		
-		if ($medic_id['Note']['medic_id'] != $this->Auth->user('medic_id')) {
+		if ((($this->Auth->user('group_id')==2) && ($medic_id['Note']['medic_id'] != $this->Auth->user('medic_id'))) || ($this->Auth->user('group_id')==3))  {
 			exit(0);
 		}
 		
