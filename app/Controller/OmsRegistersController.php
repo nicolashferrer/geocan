@@ -136,6 +136,7 @@ class OmsRegistersController extends AppController {
 					array('class' => 'success'));
 				$this->redirect(array('controller' => 'patients','action' => 'view',$paciente));
 			} else {
+				$this->set('omsregister', $this->request->data);
 				$this->Session->setFlash(__('El registro Oms no se ha podido guardar. Por favor, intente nuevamente.'));
 			}
 		} else {

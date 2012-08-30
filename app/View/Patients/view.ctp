@@ -75,7 +75,7 @@
 						
 						$sup = sqrt(($altura * $peso)/3600);
 					
-						echo $sup; 
+						echo round($sup, 3);
 					
 					
 					
@@ -98,7 +98,7 @@
 							
 							$indice = ($masa/$alturacuadrado);
 						
-							echo $indice ; 
+							echo round($indice, 3) ; 
 						}
 					
 					?>
@@ -119,6 +119,11 @@
 														   
 						}
 						?>
+					&nbsp;
+				</dd>
+				<dt><?php echo __('Ocupación'); ?></dt>
+				<dd>
+					<?php echo h($patient['Job']['descripcion']); ?>
 					&nbsp;
 				</dd>
 				<dt><?php echo __('Dir. Particular'); ?></dt>
