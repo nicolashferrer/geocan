@@ -2,10 +2,25 @@
 	
 	var avisado = false;
 	
+	var fdefuncion = null;
 	
 $(document).ready(function() {
 	
 	$('#PatientFechaNacimiento').datepicker(datepicker_config);
+	fdefuncion = $('#PatientFechaDefuncion').datepicker(datepicker_config);
+	fdefuncion.datepicker('disable');
+	$('#PatientFechaDefuncion').val("");
+	
+	$('input[name="data[Patient][vive]"]').change(function() {
+		
+		if ($(this).val() == 1) {
+			fdefuncion.datepicker('disable');
+			$('#PatientFechaDefuncion').val("");
+		} else {
+			fdefuncion.datepicker('enable');
+		}
+	
+	});
 
     $('#provinciasParticular').change(function() {
 
@@ -207,8 +222,18 @@ $(document).ready(function() {
 		echo $this->Form->input('Patient.altura');
 		echo $this->Form->input('Patient.job_id',array('label' =>'Ocupación'));
 		
+		$options=array('1'=>'No','0'=>'Si');
+		$attributes=array('legend'=>false,'value'=>'1','separator'=>'');
+		
+		echo "<div>";
+		echo "<label class='label_radio required'>Fallecido</label>";
+		echo $this->Form->radio('vive',$options,$attributes);
+		echo "</div>";
+		
+		echo $this->Form->input('fecha_defuncion',array('label' => 'Fecha De Defunción', 'type' => 'text'));
+		
 		?>
-				<div class=input>
+			<div class=input>
 				<fieldset>
 					<legend>
 					<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"><?php echo __('Direcci&oacute;n Particular'); ?></legend>

@@ -1,3 +1,17 @@
+<?php
+
+	function calcularEdad($fechaNacimiento,$fechaDefuncion)
+	
+		{
+
+			$diff = abs(strtotime($fechaDefuncion) - strtotime($fechaNacimiento)); 
+			
+			return floor($diff / (365*60*60*24)); 
+		}
+				 
+
+?>
+
 <div class="patients view">
 	<fieldset>
 		<legend><?php echo __('Paciente'); ?></legend>
@@ -14,7 +28,22 @@
 				</dd>
 				<dt><?php echo __('Edad'); ?></dt>
 				<dd>
-					<?php echo h($patient['Patient']['edad']); ?>
+					<?php
+						 if ($patient['Patient']['vive'] == 1) {
+							echo $patient['Patient']['edad'];
+						}
+						  else {
+						  	
+							if (!empty($patient['Patient']['fecha_defuncion'])) {
+								echo calcularEdad($patient['Patient']['fecha_nacimiento'],$patient['Patient']['fecha_defuncion']); 	
+							}  else {
+								echo '-';	
+							}
+														   
+						}
+					 
+					 
+					 ?>
 					&nbsp;
 				</dd>
 				<dt><?php echo __('Sexo'); ?></dt>
@@ -73,6 +102,23 @@
 						}
 					
 					?>
+					&nbsp;
+				</dd>
+				<dt><?php echo __('Fallecido'); ?></dt>
+				<dd>
+					<?php if ($patient['Patient']['vive'] == 1) {
+							echo 'No';
+						}
+						  else {
+						  	
+							if (!empty($patient['Patient']['fecha_defuncion'])) {
+								echo 'Si, el ' . date('d/m/Y', strtotime($patient['Patient']['fecha_defuncion'])) . ' a los ' . calcularEdad($patient['Patient']['fecha_nacimiento'],$patient['Patient']['fecha_defuncion']) . ' años de edad.'; 	
+							}  else {
+								echo 'Si';	
+							}
+														   
+						}
+						?>
 					&nbsp;
 				</dd>
 				<dt><?php echo __('Dir. Particular'); ?></dt>
