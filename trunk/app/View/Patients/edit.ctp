@@ -154,23 +154,28 @@
 		<legend><?php echo __('Modificar Paciente'); ?></legend>
 
 	<?php
+	
+		//debug($this->request->data);
+	
 		echo $this->Form->input('id');
 		
 		echo $this->Form->input('iniciales');
 		
-		echo $this->Form->input('Patient.peso');
+		echo $this->Form->input('peso');
 	//	echo $this->Form->error('Patient.peso');
 		
-		echo $this->Form->input('Patient.altura');
+		echo $this->Form->input('altura');
 		
 		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
 		echo $this->Form->hidden('Control.cargo_laboral', array('value' => 'false'));
 		
 		//if (!empty($patient['Primary']['id'])){
-		echo $this->Form->hidden('Control.particular_actual', array('value' => $patient['Primary']['id']));
+		echo $this->Form->hidden('Control.particular_actual', array('value' => $this->request->data['Patient']['address_particular_id']));
+		echo $this->Form->hidden('address_particular_id', array('value' => $this->request->data['Patient']['address_particular_id']));
 		//}
 		//if (!empty($patient['Secondary']['id'])){
-		echo $this->Form->hidden('Control.laboral_actual', array('value' => $patient['Secondary']['id']));
+		echo $this->Form->hidden('Control.laboral_actual', array('value' => $this->request->data['Patient']['address_laboral_id']));
+		echo $this->Form->hidden('address_laboral_id', array('value' => $this->request->data['Patient']['address_laboral_id']));
 		//}
 		
 		echo $this->Form->hidden('Primary.city_id');
@@ -186,7 +191,7 @@
 		echo $this->Form->input('fecha_nacimiento',array('label' => 'Fecha De Nacimiento', 'type' => 'text'));
 		
 		$options=array('M'=>'Masculino','F'=>'Femenino');
-		$attributes=array('legend'=>false,'value'=> $patient['Patient']['sexo'],'separator'=>'');	
+		$attributes=array('legend'=>false,'value'=> $this->request->data['Patient']['sexo'],'separator'=>'');	
 		echo "<div>";
 			echo "<label class='label_radio required'>Sexo</label>";
 			echo $this->Form->radio('sexo',$options,$attributes);
