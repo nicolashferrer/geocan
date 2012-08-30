@@ -189,6 +189,9 @@ class Patient extends AppModel {
 				if (isset($valor['Patient']['fecha_nacimiento'])) {
 					$resultados[$clave]['Patient']['fecha_nacimiento'] = date('d/m/Y', strtotime($valor['Patient']['fecha_nacimiento']));
 				}
+				if (isset($valor['Patient']['fecha_defuncion'])) {
+					$resultados[$clave]['Patient']['fecha_defuncion'] = date('d/m/Y', strtotime($valor['Patient']['fecha_defuncion']));
+				}
 			}
 			return $resultados;
 		}

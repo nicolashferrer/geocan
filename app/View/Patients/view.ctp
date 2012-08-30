@@ -1,14 +1,32 @@
 <?php
 
-	function calcularEdad($fechaNacimiento,$fechaDefuncion)
+	//debug($patient);
+	
+	function calcularEdad2($fechaNacimiento,$fechaDefuncion)
 	
 		{
+		//	$fecha1 = new DateTime($fechaNacimiento);
+			echo $fechaNacimiento;
 
 			$diff = abs(strtotime($fechaDefuncion) - strtotime($fechaNacimiento)); 
 			
 			return floor($diff / (365*60*60*24)); 
 		}
-				 
+		
+		function calcularEdad($fechaNacimiento,$fechaDefuncion)
+		{
+			list($day,$month,$year) = explode("/",$fechaNacimiento);
+			list($day2,$month2,$year2) = explode("/",$fechaDefuncion);
+			
+			
+			$year_diff = abs($year2 - $year);
+			$month_diff = abs($month2 - $month);
+			$day_diff = abs($day2 - $day);
+			if ($month_diff < 0) $year_diff--;
+			elseif (($month_diff==0) && ($day_diff < 0)) $year_diff--;
+			return $year_diff;
+		}
+						 
 
 ?>
 
@@ -112,7 +130,7 @@
 						  else {
 						  	
 							if (!empty($patient['Patient']['fecha_defuncion'])) {
-								echo 'Si, el ' . date('d/m/Y', strtotime($patient['Patient']['fecha_defuncion'])) . ' a los ' . calcularEdad($patient['Patient']['fecha_nacimiento'],$patient['Patient']['fecha_defuncion']) . ' años de edad.'; 	
+								echo 'Si, el ' . $patient['Patient']['fecha_defuncion'] . ' a los ' . calcularEdad($patient['Patient']['fecha_nacimiento'],$patient['Patient']['fecha_defuncion']) . ' años de edad.'; 	
 							}  else {
 								echo 'Si';	
 							}
