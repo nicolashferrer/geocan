@@ -232,10 +232,13 @@
 						
 						<td class="actions">
 							<?php echo $this->Html->link(__('Detalles y Notas'), array('controller' => 'oms_registers', 'action' => 'view', $omsRegister['id'])); ?>
-							<?php if (($auth['group_id']==1)||($auth['group_id']==3)||(($auth['group_id']==2) && ($auth['medic_id']==$omsRegister['medic_id']))){?>
-							<?php echo $this->Html->link(__('Editar'), array('controller' => 'oms_registers', 'action' => 'edit', $omsRegister['id'],$patient['Patient']['id'])); ?>
-							<?php //echo $this->Html->link(__('Notas'), array('controller' => 'oms_registers', 'action' => 'view', $omsRegister['id'])); ?>
-							<?php echo $this->Form->postLink(__('Borrar'), array('controller' => 'oms_registers', 'action' => 'delete', $omsRegister['id'],$patient['Patient']['id']), null, __('Esta seguro que desea eliminar "%s"?', $omsRegister['Oms']['codigo'])); }?>
+							<?php
+								if (($auth['group_id']==1)||($auth['group_id']==3)||(($auth['group_id']==2) && ($auth['medic_id']==$omsRegister['medic_id'])))
+								{
+									echo $this->Html->link(__('Editar'), array('controller' => 'oms_registers', 'action' => 'edit', $omsRegister['id'],$patient['Patient']['id']));
+									echo $this->Form->postLink(__('Borrar'), array('controller' => 'oms_registers', 'action' => 'delete', $omsRegister['id'],$patient['Patient']['id']), null, __('Esta seguro que desea eliminar "%s"?', $omsRegister['Oms']['codigo'])); 
+								}
+							?>
 						</td>
 					</tr>
 					<?php endforeach; ?>

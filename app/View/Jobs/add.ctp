@@ -1,7 +1,7 @@
 <div class="jobs form">
 <?php echo $this->Form->create('Job');?>
 	<fieldset>
-		<legend><?php echo __('Nuevo Trabajo'); ?></legend>
+		<legend><?php echo __('Nueva Ocupacion'); ?></legend>
 	<?php
 		echo $this->Form->input('descripcion');
 	?>

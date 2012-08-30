@@ -47,7 +47,6 @@ public $helpers = array('Tinymce');
 					'default', 
 					array('class' => 'success'));
 				$this->redirect(array('controller'=>'oms_registers','action' => 'view',$id));
-				//$this->redirect($this->referer());
 			} else {
 				$this->Session->setFlash(__('La nota no se pudo crear. Por favor, int&eacute;ntelo de nuevo.'));
 			}
@@ -69,9 +68,11 @@ public $helpers = array('Tinymce');
  * @return void
  */
 	public function edit($id = null, $idRegOms = null) {
+		
 		$this->Note->id = $id;
+		
 		if (!$this->Note->exists()) {
-			throw new NotFoundException(__('Nota no v�lida'));
+			throw new NotFoundException(__('Nota no v&aacute;lida'));
 		}
 		
 		$medic_id = $this->Note->read('medic_id');

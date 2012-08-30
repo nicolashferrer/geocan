@@ -157,7 +157,7 @@ class PatientsController extends AppController {
 	public function add($id = null) {
 		if ($this->request->is('post')) {
 			$this->Patient->create();
-	//		debug($this->request->data);
+			
 			if ($this->request->data['Control']['cargo_particular'] == 'false') {
 				unset($this->request->data['Primary']);
 			}
@@ -177,8 +177,6 @@ class PatientsController extends AppController {
 			if ($quedaron==0) {
 				unset($this->request->data['Answer']);
 			}
-			//debug($this->request->data);	
-			//exit();
 			
 			if ($this->Patient->saveAll($this->request->data)) {
 				$this->Session->setFlash(__('La informaci&oacute;n fue agregada correctamente!', null), 
@@ -212,13 +210,10 @@ class PatientsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			
-			//debug($this->request->data);
-			
 			$part_act= null;
 			$lab_act= null;
 			$nueva_part= false;
 			$nueva_lab= false;
-			
 			
 			if ($this->request->data['Control']['cargo_particular'] == 'false') {
 				unset($this->request->data['Primary']);
@@ -240,7 +235,6 @@ class PatientsController extends AppController {
 	
 			if ($this->Patient->saveAll($this->request->data)){
 				
-				//$this->Session->setFlash(__('The patient has been saved'));
 				$this->Session->setFlash(__('La informaci&oacute;n fue modificada correctamente!', null), 
                             'default', 
                              array('class' => 'success'));
@@ -293,10 +287,7 @@ class PatientsController extends AppController {
 		} else {
 			$this->request->data = $this->Patient->read(null, $id);
 		}
-//		$addressParticulars = $this->Patient->AddressParticular->find('list');
-//		$addressLaborals = $this->Patient->AddressLaboral->find('list');
-//		$this->set(compact('addressParticulars', 'addressLaborals'));
-		//$this->set('patient', $this->Patient->read(null, $id));
+		
 		Controller::loadModel('Province');
 		$provinces = $this->Province->find('list');
 		$this->set(compact('provinces'));
@@ -328,7 +319,6 @@ class PatientsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		//$this->Auth->allowedActions = array('index', 'view');
     }
 	
 }
