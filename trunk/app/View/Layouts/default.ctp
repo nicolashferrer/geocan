@@ -193,6 +193,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 	</div>
 			<div id="footer">
 			<b>GeoCan &copy; 2012</b> <br> Versi&oacute;n BETA - Por favor no ingresar datos reales. <br> La intensi&oacute;n de esta versi&oacute;n es poder probar las caracter&iacute;sticas del sistema y lograr una mejor experiencia de usuario.
+			<br><?php echo $this->Html->image('soporteemail.png', array('alt' => 'GeoCan'))?>
 		</div>
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
@@ -210,7 +211,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 			})();
 
 </script>
-	<?php echo $this -> element('sql_dump'); ?>
+	<?php //echo $this -> element('sql_dump'); ?>
 	
 </body>
 
