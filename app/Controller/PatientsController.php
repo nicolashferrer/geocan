@@ -295,10 +295,11 @@ class PatientsController extends AppController {
 		} else {
 			$this->request->data = $this->Patient->read(null, $id);
 		}
-		
+		Controller::loadModel('Job');
+		$jobs = $this->Job->find('list');
 		Controller::loadModel('Province');
 		$provinces = $this->Province->find('list');
-		$this->set(compact('provinces'));
+		$this->set(compact('provinces','jobs'));
 	}
 
 /**
