@@ -210,6 +210,9 @@ class PatientsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			
+			//debug($this->request->data);
+			//exit;
+			
 			$part_act= null;
 			$lab_act= null;
 			$nueva_part= false;
@@ -232,6 +235,11 @@ class PatientsController extends AppController {
 			}
 			
 			unset($this->request->data['Control']);
+			
+			if (empty($this->request->data['Patient']['fecha_defuncion'])) {
+				$this->request->data['Patient']['fecha_defuncion'] = null;
+			}
+			
 	
 			if ($this->Patient->saveAll($this->request->data)){
 				

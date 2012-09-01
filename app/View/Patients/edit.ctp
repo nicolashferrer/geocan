@@ -1,5 +1,8 @@
 <script type="text/javascript" charset="utf-8">
 	
+	var fdefuncion = null;
+	
+	
 	function checkLaboral() {
 	
 		var estado = $('#chLaboral').is(':checked');
@@ -67,6 +70,29 @@
 	$(document).ready(function() {
 	
 				$('#PatientFechaNacimiento').datepicker(datepicker_config);
+				fdefuncion = $('#PatientFechaDefuncion').datepicker(datepicker_config);
+	
+				$('input[name="data[Patient][vive]"]').change(function() {
+				
+					if ($(this).val() == 1) {
+						fdefuncion.datepicker('disable');
+						$('#PatientFechaDefuncion').val("");
+					} else {
+						fdefuncion.datepicker('enable');
+					}
+			
+				});
+			
+				<?php
+				
+					if($this->request->data['Patient']['vive']=='1') {
+				?>
+						fdefuncion.datepicker('disable');
+						$('#PatientFechaDefuncion').val("");
+				<?php
+					}
+				?>
+			
 	
 				$('#provinciasParticular').change(function() {
 
@@ -165,6 +191,16 @@
 	//	echo $this->Form->error('Patient.peso');
 		
 		echo $this->Form->input('altura');
+		
+		$options=array('1'=>'No','0'=>'Si');
+		$attributes=array('legend'=>false,'value'=>$this->request->data['Patient']['vive'],'separator'=>'');
+		
+		echo "<div>";
+		echo "<label class='label_radio required'>Fallecido</label>";
+		echo $this->Form->radio('vive',$options,$attributes);
+		echo "</div>";
+		
+		echo $this->Form->input('fecha_defuncion',array('label' => 'Fecha De Defunción', 'type' => 'text'));
 		
 		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
 		echo $this->Form->hidden('Control.cargo_laboral', array('value' => 'false'));
