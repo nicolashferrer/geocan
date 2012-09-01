@@ -202,6 +202,8 @@
 		
 		echo $this->Form->input('fecha_defuncion',array('label' => 'Fecha De Defunción', 'type' => 'text'));
 		
+		echo $this->Form->input('Patient.job_id',array('label' =>'Ocupación'));
+		
 		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
 		echo $this->Form->hidden('Control.cargo_laboral', array('value' => 'false'));
 		
