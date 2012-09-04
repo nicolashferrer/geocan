@@ -12,7 +12,7 @@
 				<th><?php echo $this->Paginator->sort('apellido');?></th>
 				<th><?php echo $this->Paginator->sort('matricula');?></th>
 				<th><?php echo $this->Paginator->sort('MedicType.tipo','Tipo de Medico');?></th>
-				<th class="actions"><?php echo __('Acciones');?></th>
+				<th class="actions"></th>
 		</tr>
 		<?php
 		foreach ($medics as $medic): ?>
