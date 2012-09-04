@@ -54,5 +54,14 @@ class Audit extends AppModel {
 		unset($query['conditions']['Audit.created_to ']);
 	   
 		return $query;  
+	}
+
+	function afterFind($resultados) {
+			foreach ($resultados as $clave => $valor) {
+				if (isset($valor['Audit']['created'])) {
+					$resultados[$clave]['Audit']['created'] = date('d/m/Y h:i:s A', strtotime($valor['Audit']['created']));
+				}
+			}
+			return $resultados;
 	}  
 }

@@ -11,7 +11,7 @@
 		<table cellpadding="0" cellspacing="0">
 			<tr>
 				<th><?php echo $this->Paginator->sort('nombre');?></th>
-				<th class="actions"><?php echo __('Acciones');?></th>
+				<th class="actions"></th>
 			</tr>
 			<?php foreach ($provinces as $province): ?>
 				<tr>

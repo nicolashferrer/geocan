@@ -8,8 +8,8 @@
 		</div>
 		<table cellpadding="0" cellspacing="0">
 		<tr>
-				<th><?php echo $this->Paginator->sort('Nombre');?></th>
-				<th><?php echo $this->Paginator->sort('Provincia');?></th>
+				<th><?php echo $this->Paginator->sort('nombre');?></th>
+				<th><?php echo $this->Paginator->sort('province_id','Provincia');?></th>
 				<th class="actions"></th>
 		</tr>
 		<?php foreach ($cities as $city): ?>

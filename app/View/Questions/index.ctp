@@ -10,7 +10,7 @@
 		<tr>
 				<th><?php echo $this->Paginator->sort('descripcion');?></th>
 				<th><?php echo $this->Paginator->sort('visible');?></th>
-				<th class="actions"><?php echo __('Acciones');?></th>
+				<th class="actions"></th>
 		</tr>
 		<?php foreach ($questions as $question): ?>
 			<tr>
