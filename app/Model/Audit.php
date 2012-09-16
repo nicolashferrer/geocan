@@ -31,6 +31,14 @@ class Audit extends AppModel {
 		return array('CREATE' => 'Creación','DELETE' => 'Eliminación','EDIT' => 'Edición');
 	}
 	
+	public function getUsers() {
+		
+		Controller::loadModel('User');
+		$users = $this->User->find('list');
+		
+		return array('CREATE' => 'Creación','DELETE' => 'Eliminación','EDIT' => 'Edición');
+	}
+	
 	function afterDataFilter($query, $options)  
 	{  
 

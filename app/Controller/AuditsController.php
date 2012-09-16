@@ -11,6 +11,12 @@ class AuditsController extends AppController {
             (  
                 'Audit' => array  
                 (  
+					'User.id' => array
+					(
+						'type' => 'select',
+						'label' => 'Usuario',
+						'filterField' => 'source_id'
+					),
                     'Audit.event'  => array  
                     (  
                         'type' => 'select',  
