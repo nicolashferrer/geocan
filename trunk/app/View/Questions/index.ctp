@@ -1,6 +1,6 @@
 <div class="questions index">
 	<fieldset>
-		<legend><?php echo __('Tipos de Medicos'); ?></legend>
+		<legend><?php echo __('Preguntas'); ?></legend>
 		<div class="actions">
 			<ul>
 				<li><?php echo $this->Html->link(__('Nueva Pregunta'), array('action' => 'add')); ?></li>
