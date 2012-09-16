@@ -11,6 +11,8 @@ class User extends AppModel {
 
 var $captcha = ''; //intializing captcha var
 
+var $displayField = 'username';
+
 	function matchCaptcha($inputValue)	{
 		return $inputValue['captcha']==$this->getCaptcha(); //return true or false after comparing submitted value with set value of captcha
 	}
