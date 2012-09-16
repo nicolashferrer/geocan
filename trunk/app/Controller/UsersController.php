@@ -444,5 +444,28 @@ class UsersController extends AppController {
 		}
 		return true;
 	}
+	
+	// ID del usuario
+	// Nuevo valor de blockeado, 0 o 1
+	public function cambiarBlocked($id,$valor) {
+		
+		$this -> User -> id = $id;
+		if (!$this -> User -> exists()) {
+			throw new NotFoundException(__('Usuario no v&aacute;lido'));
+		}
+			
+	    $this->User->read(null, $id);
+	    $this->User->set('blocked', $valor);
+	 //	$this->User->blocked = $valor;
+	    $this->User->save(null,false);
+		if ($valor == 1) {
+			$this -> Session -> setFlash(__('Usuario deshabilitado correctamente.', null), 'default', array('class' => 'success'));	
+		} else {
+			$this -> Session -> setFlash(__('Usuario habilitado correctamente.', null), 'default', array('class' => 'success'));	
+		}
+		
+		$this -> redirect(array('action' => 'index'));
+		
+	}
 
 }

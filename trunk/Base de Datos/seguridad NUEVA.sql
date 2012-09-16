@@ -2,8 +2,8 @@
 -- Host:                         127.0.0.1
 -- Server version:               5.1.37 - Source distribution
 -- Server OS:                    Win32
--- HeidiSQL version:             7.0.0.4154
--- Date/time:                    2012-08-28 19:53:06
+-- HeidiSQL version:             7.0.0.4053
+-- Date/time:                    2012-09-16 18:22:50
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -21,13 +21,13 @@ CREATE TABLE IF NOT EXISTS `acos` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.acos: ~106 rows (approximately)
+-- Dumping data for table geocan.acos: ~115 rows (approximately)
 DELETE FROM `acos`;
 /*!40000 ALTER TABLE `acos` DISABLE KEYS */;
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-	(1, NULL, NULL, NULL, 'controllers', 1, 228),
+	(1, NULL, NULL, NULL, 'controllers', 1, 230),
 	(2, 1, NULL, NULL, 'Addresses', 2, 17),
 	(3, 2, NULL, NULL, 'index', 3, 4),
 	(4, 2, NULL, NULL, 'view', 5, 6),
@@ -102,7 +102,7 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 	(85, 82, NULL, NULL, 'add', 173, 174),
 	(86, 82, NULL, NULL, 'edit', 175, 176),
 	(87, 82, NULL, NULL, 'delete', 177, 178),
-	(89, 1, NULL, NULL, 'Users', 180, 205),
+	(89, 1, NULL, NULL, 'Users', 180, 207),
 	(90, 89, NULL, NULL, 'index', 181, 182),
 	(91, 89, NULL, NULL, 'view', 183, 184),
 	(92, 89, NULL, NULL, 'add', 185, 186),
@@ -110,7 +110,7 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 	(94, 89, NULL, NULL, 'delete', 189, 190),
 	(95, 89, NULL, NULL, 'login', 191, 192),
 	(96, 89, NULL, NULL, 'logout', 193, 194),
-	(98, 1, NULL, NULL, 'AclExtras', 206, 207),
+	(98, 1, NULL, NULL, 'AclExtras', 208, 209),
 	(99, 16, NULL, NULL, 'getCiudades', 41, 42),
 	(100, 23, NULL, NULL, 'build_acl', 57, 58),
 	(101, 51, NULL, NULL, 'getSigNivel', 109, 110),
@@ -131,16 +131,17 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 	(117, 75, NULL, NULL, 'checkDelete', 165, 166),
 	(118, 89, NULL, NULL, 'captcha', 201, 202),
 	(119, 89, NULL, NULL, 'reload_captcha', 203, 204),
-	(120, 1, NULL, NULL, 'AuditLog', 208, 209),
-	(122, 1, NULL, NULL, 'Audits', 210, 213),
-	(123, 122, NULL, NULL, 'index', 211, 212),
-	(124, 1, NULL, NULL, 'Jobs', 214, 225),
-	(125, 124, NULL, NULL, 'index', 215, 216),
-	(126, 124, NULL, NULL, 'view', 217, 218),
-	(127, 124, NULL, NULL, 'add', 219, 220),
-	(128, 124, NULL, NULL, 'edit', 221, 222),
-	(129, 124, NULL, NULL, 'delete', 223, 224),
-	(130, 1, NULL, NULL, 'Filter', 226, 227);
+	(120, 1, NULL, NULL, 'AuditLog', 210, 211),
+	(122, 1, NULL, NULL, 'Audits', 212, 215),
+	(123, 122, NULL, NULL, 'index', 213, 214),
+	(124, 1, NULL, NULL, 'Jobs', 216, 227),
+	(125, 124, NULL, NULL, 'index', 217, 218),
+	(126, 124, NULL, NULL, 'view', 219, 220),
+	(127, 124, NULL, NULL, 'add', 221, 222),
+	(128, 124, NULL, NULL, 'edit', 223, 224),
+	(129, 124, NULL, NULL, 'delete', 225, 226),
+	(130, 1, NULL, NULL, 'Filter', 228, 229),
+	(131, 89, NULL, NULL, 'cambiarBlocked', 205, 206);
 /*!40000 ALTER TABLE `acos` ENABLE KEYS */;
 
 
@@ -191,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.aros_acos: ~91 rows (approximately)
+-- Dumping data for table geocan.aros_acos: ~111 rows (approximately)
 DELETE FROM `aros_acos`;
 /*!40000 ALTER TABLE `aros_acos` DISABLE KEYS */;
 INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`, `_delete`) VALUES
@@ -353,9 +354,9 @@ DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `created`, `modified`, `medic_id`, `blocked`) VALUES
 	(1, 'admin', '3784364f60b0989c0059deb3210dc30966a4ec6c', 1, '2012-04-13 22:24:30', '2012-07-08 19:09:17', NULL, 0),
-	(5, 'medico', '3784364f60b0989c0059deb3210dc30966a4ec6c', 2, '2012-08-14 20:24:14', '2012-08-14 20:25:41', 2, 0),
-	(6, 'ayudante', '3784364f60b0989c0059deb3210dc30966a4ec6c', 3, '2012-08-14 20:30:37', '2012-08-14 20:30:37', NULL, 0),
-	(7, 'medico2', '3784364f60b0989c0059deb3210dc30966a4ec6c', 2, '2012-08-14 20:52:00', '2012-08-14 20:53:36', 1, 0);
+	(5, 'medico', 'cd3841d030f5ba4fd4bd6e7d84cc38bbb06c2434', 2, '2012-08-14 20:24:14', '2012-08-14 20:25:41', 2, 0),
+	(6, 'ayudante', '1a4019c13fc080713f95858cbfa33f4e0b68bf42', 3, '2012-08-14 20:30:37', '2012-08-14 20:30:37', NULL, 0),
+	(7, 'medico2', '1a4019c13fc080713f95858cbfa33f4e0b68bf42', 2, '2012-08-14 20:52:00', '2012-08-14 20:53:36', 1, 0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
