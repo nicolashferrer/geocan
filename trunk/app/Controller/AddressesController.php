@@ -21,76 +21,6 @@ public $helpers = array('GoogleMapV3');
 	
 	public function reporte() {
 	
-	/*
-		if ($this->request->is('post')) {
-			
-			$condiciones = " WHERE 1=1 ";
-	
-			//debug($this->request->data);
-	
-			$aux = $this->request->data['Consulta'];
-						
-			//debug($aux);
-			
-			$condedad = " WHERE 1=1 ";
-			
-			if ($aux['edadMin'] != '') {
-				$condedad .= " AND edad >= ".$aux['edadMin']." ";
-			} 
-			
-			if ($aux['edadMax'] != '') {
-				$condedad .= " AND edad <= ".$aux['edadMax']." ";
-			} 
-
-			if ($aux['sexo'] == 'M') {
-				$condiciones .= " AND p.sexo = 'M' ";
-			}
-			
-			if ($aux['sexo'] == 'F') {
-				$condiciones .= " AND p.sexo = 'F' ";
-			}
-			
-			$preguntas = $this->request->data['Answer'];
-			
-			$joinpreguntas = "";
-			
-			$ipreg=0;
-			foreach ($preguntas as $preg):
-			
-				if ($preg['valor'] != '') {
-					$ipreg++;	
-					$joinpreguntas .= " JOIN answers AS a".$ipreg." ON a".$ipreg.".patient_id = p.id AND a".$ipreg.".question_id = ".$preg['question_id']." AND a".$ipreg.".valor = ".$preg['valor'];
-				}
-			
-			endforeach;	
-			
-			$condtipdir = "";
-						
-			if ($aux['tipodir'] == '') {
-				$condtipdir = "COALESCE(oms.address_part_id,oms.address_lab_id) ";
-			} else if ($aux['tipodir'] == 'P') {
-				$condtipdir = "oms.address_part_id ";
-			} else {
-				$condtipdir = "oms.address_lab_id ";
-			}
-	
-			$consulta = "select Patient.* from ( select p.sexo, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, dir.*,oms.estadio from patients AS p join
-					(select o.address_part_id,o.address_lab_id,o.patient_id,o.estadio from oms_registers as o GROUP BY o.patient_id) AS oms on oms.patient_id = p.id join addresses 
-					as dir on dir.id = " . $condtipdir . $joinpreguntas . $condiciones . " ) as Patient".$condedad;
-	
-			//debug($consulta);
-			//exit;
-			$addresses = $this->Address->query($consulta);
-			
-			//debug($addresses);
-			//debug(json_encode($addresses));
-					
-		} else {
-		
-			$addresses = null;
-			
-		}
-		*/
 		$this->set(compact('addresses'));
 		Controller::loadModel('Question');
 		$questions = $this->Question->find('all',array('recursive' => 0,'conditions' => array('Question.visible' => '1')));
@@ -187,13 +117,16 @@ public $helpers = array('GoogleMapV3');
 						
 		} 
 
+		// ANTES ERA EDAD DEL PACIENTE (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad
+		// AHORA ES EDAD DEL PACIENTE AL MOMENTO QUE SE LE CARGO EL OMS
 
-		$consulta = "select Patient.* from ( select p.sexo, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, dir.*,oms.estadio,oms.codigo,oms.descripcion " . $selectorpreguntas . " from patients AS p join
-				(select codes.codigo,codes.descripcion,o.address_part_id,o.address_lab_id,o.patient_id,o.estadio from oms_registers as o
+		$consulta = "select Patient.* from ( select p.sexo,oms.fecha, (DATE_FORMAT(FROM_DAYS(TO_DAYS(oms.fecha) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, dir.*,oms.estadio,oms.codigo,oms.descripcion " . $selectorpreguntas . " from patients AS p join
+				(select codes.codigo,codes.descripcion,o.address_part_id,o.address_lab_id,o.patient_id,o.estadio,o.fecha from oms_registers as o
 				join oms_codes as codes on codes.id = o.oms_code_id " . $condicioncodigos . $condfecha . " GROUP BY o.patient_id) AS oms on oms.patient_id = p.id join addresses 
 				as dir on dir.id = " . $condtipdir . $joinpreguntas . $condiciones . $condicionpreguntas . " ) as Patient".$condedad;
 	
 		//debug($consulta);
+		//exit;
 	
 		$addresses = $this->Address->query($consulta);
 		
