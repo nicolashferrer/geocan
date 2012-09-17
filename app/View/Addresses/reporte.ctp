@@ -14,6 +14,7 @@
 	google.load("visualization", "1", {packages:["corechart"]});
 	var pointarray, heatmap;//2
 	var map; // EL MAPA!!
+	var mapaux;
 	
 	var markerCluster = null; // MAPA DE CLUSTERS
 
@@ -98,6 +99,8 @@
 		map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 		map.setCenter(noLocation);
 		
+		mapaux = map;
+		
 	}
 	
 	function limpiarMapa() {
@@ -116,8 +119,9 @@
 					marcadoresHeatmap=[];
 		
 	}
+	
 	function toggleHeatmap() {
-		
+			
 		if (marcadores) {
 			for (i in marcadores) {
 				marcadores[i].setMap(heatmap.getMap() ? map : null);
@@ -125,20 +129,69 @@
 			
 		}
 		
-		if (!heatmap.getMap()&&markerCluster!=null) {
+		if (!heatmap.getMap()) {
 			
 			$("#btncalor").addClass('active');
-			markerCluster.clearMarkers();
-			
-		}else {
+					
+		} else {
 			
 			$("#btncalor").removeClass('active');
-			markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
+			//markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
 			
 		} 
+		
+		if (markerCluster) {
+
+    		$("#btncluster").removeClass('active');
+	        		
+    		markerCluster.clearMarkers();
+			markerCluster = null;
+			for (var i = 0, marker; marker = marcadores[i]; i++) {
+	      		marker.setOptions({map:null,visible:true})
 	
+	    	}
+		}
+			
         heatmap.setMap(heatmap.getMap() ? null : map);
-      }
+     }
+	
+	 // Si silencioso es TRUE no cambia el estado del boton de "modo clustering", si es falso , hace el efecto de presion sobre el boton.
+     function toggleCluster(silencioso) {
+		
+		//Si esta activado calor, lo desactivo
+		if (heatmap.getMap()) {
+			$("#btncalor").removeClass('active');
+			heatmap.setMap(null);
+		}
+		
+		// Si no esta activado, lo activo
+	   	if (!markerCluster) {
+    	
+    		if (!silencioso) {
+    			$("#btncluster").addClass('active');
+    		}
+    		
+    		for (var i = 0, marker; marker = marcadores[i]; i++) {
+				marker.setMap(null);
+    		}
+    	
+    		markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
+    			
+    	} else {
+    		
+    		if (!silencioso) {
+	    		$("#btncluster").removeClass('active');
+	    	}
+	    		
+    		markerCluster.clearMarkers();
+			markerCluster = null;
+			for (var i = 0, marker; marker = marcadores[i]; i++) {
+	      		marker.setOptions({map:map,visible:true})
+	
+	    	}
+    	}
+    	
+     }
 	
 	function agregarEstadisticas(paciente) {
 	
@@ -340,7 +393,8 @@
 					agregarEstadisticas(option.Patient);
 				});
 				
-				markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
+			//	markerCluster = new MarkerClusterer(map, null,mcOptions);
+			//	markerCluster.addMarkers(marcadores);
 				pointArray = new google.maps.MVCArray(marcadoresHeatmap);
 				heatmap = new google.maps.visualization.HeatmapLayer({
 					data: pointArray,
@@ -353,6 +407,7 @@
 		});
 	}
 	
+
 	$(document).ready(function(){
 		
 		$(".iframe").colorbox({iframe:true, width:"700px", height:"450px", scrolling:true});
@@ -552,7 +607,9 @@
 		<li>
 			<h2><span>Mapa</span></h2>
 			<div id="map_canvas" style="margin-left:48px;"></div>
-			<div id="opcionbutton"> <a id="btncalor" class="button long" href="JavaScript:toggleHeatmap();">Mapa de Calor</a></div>		
+			<div id="opcionbutton"> 
+				<a id="btncalor" class="button long" href="JavaScript:toggleHeatmap();">Mapa de Calor</a><a id="btncluster" class="button long" href="JavaScript:toggleCluster(false);">Agrupado</a>
+			</div>		
 		</li>
 		<li>
 			<h2><span>Estad&iacute;sticas de G&eacute;nero y Edad</span></h2>

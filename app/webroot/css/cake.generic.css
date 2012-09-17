@@ -1102,7 +1102,7 @@ fieldset fieldset legend {
 #opcionbutton {
     width: 140px; 
     position: relative;/*this will position the div according to its parent div "map"*/
-    top: 470px;
+    top: 440px;
     left: 40px !important; /*place the div wherever you want with top and left px, em or % values*/
 
  /*Use this for your trasparency*/
@@ -1128,7 +1128,7 @@ fieldset fieldset legend {
 	text-shadow:1px 1px 0 rgba(255,255,255,.67);
 	line-height:24px;
 	height:24px;
-	margin:0 0 24px 12px;
+	margin:0 0 5px 12px;
 	width:75px;
 	padding:0;
 	/** Make the text unselectable **/
