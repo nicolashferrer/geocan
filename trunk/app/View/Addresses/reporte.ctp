@@ -3,6 +3,7 @@
 	echo $this->Html->css('liteaccordion');
 	echo $this->Html->script('jquery.easing.1.3');
 	echo $this->Html->script('liteaccordion.jquery');
+	echo $this->Html->script('oms.min');
 
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi" charset="utf-8"></script>
@@ -33,6 +34,7 @@
 	var preguntasactivas = new Array(cantpreguntas);
 	
 	var iaux = 0;
+	var spider;
 	<?php
 		
 	foreach ($questions as $question):
@@ -100,6 +102,7 @@
 		map.setCenter(noLocation);
 		
 		mapaux = map;
+		spider=new OverlappingMarkerSpiderfier(map);
 		
 	}
 	
@@ -360,7 +363,7 @@
 		});
 		
 		marcadores.push(marcador);
-		
+		spider.addMarker(marcador);
 		var contenido = '<b>Sexo:</b> ' + textosexo;
 		contenido += '<br><b>Edad:</b> ' + paciente.edad;
 		contenido += '<br><b>Direcci&oacute;n:</b> ' + paciente.direccion;
