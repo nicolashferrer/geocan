@@ -1,9 +1,11 @@
 <?php
+
 	echo $this->Html->script('markerclusterer_packed'); // Include jQuery library
 	echo $this->Html->css('liteaccordion');
 	echo $this->Html->script('jquery.easing.1.3');
 	echo $this->Html->script('liteaccordion.jquery');
 	echo $this->Html->script('oms.min');
+	echo $this->Html->script('jquery.idTabs.min.js');
 
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi" charset="utf-8"></script>
@@ -380,12 +382,35 @@
 		
 		marcadores.push(marcador);
 		spider.addMarker(marcador);
-		var contenido = '<b>Sexo:</b> ' + textosexo;
+		
+		var tabPreguntas = '';
+		
+		for (var iaux=0;iaux<cantpreguntas;iaux++) {
+			tabPreguntas +=  '<b>' + preguntasactivas[iaux][1] + ':</b>';
+			
+			if (paciente[preguntasactivas[iaux][0]] == null) { // NO CONTESTA
+				tabPreguntas += ' No Contesta<br>';
+			} else if (paciente[preguntasactivas[iaux][0]] == true) { // SI
+				tabPreguntas += ' Si<br>';
+			} else { // NO
+				tabPreguntas += ' No<br>';
+			}
+			
+		}
+		
+		
+		var contenido = '<div id="iwtabs" class="usual"><ul><li><a href="#tab1">Información</a></li><li><a href="#tab2">Información Adicional</a></li></ul>';
+		contenido += '<div id="tab1"><b>Sexo:</b> ' + textosexo;
 		contenido += '<br><b>Edad:</b> ' + paciente.edad;
 		contenido += '<br><b>Direcci&oacute;n:</b> ' + paciente.direccion;
 		contenido += '<br><b>OMS:</b> ' + paciente.codigo + ' - ' + paciente.descripcion;
 		contenido += '<br><b>Estadio:</b> ' + paciente.estadio;
-								
+		contenido += '</div><div id="tab2" style="display:none;">' + tabPreguntas + '</div>';
+		contenido += '</div>';
+		
+		
+		
+							
 		var ventana = new google.maps.InfoWindow({
 	            content: contenido
 	    });
@@ -393,6 +418,7 @@
 		google.maps.event.addListener(marcador, 'click', function() {
 							if (mostrarIW) {
 								ventana.open(map,marcador);
+								$("#iwtabs ul").idTabs('tab1');
 							}
 							
 							mostrarIW = true;
