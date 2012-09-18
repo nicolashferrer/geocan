@@ -14,6 +14,8 @@
 	
 	var codigosAgregados = 0;
 	
+	var marcadorCount = 0; // Contador global para asignar un ID unico a los marcadores
+	
 	google.load("visualization", "1", {packages:["corechart"]});
 	var pointarray, heatmap;//2
 	var map; // EL MAPA!!
@@ -357,6 +359,7 @@
 
 	function agregarMarcador(paciente) {
 	
+		marcadorCount++;
 		var image = '';
 		var textosexo;
 		
@@ -380,9 +383,10 @@
 			        shadow: shadowImage
 		});
 		
+		marcador.set("id", marcadorCount);
 		marcadores.push(marcador);
 		spider.addMarker(marcador);
-		
+				
 		var tabPreguntas = '';
 		
 		for (var iaux=0;iaux<cantpreguntas;iaux++) {
@@ -399,13 +403,13 @@
 		}
 		
 		
-		var contenido = '<div id="iwtabs" class="usual"><ul><li><a href="#tab1">Información</a></li><li><a href="#tab2">Información Adicional</a></li></ul>';
-		contenido += '<div id="tab1"><b>Sexo:</b> ' + textosexo;
+		var contenido = '<div id="iwtabs_'+marcador.get("id")+'" class="usual"><ul><li><a href="#tab1_'+marcador.get("id")+'">Información</a></li><li><a href="#tab2_'+marcador.get("id")+'">Información Adicional</a></li></ul>';
+		contenido += '<div id="tab1_'+marcador.get("id")+'"><b>Sexo:</b> ' + textosexo;
 		contenido += '<br><b>Edad:</b> ' + paciente.edad;
 		contenido += '<br><b>Direcci&oacute;n:</b> ' + paciente.direccion;
 		contenido += '<br><b>OMS:</b> ' + paciente.codigo + ' - ' + paciente.descripcion;
 		contenido += '<br><b>Estadio:</b> ' + paciente.estadio;
-		contenido += '</div><div id="tab2" style="display:none;">' + tabPreguntas + '</div>';
+		contenido += '</div><div id="tab2_'+marcador.get("id")+'" style="display:none;">' + tabPreguntas + '</div>';
 		contenido += '</div>';
 		
 		
@@ -418,7 +422,7 @@
 		google.maps.event.addListener(marcador, 'click', function() {
 							if (mostrarIW) {
 								ventana.open(map,marcador);
-								$("#iwtabs ul").idTabs('tab1');
+								$("#iwtabs_"+marcador.get("id")+" ul").idTabs('tab1_'+marcador.get("id"));
 							}
 							
 							mostrarIW = true;
