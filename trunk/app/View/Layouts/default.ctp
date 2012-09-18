@@ -40,6 +40,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 	// Css de Plugin jquery para ventanas modales
 	echo $this -> Html -> css('menu');
 	echo $this -> Html -> css('jquery.alerts');
+	echo $this -> Html -> css('idtabs');
 
 	echo $this -> fetch('meta');
 	echo $this -> fetch('css');
