@@ -19,7 +19,8 @@
 	
 	var markerCluster = null; // MAPA DE CLUSTERS
 
-	var mcOptions = {gridSize: 50};
+	var mcOptions = {gridSize: 50, maxZoom: 17};
+	var spiderOptions = { keepSpiderfied:true };
 
 	var defaultWidth=$('#content').width()-207+"px";					//Width of the map	
 	var defaultHeight="500px";					//Height of the map
@@ -35,6 +36,9 @@
 	
 	var iaux = 0;
 	var spider;
+	
+	var mostrarIW = true; // determina si al hacer click sobre un marker, muestra o no la info window
+	
 	<?php
 		
 	foreach ($questions as $question):
@@ -102,11 +106,19 @@
 		map.setCenter(noLocation);
 		
 		mapaux = map;
-		spider=new OverlappingMarkerSpiderfier(map);
+		spider=new OverlappingMarkerSpiderfier(map,spiderOptions);
+		spider.addListener('spiderfy', function(aranias,noaranias) {
+			mostrarIW = false; 
+			//alert(aranias[0]); 
+			//debugger;
+			});
 		
 	}
 	
 	function limpiarMapa() {
+		
+		spider.unspiderfy();
+		
 		if (marcadores) {
 			for (i in marcadores) {
 				marcadores[i].setMap(null);
@@ -124,6 +136,8 @@
 	}
 	
 	function toggleHeatmap() {
+		
+		spider.unspiderfy();
 			
 		if (marcadores) {
 			for (i in marcadores) {
@@ -160,6 +174,8 @@
 	
 	 // Si silencioso es TRUE no cambia el estado del boton de "modo clustering", si es falso , hace el efecto de presion sobre el boton.
      function toggleCluster(silencioso) {
+     	
+     	spider.unspiderfy();
 		
 		//Si esta activado calor, lo desactivo
 		if (heatmap.getMap()) {
@@ -375,7 +391,12 @@
 	    });
 		
 		google.maps.event.addListener(marcador, 'click', function() {
+							if (mostrarIW) {
 								ventana.open(map,marcador);
+							}
+							
+							mostrarIW = true;
+							
 		        			});
 	}
 
@@ -403,6 +424,8 @@
 					data: pointArray,
 					radius: 50
 				});
+				
+				toggleCluster(false); // Activamos clustering por defecto
 					
 				//heatmap.setMap(map);
 				dibujarEstadisticas();
