@@ -406,6 +406,7 @@
 		var contenido = '<div id="iwtabs_'+marcador.get("id")+'" class="usual"><ul><li><a href="#tab1_'+marcador.get("id")+'">Información</a></li><li><a href="#tab2_'+marcador.get("id")+'">Información Adicional</a></li></ul>';
 		contenido += '<div id="tab1_'+marcador.get("id")+'"><b>Sexo:</b> ' + textosexo;
 		contenido += '<br><b>Edad:</b> ' + paciente.edad;
+		contenido += '<br><b>Ocupación:</b> ' + paciente.ocupacion;
 		contenido += '<br><b>Direcci&oacute;n:</b> ' + paciente.direccion;
 		contenido += '<br><b>OMS:</b> ' + paciente.codigo + ' - ' + paciente.descripcion;
 		contenido += '<br><b>Estadio:</b> ' + paciente.estadio;
