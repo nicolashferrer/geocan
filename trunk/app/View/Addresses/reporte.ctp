@@ -362,13 +362,18 @@
 		marcadorCount++;
 		var image = '';
 		var textosexo;
+		var imgvive = "";
+		
+		if (paciente.vive==0) {
+			imgvive = "-dead"
+		}
 		
 		if (paciente.sexo=="M") {
 			textosexo = "Masculino";
-			image = '<?php echo $this->webroot ?>img/blue-marker.png';
+			image = '<?php echo $this->webroot ?>img/blue-marker'+imgvive+'.png';
 		} else {
 			textosexo = "Femenino";
-			image = '<?php echo $this->webroot ?>img/pink-marker.png';
+			image = '<?php echo $this->webroot ?>img/pink-marker'+imgvive+'.png';
 		}
 		
 		var shadowImage = '<?php echo $this->webroot ?>img/msmarker.shadow.png';
@@ -580,12 +585,20 @@
 			<fieldset>
 					<legend><?php echo __('Informaci&oacute;n B&aacute;sica'); ?></legend>
 			<?php
+			
+					$options=array(''=>'Indistinto','V'=>'Vivo','F'=>'Fallecido');
+					$attributes=array('legend'=>false,'value'=>'','separator'=>'');
+					
+					echo "<div>";
+					echo "<label class='label_radio'>Estado</label>";
+					echo $this->Form->radio('estado',$options,$attributes);
+					echo "</div>";
 
 					$options=array(''=>'Indistinto','M'=>'Masculino','F'=>'Femenino');
 					$attributes=array('legend'=>false,'value'=>'','separator'=>'');
 					
 					echo "<div>";
-					echo "<label class='label_radio'>Genero</label>";
+					echo "<label class='label_radio'>Género</label>";
 					echo $this->Form->radio('sexo',$options,$attributes);
 					echo "</div>";
 					
@@ -598,11 +611,11 @@
 					echo "</div>";
 					
 					echo "<div class=input>";
-					echo "<label>Edad Entre </label><input type='text' size='5' name='data[Consulta][edadMin]' id='edadMin' />y&nbsp;<input type='text' size='5' name='data[Consulta][edadMax]' id='edadMax' />";
+					echo "<label>Edad en Diagnóstico Entre </label><input type='text' size='5' name='data[Consulta][edadMin]' id='edadMin' />y&nbsp;<input type='text' size='5' name='data[Consulta][edadMax]' id='edadMax' />";
 					echo "</div>";
 					
 					echo "<div class=input>";
-					echo "<label>Fecha Entre </label><input type='text' size='10' name='data[Consulta][fechaFrom]' id='ConsultaFechaFrom' />  y&nbsp;<input type='text' size='10' name='data[Consulta][fechaTo]' id='ConsultaFechaTo' />";
+					echo "<label>Fecha Diagnóstico Entre </label><input type='text' size='10' name='data[Consulta][fechaFrom]' id='ConsultaFechaFrom' />  y&nbsp;<input type='text' size='10' name='data[Consulta][fechaTo]' id='ConsultaFechaTo' />";
 					echo "</div>";
 					
 			?>
