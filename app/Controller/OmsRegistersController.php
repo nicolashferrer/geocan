@@ -164,16 +164,19 @@ class OmsRegistersController extends AppController {
 		if (($this->Auth->user('group_id')==2) && ($medic_id['OmsRegister']['medic_id'] != $this->Auth->user('medic_id'))) {
 			exit(0);
 		}
+		
+		if (!$this->checkDelete()) {
+			$this->Session->setFlash(__('El registro Oms no pudo ser borrado, tiene notas asociadas.'));
+			$this->redirect(array('controller' => 'patients','action' => 'view',$paciente));
+		}
+				
 		if ($this->OmsRegister->delete()) {
 			$this->Session->setFlash(__('El registro Oms fue borrado correctamente', null), 
 					'default', 
 					array('class' => 'success'));
-			//$this->redirect(array('controller' => 'patients','action' => 'view',$paciente));
+			$this->redirect(array('controller' => 'patients','action' => 'view',$paciente));
 		}
-		if (!$this->checkDelete())
-			$this->Session->setFlash(__('El registro Oms no pudo ser borrado, tiene notas asociadas.'));
-		//$this->redirect(array('action' => 'index'));
-		$this->redirect(array('controller' => 'patients','action' => 'view',$paciente));
+
 	}	
 	
 	function checkDelete(){

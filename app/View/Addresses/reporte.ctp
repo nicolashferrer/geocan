@@ -363,9 +363,33 @@
 		var image = '';
 		var textosexo;
 		var imgvive = "";
+		var fallecido = "No"
+		var edad_paciente = paciente.edad;
 		
 		if (paciente.vive==0) {
-			imgvive = "-dead"
+			imgvive = "-dead";
+			fallecido = "Si";
+			if (paciente.fecha_defuncion != null) {
+				
+				var d = new Date(paciente.fecha_defuncion);
+				
+				//Le sumo 1 dia porque por alguna razon, al crear la fecha anterior se crea con 1 dia antes.
+				var ms = d.getTime() + 86400000;
+				d = new Date(ms);
+
+				// Transformo la fecha al formato que usamos en el sistema dd/mm/aaaa
+				var curr_date = d.getDate();
+				var curr_month = d.getMonth();
+				curr_month++;
+				var curr_year = d.getFullYear();
+				var fecha_def = curr_date + "/" + curr_month + "/" + curr_year;
+				
+				edad_paciente = paciente.edad_defuncion;
+
+				fallecido += ", el "  + fecha_def + " a los " + paciente.edad_defuncion  + " años";
+			} else {
+				edad_paciente = "Desconocida";
+			}
 		}
 		
 		if (paciente.sexo=="M") {
@@ -410,7 +434,8 @@
 		
 		var contenido = '<div id="iwtabs_'+marcador.get("id")+'" class="usual"><ul><li><a href="#tab1_'+marcador.get("id")+'">Información</a></li><li><a href="#tab2_'+marcador.get("id")+'">Información Adicional</a></li></ul>';
 		contenido += '<div id="tab1_'+marcador.get("id")+'"><b>Sexo:</b> ' + textosexo;
-		contenido += '<br><b>Edad:</b> ' + paciente.edad;
+		contenido += '<br><b>Edad:</b> ' + edad_paciente;
+		contenido += '<br><b>Fallecido:</b> ' + fallecido;
 		contenido += '<br><b>Ocupación:</b> ' + paciente.ocupacion;
 		contenido += '<br><b>Direcci&oacute;n:</b> ' + paciente.direccion;
 		contenido += '<br><b>OMS:</b> ' + paciente.codigo + ' - ' + paciente.descripcion;

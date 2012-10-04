@@ -55,7 +55,7 @@
 							if (!empty($patient['Patient']['fecha_defuncion'])) {
 								echo calcularEdad($patient['Patient']['fecha_nacimiento'],$patient['Patient']['fecha_defuncion']); 	
 							}  else {
-								echo '-';	
+								echo 'Desconocida';	
 							}
 														   
 						}
