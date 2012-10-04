@@ -51,6 +51,14 @@ public $helpers = array('GoogleMapV3');
 			$condedad .= " AND edad <= ".$aux['edadMax']." ";
 		} 
 
+		if ($aux['estado'] == 'V') {
+			$condiciones .= " AND p.vive = 1 ";
+		}
+		
+		if ($aux['estado'] == 'F') {
+			$condiciones .= " AND p.vive = 0 ";
+		}
+
 		if ($aux['sexo'] == 'M') {
 			$condiciones .= " AND p.sexo = 'M' ";
 		}
@@ -120,7 +128,7 @@ public $helpers = array('GoogleMapV3');
 		// ANTES ERA EDAD DEL PACIENTE (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad
 		// AHORA ES EDAD DEL PACIENTE AL MOMENTO QUE SE LE CARGO EL OMS
 
-		$consulta = "select Patient.* from ( select p.sexo,oms.fecha, (DATE_FORMAT(FROM_DAYS(TO_DAYS(oms.fecha) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, jobs.descripcion as 'ocupacion', dir.*,oms.estadio,oms.codigo,oms.descripcion " . $selectorpreguntas . " from patients AS p join
+		$consulta = "select Patient.* from ( select p.vive,p.sexo,oms.fecha, (DATE_FORMAT(FROM_DAYS(TO_DAYS(oms.fecha) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, jobs.descripcion as 'ocupacion', dir.*,oms.estadio,oms.codigo,oms.descripcion " . $selectorpreguntas . " from patients AS p join
 				(select codes.codigo,codes.descripcion,o.address_part_id,o.address_lab_id,o.patient_id,o.estadio,o.fecha from oms_registers as o
 				join oms_codes as codes on codes.id = o.oms_code_id " . $condicioncodigos . $condfecha . " GROUP BY o.patient_id) AS oms on oms.patient_id = p.id JOIN jobs on jobs.id=p.job_id join addresses 
 				as dir on dir.id = " . $condtipdir . $joinpreguntas . $condiciones . $condicionpreguntas . " ) as Patient".$condedad;
