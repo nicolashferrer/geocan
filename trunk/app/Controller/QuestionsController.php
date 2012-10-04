@@ -90,6 +90,12 @@ class QuestionsController extends AppController {
 		if (!$this->Question->exists()) {
 			throw new NotFoundException(__('Pregunta inv&aacute;lida'));
 		}
+		
+		if (!$this->checkDelete()) {
+			$this->Session->setFlash(__('La pregunta ya fue respondida al menos una vez, no puede ser eliminada.'));
+			$this->redirect(array('action' => 'index'));
+		}
+			
 		if ($this->Question->delete()) {
 			$this->Session->setFlash(__('La pregunta fue borrada correctamente', null), 
 					'default', 
@@ -99,6 +105,19 @@ class QuestionsController extends AppController {
 		$this->Session->setFlash(__('La pregunta no pudo ser borrada'));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	function checkDelete(){
+		Controller::loadModel('Answer');	
+		$count = $this->Answer->find("count", array(
+			"conditions" => array("question_id" => $this->Question->id)
+		));
+		if ($count == 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+		
 
 	function beforeFilter() {
 		parent::beforeFilter();

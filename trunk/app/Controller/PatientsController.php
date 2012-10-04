@@ -47,11 +47,11 @@ class PatientsController extends AppController {
 	function result() {
 					if(!empty($this->data)) { 
 					
-						debug($this->data['Patient']['nro_documento']);
+						//debug($this->data['Patient']['nro_documento']);
 					
 						$documentoEncriptado = Security::hash($this->data['Patient']['nro_documento'], 'sha256', true);
 						
-						debug($documentoEncriptado);
+						//debug($documentoEncriptado);
 						
 						exit;
                       
