@@ -62,6 +62,8 @@
 	var total = 0;
 	var hombres = 0;
 	var mujeres = 0;
+	var pfallecido = 0;
+	var pvivo = 0;
 	var edades = new Array(11); // De 0 a 10...
 	var respuestas = new Array(cantpreguntas); // Arreglo que contendra info sobre las respuestas de los pacientes sobre las preguntas activas
 	
@@ -88,6 +90,8 @@
 		total = 0;
 		hombres = 0;
 		mujeres = 0;
+		pfallecido = 0;
+		pvivo = 0;
 		
 	}
 	//2
@@ -240,6 +244,12 @@
 			genero = 1;
 		}
 		
+		if (paciente.vive==0) {
+			pfallecido++;
+		} else {
+			pvivo++;
+		}
+		
 		
 		var iaux = 0;
 		var pactual;
@@ -283,7 +293,7 @@
         var options = {
           title: 'Edades y Generos ( Total = ' + total + ' )',
           height: 300,
-          hAxis: {title: 'Rango de Edades en <?php echo utf8_encode('Años'); ?>', titleTextStyle: {color: 'black'}}
+          hAxis: {title: 'Rango de Edades en Años', titleTextStyle: {color: 'black'}}
         };
 
         var chart = new google.visualization.ColumnChart(document.getElementById('div_estadisticas'));
@@ -321,13 +331,26 @@
         ]);
         
         var options3 = {
-			title: 'Personas por Rango de Edades ( Total = ' + total + ' )',
+			title: 'Pacientes por Rango de Edades ( Total = ' + total + ' )',
 			width: 400
         };
 
         var chart3 = new google.visualization.PieChart(document.getElementById('div_torta2'));
         chart3.draw(data3, options3);
         
+        var data4 = google.visualization.arrayToDataTable([
+          ['Estado', 'Total'],
+          ['Vivo' , pvivo ],
+          ['Fallecido', pfallecido ]
+        ]);
+        
+        var options4 = {
+			title: 'Estado de Pacientes ( Total = ' + total + ' )',
+			width: 400
+        };
+
+        var chart4 = new google.visualization.PieChart(document.getElementById('div_torta4'));
+        chart4.draw(data4, options4);
         
         // Generacion dinamica de los graficos de las respuestas!
         for (iaux=0;iaux<cantpreguntas;iaux++) {
@@ -715,6 +738,7 @@
 				<div id="div_estadisticas"></div>
 				<div style='float:left;' id="div_torta"></div>
 				<div style='float:left;' id="div_torta2"></div>
+				<div style='float:left;' id="div_torta4"></div>
 			</div>
 		</li>
 		<li>
