@@ -733,7 +733,7 @@
 			</div>		
 		</li>
 		<li>
-			<h2><span>Estad&iacute;sticas de G&eacute;nero y Edad</span></h2>
+			<h2><span>Estad&iacute;sticas de G&eacute;nero, Edad y Estado</span></h2>
 			<div>
 				<div id="div_estadisticas"></div>
 				<div style='float:left;' id="div_torta"></div>
