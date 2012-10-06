@@ -58,12 +58,21 @@ class OmsRegistersController extends AppController {
 				unset($this->request->data['OmsRegister']['address_lab_id']);
 				$nueva_lab= true;
 			}
+			
 			unset($this->request->data['Control']);
 			
-			//debug($this->request->data);
-			//exit;	
+			
+			$cod= $this->request->data['codificacion'];
+			$estadificacion = $cod['T'] . ';' . $cod['Tn'] . '@' . $cod['N'] . ';' . $cod['Nn'] . '@' . $cod['M'] . ';' . $cod['Mn'] ;
+			
+			unset($this->request->data['codificacion']);
+			
+			$this->request->data['OmsRegister']['codificacion'] = $estadificacion;
 			
 			$this->OmsRegister->create();
+			
+			//debug($this->request->data);
+			//exit();
 			
 			if ($this->OmsRegister->saveAll($this->request->data)) {
 			
@@ -127,6 +136,14 @@ class OmsRegistersController extends AppController {
 		$medic_id = $this->OmsRegister->read('medic_id');
 		
 		if ($this->request->is('post') || $this->request->is('put')) {
+			
+			$cod= $this->request->data['codificacion'];
+			$estadificacion = $cod['T'] . ';' . $cod['Tn'] . '@' . $cod['N'] . ';' . $cod['Nn'] . '@' . $cod['M'] . ';' . $cod['Mn'] ;
+				
+			unset($this->request->data['codificacion']);
+				
+			$this->request->data['OmsRegister']['codificacion'] = $estadificacion;
+		
 			if ($this->OmsRegister->save($this->request->data)) {
 				$this->Session->setFlash(__('El registro Oms fue modificado correctamente.', null), 
 					'default', 
