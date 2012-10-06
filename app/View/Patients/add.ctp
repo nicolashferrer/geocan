@@ -36,6 +36,7 @@ $(document).ready(function() {
 				})
 				if ($id == 1) { //La provincia es Buenos Aires
 					$('#localidadesParticular').val(1); // Selecciono Bahia Blanca
+					recalcularParticular();
 				}
 			});
 		} else {
@@ -59,6 +60,7 @@ $(document).ready(function() {
 				})
 				if ($id == 1) { //La provincia es Buenos Aires
 					$('#localidadesLaboral').val(1); // Selecciono Bahia Blanca
+					recalcularLaboral();
 				}
 			});
 		} else {
@@ -124,6 +126,7 @@ $(document).ready(function() {
 	
 	checkParticular();
 	checkLaboral();
+	
 });
 
 	function checkParticular() {
@@ -185,6 +188,70 @@ $(document).ready(function() {
 			
 			}
 	}
+	
+	function recalcularParticular() {
+		
+		<?php 
+		
+		if ($this->request->data) {
+					
+			if (isset($this->request->data['Primary']['direccion'])) {
+					
+				$dir = $this->request->data['Primary']['direccion'];
+				
+				$cachos = explode(" ", $dir);
+				
+				$altura = $cachos[sizeof($cachos)-1];
+				
+				$cachos = array_slice($cachos,0,sizeof($cachos)-1);
+								
+				$ladire = implode(" ", $cachos);
+				
+				echo "checkParticular();";
+				echo "$('#calleParticular').val('$ladire');";
+				echo "$('#alturaParticular').val('$altura');";
+				echo "buscar('Particular',true);";
+					
+
+			}
+					
+		}
+		
+		?>
+		
+	}
+	
+	function recalcularLaboral() {
+		
+		<?php 
+		
+		if ($this->request->data) {
+					
+			if (isset($this->request->data['Secondary']['direccion'])) {
+					
+				$dir = $this->request->data['Secondary']['direccion'];
+				
+				$cachos = explode(" ", $dir);
+				
+				$altura = $cachos[sizeof($cachos)-1];
+				
+				$cachos = array_slice($cachos,0,sizeof($cachos)-1);
+								
+				$ladire = implode(" ", $cachos);
+				
+				echo "$('#chLaboral').attr('checked', true);";
+				echo "checkLaboral();";
+				echo "$('#calleLaboral').val('$ladire');";
+				echo "$('#alturaLaboral').val('$altura');";
+				echo "buscar('Laboral',true);";
+				
+			}
+			
+		}
+		
+		?>
+		
+	}
 
 	
 </script>
@@ -193,7 +260,7 @@ $(document).ready(function() {
 	<fieldset>
 		<legend><?php echo __('Informaci&oacute;n B&aacute;sica'); ?></legend>
 	<?php
-		
+			
 		echo $this->Form->hidden('Control.cargo_particular', array('value' => 'false'));
 		echo $this->Form->hidden('Control.cargo_laboral', array('value' => 'false'));
 		
@@ -246,7 +313,7 @@ $(document).ready(function() {
 					</select>
 					<input type="text" size="25" id="calleParticular" />
 					<input type="text" size="5" id="alturaParticular" />
-					<a href="JavaScript:buscar('Particular');" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
+					<a href="JavaScript:buscar('Particular',false);" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 				</fieldset>
 				<fieldset>
 					<legend><input type="checkbox" id="chLaboral" value="" onclick="checkLaboral();"><?php echo __('Direccion Laboral'); ?></legend>
@@ -260,7 +327,7 @@ $(document).ready(function() {
 					</select>
 					<input type="text" size="25" id="calleLaboral" />
 					<input type="text" size="5" id="alturaLaboral" />
-					<a href="JavaScript:buscar('Laboral');" id="comprobarLaboral"><img id="imgbusquedaLaboral" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
+					<a href="JavaScript:buscar('Laboral',false);" id="comprobarLaboral"><img id="imgbusquedaLaboral" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 				</fieldset>
 				</div>
 		</fieldset>
@@ -272,8 +339,31 @@ $(document).ready(function() {
 			$i = 0;
 			foreach ($questions as $question):
 			
+				if ($this->request->data) {
+					
+
+						if (isset($this->request->data['Answer'][$i])) {
+							$valorviejo = $this->request->data['Answer'][$i]['valor'];
+							if ($valorviejo == true) {
+								$valorviejo = '1';
+							} else if ($valorviejo == null) {
+								$valorviejo = "";
+							} else {
+								$valorviejo = "0";
+							}
+							
+						} else {
+							$valorviejo = "";
+						}
+
+
+					
+				} else {
+					$valorviejo = "";
+				}
+				
 				$opciones=array('1'=>'Si','0'=>'No',''=>'No Contesta');
-				$atributos=array('legend'=>false,'value'=>'','separator'=>'');
+				$atributos=array('legend'=>false,'value'=>$valorviejo,'separator'=>'');
 				echo "<div>";
 				echo "<label class='label_radio'>".$question['Question']['descripcion']."</label>";
 				echo $this->Form->hidden('Answer.'.$i.'.question_id', array('value' => $question['Question']['id']));
