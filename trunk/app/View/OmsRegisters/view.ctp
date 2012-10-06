@@ -43,6 +43,19 @@
 				?>
 				&nbsp;
 			</dd>
+			<dt><?php echo __('Estadificaci&oacute;n'); ?></dt>
+			<dd>
+				<?php 
+					$cod = $omsRegister['OmsRegister']['codificacion']; 
+					$grupos = split('@', $cod);
+					$T= split(';', $grupos[0]);
+					$N= split(';', $grupos[1]);
+					$M= split(';', $grupos[2]);
+					
+					echo $T[0] . ' ' . $T[1] . ' - ' . $N[0] . ' ' . $N[1] . ' - ' . $M[0] . ' ' . $M[1];
+				?>
+				&nbsp;
+			</dd>
 		</dl>
 		<div class="actions">
 			<ul>

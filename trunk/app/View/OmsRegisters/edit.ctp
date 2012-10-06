@@ -33,6 +33,47 @@
 		echo "<label class='label_radio required'>Estad&iacute;o</label>";
 		echo $this->Form->radio('estadio',$options,$attributes);
 		echo "</div>";	
+		
+		
+		$cod = $this->request->data['OmsRegister']['codificacion']; 
+		$grupos = split('@', $cod);
+		$T= split(';', $grupos[0]);
+		$N= split(';', $grupos[1]);
+		$M= split(';', $grupos[2]);
+		
+		echo "<div>";
+		echo "<label class='label_radio required'>Estadificaci&oacute;n</label>";
+		
+		$options = array('Tx' => 'Tx','T0' => 'T0','Tis' => 'Tis','T1' => 'T1','T2' => 'T2','T3' => 'T3','T4' => 'T4');
+		$attributes=array('legend'=>false,'value'=> $T[0],'empty'=>false);
+		echo $this->Form->select('codificacion.T', $options, $attributes);
+		
+		$options = array('A' => 'A','B' => 'B','C' => 'C');
+		$attributes=array('legend'=>false,'value'=>$T[1]);
+		echo $this->Form->select('codificacion.Tn', $options, $attributes);
+		
+		echo "   -   "; 
+		
+		$options = array('Nx' => 'Nx','N0' => 'N0','N1' => 'N1','N2' => 'N2','N3' => 'N3');
+		$attributes=array('legend'=>false,'value'=>$N[0],'empty'=>false);
+		echo $this->Form->select('codificacion.N', $options, $attributes);
+		
+		$options = array('A' => 'A','B' => 'B','C' => 'C');
+		$attributes=array('legend'=>false,'value'=>$N[1]);
+		echo $this->Form->select('codificacion.Nn', $options, $attributes);
+		
+		echo "   -   "; 
+		
+		$options = array('Mx' => 'Mx','M0' => 'M0','M1' => 'M1');
+		$attributes=array('legend'=>false,'value'=>$M[0],'empty'=>false);
+		echo $this->Form->select('codificacion.M', $options, $attributes);
+		
+		$options = array('A' => 'A','B' => 'B','C' => 'C');
+		$attributes=array('legend'=>false,'value'=>$M[1]);
+		echo $this->Form->select('codificacion.Mn', $options, $attributes);
+		
+		echo "</div>";
+		
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Editar'));?>

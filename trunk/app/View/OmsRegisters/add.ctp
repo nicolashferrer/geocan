@@ -260,6 +260,39 @@
 		echo $this->Form->radio('estadio',$options,$attributes);
 		echo "</div>";	
 		
+		echo "<div>";
+		echo "<label class='label_radio required'>Estadificaci&oacute;n</label>";
+		
+		$options = array('Tx' => 'Tx','T0' => 'T0','Tis' => 'Tis','T1' => 'T1','T2' => 'T2','T3' => 'T3','T4' => 'T4');
+		$attributes=array('legend'=>false,'value'=>'Tx','empty'=>false);
+		echo $this->Form->select('codificacion.T', $options, $attributes);
+		
+		$options = array('A' => 'A','B' => 'B','C' => 'C');
+		$attributes=array('legend'=>false,'value'=>'');
+		echo $this->Form->select('codificacion.Tn', $options, $attributes);
+		
+		echo "   -   "; 
+		
+		$options = array('Nx' => 'Nx','N0' => 'N0','N1' => 'N1','N2' => 'N2','N3' => 'N3');
+		$attributes=array('legend'=>false,'value'=>'Nx','empty'=>false);
+		echo $this->Form->select('codificacion.N', $options, $attributes);
+		
+		$options = array('A' => 'A','B' => 'B','C' => 'C');
+		$attributes=array('legend'=>false,'value'=>'');
+		echo $this->Form->select('codificacion.Nn', $options, $attributes);
+		
+		echo "   -   "; 
+		
+		$options = array('Mx' => 'Mx','M0' => 'M0','M1' => 'M1');
+		$attributes=array('legend'=>false,'value'=>'Mx','empty'=>false);
+		echo $this->Form->select('codificacion.M', $options, $attributes);
+		
+		$options = array('A' => 'A','B' => 'B','C' => 'C');
+		$attributes=array('legend'=>false,'value'=>'');
+		echo $this->Form->select('codificacion.Mn', $options, $attributes);
+		
+		echo "</div>";
+
 
 	?>	
 		<div class=input>
