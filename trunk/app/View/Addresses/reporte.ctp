@@ -358,7 +358,7 @@
 	}
 
 	function agregarMarcador(paciente) {
-	
+		
 		marcadorCount++;
 		var image = '';
 		var textosexo;
@@ -431,6 +431,8 @@
 			
 		}
 		
+		var codificacion = paciente.codificacion.replace(/;/gi, " ");
+		codificacion = codificacion.replace(/@/gi, " - "); 
 		
 		var contenido = '<div id="iwtabs_'+marcador.get("id")+'" class="usual"><ul><li><a href="#tab1_'+marcador.get("id")+'">Información</a></li><li><a href="#tab2_'+marcador.get("id")+'">Información Adicional</a></li></ul>';
 		contenido += '<div id="tab1_'+marcador.get("id")+'"><b>Sexo:</b> ' + textosexo;
@@ -439,6 +441,7 @@
 		contenido += '<br><b>Ocupación:</b> ' + paciente.ocupacion;
 		contenido += '<br><b>Direcci&oacute;n:</b> ' + paciente.direccion;
 		contenido += '<br><b>OMS:</b> ' + paciente.codigo + ' - ' + paciente.descripcion;
+		contenido += '<br><b>Codificaci&oacute;n:</b> ' + codificacion;
 		contenido += '<br><b>Estadio:</b> ' + paciente.estadio;
 		contenido += '</div><div id="tab2_'+marcador.get("id")+'" style="display:none;">' + tabPreguntas + '</div>';
 		contenido += '</div>';

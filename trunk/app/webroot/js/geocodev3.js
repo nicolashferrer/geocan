@@ -3,6 +3,9 @@
 
 var tituloinfo = "Información";
 
+
+var modosilencioso = false;
+
 $(document).ready(function(){
 	
 	/*
@@ -23,7 +26,9 @@ $(document).ready(function(){
 
 
 //tipoDireccion = "laboral" o "particular"
-function buscar(tipoDireccion) {
+function buscar(tipoDireccion,silencioso) {
+	
+	modosilencioso = silencioso;
 	
 	var provincia = $('#provincias'+tipoDireccion+' option:selected').text();
 	var localidad = $('#localidades'+tipoDireccion+' option:selected').text();
@@ -42,7 +47,7 @@ function buscar(tipoDireccion) {
 	
 	if ((calle != "" && altura !="") && (isNaN(altura)==false)) {
 		miciudad = localidad;
-		var address = calle + ' ' + altura_redondeada + ', ' + provincia + ', ' + localidad + ', Argentina';
+		var address = calle + ' ' + altura_redondeada + ', ' + provincia + ', ' + localidad + ', Argentina';		
 		processGeocoding(address, direccionGoogle, tipoDireccion); 
 	} else {
 		//alert("Ingresa bien la direccion!");
@@ -112,7 +117,10 @@ function buscar(tipoDireccion) {
 					$('#SecondaryDireccion').val(direccion_partida[0]);
 					$('#ControlCargoLaboral').val('true');		
 				}
-				jAlert("Direcci&oacute;n encontrada.","Geolocalización");
+				
+				if (!modosilencioso) {
+					jAlert("Direcci&oacute;n encontrada.","Geolocalización");
+				}
 				
 				$('#imgmapa'+tipoDireccion).remove(); // Remuevo la imagen por si ya existe
 				
@@ -144,7 +152,7 @@ function buscar(tipoDireccion) {
 					$('#ControlCargoLaboral').val('false');
 					$('#imgmapaLaboral').remove();
 				}
-				//alert('ERROR! Unable to geocode address');
+				//alert('ERROR! Unable to geocode address');	
 				jError("No se pudo geolocalizar la direcci&oacute;n solicitada.","Errores de Geolocalización");
 
 			}
