@@ -185,6 +185,17 @@ table tr td {
 	vertical-align: top;
 	border-bottom:1px solid #ddd;
 }
+
+tr.welcome,td.welcome {
+	text-align: center;
+	vertical-align: top;
+	border-bottom:0px solid #ddd;
+}
+
+table tr.welcome:nth-child(even) {
+	background: #ffffff;
+}
+
 table tr:nth-child(even) {
 	background: #f9f9f9;
 }

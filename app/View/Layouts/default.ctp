@@ -120,11 +120,11 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 <body onLoad="fechaActual()">
 	<div id="container">
 		<div id="header"><div id="loadingDiv"><?php echo $this->Html->image('loading.gif', array('alt' => 'Cargando...'))?></div>
-			<div id="header-logo"><a href="<?php echo $this -> Html -> url(array("controller" => "patients", "action" => "search")); ?>"><?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?></a></div>
+			<div id="header-logo"><a href="<?php echo $this -> Html -> url(array("controller" => "pages", "action" => "welcome")); ?>"><?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?></a></div>
 			<div id="menucontainer">
 				<ul id="nav">
 					<?php if ($isAuthed) {  ?>
-					<li class="top"><a href="<?php echo $this -> Html -> url(array("controller" => "patients", "action" => "search")); ?>" class="top_link"><span>Inicio</span></a></li>
+					<li class="top"><a href="<?php echo $this -> Html -> url(array("controller" => "pages", "action" => "welcome")); ?>" class="top_link"><span>Inicio</span></a></li>
 					<li class="top"><a href="#nogo2" id="patients" class="top_link"><span class="down">Pacientes</span></a>
 						<ul class="sub">
 							<li><?php echo $this->Html->link('Buscar...',array('controller' => 'patients', 'action' => 'search'))?></li>
