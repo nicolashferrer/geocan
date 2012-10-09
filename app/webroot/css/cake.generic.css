@@ -187,7 +187,6 @@ table tr td {
 }
 
 tr.welcome,td.welcome {
-	text-align: center;
 	vertical-align: top;
 	border-bottom:0px solid #ddd;
 }

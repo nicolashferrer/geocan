@@ -3,7 +3,7 @@
 -- Server version:               5.1.37 - Source distribution
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-09-16 18:22:50
+-- Date/time:                    2012-10-09 20:23:52
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -21,13 +21,13 @@ CREATE TABLE IF NOT EXISTS `acos` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.acos: ~115 rows (approximately)
+-- Dumping data for table geocan.acos: ~117 rows (approximately)
 DELETE FROM `acos`;
 /*!40000 ALTER TABLE `acos` DISABLE KEYS */;
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-	(1, NULL, NULL, NULL, 'controllers', 1, 230),
+	(1, NULL, NULL, NULL, 'controllers', 1, 234),
 	(2, 1, NULL, NULL, 'Addresses', 2, 17),
 	(3, 2, NULL, NULL, 'index', 3, 4),
 	(4, 2, NULL, NULL, 'view', 5, 6),
@@ -82,66 +82,68 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 	(61, 58, NULL, NULL, 'add', 121, 122),
 	(62, 58, NULL, NULL, 'edit', 123, 124),
 	(63, 58, NULL, NULL, 'delete', 125, 126),
-	(65, 1, NULL, NULL, 'Pages', 130, 133),
+	(65, 1, NULL, NULL, 'Pages', 130, 135),
 	(66, 65, NULL, NULL, 'display', 131, 132),
-	(68, 1, NULL, NULL, 'Patients', 134, 153),
-	(69, 68, NULL, NULL, 'index', 135, 136),
-	(70, 68, NULL, NULL, 'view', 137, 138),
-	(71, 68, NULL, NULL, 'add', 139, 140),
-	(72, 68, NULL, NULL, 'edit', 141, 142),
-	(73, 68, NULL, NULL, 'delete', 143, 144),
-	(75, 1, NULL, NULL, 'Provinces', 154, 167),
-	(76, 75, NULL, NULL, 'index', 155, 156),
-	(77, 75, NULL, NULL, 'view', 157, 158),
-	(78, 75, NULL, NULL, 'add', 159, 160),
-	(79, 75, NULL, NULL, 'edit', 161, 162),
-	(80, 75, NULL, NULL, 'delete', 163, 164),
-	(82, 1, NULL, NULL, 'Questions', 168, 179),
-	(83, 82, NULL, NULL, 'index', 169, 170),
-	(84, 82, NULL, NULL, 'view', 171, 172),
-	(85, 82, NULL, NULL, 'add', 173, 174),
-	(86, 82, NULL, NULL, 'edit', 175, 176),
-	(87, 82, NULL, NULL, 'delete', 177, 178),
-	(89, 1, NULL, NULL, 'Users', 180, 207),
-	(90, 89, NULL, NULL, 'index', 181, 182),
-	(91, 89, NULL, NULL, 'view', 183, 184),
-	(92, 89, NULL, NULL, 'add', 185, 186),
-	(93, 89, NULL, NULL, 'edit', 187, 188),
-	(94, 89, NULL, NULL, 'delete', 189, 190),
-	(95, 89, NULL, NULL, 'login', 191, 192),
-	(96, 89, NULL, NULL, 'logout', 193, 194),
-	(98, 1, NULL, NULL, 'AclExtras', 208, 209),
+	(68, 1, NULL, NULL, 'Patients', 136, 155),
+	(69, 68, NULL, NULL, 'index', 137, 138),
+	(70, 68, NULL, NULL, 'view', 139, 140),
+	(71, 68, NULL, NULL, 'add', 141, 142),
+	(72, 68, NULL, NULL, 'edit', 143, 144),
+	(73, 68, NULL, NULL, 'delete', 145, 146),
+	(75, 1, NULL, NULL, 'Provinces', 156, 169),
+	(76, 75, NULL, NULL, 'index', 157, 158),
+	(77, 75, NULL, NULL, 'view', 159, 160),
+	(78, 75, NULL, NULL, 'add', 161, 162),
+	(79, 75, NULL, NULL, 'edit', 163, 164),
+	(80, 75, NULL, NULL, 'delete', 165, 166),
+	(82, 1, NULL, NULL, 'Questions', 170, 183),
+	(83, 82, NULL, NULL, 'index', 171, 172),
+	(84, 82, NULL, NULL, 'view', 173, 174),
+	(85, 82, NULL, NULL, 'add', 175, 176),
+	(86, 82, NULL, NULL, 'edit', 177, 178),
+	(87, 82, NULL, NULL, 'delete', 179, 180),
+	(89, 1, NULL, NULL, 'Users', 184, 211),
+	(90, 89, NULL, NULL, 'index', 185, 186),
+	(91, 89, NULL, NULL, 'view', 187, 188),
+	(92, 89, NULL, NULL, 'add', 189, 190),
+	(93, 89, NULL, NULL, 'edit', 191, 192),
+	(94, 89, NULL, NULL, 'delete', 193, 194),
+	(95, 89, NULL, NULL, 'login', 195, 196),
+	(96, 89, NULL, NULL, 'logout', 197, 198),
+	(98, 1, NULL, NULL, 'AclExtras', 212, 213),
 	(99, 16, NULL, NULL, 'getCiudades', 41, 42),
 	(100, 23, NULL, NULL, 'build_acl', 57, 58),
 	(101, 51, NULL, NULL, 'getSigNivel', 109, 110),
 	(102, 51, NULL, NULL, 'help', 111, 112),
-	(103, 89, NULL, NULL, 'initDB', 195, 196),
+	(103, 89, NULL, NULL, 'initDB', 199, 200),
 	(105, 51, NULL, NULL, 'sugerencias', 113, 114),
-	(106, 68, NULL, NULL, 'search', 145, 146),
-	(107, 68, NULL, NULL, 'result', 147, 148),
-	(108, 68, NULL, NULL, 'editAnswers', 149, 150),
-	(109, 68, NULL, NULL, 'recuperarPaciente', 151, 152),
-	(110, 89, NULL, NULL, 'editPassword', 197, 198),
-	(111, 89, NULL, NULL, 'resetPassword', 199, 200),
+	(106, 68, NULL, NULL, 'search', 147, 148),
+	(107, 68, NULL, NULL, 'result', 149, 150),
+	(108, 68, NULL, NULL, 'editAnswers', 151, 152),
+	(109, 68, NULL, NULL, 'recuperarPaciente', 153, 154),
+	(110, 89, NULL, NULL, 'editPassword', 201, 202),
+	(111, 89, NULL, NULL, 'resetPassword', 203, 204),
 	(112, 2, NULL, NULL, 'reporte', 13, 14),
 	(113, 58, NULL, NULL, 'checkDelete', 127, 128),
 	(114, 2, NULL, NULL, 'reporteBusqueda', 15, 16),
 	(115, 16, NULL, NULL, 'checkDelete', 43, 44),
 	(116, 37, NULL, NULL, 'checkDelete', 83, 84),
-	(117, 75, NULL, NULL, 'checkDelete', 165, 166),
-	(118, 89, NULL, NULL, 'captcha', 201, 202),
-	(119, 89, NULL, NULL, 'reload_captcha', 203, 204),
-	(120, 1, NULL, NULL, 'AuditLog', 210, 211),
-	(122, 1, NULL, NULL, 'Audits', 212, 215),
-	(123, 122, NULL, NULL, 'index', 213, 214),
-	(124, 1, NULL, NULL, 'Jobs', 216, 227),
-	(125, 124, NULL, NULL, 'index', 217, 218),
-	(126, 124, NULL, NULL, 'view', 219, 220),
-	(127, 124, NULL, NULL, 'add', 221, 222),
-	(128, 124, NULL, NULL, 'edit', 223, 224),
-	(129, 124, NULL, NULL, 'delete', 225, 226),
-	(130, 1, NULL, NULL, 'Filter', 228, 229),
-	(131, 89, NULL, NULL, 'cambiarBlocked', 205, 206);
+	(117, 75, NULL, NULL, 'checkDelete', 167, 168),
+	(118, 89, NULL, NULL, 'captcha', 205, 206),
+	(119, 89, NULL, NULL, 'reload_captcha', 207, 208),
+	(120, 1, NULL, NULL, 'AuditLog', 214, 215),
+	(122, 1, NULL, NULL, 'Audits', 216, 219),
+	(123, 122, NULL, NULL, 'index', 217, 218),
+	(124, 1, NULL, NULL, 'Jobs', 220, 231),
+	(125, 124, NULL, NULL, 'index', 221, 222),
+	(126, 124, NULL, NULL, 'view', 223, 224),
+	(127, 124, NULL, NULL, 'add', 225, 226),
+	(128, 124, NULL, NULL, 'edit', 227, 228),
+	(129, 124, NULL, NULL, 'delete', 229, 230),
+	(130, 1, NULL, NULL, 'Filter', 232, 233),
+	(131, 89, NULL, NULL, 'cambiarBlocked', 209, 210),
+	(132, 65, NULL, NULL, 'welcome', 133, 134),
+	(133, 82, NULL, NULL, 'checkDelete', 181, 182);
 /*!40000 ALTER TABLE `acos` ENABLE KEYS */;
 
 
@@ -190,9 +192,9 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   `_update` char(2) NOT NULL DEFAULT '0',
   `_delete` char(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.aros_acos: ~111 rows (approximately)
+-- Dumping data for table geocan.aros_acos: ~113 rows (approximately)
 DELETE FROM `aros_acos`;
 /*!40000 ALTER TABLE `aros_acos` DISABLE KEYS */;
 INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`, `_delete`) VALUES
@@ -306,7 +308,9 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 	(108, 4, 129, '1', '1', '1', '1'),
 	(109, 4, 128, '-1', '-1', '-1', '-1'),
 	(110, 2, 125, '1', '1', '1', '1'),
-	(111, 4, 125, '1', '1', '1', '1');
+	(111, 4, 125, '1', '1', '1', '1'),
+	(112, 2, 132, '1', '1', '1', '1'),
+	(113, 4, 132, '1', '1', '1', '1');
 /*!40000 ALTER TABLE `aros_acos` ENABLE KEYS */;
 
 
@@ -354,9 +358,9 @@ DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `created`, `modified`, `medic_id`, `blocked`) VALUES
 	(1, 'admin', '3784364f60b0989c0059deb3210dc30966a4ec6c', 1, '2012-04-13 22:24:30', '2012-07-08 19:09:17', NULL, 0),
-	(5, 'medico', 'cd3841d030f5ba4fd4bd6e7d84cc38bbb06c2434', 2, '2012-08-14 20:24:14', '2012-08-14 20:25:41', 2, 0),
-	(6, 'ayudante', '1a4019c13fc080713f95858cbfa33f4e0b68bf42', 3, '2012-08-14 20:30:37', '2012-08-14 20:30:37', NULL, 0),
-	(7, 'medico2', '1a4019c13fc080713f95858cbfa33f4e0b68bf42', 2, '2012-08-14 20:52:00', '2012-08-14 20:53:36', 1, 0);
+	(5, 'medico', '3784364f60b0989c0059deb3210dc30966a4ec6c', 2, '2012-08-14 20:24:14', '2012-10-04 00:17:02', 2, 0),
+	(6, 'ayudante', '3784364f60b0989c0059deb3210dc30966a4ec6c', 3, '2012-08-14 20:30:37', '2012-10-04 00:17:44', NULL, 0),
+	(7, 'medico2', '3784364f60b0989c0059deb3210dc30966a4ec6c', 2, '2012-08-14 20:52:00', '2012-10-04 00:17:05', 1, 0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

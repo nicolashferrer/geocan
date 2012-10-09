@@ -23,7 +23,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 <head>
 	<?php echo $this -> Html -> charset('utf-8'); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
+		<?php echo $cakeDescription ?>
 		<?php echo $title_for_layout; ?>
 	</title>
 	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&language=es&libraries=places&libraries=visualization"></script>

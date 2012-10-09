@@ -46,6 +46,10 @@ class AppController extends Controller {
     public $helpers = array('Html', 'Form', 'Session');
 
     public function beforeFilter() {
+		  
+		  // Borramos el titulo por defecto para que no muestre nada
+		 $this->set('title_for_layout', ''); 
+		   
         //Configure AuthComponent
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
@@ -77,6 +81,7 @@ class AppController extends Controller {
 	function beforeRender() {
 	   $this->set('auth', $this->Auth->user());
 	   $this->set('isAuthed', $this->isAuthed); 
+
 	} 
 
 }

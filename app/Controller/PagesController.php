@@ -82,6 +82,7 @@ class PagesController extends AppController {
 	
 	
 	public function welcome() {
+		$this->set('title_for_layout', 'Bienvenido!'); 
 	
 	}
 	
