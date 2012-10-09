@@ -49,7 +49,8 @@ class AppController extends Controller {
         //Configure AuthComponent
         $this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
-        $this->Auth->loginRedirect = array('controller' => 'patients', 'action' => 'search');
+        //$this->Auth->loginRedirect = array('controller' => 'patients', 'action' => 'search');
+		$this->Auth->loginRedirect = array('controller' => 'pages', 'action' => 'welcome');
 		$this->Auth->authError = "No tiene permisos para realizar esta acci&oacute;n.";
 		
 		//Defino el root
