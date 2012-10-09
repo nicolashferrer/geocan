@@ -253,6 +253,9 @@ class UsersController extends AppController {
 		$group -> id = 2;
 		$this -> Acl -> deny($group, 'controllers');
 
+		// Permisos de pagina de bienvenida
+		$this -> Acl -> allow($group, 'controllers/Pages/welcome');
+		
 		// Permisos sobre Usuarios
 		$this -> Acl -> allow($group, 'controllers/Users/editPassword');
 		//$this->Acl->allow($group, 'controllers/Users/view');
@@ -331,6 +334,9 @@ class UsersController extends AppController {
 		$this -> Acl -> deny($group, 'controllers/Groups/edit');
 		$this -> Acl -> deny($group, 'controllers/Groups/delete');
 
+		// Permisos de pagina de bienvenida
+		$this -> Acl -> allow($group, 'controllers/Pages/welcome');
+		
 		// Permisos sobre Usuarios
 		$this -> Acl -> allow($group, 'controllers/Users/editPassword');
 		//$this->Acl->allow($group, 'controllers/Users/view');
