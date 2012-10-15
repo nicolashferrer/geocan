@@ -31,6 +31,9 @@ public $helpers = array('GoogleMapV3');
 	// Metodo que devuelve resultados en formato json y es invocado mediante ajax!
 	public function reporteBusqueda() {
 		
+		// HARCODEO DE CIUDAD! ASUMIMOS 1 BAHIA BLANCA!
+		$ciudadID = 1;
+		
 		$condiciones = " WHERE 1=1 ";
 		$condedad = " WHERE 1=1 ";
 		$condfecha= " WHERE 1=1 ";
@@ -109,6 +112,8 @@ public $helpers = array('GoogleMapV3');
 		} else {
 			$condtipdir = "oms.address_lab_id ";
 		}
+		
+		$condtipdir .= " AND dir.city_id = $ciudadID ";
 
 
 		if (isset($this->request->query['data']['Codigo'])) {
