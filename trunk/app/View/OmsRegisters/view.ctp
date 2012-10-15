@@ -1,4 +1,52 @@
-﻿<div class="omsRegisters view">
+﻿<script>
+	
+		function mostrarNombresCiudad(id,div) {
+		
+		$.getJSON('<?php echo $this->Html->url(array(
+			"controller" => "cities",
+			"action" => "getNombre"));?>' + '/' + id, function(data){
+					
+						try {
+							$('#'+div).text(data.City.nombre);
+						} catch (e) {
+							$('#'+div).text("");
+						}
+					});
+							
+	}
+	
+		$(document).ready(function() {
+			
+		<?php 
+			if (isset($omsRegister['Primary']['city_id'])) {
+				echo "mostrarNombresCiudad(".$omsRegister['Primary']['city_id'].",'nomCiudadPart');";
+			}
+			
+			if (isset($omsRegister['Secondary']['city_id'])) {
+				echo "mostrarNombresCiudad(".$omsRegister['Secondary']['city_id'].",'nomCiudadLab');";
+			}
+		?>
+			
+		});
+	
+</script>
+
+<?php
+
+	$descParticular = "No posee";
+	$descLaboral = "No Posee";
+
+	if (isset($omsRegister['Primary']['direccion'])) {
+		$descParticular = "<span id='nomCiudadPart'></span>, " . $omsRegister['Primary']['direccion'];
+	}
+
+	if (isset($omsRegister['Secondary']['direccion'])) {
+		$descLaboral = "<span id='nomCiudadLab'></span>, " . $omsRegister['Secondary']['direccion'];
+	}
+		 
+?>
+
+<div class="omsRegisters view">
 	<fieldset>
 	<legend><?php echo __('Oms'); ?></legend>
 		<dl>
@@ -14,12 +62,17 @@
 			</dd>
 			<dt><?php echo __('Dirección particular'); ?></dt>
 			<dd>
-				<?php echo $omsRegister['Primary']['direccion']; ?>
+				<?php 
+				//echo $omsRegister['Primary']['direccion'];
+				echo $descParticular;
+				?>
 				&nbsp;
 			</dd>
 			<dt><?php echo __('Dirección laboral'); ?></dt>
 			<dd>
-				<?php echo $omsRegister['Secondary']['direccion']; ?>
+				<?php //echo $omsRegister['Secondary']['direccion']; 
+					echo $descLaboral;
+				?>
 				&nbsp;
 			</dd>
 			<dt><?php echo __('Código Oms'); ?></dt>

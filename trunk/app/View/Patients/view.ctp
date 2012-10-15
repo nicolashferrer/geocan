@@ -1,7 +1,51 @@
+<script>
+	
+		function mostrarNombresCiudad(id,div) {
+		
+		$.getJSON('<?php echo $this->Html->url(array(
+			"controller" => "cities",
+			"action" => "getNombre"));?>' + '/' + id, function(data){
+					
+						try {
+							$('#'+div).text(data.City.nombre);
+						} catch (e) {
+							$('#'+div).text("");
+						}
+					});
+							
+	}
+	
+		$(document).ready(function() {
+			
+		<?php 
+			if (isset($patient['Primary']['city_id'])) {
+				echo "mostrarNombresCiudad(".$patient['Primary']['city_id'].",'nomCiudadPart');";
+			}
+			
+			if (isset($patient['Secondary']['city_id'])) {
+				echo "mostrarNombresCiudad(".$patient['Secondary']['city_id'].",'nomCiudadLab');";
+			}
+		?>
+			
+		});
+	
+</script>
 <?php
 
 	//debug($patient);
+		
+		$descParticular = "No posee";
+		$descLaboral = "No Posee";
 	
+		if (isset($patient['Primary']['direccion'])) {
+			$descParticular = "<span id='nomCiudadPart'></span>, " . $patient['Primary']['direccion'];
+		}
+	
+		if (isset($patient['Secondary']['direccion'])) {
+			$descLaboral = "<span id='nomCiudadLab'></span>, " . $patient['Secondary']['direccion'];
+		}
+		 
+		 
 	
 	function calcularEdad2($fechaNacimiento,$fechaDefuncion)
 	
@@ -26,8 +70,7 @@
 			if ($month_diff < 0) $year_diff--;
 			elseif (($month_diff==0) && ($day_diff < 0)) $year_diff--;
 			return $year_diff;
-		}
-						 
+		}				 
 
 ?>
 
@@ -147,12 +190,18 @@
 				</dd>
 				<dt><?php echo __('Dir. Particular'); ?></dt>
 				<dd>
-					<?php echo h($patient['Primary']['direccion']); ?>
+					<?php 
+						//echo h($patient['Primary']['direccion']);
+						echo $descParticular; 
+					?>
 					&nbsp;
 				</dd>
 				<dt><?php echo __('Dir. Laboral'); ?></dt>
 				<dd>
-					<?php echo h($patient['Secondary']['direccion']); ?>
+					<?php 
+						//echo h($patient['Secondary']['direccion']);
+						echo $descLaboral; 
+					?>
 					&nbsp;
 				</dd>
 			</dl>

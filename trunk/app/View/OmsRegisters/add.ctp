@@ -185,12 +185,40 @@
 		a = $('#sugerencias').autocomplete(options);
 	
 		$(".iframe").colorbox({iframe:true, width:"700px", height:"450px", scrolling:true});
+		
+		
+		<?php 
+			if (isset($patient['Primary']['city_id'])) {
+				echo "mostrarNombresCiudad(".$patient['Primary']['city_id'].",'nomCiudadPart');";
+			}
+			
+			if (isset($patient['Secondary']['city_id'])) {
+				echo "mostrarNombresCiudad(".$patient['Secondary']['city_id'].",'nomCiudadLab');";
+			}
+		?>
+
 	});
 	
 	function cambiarCodigo(id, desc ) {
 		$("#sugerencias").val(desc);
 		$('#OmsRegisterOmsCodeId').val(id);
 		$(".iframe").colorbox.close();
+	}
+	
+	
+	function mostrarNombresCiudad(id,div) {
+		
+		$.getJSON('<?php echo $this->Html->url(array(
+			"controller" => "cities",
+			"action" => "getNombre"));?>' + '/' + id, function(data){
+					
+						try {
+							$('#'+div).text(data.City.nombre);
+						} catch (e) {
+							$('#'+div).text("");
+						}
+					});
+							
 	}
 	
 </script>
@@ -202,8 +230,21 @@
 		<legend><?php echo __('Nuevo Oms'); ?></legend>
 	<?php
 	
+		$descParticular = "(No posee)";
+		$descLaboral = "(No Posee)";
+	
+		if (isset($patient['Primary']['direccion'])) {
+			$descParticular = "(<span id='nomCiudadPart'></span>, " . $patient['Primary']['direccion'] . ")";
+		}
+	
+		if (isset($patient['Secondary']['direccion'])) {
+			$descLaboral = "(<span id='nomCiudadLab'></span>, " . $patient['Secondary']['direccion'] . ")";
+		}
+		 
+	
 		//debug($provinces);
 	
+	//	debug($patient['Primary']['city_id']);
 		//debug($patient);
 		//debug($patient['Primary']['id']);
 		//debug($patient['Secondary']['id']);
@@ -296,9 +337,10 @@
 
 	?>	
 		<div class=input>
-		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"> Utilizar direcci&oacute;n particular actual del paciente.
+		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"> Utilizar direcci&oacute;n particular actual del paciente. <b><?php echo $descParticular; ?></b>
+
 		<fieldset id="fsParticular">
-			<legend><?php echo __('Direcci&oacute;n Particular'); ?></legend>
+			<legend><?php echo __('Nueva Direcci&oacute;n Particular'); ?></legend>
 			<select id="provinciasParticular">
 			<?php foreach ($provinces as $key => $province): ?>
 				<option value="<?php echo $key ?>"><?php echo $province ?></option>
@@ -311,9 +353,9 @@
 		</fieldset>
 		</div>
 		<div class=input>
-		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"> Utilizar direcci&oacute;n laboral actual del paciente.
+		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"> Utilizar direcci&oacute;n laboral actual del paciente. <b><?php echo $descLaboral; ?></b>
 		<fieldset id="fsLaboral">
-			<legend><?php echo __('Direcci&oacute;n Laboral'); ?></legend>
+			<legend><?php echo __('Nueva Direcci&oacute;n Laboral'); ?></legend>
 			<select id="provinciasLaboral">
 			<?php foreach ($provinces as $key => $province): ?>
 				<option value="<?php echo $key ?>"><?php echo $province ?></option>
