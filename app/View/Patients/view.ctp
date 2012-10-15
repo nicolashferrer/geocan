@@ -2,6 +2,7 @@
 
 	//debug($patient);
 	
+	
 	function calcularEdad2($fechaNacimiento,$fechaDefuncion)
 	
 		{
