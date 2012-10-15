@@ -2,6 +2,21 @@
 	
 	var fdefuncion = null;
 	
+	function mostrarNombresCiudad(id,div) {
+		
+		$.getJSON('<?php echo $this->Html->url(array(
+			"controller" => "cities",
+			"action" => "getNombre"));?>' + '/' + id, function(data){
+					
+						try {
+							$('#'+div).text(data.City.nombre);
+						} catch (e) {
+							$('#'+div).text("");
+						}
+					});
+							
+	}
+	
 	
 	function checkLaboral() {
 	
@@ -169,6 +184,16 @@
 		
 		checkParticular();
 		checkLaboral();
+		
+		<?php 
+			if (isset($this->request->data['Primary']['city_id'])) {
+				echo "mostrarNombresCiudad(".$this->request->data['Primary']['city_id'].",'nomCiudadPart');";
+			}
+			
+			if (isset($this->request->data['Secondary']['city_id'])) {
+				echo "mostrarNombresCiudad(".$this->request->data['Secondary']['city_id'].",'nomCiudadLab');";
+			}
+		?>
 	
 	});
 	
@@ -182,6 +207,18 @@
 	<?php
 	
 		//debug($this->request->data);
+		
+		$descParticular = "(No posee)";
+		$descLaboral = "(No Posee)";
+	
+		if (isset($this->request->data['Primary']['direccion'])) {
+			$descParticular = "(<span id='nomCiudadPart'></span>, " . $this->request->data['Primary']['direccion'] . ")";
+		}
+	
+		if (isset($this->request->data['Secondary']['direccion'])) {
+			$descLaboral = "(<span id='nomCiudadLab'></span>, " . $this->request->data['Secondary']['direccion'] . ")";
+		}
+		 
 	
 		echo $this->Form->input('id');
 		
@@ -239,9 +276,9 @@
 		
 		?>
 		<div class=input>
-		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"/>No modificar la direcci&oacute;n particular del paciente.<br />
+		<input type="checkbox" id="chParticular" value="" checked onclick="checkParticular();"/>No modificar la direcci&oacute;n particular del paciente. <b><?php echo $descParticular; ?></b><br />
 		<fieldset id="fsParticular">
-			<legend><?php echo __('Direcci&oacute;n Particular'); ?></legend>
+			<legend><?php echo __('Nueva Direcci&oacute;n Particular'); ?></legend>
 			<select id="provinciasParticular">
 			<?php foreach ($provinces as $key => $province): ?>
 				<option value="<?php echo $key ?>"><?php echo $province ?></option>
@@ -253,9 +290,9 @@
 			<input type="text" size="5" value="Altura" id="alturaParticular" class="clear-text-field" />
 			<a href="JavaScript:buscar('Particular');" id="comprobarParticular"><img id="imgbusquedaParticular" src="<?php echo $this->webroot; ?>img/search.png" style="vertical-align: middle;" /></a>
 		</fieldset>
-		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"/>No modificar la direcci&oacute;n laboral del paciente.<br />
+		<input type="checkbox" id="chLaboral" value="" checked onclick="checkLaboral();"/>No modificar la direcci&oacute;n laboral del paciente. <b><?php echo $descLaboral; ?></b><br />
 		<fieldset id="fsLaboral">
-			<legend><?php echo __('Direcci&oacute;n Laboral'); ?></legend>
+			<legend><?php echo __('Nueva Direcci&oacute;n Laboral'); ?></legend>
 			<select id="provinciasLaboral">
 			<?php foreach ($provinces as $key => $province): ?>
 				<option value="<?php echo $key ?>"><?php echo $province ?></option>

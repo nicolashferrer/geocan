@@ -136,6 +136,21 @@ class CitiesController extends AppController {
     //    exit(); 
 		return new CakeResponse(array('body' => json_encode($json)));
     }
+
+
+	
+	function getNombre($id) {
+		if (!$id) {
+            $nombre = "";
+        }
+		else{
+			$this->City->recursive = 0;
+            $nombre = $this->City->read('nombre',$id);
+        }
+		
+		return new CakeResponse(array('body' => json_encode($nombre)));
+          
+	}
 	
 	function beforeFilter() {
 		parent::beforeFilter();

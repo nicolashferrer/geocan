@@ -106,6 +106,7 @@ class OmsRegistersController extends AppController {
 		}
 		Controller::loadModel('Province');
 		$provinces = $this->Province->find('list');
+		$this->OmsRegister->Patient->recursive = 1;
 		$this->set('patient', $this->OmsRegister->Patient->read(null, $id));
 		//$medics = $this->OmsRegister->Medic->find('list');
 		$omsCodes = $this->OmsRegister->OmsCode->find('list');
