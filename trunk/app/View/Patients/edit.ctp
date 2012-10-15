@@ -224,10 +224,12 @@
 		
 		echo $this->Form->input('iniciales');
 		
-		echo $this->Form->input('peso');
+		//echo $this->Form->input('peso');
 	//	echo $this->Form->error('Patient.peso');
 		
-		echo $this->Form->input('altura');
+		//echo $this->Form->input('altura');
+		echo $this->Form->input('Patient.peso', array('type' => 'text' , 'label' => 'Peso (Kg.)'));
+		echo $this->Form->input('Patient.altura', array('type' => 'text', 'label' => 'Altura (Mts.)'));
 		
 		$options=array('1'=>'No','0'=>'Si');
 		$attributes=array('legend'=>false,'value'=>$this->request->data['Patient']['vive'],'separator'=>'');
