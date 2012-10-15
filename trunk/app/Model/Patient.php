@@ -25,6 +25,14 @@ class Patient extends AppModel {
 
 	public $validate = array(
 		'nro_documento' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Este campo es obligatorio.',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 			'numeric' => array(
 				'rule' => array('numeric'),
 				'on' => 'create',
@@ -35,14 +43,6 @@ class Patient extends AppModel {
 				'on' => 'create',
 				'message' => 'El DNI ingresado ya corresponde a otro paciente.',
             ),
-			'notempty' => array(
-				'rule' => array('notempty'),
-				'message' => 'Este campo es obligatorio.',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
 		),
 		'iniciales' => array(
 			'notempty' => array(
