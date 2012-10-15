@@ -41,7 +41,12 @@
   *padding-top:3px;
   *margin-top:-15px;
   clear:left;
+  min-height:150px;
+  min-height:150px;
+  height: 150px;
+  overflow:auto;
   background:#EFEFEF;
+  
   font:10pt Verdana;
   border:0px solid #222;
 }
