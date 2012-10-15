@@ -285,8 +285,8 @@ $(document).ready(function() {
 		echo $this->Form->radio('sexo',$options,$attributes);
 		echo "</div>";
 		
-		echo $this->Form->input('Patient.peso');
-		echo $this->Form->input('Patient.altura');
+		echo $this->Form->input('Patient.peso', array('type' => 'text' , 'label' => 'Peso(Kg)'));
+		echo $this->Form->input('Patient.altura', array('type' => 'text', 'label' => 'Altura(Mts)'));
 		echo $this->Form->input('Patient.job_id',array('label' =>'Ocupación'));
 		
 		$options=array('1'=>'No','0'=>'Si');
