@@ -313,6 +313,7 @@ class UsersController extends AppController {
 
 		// Ciudades y Provincias
 		$this -> Acl -> allow($group, 'controllers/Cities/getCiudades');
+		$this -> Acl -> allow($group, 'controllers/Cities/getNombre');
 		$this -> Acl -> allow($group, 'controllers/Cities/view');
 		$this -> Acl -> allow($group, 'controllers/Cities/add');
 		$this -> Acl -> allow($group, 'controllers/Provinces/view');
@@ -389,6 +390,7 @@ class UsersController extends AppController {
 
 		// Ciudades y Provincias
 		$this -> Acl -> allow($group, 'controllers/Cities/getCiudades');
+		$this -> Acl -> allow($group, 'controllers/Cities/getNombre');
 		$this -> Acl -> allow($group, 'controllers/Cities/add');
 		$this -> Acl -> allow($group, 'controllers/Cities/view');
 		$this -> Acl -> allow($group, 'controllers/Cities/edit');

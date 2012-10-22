@@ -11,16 +11,16 @@ $(document).ready(function() {
 		<legend><?php echo __('Modificar Contrase&ntildea'); ?></legend>
 		<?php
 			echo $this->Form->input('pass_viejo', array(
-					'label' => 'Antigua Password',
+					'label' => 'Antigua Contraseña',
 					'type' => 'password'
 				)
 			);
 			echo $this->Form->input('password', array(
-					'label' => 'Nueva Password'
+					'label' => 'Nueva Contraseña'
 				)
 			);
 			echo $this->Form->input('password_confirm', array(
-					'label' => 'Confirmar Password', 
+					'label' => 'Confirmar Contraseña', 
 					'type' => 'password'
 				)
 			);
