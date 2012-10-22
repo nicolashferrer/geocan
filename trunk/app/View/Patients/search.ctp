@@ -21,10 +21,10 @@
 					if(data.encontre==true) {
 						//$('#elid').html(data.id);
 						$('#linkVer').html('<a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "view"));?>/' + data.id+'">Ver Ficha Paciente</a>');
-						$('#linkOms').html('<a href="<?php echo $this->Html->url(array("controller" => "oms_registers","action" => "add"));?>/' + data.id+'">Cargar Oms</a>');
+						$('#linkOms').html('<a href="<?php echo $this->Html->url(array("controller" => "oms_registers","action" => "add"));?>/' + data.id+'">Alta OMS</a>');
 						$('#resultadoOK').show();
 					} else {
-						$('#linkCrear').html('<a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "add"));?>/' + dni+'">Nuevo Paciente</a>');
+						$('#linkCrear').html('<a href="<?php echo $this->Html->url(array("controller" => "patients","action" => "add"));?>/' + dni+'">Alta Paciente</a>');
 						$('#resultadoKO').show();
 					}
 			});

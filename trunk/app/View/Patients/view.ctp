@@ -299,7 +299,7 @@
 
 		<div class="actions">
 			<ul>
-				<li><?php echo $this->Html->link(__('Nuevo OMS'), array('controller' => 'oms_registers', 'action' => 'add',$patient['Patient']['id']));?> </li>
+				<li><?php echo $this->Html->link(__('Alta OMS'), array('controller' => 'oms_registers', 'action' => 'add',$patient['Patient']['id']));?> </li>
 			</ul>
 		</div>
 	</fieldset>
