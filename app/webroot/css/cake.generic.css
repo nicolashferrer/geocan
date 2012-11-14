@@ -365,7 +365,7 @@ input, textarea {
 }
 
 .inputlargo {
-	width: 400px;
+	width: 300px;
 }
 
 .ayudaCodigos {
@@ -927,7 +927,7 @@ pre {
 .input label, .label_radio{
 	display:block;
 	float:left;
-	width:15em;
+	width:45%;
 	padding:1px;
 	color:#444444;
 	text-align:right;
