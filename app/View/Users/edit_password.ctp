@@ -2,6 +2,15 @@
 	
 $(document).ready(function() {
 	$('.password').addClass("required");
+	
+	//Contraseña antigua
+	$('#UserPassViejo').CapsLockAlert();
+	
+	//Nueva contraseña
+	$('#UserPassword').CapsLockAlert();
+	
+	//Confirmacion
+	$('#UserPasswordConfirm').CapsLockAlert();
 });
 
 </script>

@@ -70,7 +70,7 @@
 		</div>
 		
 		<div id="resultadoKO" style="display:none">
-		<p>No se encontro ningun paciente con ese n&uacute;mero de documento.</p>
+		<p>No se encontr&oacute; ning&uacute;n paciente con ese n&uacute;mero de documento.</p>
 		<div class="actions">
 			<ul>
 				<li id="linkCrear"></li>

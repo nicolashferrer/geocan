@@ -7,7 +7,8 @@
 			$( '#captcha_img' ).attr('src', '/users/securimage/' + Math.random()); // Append random number to prevent caching
 			$( '#captcha_text' ).val('');
 		});
-	
+		
+		$('#UserPassword').CapsLockAlert();
 	});
 	
 
