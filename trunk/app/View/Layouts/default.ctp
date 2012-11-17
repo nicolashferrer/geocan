@@ -41,6 +41,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 	echo $this -> Html -> css('menu');
 	echo $this -> Html -> css('jquery.alerts');
 	echo $this -> Html -> css('idtabs');
+	echo $this -> Html -> css('jquery.capsalerttipsy');
 
 	echo $this -> fetch('meta');
 	echo $this -> fetch('css');
@@ -59,6 +60,10 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 	echo $this -> Html -> script('geocan-utils');
 	echo $this -> Html -> script('jquery.alerts');
 	echo $this -> Html -> script('jquery.watermarkinput');
+	// Alerta de Mayusculas activadas
+	echo $this -> Html -> script('jquery.tipsy');
+	echo $this -> Html -> script('jquery.jccapsalert');
+	
 	?>
 		<script type="text/javascript">
 			var timer = null

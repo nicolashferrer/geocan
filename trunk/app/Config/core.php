@@ -180,6 +180,8 @@
  * The level of CakePHP security.
  */
 	Configure::write('Security.level', 'medium');
+	
+	Configure::write('Session.timeout', 5);
 
 /**
  * A random string used in security hashing methods.
