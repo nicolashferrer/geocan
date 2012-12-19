@@ -85,7 +85,7 @@
 				<?php echo h($omsRegister['OmsRegister']['fecha']); ?>
 				&nbsp;
 			</dd>
-			<dt><?php echo __('Estadio'); ?></dt>
+			<dt><?php echo __('Estadio Inicial'); ?></dt>
 			<dd>
 				<?php 
 					$estadio = $omsRegister['OmsRegister']['estadio']; 
