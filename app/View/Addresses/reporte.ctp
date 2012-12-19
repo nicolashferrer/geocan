@@ -465,7 +465,7 @@
 		contenido += '<br><b>Direcci&oacute;n:</b> ' + paciente.direccion;
 		contenido += '<br><b>OMS:</b> ' + paciente.codigo + ' - ' + paciente.descripcion;
 		contenido += '<br><b>Codificaci&oacute;n:</b> ' + codificacion;
-		contenido += '<br><b>Estadio:</b> ' + paciente.estadio;
+		contenido += '<br><b>Estadio Inicial:</b> ' + paciente.estadio;
 		contenido += '</div><div id="tab2_'+marcador.get("id")+'" style="display:none;">' + tabPreguntas + '</div>';
 		contenido += '</div>';
 		

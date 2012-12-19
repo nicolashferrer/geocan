@@ -297,7 +297,7 @@
 		$options=array('0'=>'Desconocido','1'=>'1','2'=>'2','3'=>'3','4'=>'4');
 		$attributes=array('legend'=>false,'value'=>'0','separator'=>'');	
 		echo "<div>";
-		echo "<label class='label_radio required'>Estad&iacute;o</label>";
+		echo "<label class='label_radio required'>Estad&iacute;o Inicial</label>";
 		echo $this->Form->radio('estadio',$options,$attributes);
 		echo "</div>";	
 		
