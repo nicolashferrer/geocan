@@ -509,7 +509,7 @@
 				pointArray = new google.maps.MVCArray(marcadoresHeatmap);
 				heatmap = new google.maps.visualization.HeatmapLayer({
 					data: pointArray,
-					radius: 50
+					radius: 25
 				});
 				
 				toggleCluster(false); // Activamos clustering por defecto

@@ -3,12 +3,18 @@
 -- Server version:               5.0.95 - Source distribution
 -- Server OS:                    redhat-linux-gnu
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-11-23 17:44:10
+-- Date/time:                    2012-12-19 20:00:07
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!40014 SET FOREIGN_KEY_CHECKS=0 */;
+
+-- Dumping database structure for geocan
+DROP DATABASE IF EXISTS `geocan`;
+CREATE DATABASE IF NOT EXISTS `geocan` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `geocan`;
+
 
 -- Dumping structure for table geocan.acos
 DROP TABLE IF EXISTS `acos`;
@@ -1355,9 +1361,9 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   `_update` char(2) NOT NULL default '0',
   `_delete` char(2) NOT NULL default '0',
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.aros_acos: ~113 rows (approximately)
+-- Dumping data for table geocan.aros_acos: ~115 rows (approximately)
 DELETE FROM `aros_acos`;
 /*!40000 ALTER TABLE `aros_acos` DISABLE KEYS */;
 INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`, `_delete`) VALUES
@@ -1473,7 +1479,9 @@ INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`
 	(110, 2, 125, '1', '1', '1', '1'),
 	(111, 4, 125, '1', '1', '1', '1'),
 	(112, 2, 132, '1', '1', '1', '1'),
-	(113, 4, 132, '1', '1', '1', '1');
+	(113, 4, 132, '1', '1', '1', '1'),
+	(114, 2, 134, '1', '1', '1', '1'),
+	(115, 4, 134, '1', '1', '1', '1');
 /*!40000 ALTER TABLE `aros_acos` ENABLE KEYS */;
 
 
@@ -1491,7 +1499,7 @@ CREATE TABLE IF NOT EXISTS `audits` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.audits: ~1.650 rows (approximately)
+-- Dumping data for table geocan.audits: ~1.569 rows (approximately)
 DELETE FROM `audits`;
 /*!40000 ALTER TABLE `audits` DISABLE KEYS */;
 INSERT INTO `audits` (`id`, `event`, `model`, `entity_id`, `json_object`, `description`, `source_id`, `created`) VALUES
@@ -3997,8 +4005,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `created`, `modified`, `medic_id`, `blocked`) VALUES
-	(1, 'admin', '3784364f60b0989c0059deb3210dc30966a4ec6c', 1, '2012-04-13 22:24:30', '2012-10-21 19:04:54', NULL, 0),
-	(5, 'medico', 'b646ed376d7f2834c4e98105bedfc5d2f01f07c5', 2, '2012-08-14 20:24:14', '2012-10-04 00:17:02', 2, 1),
+	(1, 'admin', '3784364f60b0989c0059deb3210dc30966a4ec6c', 1, '2012-04-13 22:24:30', '2012-07-08 19:09:17', NULL, 0),
+	(5, 'medico', '3784364f60b0989c0059deb3210dc30966a4ec6c', 2, '2012-08-14 20:24:14', '2012-10-04 00:17:02', 2, 0),
 	(6, 'ayudante', '3784364f60b0989c0059deb3210dc30966a4ec6c', 3, '2012-08-14 20:30:37', '2012-10-04 00:17:44', NULL, 0),
 	(7, 'medico2', '3784364f60b0989c0059deb3210dc30966a4ec6c', 2, '2012-08-14 20:52:00', '2012-10-04 00:17:05', 1, 0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
