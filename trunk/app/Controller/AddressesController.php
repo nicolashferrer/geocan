@@ -237,7 +237,7 @@ public $helpers = array('GoogleMapV3');
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allowedActions = array('index', 'view');
+		//$this->Auth->allowedActions = array('index', 'view');
     }
 
 }
