@@ -130,7 +130,7 @@ public $helpers = array('Tinymce');
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allowedActions = array('index', 'view');
+		//$this->Auth->allowedActions = array('index', 'view');
     }
 
 }

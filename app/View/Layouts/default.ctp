@@ -198,7 +198,8 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 		</div>
 	</div>
 			<div id="footer">
-			<b>GeoCan &copy; 2012</b>
+			<b>GeoCan &copy; 2013</b><br><br>
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es_AR"><img alt="Licencia Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br />Esta obra est&aacute; bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es_AR">Licencia Creative Commons Atribuci&oacute;n-NoComercial-CompartirIgual 3.0 Unported</a><br><br>
 		</div>
 		<script type="text/javascript">
 			var _gaq = _gaq || [];
