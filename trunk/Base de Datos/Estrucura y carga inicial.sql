@@ -1,9 +1,9 @@
 -- --------------------------------------------------------
--- Host:                         geocan.com.ar
--- Server version:               5.0.95 - Source distribution
--- Server OS:                    redhat-linux-gnu
+-- Host:                         127.0.0.1
+-- Server version:               5.1.37 - Source distribution
+-- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2013-03-06 17:51:49
+-- Date/time:                    2013-04-08 21:33:49
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -19,15 +19,15 @@ USE `geocan`;
 -- Dumping structure for table geocan.acos
 DROP TABLE IF EXISTS `acos`;
 CREATE TABLE IF NOT EXISTS `acos` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `parent_id` int(10) default NULL,
-  `model` varchar(255) default '',
-  `foreign_key` int(10) unsigned default NULL,
-  `alias` varchar(255) default '',
-  `lft` int(10) default NULL,
-  `rght` int(10) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8;
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int(10) DEFAULT NULL,
+  `model` varchar(255) DEFAULT '',
+  `foreign_key` int(10) unsigned DEFAULT NULL,
+  `alias` varchar(255) DEFAULT '',
+  `lft` int(10) DEFAULT NULL,
+  `rght` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=119 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.acos: ~118 rows (approximately)
 DELETE FROM `acos`;
@@ -36,133 +36,133 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 	(1, NULL, NULL, NULL, 'controllers', 1, 236),
 	(2, 1, NULL, NULL, 'Addresses', 2, 17),
 	(3, 2, NULL, NULL, 'index', 3, 4),
-	(4, 2, NULL, NULL, 'view', 5, 6),
-	(5, 2, NULL, NULL, 'add', 7, 8),
-	(6, 2, NULL, NULL, 'edit', 9, 10),
-	(7, 2, NULL, NULL, 'delete', 11, 12),
-	(9, 1, NULL, NULL, 'Answers', 18, 29),
-	(10, 9, NULL, NULL, 'index', 19, 20),
-	(11, 9, NULL, NULL, 'view', 21, 22),
-	(12, 9, NULL, NULL, 'add', 23, 24),
-	(13, 9, NULL, NULL, 'edit', 25, 26),
-	(14, 9, NULL, NULL, 'delete', 27, 28),
-	(16, 1, NULL, NULL, 'Cities', 30, 47),
+	(4, 2, NULL, NULL, 'reporte', 5, 6),
+	(5, 2, NULL, NULL, 'reporteBusqueda', 7, 8),
+	(6, 2, NULL, NULL, 'view', 9, 10),
+	(7, 2, NULL, NULL, 'add', 11, 12),
+	(8, 2, NULL, NULL, 'edit', 13, 14),
+	(9, 2, NULL, NULL, 'delete', 15, 16),
+	(10, 1, NULL, NULL, 'Answers', 18, 29),
+	(11, 10, NULL, NULL, 'index', 19, 20),
+	(12, 10, NULL, NULL, 'view', 21, 22),
+	(13, 10, NULL, NULL, 'add', 23, 24),
+	(14, 10, NULL, NULL, 'edit', 25, 26),
+	(15, 10, NULL, NULL, 'delete', 27, 28),
+	(16, 1, NULL, NULL, 'Audits', 30, 33),
 	(17, 16, NULL, NULL, 'index', 31, 32),
-	(18, 16, NULL, NULL, 'view', 33, 34),
-	(19, 16, NULL, NULL, 'add', 35, 36),
-	(20, 16, NULL, NULL, 'edit', 37, 38),
-	(21, 16, NULL, NULL, 'delete', 39, 40),
-	(23, 1, NULL, NULL, 'Groups', 48, 61),
-	(24, 23, NULL, NULL, 'index', 49, 50),
-	(25, 23, NULL, NULL, 'view', 51, 52),
-	(26, 23, NULL, NULL, 'add', 53, 54),
-	(27, 23, NULL, NULL, 'edit', 55, 56),
-	(28, 23, NULL, NULL, 'delete', 57, 58),
-	(30, 1, NULL, NULL, 'MedicTypes', 62, 73),
-	(31, 30, NULL, NULL, 'index', 63, 64),
-	(32, 30, NULL, NULL, 'view', 65, 66),
-	(33, 30, NULL, NULL, 'add', 67, 68),
-	(34, 30, NULL, NULL, 'edit', 69, 70),
-	(35, 30, NULL, NULL, 'delete', 71, 72),
-	(37, 1, NULL, NULL, 'Medics', 74, 87),
-	(38, 37, NULL, NULL, 'index', 75, 76),
-	(39, 37, NULL, NULL, 'view', 77, 78),
-	(40, 37, NULL, NULL, 'add', 79, 80),
-	(41, 37, NULL, NULL, 'edit', 81, 82),
-	(42, 37, NULL, NULL, 'delete', 83, 84),
-	(44, 1, NULL, NULL, 'Notes', 88, 99),
-	(45, 44, NULL, NULL, 'index', 89, 90),
-	(46, 44, NULL, NULL, 'view', 91, 92),
-	(47, 44, NULL, NULL, 'add', 93, 94),
-	(48, 44, NULL, NULL, 'edit', 95, 96),
-	(49, 44, NULL, NULL, 'delete', 97, 98),
-	(51, 1, NULL, NULL, 'OmsCodes', 100, 117),
-	(52, 51, NULL, NULL, 'index', 101, 102),
-	(53, 51, NULL, NULL, 'view', 103, 104),
-	(54, 51, NULL, NULL, 'add', 105, 106),
-	(55, 51, NULL, NULL, 'edit', 107, 108),
-	(56, 51, NULL, NULL, 'delete', 109, 110),
-	(58, 1, NULL, NULL, 'OmsRegisters', 118, 131),
-	(59, 58, NULL, NULL, 'index', 119, 120),
-	(60, 58, NULL, NULL, 'view', 121, 122),
-	(61, 58, NULL, NULL, 'add', 123, 124),
-	(62, 58, NULL, NULL, 'edit', 125, 126),
-	(63, 58, NULL, NULL, 'delete', 127, 128),
-	(65, 1, NULL, NULL, 'Pages', 132, 137),
-	(66, 65, NULL, NULL, 'display', 133, 134),
-	(68, 1, NULL, NULL, 'Patients', 138, 157),
-	(69, 68, NULL, NULL, 'index', 139, 140),
-	(70, 68, NULL, NULL, 'view', 141, 142),
-	(71, 68, NULL, NULL, 'add', 143, 144),
-	(72, 68, NULL, NULL, 'edit', 145, 146),
-	(73, 68, NULL, NULL, 'delete', 147, 148),
-	(75, 1, NULL, NULL, 'Provinces', 158, 171),
-	(76, 75, NULL, NULL, 'index', 159, 160),
-	(77, 75, NULL, NULL, 'view', 161, 162),
-	(78, 75, NULL, NULL, 'add', 163, 164),
-	(79, 75, NULL, NULL, 'edit', 165, 166),
-	(80, 75, NULL, NULL, 'delete', 167, 168),
-	(82, 1, NULL, NULL, 'Questions', 172, 185),
-	(83, 82, NULL, NULL, 'index', 173, 174),
-	(84, 82, NULL, NULL, 'view', 175, 176),
-	(85, 82, NULL, NULL, 'add', 177, 178),
-	(86, 82, NULL, NULL, 'edit', 179, 180),
-	(87, 82, NULL, NULL, 'delete', 181, 182),
-	(89, 1, NULL, NULL, 'Users', 186, 213),
-	(90, 89, NULL, NULL, 'index', 187, 188),
-	(91, 89, NULL, NULL, 'view', 189, 190),
-	(92, 89, NULL, NULL, 'add', 191, 192),
-	(93, 89, NULL, NULL, 'edit', 193, 194),
-	(94, 89, NULL, NULL, 'delete', 195, 196),
-	(95, 89, NULL, NULL, 'login', 197, 198),
-	(96, 89, NULL, NULL, 'logout', 199, 200),
-	(98, 1, NULL, NULL, 'AclExtras', 214, 215),
-	(99, 16, NULL, NULL, 'getCiudades', 41, 42),
-	(100, 23, NULL, NULL, 'build_acl', 59, 60),
-	(101, 51, NULL, NULL, 'getSigNivel', 111, 112),
-	(102, 51, NULL, NULL, 'help', 113, 114),
-	(103, 89, NULL, NULL, 'initDB', 201, 202),
-	(105, 51, NULL, NULL, 'sugerencias', 115, 116),
-	(106, 68, NULL, NULL, 'search', 149, 150),
-	(107, 68, NULL, NULL, 'result', 151, 152),
-	(108, 68, NULL, NULL, 'editAnswers', 153, 154),
-	(109, 68, NULL, NULL, 'recuperarPaciente', 155, 156),
-	(110, 89, NULL, NULL, 'editPassword', 203, 204),
-	(111, 89, NULL, NULL, 'resetPassword', 205, 206),
-	(112, 2, NULL, NULL, 'reporte', 13, 14),
-	(113, 58, NULL, NULL, 'checkDelete', 129, 130),
-	(114, 2, NULL, NULL, 'reporteBusqueda', 15, 16),
-	(115, 16, NULL, NULL, 'checkDelete', 43, 44),
-	(116, 37, NULL, NULL, 'checkDelete', 85, 86),
-	(117, 75, NULL, NULL, 'checkDelete', 169, 170),
-	(118, 89, NULL, NULL, 'captcha', 207, 208),
-	(119, 89, NULL, NULL, 'reload_captcha', 209, 210),
-	(120, 1, NULL, NULL, 'AuditLog', 216, 217),
-	(122, 1, NULL, NULL, 'Audits', 218, 221),
-	(123, 122, NULL, NULL, 'index', 219, 220),
-	(124, 1, NULL, NULL, 'Jobs', 222, 233),
-	(125, 124, NULL, NULL, 'index', 223, 224),
-	(126, 124, NULL, NULL, 'view', 225, 226),
-	(127, 124, NULL, NULL, 'add', 227, 228),
-	(128, 124, NULL, NULL, 'edit', 229, 230),
-	(129, 124, NULL, NULL, 'delete', 231, 232),
-	(130, 1, NULL, NULL, 'Filter', 234, 235),
-	(131, 89, NULL, NULL, 'cambiarBlocked', 211, 212),
-	(132, 65, NULL, NULL, 'welcome', 135, 136),
-	(133, 82, NULL, NULL, 'checkDelete', 183, 184),
-	(134, 16, NULL, NULL, 'getNombre', 45, 46);
+	(18, 1, NULL, NULL, 'Cities', 34, 51),
+	(19, 18, NULL, NULL, 'index', 35, 36),
+	(20, 18, NULL, NULL, 'view', 37, 38),
+	(21, 18, NULL, NULL, 'add', 39, 40),
+	(22, 18, NULL, NULL, 'edit', 41, 42),
+	(23, 18, NULL, NULL, 'delete', 43, 44),
+	(24, 18, NULL, NULL, 'checkDelete', 45, 46),
+	(25, 18, NULL, NULL, 'getCiudades', 47, 48),
+	(26, 18, NULL, NULL, 'getNombre', 49, 50),
+	(27, 1, NULL, NULL, 'Groups', 52, 65),
+	(28, 27, NULL, NULL, 'index', 53, 54),
+	(29, 27, NULL, NULL, 'view', 55, 56),
+	(30, 27, NULL, NULL, 'add', 57, 58),
+	(31, 27, NULL, NULL, 'edit', 59, 60),
+	(32, 27, NULL, NULL, 'delete', 61, 62),
+	(33, 27, NULL, NULL, 'build_acl', 63, 64),
+	(34, 1, NULL, NULL, 'Jobs', 66, 77),
+	(35, 34, NULL, NULL, 'index', 67, 68),
+	(36, 34, NULL, NULL, 'view', 69, 70),
+	(37, 34, NULL, NULL, 'add', 71, 72),
+	(38, 34, NULL, NULL, 'edit', 73, 74),
+	(39, 34, NULL, NULL, 'delete', 75, 76),
+	(40, 1, NULL, NULL, 'MedicTypes', 78, 89),
+	(41, 40, NULL, NULL, 'index', 79, 80),
+	(42, 40, NULL, NULL, 'view', 81, 82),
+	(43, 40, NULL, NULL, 'add', 83, 84),
+	(44, 40, NULL, NULL, 'edit', 85, 86),
+	(45, 40, NULL, NULL, 'delete', 87, 88),
+	(46, 1, NULL, NULL, 'Medics', 90, 103),
+	(47, 46, NULL, NULL, 'index', 91, 92),
+	(48, 46, NULL, NULL, 'view', 93, 94),
+	(49, 46, NULL, NULL, 'add', 95, 96),
+	(50, 46, NULL, NULL, 'edit', 97, 98),
+	(51, 46, NULL, NULL, 'delete', 99, 100),
+	(52, 46, NULL, NULL, 'checkDelete', 101, 102),
+	(53, 1, NULL, NULL, 'Notes', 104, 115),
+	(54, 53, NULL, NULL, 'index', 105, 106),
+	(55, 53, NULL, NULL, 'view', 107, 108),
+	(56, 53, NULL, NULL, 'add', 109, 110),
+	(57, 53, NULL, NULL, 'edit', 111, 112),
+	(58, 53, NULL, NULL, 'delete', 113, 114),
+	(59, 1, NULL, NULL, 'OmsCodes', 116, 133),
+	(60, 59, NULL, NULL, 'index', 117, 118),
+	(61, 59, NULL, NULL, 'view', 119, 120),
+	(62, 59, NULL, NULL, 'add', 121, 122),
+	(63, 59, NULL, NULL, 'edit', 123, 124),
+	(64, 59, NULL, NULL, 'delete', 125, 126),
+	(65, 59, NULL, NULL, 'getSigNivel', 127, 128),
+	(66, 59, NULL, NULL, 'sugerencias', 129, 130),
+	(67, 59, NULL, NULL, 'help', 131, 132),
+	(68, 1, NULL, NULL, 'OmsRegisters', 134, 147),
+	(69, 68, NULL, NULL, 'index', 135, 136),
+	(70, 68, NULL, NULL, 'view', 137, 138),
+	(71, 68, NULL, NULL, 'add', 139, 140),
+	(72, 68, NULL, NULL, 'edit', 141, 142),
+	(73, 68, NULL, NULL, 'delete', 143, 144),
+	(74, 68, NULL, NULL, 'checkDelete', 145, 146),
+	(75, 1, NULL, NULL, 'Pages', 148, 153),
+	(76, 75, NULL, NULL, 'display', 149, 150),
+	(77, 75, NULL, NULL, 'welcome', 151, 152),
+	(78, 1, NULL, NULL, 'Patients', 154, 173),
+	(79, 78, NULL, NULL, 'recuperarPaciente', 155, 156),
+	(80, 78, NULL, NULL, 'search', 157, 158),
+	(81, 78, NULL, NULL, 'result', 159, 160),
+	(82, 78, NULL, NULL, 'index', 161, 162),
+	(83, 78, NULL, NULL, 'view', 163, 164),
+	(84, 78, NULL, NULL, 'editAnswers', 165, 166),
+	(85, 78, NULL, NULL, 'add', 167, 168),
+	(86, 78, NULL, NULL, 'edit', 169, 170),
+	(87, 78, NULL, NULL, 'delete', 171, 172),
+	(88, 1, NULL, NULL, 'Provinces', 174, 187),
+	(89, 88, NULL, NULL, 'index', 175, 176),
+	(90, 88, NULL, NULL, 'view', 177, 178),
+	(91, 88, NULL, NULL, 'add', 179, 180),
+	(92, 88, NULL, NULL, 'edit', 181, 182),
+	(93, 88, NULL, NULL, 'delete', 183, 184),
+	(94, 88, NULL, NULL, 'checkDelete', 185, 186),
+	(95, 1, NULL, NULL, 'Questions', 188, 201),
+	(96, 95, NULL, NULL, 'index', 189, 190),
+	(97, 95, NULL, NULL, 'view', 191, 192),
+	(98, 95, NULL, NULL, 'add', 193, 194),
+	(99, 95, NULL, NULL, 'edit', 195, 196),
+	(100, 95, NULL, NULL, 'delete', 197, 198),
+	(101, 95, NULL, NULL, 'checkDelete', 199, 200),
+	(102, 1, NULL, NULL, 'Users', 202, 229),
+	(103, 102, NULL, NULL, 'index', 203, 204),
+	(104, 102, NULL, NULL, 'view', 205, 206),
+	(105, 102, NULL, NULL, 'add', 207, 208),
+	(106, 102, NULL, NULL, 'resetPassword', 209, 210),
+	(107, 102, NULL, NULL, 'edit', 211, 212),
+	(108, 102, NULL, NULL, 'editPassword', 213, 214),
+	(109, 102, NULL, NULL, 'delete', 215, 216),
+	(110, 102, NULL, NULL, 'login', 217, 218),
+	(111, 102, NULL, NULL, 'logout', 219, 220),
+	(112, 102, NULL, NULL, 'initDB', 221, 222),
+	(113, 102, NULL, NULL, 'captcha', 223, 224),
+	(114, 102, NULL, NULL, 'reload_captcha', 225, 226),
+	(115, 102, NULL, NULL, 'cambiarBlocked', 227, 228),
+	(116, 1, NULL, NULL, 'AclExtras', 230, 231),
+	(117, 1, NULL, NULL, 'AuditLog', 232, 233),
+	(118, 1, NULL, NULL, 'Filter', 234, 235);
 /*!40000 ALTER TABLE `acos` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.addresses
 DROP TABLE IF EXISTS `addresses`;
 CREATE TABLE IF NOT EXISTS `addresses` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `city_id` int(10) unsigned NOT NULL,
   `latitud` double NOT NULL,
   `longitud` double NOT NULL,
-  `direccion` varchar(255) default NULL,
-  PRIMARY KEY  (`id`),
+  `direccion` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `FK_address_city` (`city_id`),
   CONSTRAINT `FK_address_city` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -176,12 +176,12 @@ DELETE FROM `addresses`;
 -- Dumping structure for table geocan.answers
 DROP TABLE IF EXISTS `answers`;
 CREATE TABLE IF NOT EXISTS `answers` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `patient_id` char(36) NOT NULL,
   `question_id` int(10) unsigned NOT NULL,
   `valor` tinyint(1) NOT NULL,
-  PRIMARY KEY  (`id`),
-  KEY `FK_respuesta_paciente` USING BTREE (`patient_id`),
+  PRIMARY KEY (`id`),
+  KEY `FK_respuesta_paciente` (`patient_id`) USING BTREE,
   KEY `FK_answer_question` (`question_id`),
   CONSTRAINT `FK_answer_patient` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`),
   CONSTRAINT `FK_answer_question` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`)
@@ -196,169 +196,145 @@ DELETE FROM `answers`;
 -- Dumping structure for table geocan.aros
 DROP TABLE IF EXISTS `aros`;
 CREATE TABLE IF NOT EXISTS `aros` (
-  `id` int(10) unsigned NOT NULL auto_increment,
-  `parent_id` int(10) default NULL,
-  `model` varchar(255) default '',
-  `foreign_key` int(10) unsigned default NULL,
-  `alias` varchar(255) default '',
-  `lft` int(10) default NULL,
-  `rght` int(10) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int(10) DEFAULT NULL,
+  `model` varchar(255) DEFAULT '',
+  `foreign_key` int(10) unsigned DEFAULT NULL,
+  `alias` varchar(255) DEFAULT '',
+  `lft` int(10) DEFAULT NULL,
+  `rght` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.aros: ~14 rows (approximately)
+-- Dumping data for table geocan.aros: ~0 rows (approximately)
 DELETE FROM `aros`;
 /*!40000 ALTER TABLE `aros` DISABLE KEYS */;
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-	(1, NULL, 'Group', 1, '', 1, 4),
-	(2, NULL, 'Group', 2, '', 5, 18),
-	(3, 1, 'User', 1, '', 2, 3),
-	(4, NULL, 'Group', 3, '', 19, 28),
-	(8, 2, 'User', 5, '', 12, 13),
-	(9, 4, 'User', 6, '', 20, 21),
-	(10, 2, 'User', 7, '', 16, 17),
-	(11, 4, 'User', 8, '', 22, 23),
-	(12, 4, 'User', 9, '', 24, 25),
-	(13, 2, 'User', 10, '', 6, 7),
-	(14, 2, 'User', 11, '', 8, 9),
-	(15, 2, 'User', 5, '', 10, 11),
-	(16, 4, 'User', 6, '', 26, 27),
-	(17, 2, 'User', 7, '', 14, 15);
+	(1, NULL, 'Group', 1, '', 1, 6),
+	(2, NULL, 'Group', 2, '', 7, 8),
+	(3, NULL, 'Group', 3, '', 9, 10),
+	(4, 1, 'User', 1, '', 2, 3),
+	(5, 1, 'User', 2, '', 4, 5);
 /*!40000 ALTER TABLE `aros` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.aros_acos
 DROP TABLE IF EXISTS `aros_acos`;
 CREATE TABLE IF NOT EXISTS `aros_acos` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `aro_id` int(10) unsigned NOT NULL,
   `aco_id` int(10) unsigned NOT NULL,
-  `_create` char(2) NOT NULL default '0',
-  `_read` char(2) NOT NULL default '0',
-  `_update` char(2) NOT NULL default '0',
-  `_delete` char(2) NOT NULL default '0',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=116 DEFAULT CHARSET=utf8;
+  `_create` char(2) NOT NULL DEFAULT '0',
+  `_read` char(2) NOT NULL DEFAULT '0',
+  `_update` char(2) NOT NULL DEFAULT '0',
+  `_delete` char(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.aros_acos: ~115 rows (approximately)
+-- Dumping data for table geocan.aros_acos: ~0 rows (approximately)
 DELETE FROM `aros_acos`;
 /*!40000 ALTER TABLE `aros_acos` DISABLE KEYS */;
 INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`, `_delete`) VALUES
-	(1, 3, 1, '1', '1', '1', '1'),
-	(2, 1, 1, '1', '1', '1', '1'),
-	(3, 2, 1, '-1', '-1', '-1', '-1'),
-	(4, 2, 71, '1', '1', '1', '1'),
-	(5, 2, 72, '1', '1', '1', '1'),
-	(6, 2, 70, '1', '1', '1', '1'),
-	(7, 2, 5, '1', '1', '1', '1'),
-	(8, 2, 6, '1', '1', '1', '1'),
-	(9, 2, 47, '1', '1', '1', '1'),
-	(10, 2, 48, '1', '1', '1', '1'),
-	(11, 2, 61, '1', '1', '1', '1'),
-	(12, 2, 62, '1', '1', '1', '1'),
-	(13, 2, 12, '1', '1', '1', '1'),
-	(14, 2, 13, '1', '1', '1', '1'),
-	(15, 4, 1, '-1', '-1', '-1', '-1'),
-	(16, 2, 106, '1', '1', '1', '1'),
-	(17, 2, 108, '1', '1', '1', '1'),
-	(18, 2, 60, '1', '1', '1', '1'),
-	(19, 2, 99, '1', '1', '1', '1'),
-	(20, 2, 18, '1', '1', '1', '1'),
-	(21, 2, 77, '1', '1', '1', '1'),
-	(22, 2, 101, '1', '1', '1', '1'),
-	(23, 2, 105, '1', '1', '1', '1'),
-	(24, 2, 102, '1', '1', '1', '1'),
-	(25, 2, 109, '1', '1', '1', '1'),
-	(26, 2, 95, '1', '1', '1', '1'),
-	(27, 2, 96, '1', '1', '1', '1'),
-	(28, 4, 95, '1', '1', '1', '1'),
-	(29, 4, 96, '1', '1', '1', '1'),
-	(30, 4, 25, '1', '1', '1', '1'),
-	(31, 4, 71, '1', '1', '1', '1'),
-	(32, 4, 72, '1', '1', '1', '1'),
-	(33, 4, 70, '1', '1', '1', '1'),
-	(34, 4, 106, '1', '1', '1', '1'),
-	(35, 4, 109, '1', '1', '1', '1'),
-	(36, 4, 108, '1', '1', '1', '1'),
-	(37, 4, 61, '1', '1', '1', '1'),
-	(38, 4, 62, '1', '1', '1', '1'),
-	(39, 4, 60, '1', '1', '1', '1'),
-	(40, 4, 101, '1', '1', '1', '1'),
-	(41, 4, 105, '1', '1', '1', '1'),
-	(42, 4, 102, '1', '1', '1', '1'),
-	(43, 4, 53, '1', '1', '1', '1'),
-	(44, 4, 5, '1', '1', '1', '1'),
-	(45, 4, 4, '1', '1', '1', '1'),
-	(46, 4, 6, '1', '1', '1', '1'),
-	(47, 4, 7, '1', '1', '1', '1'),
-	(48, 4, 47, '1', '1', '1', '1'),
-	(49, 4, 48, '1', '1', '1', '1'),
-	(50, 4, 49, '1', '1', '1', '1'),
-	(51, 4, 46, '1', '1', '1', '1'),
-	(52, 4, 12, '1', '1', '1', '1'),
-	(53, 4, 13, '1', '1', '1', '1'),
-	(54, 4, 11, '1', '1', '1', '1'),
-	(55, 4, 99, '1', '1', '1', '1'),
-	(56, 4, 19, '1', '1', '1', '1'),
-	(57, 4, 18, '1', '1', '1', '1'),
-	(58, 4, 20, '1', '1', '1', '1'),
-	(59, 4, 77, '1', '1', '1', '1'),
-	(60, 2, 110, '1', '1', '1', '1'),
-	(61, 2, 91, '1', '1', '1', '1'),
-	(62, 2, 25, '1', '1', '1', '1'),
-	(63, 2, 112, '1', '1', '1', '1'),
-	(64, 2, 4, '1', '1', '1', '1'),
-	(65, 2, 49, '1', '1', '1', '1'),
-	(66, 2, 46, '1', '1', '1', '1'),
-	(67, 2, 39, '1', '1', '1', '1'),
-	(68, 2, 84, '1', '1', '1', '1'),
-	(69, 2, 11, '1', '1', '1', '1'),
-	(70, 2, 63, '1', '1', '1', '1'),
-	(71, 2, 53, '1', '1', '1', '1'),
-	(72, 4, 110, '1', '1', '1', '1'),
-	(73, 4, 91, '1', '1', '1', '1'),
-	(74, 4, 63, '1', '1', '1', '1'),
-	(75, 4, 112, '1', '1', '1', '1'),
-	(76, 4, 85, '1', '1', '1', '1'),
-	(77, 4, 86, '1', '1', '1', '1'),
-	(78, 4, 84, '1', '1', '1', '1'),
-	(79, 4, 14, '1', '1', '1', '1'),
-	(80, 4, 21, '1', '1', '1', '1'),
-	(81, 4, 39, '1', '1', '1', '1'),
-	(82, 2, 90, '1', '1', '1', '1'),
-	(83, 4, 90, '1', '1', '1', '1'),
-	(84, 2, 24, '1', '1', '1', '1'),
-	(85, 2, 32, '1', '1', '1', '1'),
-	(86, 4, 24, '1', '1', '1', '1'),
-	(87, 4, 32, '1', '1', '1', '1'),
-	(88, 2, 31, '1', '1', '1', '1'),
-	(89, 4, 31, '1', '1', '1', '1'),
-	(90, 2, 114, '1', '1', '1', '1'),
-	(91, 4, 114, '1', '1', '1', '1'),
-	(92, 1, 26, '-1', '-1', '-1', '-1'),
-	(93, 1, 27, '-1', '-1', '-1', '-1'),
-	(94, 1, 28, '-1', '-1', '-1', '-1'),
-	(95, 2, 83, '1', '1', '1', '1'),
-	(96, 2, 19, '1', '1', '1', '1'),
-	(97, 2, 76, '-1', '-1', '-1', '-1'),
-	(98, 2, 127, '1', '1', '1', '1'),
-	(99, 2, 126, '1', '1', '1', '1'),
-	(100, 2, 129, '1', '1', '1', '1'),
-	(101, 2, 128, '-1', '-1', '-1', '-1'),
-	(102, 4, 26, '-1', '-1', '-1', '-1'),
-	(103, 4, 27, '-1', '-1', '-1', '-1'),
-	(104, 4, 28, '-1', '-1', '-1', '-1'),
-	(105, 4, 76, '-1', '-1', '-1', '-1'),
-	(106, 4, 127, '1', '1', '1', '1'),
-	(107, 4, 126, '1', '1', '1', '1'),
-	(108, 4, 129, '1', '1', '1', '1'),
-	(109, 4, 128, '-1', '-1', '-1', '-1'),
-	(110, 2, 125, '1', '1', '1', '1'),
-	(111, 4, 125, '1', '1', '1', '1'),
-	(112, 2, 132, '1', '1', '1', '1'),
-	(113, 4, 132, '1', '1', '1', '1'),
-	(114, 2, 134, '1', '1', '1', '1'),
-	(115, 4, 134, '1', '1', '1', '1');
+	(1, 1, 1, '1', '1', '1', '1'),
+	(2, 1, 30, '-1', '-1', '-1', '-1'),
+	(3, 1, 31, '-1', '-1', '-1', '-1'),
+	(4, 1, 32, '-1', '-1', '-1', '-1'),
+	(5, 2, 1, '-1', '-1', '-1', '-1'),
+	(6, 2, 77, '1', '1', '1', '1'),
+	(7, 2, 108, '1', '1', '1', '1'),
+	(8, 2, 110, '1', '1', '1', '1'),
+	(9, 2, 111, '1', '1', '1', '1'),
+	(10, 2, 85, '1', '1', '1', '1'),
+	(11, 2, 86, '1', '1', '1', '1'),
+	(12, 2, 83, '1', '1', '1', '1'),
+	(13, 2, 80, '1', '1', '1', '1'),
+	(14, 2, 84, '1', '1', '1', '1'),
+	(15, 2, 79, '1', '1', '1', '1'),
+	(16, 2, 7, '1', '1', '1', '1'),
+	(17, 2, 8, '1', '1', '1', '1'),
+	(18, 2, 4, '1', '1', '1', '1'),
+	(19, 2, 5, '1', '1', '1', '1'),
+	(20, 2, 6, '1', '1', '1', '1'),
+	(21, 2, 56, '1', '1', '1', '1'),
+	(22, 2, 57, '1', '1', '1', '1'),
+	(23, 2, 58, '1', '1', '1', '1'),
+	(24, 2, 55, '1', '1', '1', '1'),
+	(25, 2, 97, '1', '1', '1', '1'),
+	(26, 2, 96, '1', '1', '1', '1'),
+	(27, 2, 13, '1', '1', '1', '1'),
+	(28, 2, 14, '1', '1', '1', '1'),
+	(29, 2, 12, '1', '1', '1', '1'),
+	(30, 2, 71, '1', '1', '1', '1'),
+	(31, 2, 72, '1', '1', '1', '1'),
+	(32, 2, 70, '1', '1', '1', '1'),
+	(33, 2, 73, '1', '1', '1', '1'),
+	(34, 2, 65, '1', '1', '1', '1'),
+	(35, 2, 66, '1', '1', '1', '1'),
+	(36, 2, 67, '1', '1', '1', '1'),
+	(37, 2, 61, '1', '1', '1', '1'),
+	(38, 2, 25, '1', '1', '1', '1'),
+	(39, 2, 26, '1', '1', '1', '1'),
+	(40, 2, 20, '1', '1', '1', '1'),
+	(41, 2, 21, '1', '1', '1', '1'),
+	(42, 2, 90, '1', '1', '1', '1'),
+	(43, 2, 89, '-1', '-1', '-1', '-1'),
+	(44, 2, 35, '1', '1', '1', '1'),
+	(45, 2, 37, '1', '1', '1', '1'),
+	(46, 2, 36, '1', '1', '1', '1'),
+	(47, 2, 39, '1', '1', '1', '1'),
+	(48, 2, 38, '-1', '-1', '-1', '-1'),
+	(49, 3, 1, '-1', '-1', '-1', '-1'),
+	(50, 3, 30, '-1', '-1', '-1', '-1'),
+	(51, 3, 31, '-1', '-1', '-1', '-1'),
+	(52, 3, 32, '-1', '-1', '-1', '-1'),
+	(53, 3, 77, '1', '1', '1', '1'),
+	(54, 3, 108, '1', '1', '1', '1'),
+	(55, 3, 110, '1', '1', '1', '1'),
+	(56, 3, 111, '1', '1', '1', '1'),
+	(57, 3, 85, '1', '1', '1', '1'),
+	(58, 3, 86, '1', '1', '1', '1'),
+	(59, 3, 83, '1', '1', '1', '1'),
+	(60, 3, 80, '1', '1', '1', '1'),
+	(61, 3, 79, '1', '1', '1', '1'),
+	(62, 3, 84, '1', '1', '1', '1'),
+	(63, 3, 71, '1', '1', '1', '1'),
+	(64, 3, 72, '1', '1', '1', '1'),
+	(65, 3, 70, '1', '1', '1', '1'),
+	(66, 3, 73, '1', '1', '1', '1'),
+	(67, 3, 65, '1', '1', '1', '1'),
+	(68, 3, 66, '1', '1', '1', '1'),
+	(69, 3, 67, '1', '1', '1', '1'),
+	(70, 3, 61, '1', '1', '1', '1'),
+	(71, 3, 7, '1', '1', '1', '1'),
+	(72, 3, 6, '1', '1', '1', '1'),
+	(73, 3, 8, '1', '1', '1', '1'),
+	(74, 3, 9, '1', '1', '1', '1'),
+	(75, 3, 4, '1', '1', '1', '1'),
+	(76, 3, 5, '1', '1', '1', '1'),
+	(77, 3, 56, '1', '1', '1', '1'),
+	(78, 3, 57, '1', '1', '1', '1'),
+	(79, 3, 58, '1', '1', '1', '1'),
+	(80, 3, 55, '1', '1', '1', '1'),
+	(81, 3, 98, '1', '1', '1', '1'),
+	(82, 3, 99, '1', '1', '1', '1'),
+	(83, 3, 97, '1', '1', '1', '1'),
+	(84, 3, 13, '1', '1', '1', '1'),
+	(85, 3, 14, '1', '1', '1', '1'),
+	(86, 3, 15, '1', '1', '1', '1'),
+	(87, 3, 12, '1', '1', '1', '1'),
+	(88, 3, 25, '1', '1', '1', '1'),
+	(89, 3, 26, '1', '1', '1', '1'),
+	(90, 3, 21, '1', '1', '1', '1'),
+	(91, 3, 20, '1', '1', '1', '1'),
+	(92, 3, 22, '1', '1', '1', '1'),
+	(93, 3, 23, '1', '1', '1', '1'),
+	(94, 3, 90, '1', '1', '1', '1'),
+	(95, 3, 89, '-1', '-1', '-1', '-1'),
+	(96, 3, 35, '1', '1', '1', '1'),
+	(97, 3, 37, '1', '1', '1', '1'),
+	(98, 3, 36, '1', '1', '1', '1'),
+	(99, 3, 39, '1', '1', '1', '1'),
+	(100, 3, 38, '-1', '-1', '-1', '-1');
 /*!40000 ALTER TABLE `aros_acos` ENABLE KEYS */;
 
 
@@ -371,14 +347,21 @@ CREATE TABLE IF NOT EXISTS `audits` (
   `entity_id` varchar(36) NOT NULL,
   `json_object` text NOT NULL,
   `description` text,
-  `source_id` varchar(255) default NULL,
+  `source_id` varchar(255) DEFAULT NULL,
   `created` datetime NOT NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.audits: ~0 rows (approximately)
 DELETE FROM `audits`;
 /*!40000 ALTER TABLE `audits` DISABLE KEYS */;
+INSERT INTO `audits` (`id`, `event`, `model`, `entity_id`, `json_object`, `description`, `source_id`, `created`) VALUES
+	('51635ec3-88a4-488a-9917-16cc7be0049b', 'CREATE', 'Group', '1', '{"Group":{"id":"1","name":"Administradores","created":"2013-04-08 21:20:19","modified":"2013-04-08 21:20:19"}}', NULL, NULL, '2013-04-08 21:20:19'),
+	('51635ec8-2584-42a8-9a77-16cc7be0049b', 'CREATE', 'Group', '2', '{"Group":{"id":"2","name":"M\\u00e9dicos","created":"2013-04-08 21:20:24","modified":"2013-04-08 21:20:24"}}', NULL, NULL, '2013-04-08 21:20:24'),
+	('51635ecd-296c-4c27-9df3-16cc7be0049b', 'CREATE', 'Group', '3', '{"Group":{"id":"3","name":"Ayudantes","created":"2013-04-08 21:20:29","modified":"2013-04-08 21:20:29"}}', NULL, NULL, '2013-04-08 21:20:29'),
+	('51635edd-8a48-497e-9544-16cc7be0049b', 'CREATE', 'User', '1', '{"User":{"id":"1","username":"admin","password":"1500c2908e71d66b19bfce3a1b4e042d4c860649","group_id":"1","created":"2013-04-08 21:20:45","modified":"2013-04-08 21:20:45","medic_id":null,"blocked":false}}', NULL, '', '2013-04-08 21:20:45'),
+	('51635f49-c234-4ef3-acc2-16cc7be0049b', 'EDIT', 'User', '1', '{"User":{"id":"1","username":"admin","password":"0580f056ee31235cace9e9e1a5dc348330cb9eb9","group_id":"1","created":"2013-04-08 21:20:45","modified":"2013-04-08 21:22:33","medic_id":null,"blocked":false}}', NULL, '1', '2013-04-08 21:22:33'),
+	('51636072-c1c8-40bd-8994-16cc7be0049b', 'CREATE', 'User', '2', '{"User":{"id":"2","username":"ndibiase","password":"1500c2908e71d66b19bfce3a1b4e042d4c860649","group_id":"1","created":"2013-04-08 21:27:30","modified":"2013-04-08 21:27:30","medic_id":null,"blocked":false}}', NULL, '1', '2013-04-08 21:27:30');
 /*!40000 ALTER TABLE `audits` ENABLE KEYS */;
 
 
@@ -390,23 +373,25 @@ CREATE TABLE IF NOT EXISTS `audit_deltas` (
   `property_name` varchar(255) NOT NULL,
   `old_value` text,
   `new_value` text,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `audit_id` (`audit_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.audit_deltas: ~0 rows (approximately)
 DELETE FROM `audit_deltas`;
 /*!40000 ALTER TABLE `audit_deltas` DISABLE KEYS */;
+INSERT INTO `audit_deltas` (`id`, `audit_id`, `property_name`, `old_value`, `new_value`) VALUES
+	('51635f49-c484-4b99-b2ca-16cc7be0049b', '51635f49-c234-4ef3-acc2-16cc7be0049b', 'password', '1500c2908e71d66b19bfce3a1b4e042d4c860649', '0580f056ee31235cace9e9e1a5dc348330cb9eb9');
 /*!40000 ALTER TABLE `audit_deltas` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.cities
 DROP TABLE IF EXISTS `cities`;
 CREATE TABLE IF NOT EXISTS `cities` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `province_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `FK_cities_provinces` (`province_id`),
   CONSTRAINT `FK_cities_provinces` FOREIGN KEY (`province_id`) REFERENCES `provinces` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -422,71 +407,66 @@ INSERT INTO `cities` (`id`, `nombre`, `province_id`) VALUES
 -- Dumping structure for table geocan.groups
 DROP TABLE IF EXISTS `groups`;
 CREATE TABLE IF NOT EXISTS `groups` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `created` datetime default NULL,
-  `modified` datetime default NULL,
-  PRIMARY KEY  (`id`)
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.groups: ~3 rows (approximately)
 DELETE FROM `groups`;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
 INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
-	(1, 'Administradores', '2012-04-13 22:22:17', '2012-04-13 22:22:17'),
-	(2, 'Médicos', '2012-04-13 22:22:42', '2012-04-15 23:01:42'),
-	(3, 'Ayudantes', '2012-04-15 23:01:27', '2012-05-26 18:24:41');
+	(1, 'Administradores', '2013-04-08 21:20:19', '2013-04-08 21:20:19'),
+	(2, 'Médicos', '2013-04-08 21:20:24', '2013-04-08 21:20:24'),
+	(3, 'Ayudantes', '2013-04-08 21:20:29', '2013-04-08 21:20:29');
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.jobs
 DROP TABLE IF EXISTS `jobs`;
 CREATE TABLE IF NOT EXISTS `jobs` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(100) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.jobs: ~5 rows (approximately)
+-- Dumping data for table geocan.jobs: ~3 rows (approximately)
 DELETE FROM `jobs`;
 /*!40000 ALTER TABLE `jobs` DISABLE KEYS */;
 INSERT INTO `jobs` (`id`, `descripcion`) VALUES
 	(1, 'No Contesta'),
 	(2, 'Desocupado'),
-	(3, 'Jubilado'),
-	(4, 'Empleado de Comercio'),
-	(5, 'Polo');
+	(3, 'Jubilado');
 /*!40000 ALTER TABLE `jobs` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.medics
 DROP TABLE IF EXISTS `medics`;
 CREATE TABLE IF NOT EXISTS `medics` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
   `matricula` varchar(100) NOT NULL,
   `medic_type_id` int(10) unsigned NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `FK_medico_tipo_medico` (`medic_type_id`),
   CONSTRAINT `FK_medic_type_medic` FOREIGN KEY (`medic_type_id`) REFERENCES `medic_types` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.medics: ~2 rows (approximately)
+-- Dumping data for table geocan.medics: ~0 rows (approximately)
 DELETE FROM `medics`;
 /*!40000 ALTER TABLE `medics` DISABLE KEYS */;
-INSERT INTO `medics` (`id`, `nombre`, `apellido`, `matricula`, `medic_type_id`) VALUES
-	(1, 'Isabel', 'Isabel', '1234567', 1),
-	(2, 'Cesar', 'Luengo', '666', 2);
 /*!40000 ALTER TABLE `medics` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.medic_types
 DROP TABLE IF EXISTS `medic_types`;
 CREATE TABLE IF NOT EXISTS `medic_types` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `tipo` varchar(255) NOT NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.medic_types: ~3 rows (approximately)
@@ -502,12 +482,12 @@ INSERT INTO `medic_types` (`id`, `tipo`) VALUES
 -- Dumping structure for table geocan.notes
 DROP TABLE IF EXISTS `notes`;
 CREATE TABLE IF NOT EXISTS `notes` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `medic_id` int(10) unsigned NOT NULL,
   `oms_register_id` int(10) unsigned NOT NULL,
   `fecha` datetime NOT NULL,
   `descripcion` text NOT NULL,
-  PRIMARY KEY  (`id`),
+  PRIMARY KEY (`id`),
   KEY `FK_nota_medico` (`medic_id`),
   KEY `FK_nota_oms` (`oms_register_id`),
   KEY `FK_notes_medic` (`medic_id`),
@@ -525,11 +505,11 @@ DELETE FROM `notes`;
 -- Dumping structure for table geocan.oms_codes
 DROP TABLE IF EXISTS `oms_codes`;
 CREATE TABLE IF NOT EXISTS `oms_codes` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `codigo` varchar(10) NOT NULL,
   `descripcion` varchar(300) NOT NULL,
-  `padre` varchar(10) default NULL,
-  PRIMARY KEY  (`id`)
+  `padre` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.oms_codes: ~197 rows (approximately)
@@ -782,16 +762,16 @@ INSERT INTO `oms_codes` (`id`, `codigo`, `descripcion`, `padre`) VALUES
 -- Dumping structure for table geocan.oms_registers
 DROP TABLE IF EXISTS `oms_registers`;
 CREATE TABLE IF NOT EXISTS `oms_registers` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `patient_id` char(36) NOT NULL,
   `medic_id` int(10) unsigned NOT NULL,
-  `address_part_id` int(10) unsigned default NULL,
-  `address_lab_id` int(10) unsigned default NULL,
+  `address_part_id` int(10) unsigned DEFAULT NULL,
+  `address_lab_id` int(10) unsigned DEFAULT NULL,
   `oms_code_id` int(10) unsigned NOT NULL,
-  `estadio` tinyint(2) unsigned default NULL,
+  `estadio` tinyint(2) unsigned DEFAULT NULL,
   `fecha` datetime NOT NULL,
-  `codificacion` varchar(30) default 'Tx;@Nx;@Mx;',
-  PRIMARY KEY  (`id`),
+  `codificacion` varchar(30) DEFAULT 'Tx;@Nx;@Mx;',
+  PRIMARY KEY (`id`),
   KEY `FK_oms_paciente` (`patient_id`),
   KEY `FK_oms_medico` (`medic_id`),
   KEY `FK_oms_direccion1` (`address_part_id`),
@@ -819,20 +799,20 @@ DELETE FROM `oms_registers`;
 DROP TABLE IF EXISTS `patients`;
 CREATE TABLE IF NOT EXISTS `patients` (
   `id` char(36) NOT NULL,
-  `iniciales` varchar(5) default NULL,
-  `fecha_nacimiento` date default NULL,
-  `sexo` enum('M','F') default NULL,
-  `address_particular_id` int(10) unsigned default NULL,
-  `address_laboral_id` int(10) unsigned default NULL,
+  `iniciales` varchar(5) DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
+  `sexo` enum('M','F') DEFAULT NULL,
+  `address_particular_id` int(10) unsigned DEFAULT NULL,
+  `address_laboral_id` int(10) unsigned DEFAULT NULL,
   `nro_documento` char(64) NOT NULL,
-  `created` datetime default NULL,
-  `modified` datetime default NULL,
-  `peso` decimal(5,2) default '0.00',
-  `altura` decimal(3,2) default '0.00',
-  `vive` tinyint(1) default '1',
-  `fecha_defuncion` date default NULL,
-  `job_id` int(10) unsigned default '1',
-  PRIMARY KEY  (`id`),
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `vive` tinyint(1) DEFAULT '1',
+  `fecha_defuncion` date DEFAULT NULL,
+  `job_id` int(10) unsigned DEFAULT '1',
+  `peso` decimal(5,2) DEFAULT '0.00',
+  `altura` decimal(3,2) DEFAULT '0.00',
+  PRIMARY KEY (`id`),
   KEY `FK_patient_address1` (`address_particular_id`),
   KEY `FK_patient_address2` (`address_laboral_id`),
   KEY `fk_patients_jobs` (`job_id`),
@@ -850,9 +830,9 @@ DELETE FROM `patients`;
 -- Dumping structure for table geocan.provinces
 DROP TABLE IF EXISTS `provinces`;
 CREATE TABLE IF NOT EXISTS `provinces` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
-  PRIMARY KEY  (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table geocan.provinces: ~24 rows (approximately)
@@ -889,13 +869,13 @@ INSERT INTO `provinces` (`id`, `nombre`) VALUES
 -- Dumping structure for table geocan.questions
 DROP TABLE IF EXISTS `questions`;
 CREATE TABLE IF NOT EXISTS `questions` (
-  `id` int(10) unsigned NOT NULL auto_increment,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(255) NOT NULL,
   `visible` tinyint(1) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.questions: ~6 rows (approximately)
+-- Dumping data for table geocan.questions: ~4 rows (approximately)
 DELETE FROM `questions`;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
 INSERT INTO `questions` (`id`, `descripcion`, `visible`) VALUES
@@ -903,38 +883,36 @@ INSERT INTO `questions` (`id`, `descripcion`, `visible`) VALUES
 	(2, '¿Bebe más de 50gr. de alcohol por día?', 1),
 	(3, '¿Realiza al menos una hora y media de ejercicio por semana?', 1),
 	(4, '¿Tiene antecedentes personales de cáncer?', 1),
-	(6, '¿Tiene antecedentes familiares de cáncer?', 1),
-	(7, 'Bebe frecuentemente u ocasionalmente 40g de alcohol/día?', 1);
+	(5, '¿Tiene antecedentes familiares de cáncer?', 1),
+	(6, 'Bebe frecuentemente u ocasionalmente 40g de alcohol/día?', 1);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 
 
 -- Dumping structure for table geocan.users
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `password` char(40) NOT NULL,
   `group_id` int(11) NOT NULL,
-  `created` datetime default NULL,
-  `modified` datetime default NULL,
-  `medic_id` int(10) unsigned default NULL,
-  `blocked` tinyint(1) unsigned default '0',
-  PRIMARY KEY  (`id`),
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `medic_id` int(10) unsigned DEFAULT NULL,
+  `blocked` tinyint(1) unsigned DEFAULT '0',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   KEY `FK_users_group` (`group_id`),
   KEY `FK_users_medic` (`medic_id`),
   CONSTRAINT `FK_users_group` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`),
   CONSTRAINT `FK_users_medic` FOREIGN KEY (`medic_id`) REFERENCES `medics` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- Dumping data for table geocan.users: ~4 rows (approximately)
+-- Dumping data for table geocan.users: ~0 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `created`, `modified`, `medic_id`, `blocked`) VALUES
-	(1, 'admin', '3784364f60b0989c0059deb3210dc30966a4ec6c', 1, '2012-04-13 22:24:30', '2012-07-08 19:09:17', NULL, 0),
-	(5, 'medico', '3784364f60b0989c0059deb3210dc30966a4ec6c', 2, '2012-08-14 20:24:14', '2012-10-04 00:17:02', 2, 0),
-	(6, 'ayudante', '3784364f60b0989c0059deb3210dc30966a4ec6c', 3, '2012-08-14 20:30:37', '2012-10-04 00:17:44', NULL, 0),
-	(7, 'medico2', '3784364f60b0989c0059deb3210dc30966a4ec6c', 2, '2012-08-14 20:52:00', '2012-10-04 00:17:05', 1, 0);
+	(1, 'admin', '0580f056ee31235cace9e9e1a5dc348330cb9eb9', 1, '2013-04-08 21:20:45', '2013-04-08 21:22:33', NULL, 0),
+	(2, 'ndibiase', '1500c2908e71d66b19bfce3a1b4e042d4c860649', 1, '2013-04-08 21:27:30', '2013-04-08 21:27:30', NULL, 0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

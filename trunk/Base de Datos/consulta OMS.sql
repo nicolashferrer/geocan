@@ -1,4 +1,0 @@
-select Patient.* from ( select p.sexo, oms.fecha as FechaOms, (DATE_FORMAT(FROM_DAYS(TO_DAYS(NOW()) - TO_DAYS(p.fecha_nacimiento)), '%Y')+0) AS edad, dir.*,oms.estadio,oms.codigo,oms.descripcion  from patients AS p join
-				(select codes.codigo,codes.descripcion,o.fecha,o.address_part_id,o.address_lab_id,o.patient_id,o.estadio from oms_registers as o
-				join oms_codes as codes on codes.id = o.oms_code_id   WHERE 1=1  GROUP BY o.patient_id) AS oms on oms.patient_id = p.id join addresses 
-				as dir on dir.id = COALESCE(oms.address_part_id,oms.address_lab_id)  LEFT JOIN answers AS a1 ON a1.patient_id = p.id AND a1.question_id = 1 LEFT JOIN answers AS a2 ON a2.patient_id = p.id AND a2.question_id = 2 LEFT JOIN answers AS a3 ON a3.patient_id = p.id AND a3.question_id = 3 LEFT JOIN answers AS a4 ON a4.patient_id = p.id AND a4.question_id = 4 WHERE 1=1  ) as Patient WHERE 1=1
