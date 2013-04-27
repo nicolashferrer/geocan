@@ -911,7 +911,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `group_id`, `created`, `modified`, `medic_id`, `blocked`) VALUES
-	(1, 'admin', '0580f056ee31235cace9e9e1a5dc348330cb9eb9', 1, '2013-04-08 21:20:45', '2013-04-08 21:22:33', NULL, 0),
+	(1, 'admin', '1500c2908e71d66b19bfce3a1b4e042d4c860649', 1, '2013-04-08 21:20:45', '2013-04-08 21:22:33', NULL, 0),
 	(2, 'ndibiase', '1500c2908e71d66b19bfce3a1b4e042d4c860649', 1, '2013-04-08 21:27:30', '2013-04-08 21:27:30', NULL, 0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
