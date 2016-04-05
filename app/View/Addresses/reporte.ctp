@@ -1,11 +1,11 @@
 <?php
 
 	echo $this->Html->script('markerclusterer_packed'); // Include jQuery library
-	echo $this->Html->css('liteaccordion');
 	echo $this->Html->script('jquery.easing.1.3');
-	echo $this->Html->script('liteaccordion.jquery');
 	echo $this->Html->script('oms.min');
 	echo $this->Html->script('jquery.idTabs.min.js');
+	echo $this->Html->script('jquery-ui-1.8.19.min');
+	echo $this->Html->css('start/jquery-ui-1.8.19.custom');
 
 ?>
 <script type="text/javascript" src="https://www.google.com/jsapi" charset="utf-8"></script>
@@ -26,7 +26,7 @@
 	var mcOptions = {gridSize: 50, maxZoom: 17};
 	var spiderOptions = { keepSpiderfied:true };
 
-	var defaultWidth=$('#content').width()-207+"px";					//Width of the map	
+	var defaultWidth="100%";					//Width of the map	
 	var defaultHeight="500px";					//Height of the map
 	var defaultZoom=14;							//Default zoom 
 	var defaultLatitude=-38.717570;		//Default latitude if the browser doesn't support localization or you don't want localization -38.717570, -62.265671
@@ -151,22 +151,17 @@
 			for (i in marcadores) {
 				marcadores[i].setMap(heatmap.getMap() ? map : null);
 			}
-			
 		}
 		
 		if (!heatmap.getMap()) {
-			
 			$("#btncalor").addClass('active');
-					
+			$("#sliders").show();
 		} else {
-			
 			$("#btncalor").removeClass('active');
-			//markerCluster = new MarkerClusterer(map, marcadores,mcOptions);
-			
+			$("#sliders").hide();
 		} 
 		
 		if (markerCluster) {
-
     		$("#btncluster").removeClass('active');
 	        		
     		markerCluster.clearMarkers();
@@ -189,6 +184,7 @@
 		if (heatmap.getMap()) {
 			$("#btncalor").removeClass('active');
 			heatmap.setMap(null);
+			$("#sliders").hide();
 		}
 		
 		// Si no esta activado, lo activo
@@ -292,7 +288,7 @@
 
         var options = {
           title: 'Edades y Generos ( Total = ' + total + ' )',
-          height: 300,
+          height: 300,width:1200,
           hAxis: {title: 'Rango de Edades en Años', titleTextStyle: {color: 'black'}}
         };
 
@@ -509,7 +505,8 @@
 				pointArray = new google.maps.MVCArray(marcadoresHeatmap);
 				heatmap = new google.maps.visualization.HeatmapLayer({
 					data: pointArray,
-					radius: 25
+					radius: 60,
+					opacity:1
 				});
 				
 				toggleCluster(false); // Activamos clustering por defecto
@@ -553,15 +550,6 @@
 				return false;
 			}
 		});
-
-
-		$("#accordion").liteAccordion({
-			theme : 'basic',                        // basic, dark, light, or stitch  
-			headerWidth: 48,
-			slideSpeed : 800,                       // slide animation speed 
-			containerWidth : $('#content').width()-15,                   // fixed (px)  
-            containerHeight : 500,                  // fixed (px)  
-		});//El Acordion
 	
 		$(".btn-slide").click(function(){
 		  $("#panel").slideToggle("slow");
@@ -573,11 +561,36 @@
 		$('#ConsultaReporteForm').submit(function(event) {
 			
 			buscar();
-			$("#panel").slideToggle("slow");
+			$('#tabs').tabs('select', 0);
 			return false;
-		}
-		);
+		});
+
+		$( "#radio-slider" ).slider({
+			orientation: "vertical",
+			range: "min",
+			min: 0,
+			max: 100,
+			step: 10,
+			value: 60,
+			slide: function( event, ui ) {
+				heatmap.set('radius', ui.value);
+			}
+		});
 		
+		$( "#opacity-slider" ).slider({
+			orientation: "vertical",
+			range: "min",
+			min: 0,
+			max: 1,
+			step: 0.1,
+			value: 1,
+			slide: function( event, ui ) {
+				heatmap.set('opacity', ui.value );
+			}
+		});		
+		
+		$( "#tabs" ).tabs();
+	
 		buscar(); //Disparamos una bsqueda global al entrar a la pantalla
 
 	});
@@ -628,10 +641,52 @@
 </script>
 
 
-
-<div id="toppanel">
-	<div id="panel"> <!--the hidden panel -->
-		<div class="patients form">
+<div id="tabs" class="tabs">
+  <ul>
+    <li><a href="#tabs-1">Mapa</a></li>
+    <li><a href="#tabs-2">Estad&iacute;sticas de G&eacute;nero, Edad y Estado</a></li>
+    <li><a href="#tabs-3">Estad&iacute;sticas de informaci&oacute;n de Pacientes</a></li>
+	<li class="filter-tab"><a href="#tabs-4">Filtros</a></li>
+  </ul>
+  <div id="tabs-1" style="height:500px;">
+		<div id="map_canvas"></div>
+		<div id="opcionbutton"> 
+				<div id="sliders" style="display:none">
+					<table style="width:100%;">
+					<tr>
+						<td style="text-align:center;width:50%;">
+							<span>Radio</span>
+						</td>	
+						<td style="text-align:center;width:50%;">
+							<span>Opacidad</span>
+						</td>
+					</tr>
+					<tr style="background-color:transparent;">
+						<td style="width:50%;">
+							<div id="radio-slider" style="height:200px;position:relative;margin:auto;"></div>
+						<td style="width:50%;">
+							<div id="opacity-slider" style="height:200px;position:relative;margin:auto;"></div>
+						</td>	
+					</tr>
+					</table>
+				</div>
+				<a id="btncalor" class="button long" href="JavaScript:toggleHeatmap();">Mapa de Calor</a>
+				<a id="btncluster" class="button long" href="JavaScript:toggleCluster(false);">Agrupado</a>
+		</div>
+  </div>
+  <div id="tabs-2" style="height:500px;">
+			<div>
+				<div id="div_estadisticas" style="width:1200px;"></div>
+				<div style='float:left;' id="div_torta"></div>
+				<div style='float:left;' id="div_torta2"></div>
+				<div style='float:left;' id="div_torta4"></div>
+			</div>
+  </div>
+  <div id="tabs-3" style="height:500px;">
+			<div id="div_preguntas"></div>
+  </div>
+  <div id="tabs-4" style="height:500px;overflow: scroll;">
+	<div class="patients form">
 			<?php echo $this->Form->create('Consulta');?>
 			<fieldset>
 					<legend><?php echo __('Informaci&oacute;n B&aacute;sica'); ?></legend>
@@ -706,49 +761,5 @@
 			</fieldset>
 			<?php echo $this->Form->end(__('Consultar'));?>
 		</div>
-	</div>
-	<!--
-	<p class="slide"><a href="#" class="btn-slide">Filtros</a></p> 
-	-->
-	
-	<!-- The tab on top -->	
-	<div class="tab">
-		<ul class="login">
-			<li class="left">&nbsp;</li>
-			<li id="toggle">
-				<a href="#" class="btn-slide">Filtros</a>	
-			</li>
-			<li class="right">&nbsp;</li>
-		</ul> 
-	</div> <!-- / top -->
-	
-</div>
-<div id="accordion" style="margin-top:42px;">
-	<ol>
-		<li>
-			<h2><span>Mapa</span></h2>
-			<div id="map_canvas" style="margin-left:48px;"></div>
-			<div id="opcionbutton"> 
-				<a id="btncalor" class="button long" href="JavaScript:toggleHeatmap();">Mapa de Calor</a><a id="btncluster" class="button long" href="JavaScript:toggleCluster(false);">Agrupado</a>
-			</div>		
-		</li>
-		<li>
-			<h2><span>Estad&iacute;sticas de G&eacute;nero, Edad y Estado</span></h2>
-			<div>
-				<div id="div_estadisticas"></div>
-				<div style='float:left;' id="div_torta"></div>
-				<div style='float:left;' id="div_torta2"></div>
-				<div style='float:left;' id="div_torta4"></div>
-			</div>
-		</li>
-		<li>
-			<h2><span>Estad&iacute;sticas de informaci&oacute;n de Pacientes</span></h2>
-			<div>
-				<div id="div_preguntas"></div>
-			</div>
-		</li>
-	</ol>
-	<noscript>
-		<p>Por favor habilite JavaScript para una experiencia completa.</p>
-	</noscript>
+  </div>
 </div>

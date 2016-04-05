@@ -1110,14 +1110,30 @@ fieldset fieldset legend {
 }
 
 #opcionbutton {
-    width: 140px; 
-    position: relative;/*this will position the div according to its parent div "map"*/
-    top: 440px;
-    left: 40px !important; /*place the div wherever you want with top and left px, em or % values*/
+    width: 170px; 
+    position: absolute;/*this will position the div according to its parent div "map"*/
+    bottom: 40px;
+    left: 29px !important; /*place the div wherever you want with top and left px, em or % values*/
 
- /*Use this for your trasparency*/
-    background-color: transparent;
+    background-color: rgba(250, 250, 250, 0.7);
+
+	border: 1px solid #f6931f;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-moz-box-shadow: 2px 2px 3px #666;
+	-webkit-box-shadow: 2px 2px 3px #666;
+	box-shadow: 2px 2px 3px #666;
+	padding-top: 5px;
+	outline: 0;
     }
+#sliders{
+	position: relative;/*this will position the div according to its parent div "opcionbutton"*/
+}
+
+.filter-tab{
+	float:right!important;
+}
 
     a.button {
 	text-decoration: none;
