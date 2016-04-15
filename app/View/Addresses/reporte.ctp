@@ -8,15 +8,20 @@
 	echo $this->Html->css('start/jquery-ui-1.8.19.custom');
 
 ?>
-<script type="text/javascript" src="https://www.google.com/jsapi" charset="utf-8"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   
 <script>
 	
 	var codigosAgregados = 0;
 	
 	var marcadorCount = 0; // Contador global para asignar un ID unico a los marcadores
-	
-	google.load("visualization", "1", {packages:["corechart"]});
+
+	// Load the Visualization API and the piechart package.
+    google.charts.load('current', {'packages':['corechart']});
+    //google.charts.load("visualization", "1", {'packages':['corechart']});
+    
+
 	var pointarray, heatmap;//2
 	var map; // EL MAPA!!
 	var mapaux;
@@ -55,9 +60,11 @@
 		iaux++;
 		
 	<?php
+
 	endforeach;	
 			
 	?>
+
 	//Estadisticas
 	var total = 0;
 	var hombres = 0;
@@ -94,7 +101,6 @@
 		pvivo = 0;
 		
 	}
-	//2
 
 	function crearMapa() {
 	
@@ -117,9 +123,7 @@
 		spider=new OverlappingMarkerSpiderfier(map,spiderOptions);
 		spider.addListener('spiderfy', function(aranias,noaranias) {
 			mostrarIW = false; 
-			//alert(aranias[0]); 
-			//debugger;
-			});
+		});
 		
 	}
 	
@@ -213,8 +217,7 @@
 	
 	    	}
     	}
-    	
-     }
+    }
 	
 	function agregarEstadisticas(paciente) {
 	
@@ -246,33 +249,50 @@
 			pvivo++;
 		}
 		
-		
-		var iaux = 0;
+		var jaux = 0;
 		var pactual;
-		for (iaux=0;iaux<cantpreguntas;iaux++) {
-			pactual = preguntasactivas[iaux][0]; // Obtengo el ID de la pregunta que tengo guardada en el arreglo de preguntas
+		for (jaux=0;jaux<cantpreguntas;jaux++) {
+			pactual = preguntasactivas[jaux][0]; // Obtengo el ID de la pregunta que tengo guardada en el arreglo de preguntas
 			
 			if (paciente[pactual] == null) { // NO CONTESTA
-				respuestas[iaux][2]++;
+				respuestas[jaux][2]++;
 			} else if (paciente[pactual] == true) { // SI
-				respuestas[iaux][0]++;
+				respuestas[jaux][0]++;
 			} else { // NO
-				respuestas[iaux][1]++;
+				respuestas[jaux][1]++;
 			}
 		}
-		
-		//alert(paciente['1']);
 		
 		edades[pos][genero]++;
 		
 		total++;
 	
 	}
-	
+
 	function dibujarEstadisticas() {
-	
-        var data = google.visualization.arrayToDataTable([
-          ['Rango', 'Hombres', 'Mujeres', 'SubTotal'],
+
+		// Set a callback to run when the Google Visualization API is loaded.
+    	google.charts.setOnLoadCallback(chart1);
+		google.charts.setOnLoadCallback(chart2);
+		google.charts.setOnLoadCallback(chart3);
+		google.charts.setOnLoadCallback(chart4);
+        
+        // Generacion dinamica de los graficos de las respuestas!
+        for (iaux=0;iaux<cantpreguntas;iaux++) {
+        	
+    		google.charts.setOnLoadCallback(chartAux(iaux));
+        }
+	}
+
+	function chart1(){
+
+    	// Create our data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Rango');
+        data.addColumn('number', 'Hombres');
+        data.addColumn('number', 'Mujeres');
+        data.addColumn('number', 'Subtotal');
+        data.addRows([
           ['< 10', edades[0][0], edades[0][1], edades[0][0] + edades[0][1] ],
           ['10-19', edades[1][0], edades[1][1], edades[1][0] + edades[1][1] ],
           ['20-29', edades[2][0], edades[2][1], edades[2][0] + edades[2][1] ],
@@ -286,20 +306,36 @@
           ['> 100', edades[10][0], edades[10][1], edades[10][0] + edades[10][1] ]
         ]);
 
+        // Set chart options
         var options = {
           title: 'Edades y Generos ( Total = ' + total + ' )',
-          height: 300,width:1200,
+          height: 300,width: 1146,
           hAxis: {title: 'Rango de Edades en Años', titleTextStyle: {color: 'black'}}
         };
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('div_estadisticas'));
+        // Instantiate and draw our chart, passing in some options.
+        chart = new google.visualization.ColumnChart(document.getElementById('div_estadisticas'));
         chart.draw(data, options);
-		
-		
-		var data2 = google.visualization.arrayToDataTable([
-          ['Genero', 'Cantidad'],
-          ['Hombres', hombres],
-          ['Mujeres', mujeres]
+
+        //Haciendo responsive el chart
+        /*$(chartContainer).find('svg')
+        	.attr("viewBox","0 0 1146 300")
+        	.attr("preserveAspectRatio","xMidYMid meet")
+        	.attr("width","100%")
+        	.attr("height","100%");
+
+    	$(chartContainer).find('svg').parent().parent().css("width","100%");*/
+	}
+
+	function chart2(){
+
+        // Create our data table.
+        var data2 = new google.visualization.DataTable();
+        data2.addColumn('string', 'Genero');
+        data2.addColumn('number', 'Cantidad');
+        data2.addRows([
+          ['Hombres', hombres ],
+          ['Mujeres', mujeres ]
         ]);
 
         var options2 = {
@@ -309,10 +345,14 @@
 
         var chart2 = new google.visualization.PieChart(document.getElementById('div_torta'));
         chart2.draw(data2, options2);
-        
-        
-        var data3 = google.visualization.arrayToDataTable([
-          ['Rango de Edad', 'Total'],
+	}
+
+	function chart3(){
+          
+        var data3 = new google.visualization.DataTable();
+        data3.addColumn('string', 'Rango de Edad');
+        data3.addColumn('number', 'Total');
+        data3.addRows([
           ['< 10' , edades[0][0] + edades[0][1] ],
           ['10-19', edades[1][0] + edades[1][1] ],
           ['20-29', edades[2][0] + edades[2][1] ],
@@ -333,9 +373,14 @@
 
         var chart3 = new google.visualization.PieChart(document.getElementById('div_torta2'));
         chart3.draw(data3, options3);
-        
-        var data4 = google.visualization.arrayToDataTable([
-          ['Estado', 'Total'],
+	}
+
+	function chart4(){
+
+        var data4 = new google.visualization.DataTable();
+        data4.addColumn('string', 'Estado');
+        data4.addColumn('number', 'Total');
+        data4.addRows([
           ['Vivo' , pvivo ],
           ['Fallecido', pfallecido ]
         ]);
@@ -347,33 +392,38 @@
 
         var chart4 = new google.visualization.PieChart(document.getElementById('div_torta4'));
         chart4.draw(data4, options4);
-        
-        // Generacion dinamica de los graficos de las respuestas!
-        for (iaux=0;iaux<cantpreguntas;iaux++) {
-        	
-        	// #1 - Creo el div dinamicanete donde va a ir el grafico
-        	$("#div_preguntas").append("<div style='float:left;' id='div_pregunta_"+ iaux +"'></div>");
-        	
-        	// #2 - Genero la tabla de google con los datos de una respuesta
-        	var dataaux = google.visualization.arrayToDataTable([
-          		['Respuesta', 'Cantidad'],
-          		['Si', respuestas[iaux][0]],
-          		['No', respuestas[iaux][1]],
-          		['No Contesta', respuestas[iaux][2]]
-        	]);
-        	
-        	// #3 - Genero las opciones para el chart
-        	var optionsaux = {
-				title: '' + preguntasactivas[iaux][1] + ' ( Total = ' + total + ' )',
+	}
+
+	function chartAux(i){
+
+		// #1 - Creo el div dinamicanete donde va a ir el grafico
+    	$("#div_preguntas").append("<div style='float:left;' id='div_pregunta_"+ i +"'></div>");
+
+    	var callback = function() {
+
+    		var index = i;
+    		// #2 - Genero la tabla de google con los datos de una respuesta
+	    	var dataaux = new google.visualization.DataTable();
+	        dataaux.addColumn('string', 'Respuesta');
+	        dataaux.addColumn('number', 'Total');
+	        dataaux.addRows([
+	          	['Si', respuestas[index][0]],
+		  		['No', respuestas[index][1]],
+		  		['No Contesta', respuestas[index][2]]
+	        ]);
+	    	
+	    	// #3 - Genero las opciones para el chart
+	    	var optionsaux = {
+				title: '' + preguntasactivas[index][1] + ' ( Total = ' + total + ' )',
 				width: 400
-       		 };
-       		 
-       		 // #4 Creo el grafico....
-       		var chartaux = new google.visualization.PieChart(document.getElementById('div_pregunta_'+iaux));
-       		
-        	chartaux.draw(dataaux, optionsaux);
-        	
-        }
+	   		 };
+	   		 
+	   		 // #4 Creo el grafico....
+	   		var _chartaux = new google.visualization.PieChart(document.getElementById('div_pregunta_'+index));
+	    	_chartaux.draw(dataaux, optionsaux);		
+    	}
+
+    	return callback;
 	}
 
 	function agregarMarcador(paciente) {
@@ -676,7 +726,7 @@
   </div>
   <div id="tabs-2" style="height:500px;">
 			<div>
-				<div id="div_estadisticas" style="width:1200px;"></div>
+				<div id="div_estadisticas" style="width:100%; height:300px;"></div>
 				<div style='float:left;' id="div_torta"></div>
 				<div style='float:left;' id="div_torta2"></div>
 				<div style='float:left;' id="div_torta4"></div>
