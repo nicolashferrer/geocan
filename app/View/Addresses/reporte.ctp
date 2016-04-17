@@ -10,6 +10,8 @@
 ?>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   
 <script>
 	
@@ -308,23 +310,15 @@
 
         // Set chart options
         var options = {
-          title: 'Edades y Generos ( Total = ' + total + ' )',
-          height: 300,width: 1146,
-          hAxis: {title: 'Rango de Edades en Años', titleTextStyle: {color: 'black'}}
+          	'title': 'Edades y Generos ( Total = ' + total + ' )',
+          	'hAxis': {'title': 'Rango de Edades en Años', 'titleTextStyle': {'color': 'black'}},
+          	'width':'100%',
+			'height':300
         };
 
         // Instantiate and draw our chart, passing in some options.
         chart = new google.visualization.ColumnChart(document.getElementById('div_estadisticas'));
         chart.draw(data, options);
-
-        //Haciendo responsive el chart
-        /*$(chartContainer).find('svg')
-        	.attr("viewBox","0 0 1146 300")
-        	.attr("preserveAspectRatio","xMidYMid meet")
-        	.attr("width","100%")
-        	.attr("height","100%");
-
-    	$(chartContainer).find('svg').parent().parent().css("width","100%");*/
 	}
 
 	function chart2(){
@@ -339,8 +333,9 @@
         ]);
 
         var options2 = {
-			title: 'Generos ( Total = ' + total + ' )',
-			width: 400
+			'title': 'Generos ( Total = ' + total + ' )',
+			'width':'100%',
+			'height':300
         };
 
         var chart2 = new google.visualization.PieChart(document.getElementById('div_torta'));
@@ -367,8 +362,9 @@
         ]);
         
         var options3 = {
-			title: 'Pacientes por Rango de Edades ( Total = ' + total + ' )',
-			width: 400
+			'title': 'Pacientes por Rango de Edades ( Total = ' + total + ' )',
+			'width':'100%',
+			'height':300
         };
 
         var chart3 = new google.visualization.PieChart(document.getElementById('div_torta2'));
@@ -386,8 +382,9 @@
         ]);
         
         var options4 = {
-			title: 'Estado de Pacientes ( Total = ' + total + ' )',
-			width: 400
+			'title': 'Estado de Pacientes ( Total = ' + total + ' )',
+			'width':'100%',
+			'height':300
         };
 
         var chart4 = new google.visualization.PieChart(document.getElementById('div_torta4'));
@@ -397,7 +394,7 @@
 	function chartAux(i){
 
 		// #1 - Creo el div dinamicanete donde va a ir el grafico
-    	$("#div_preguntas").append("<div style='float:left;' id='div_pregunta_"+ i +"'></div>");
+    	$("#div_preguntas").append("<div class='col-md-4 col-sm-6 col-xs-12' id='div_pregunta_"+ i +"'></div>");
 
     	var callback = function() {
 
@@ -414,8 +411,9 @@
 	    	
 	    	// #3 - Genero las opciones para el chart
 	    	var optionsaux = {
-				title: '' + preguntasactivas[index][1] + ' ( Total = ' + total + ' )',
-				width: 400
+				'title': '' + preguntasactivas[index][1] + ' ( Total = ' + total + ' )',
+				'width':'100%',
+				'height':300
 	   		 };
 	   		 
 	   		 // #4 Creo el grafico....
@@ -515,22 +513,20 @@
 		contenido += '</div><div id="tab2_'+marcador.get("id")+'" style="display:none;">' + tabPreguntas + '</div>';
 		contenido += '</div>';
 		
-		
-		
 							
 		var ventana = new google.maps.InfoWindow({
 	            content: contenido
 	    });
 		
 		google.maps.event.addListener(marcador, 'click', function() {
-							if (mostrarIW) {
-								ventana.open(map,marcador);
-								$("#iwtabs_"+marcador.get("id")+" ul").idTabs('tab1_'+marcador.get("id"));
-							}
+			if (mostrarIW) {
+				ventana.open(map,marcador);
+				$("#iwtabs_"+marcador.get("id")+" ul").idTabs('tab1_'+marcador.get("id"));
+			}
 							
-							mostrarIW = true;
+			mostrarIW = true;
 							
-		        			});
+		});
 	}
 
 	function buscar() {
@@ -639,7 +635,15 @@
 			}
 		});		
 		
-		$( "#tabs" ).tabs();
+		$("#tabs").tabs();
+
+		$("#tabs .tab-elem").click(function(){
+			dibujarEstadisticas();
+		});
+
+		$(window).resize(function(){
+		  dibujarEstadisticas();
+		});
 	
 		buscar(); //Disparamos una bsqueda global al entrar a la pantalla
 
@@ -658,8 +662,6 @@
 		var contenido = $("#sugerencias").val();
 		var id = $('#OmsCodeId').val();
 		
-		
-		
 		if (id!=null && id!="" && !existeOms(id)) {
 			
 			codigosAgregados++;
@@ -672,35 +674,29 @@
 			$('#listaCodigos').append(item);
 		
 		}
-		
 	}
 	
 	function existeOms(id) {
-		
 		return $('div[value='+id+']').attr("value") != null;
-
 	}
 	
 	function removerOms() {
-		
-	 	$(".ayudaCodigosItem.selected").remove();	
-		
+	 	$(".ayudaCodigosItem.selected").remove();
 	}
 	
-	
-</script>
-
+</script>	
 
 <div id="tabs" class="tabs">
   <ul>
-    <li><a href="#tabs-1">Mapa</a></li>
-    <li><a href="#tabs-2">Estad&iacute;sticas de G&eacute;nero, Edad y Estado</a></li>
-    <li><a href="#tabs-3">Estad&iacute;sticas de informaci&oacute;n de Pacientes</a></li>
-	<li class="filter-tab"><a href="#tabs-4">Filtros</a></li>
+    <li><a class="tab-elem" href="#tabs-1">Mapa</a></li>
+    <li><a class="tab-elem" href="#tabs-2">Estad&iacute;sticas de G&eacute;nero, Edad y Estado</a></li>
+    <li><a class="tab-elem" href="#tabs-3">Estad&iacute;sticas de informaci&oacute;n de Pacientes</a></li>
+	<li class="filter-tab "><a class="tab-elem" href="#tabs-4">Filtros</a></li>
   </ul>
-  <div id="tabs-1" style="height:500px;">
-		<div id="map_canvas"></div>
-		<div id="opcionbutton"> 
+  <div id="tabs-1">
+  	<div class="row">
+		<div id="map_canvas" class="col-md-12"></div>
+		<div id="opcionbutton" class="col-md-12"> 
 				<div id="sliders" style="display:none">
 					<table style="width:100%;">
 					<tr>
@@ -714,6 +710,7 @@
 					<tr style="background-color:transparent;">
 						<td style="width:50%;">
 							<div id="radio-slider" style="height:200px;position:relative;margin:auto;"></div>
+						</td>
 						<td style="width:50%;">
 							<div id="opacity-slider" style="height:200px;position:relative;margin:auto;"></div>
 						</td>	
@@ -723,20 +720,22 @@
 				<a id="btncalor" class="button long" href="JavaScript:toggleHeatmap();">Mapa de Calor</a>
 				<a id="btncluster" class="button long" href="JavaScript:toggleCluster(false);">Agrupado</a>
 		</div>
+	</div>
   </div>
-  <div id="tabs-2" style="height:500px;">
-			<div>
-				<div id="div_estadisticas" style="width:100%; height:300px;"></div>
-				<div style='float:left;' id="div_torta"></div>
-				<div style='float:left;' id="div_torta2"></div>
-				<div style='float:left;' id="div_torta4"></div>
-			</div>
+  <div id="tabs-2">
+	 <div class="row">
+		<div id="div_estadisticas" class="col-md-12"></div>
+		<div id="div_torta" class="col-md-4 col-sm-6 col-xs-12"></div>
+		<div id="div_torta2" class="col-md-4 col-sm-6 col-xs-12"></div>
+		<div id="div_torta4" class="col-md-4 col-sm-6 col-xs-12"></div>
+	 </div>
   </div>
-  <div id="tabs-3" style="height:500px;">
-			<div id="div_preguntas"></div>
+  <div id="tabs-3">
+	 <div id="div_preguntas" class="row"></div>
   </div>
-  <div id="tabs-4" style="height:500px;overflow: scroll;">
-	<div class="patients form">
+  <div id="tabs-4">
+  	 <div class="row">
+		<div class="patients form col-md-12">
 			<?php echo $this->Form->create('Consulta');?>
 			<fieldset>
 					<legend><?php echo __('Informaci&oacute;n B&aacute;sica'); ?></legend>
@@ -811,5 +810,6 @@
 			</fieldset>
 			<?php echo $this->Form->end(__('Consultar'));?>
 		</div>
+	 </div>
   </div>
 </div>
