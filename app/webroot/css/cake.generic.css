@@ -1110,7 +1110,7 @@ fieldset fieldset legend {
 }
 
 #opcionbutton {
-    width: 170px; 
+    width: 150px; 
     position: absolute;/*this will position the div according to its parent div "map"*/
     bottom: 40px;
     left: 29px !important; /*place the div wherever you want with top and left px, em or % values*/
@@ -1133,6 +1133,9 @@ fieldset fieldset legend {
 
 .filter-tab{
 	float:right!important;
+	background: #e14f1c url("start/images/ui-bg_gloss-wave_45_e14f1c_500x100.png") repeat-x scroll 50% top !important;
+    border: 1px solid #cd0a0a !important;
+    color: #ffffff;
 }
 
     a.button {

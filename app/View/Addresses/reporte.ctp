@@ -22,18 +22,18 @@
     //google.charts.load("visualization", "1", {'packages':['corechart']});
     
 
-	var pointarray, heatmap;//2
-	var map; // EL MAPA!!
+	var pointarray, heatmap;
+	var map;
 	var mapaux;
 	
-	var markerCluster = null; // MAPA DE CLUSTERS
+	var markerCluster = null; // Mapa de clusters
 
 	var mcOptions = {gridSize: 50, maxZoom: 17};
 	var spiderOptions = { keepSpiderfied:true };
 
 	var defaultWidth="100%";					//Width of the map	
 	var defaultHeight="500px";					//Height of the map
-	var defaultZoom=14;							//Default zoom 
+	var defaultZoom=12;							//Default zoom 
 	var defaultLatitude=-38.717570;		//Default latitude if the browser doesn't support localization or you don't want localization -38.717570, -62.265671
 	var defaultLongitude=-62.265671;	//Default longitude if the browser doesn't support localization or you don't want localization
 	
@@ -144,7 +144,6 @@
 		if (heatmap!=null) {
 			heatmap.setMap(null);}
 					marcadoresHeatmap=[];
-		
 	}
 	
 	function toggleHeatmap() {
@@ -425,7 +424,9 @@
 
     	return callback;
 	}
-
+	
+	var infoWindow = new google.maps.InfoWindow();
+	
 	function agregarMarcador(paciente) {
 		
 		marcadorCount++;
@@ -515,22 +516,17 @@
 		contenido += '</div><div id="tab2_'+marcador.get("id")+'" style="display:none;">' + tabPreguntas + '</div>';
 		contenido += '</div>';
 		
-		
-		
-							
-		var ventana = new google.maps.InfoWindow({
-	            content: contenido
-	    });
-		
 		google.maps.event.addListener(marcador, 'click', function() {
-							if (mostrarIW) {
-								ventana.open(map,marcador);
-								$("#iwtabs_"+marcador.get("id")+" ul").idTabs('tab1_'+marcador.get("id"));
-							}
-							
-							mostrarIW = true;
-							
-		        			});
+			if (mostrarIW) {
+				infoWindow.close();
+				infoWindow.setContent(contenido);
+				infoWindow.open(map,marcador);
+				$("#iwtabs_"+marcador.get("id")+" ul").idTabs('tab1_'+marcador.get("id"));
+			}
+			
+			mostrarIW = true;
+			
+			});
 	}
 
 	function buscar() {
@@ -567,6 +563,26 @@
 		});
 	}
 	
+	function changeGradient() {
+	  var gradient = [
+		'rgba(0, 255, 255, 0)',
+		'rgba(0, 255, 255, 1)',
+		'rgba(0, 191, 255, 1)',
+		'rgba(0, 127, 255, 1)',
+		'rgba(0, 63, 255, 1)',
+		'rgba(0, 0, 255, 1)',
+		'rgba(0, 0, 223, 1)',
+		'rgba(0, 0, 191, 1)',
+		'rgba(0, 0, 159, 1)',
+		'rgba(0, 0, 127, 1)',
+		'rgba(63, 0, 91, 1)',
+		'rgba(127, 0, 63, 1)',
+		'rgba(191, 0, 31, 1)',
+		'rgba(255, 0, 0, 1)'
+	  ];
+	  heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+	}
+
 
 	$(document).ready(function(){
 		
@@ -578,18 +594,14 @@
 		a = $('#sugerencias').autocomplete(options);
 		
 		$(".ayudaCodigosItem").live( "click", function() { 
-			
-		//Despinto todos los items
-		$(".ayudaCodigosItem").removeClass('selected');
-		
-		//Pinto el item clickeado
-		$(this).addClass('selected');
-		
-		} )
+			//Despinto todos los items
+			$(".ayudaCodigosItem").removeClass('selected');
+			//Pinto el item clickeado
+			$(this).addClass('selected');
+		});
 	
 		$('#ConsultaFechaFrom').datepicker(datepicker_config);
 		$('#ConsultaFechaTo').datepicker(datepicker_config); 
-		
 		
 		$("#sugerencias").keyup(function(event){
 			
@@ -657,9 +669,7 @@
 			
 		var contenido = $("#sugerencias").val();
 		var id = $('#OmsCodeId').val();
-		
-		
-		
+
 		if (id!=null && id!="" && !existeOms(id)) {
 			
 			codigosAgregados++;
@@ -672,31 +682,25 @@
 			$('#listaCodigos').append(item);
 		
 		}
-		
 	}
 	
 	function existeOms(id) {
-		
 		return $('div[value='+id+']').attr("value") != null;
-
 	}
 	
 	function removerOms() {
-		
 	 	$(".ayudaCodigosItem.selected").remove();	
-		
 	}
-	
 	
 </script>
 
 
 <div id="tabs" class="tabs">
   <ul>
-    <li><a href="#tabs-1">Mapa</a></li>
-    <li><a href="#tabs-2">Estad&iacute;sticas de G&eacute;nero, Edad y Estado</a></li>
-    <li><a href="#tabs-3">Estad&iacute;sticas de informaci&oacute;n de Pacientes</a></li>
-	<li class="filter-tab"><a href="#tabs-4">Filtros</a></li>
+    <li><a href="#tabs-1"><span class="ui-icon ui-icon-pin-s" style="display: inline-block;"></span> Mapa</a></li>
+    <li><a href="#tabs-2"><span class="ui-icon ui-icon-heart" style="display: inline-block;"></span> Estad&iacute;sticas de G&eacute;nero, Edad y Estado</a></li>
+    <li><a href="#tabs-3"><span class="ui-icon ui-icon-person" style="display: inline-block;"></span> Estad&iacute;sticas de informaci&oacute;n de Pacientes</a></li>
+	<li class="filter-tab"><a href="#tabs-4"><span class="ui-icon ui-icon-search" style="display: inline-block;"></span> Filtros</a></li>
   </ul>
   <div id="tabs-1" style="height:500px;">
 		<div id="map_canvas"></div>
@@ -719,6 +723,7 @@
 						</td>	
 					</tr>
 					</table>
+					<a id="btngradiente" class="button long" href="JavaScript:changeGradient();">Gradiente</a>
 				</div>
 				<a id="btncalor" class="button long" href="JavaScript:toggleHeatmap();">Mapa de Calor</a>
 				<a id="btncluster" class="button long" href="JavaScript:toggleCluster(false);">Agrupado</a>
