@@ -1,6 +1,6 @@
 <?php
 
-	echo $this->Html->script('markerclusterer_packed'); // Include jQuery library
+	//echo $this->Html->script('markerclusterer_packed');
 	echo $this->Html->script('jquery.easing.1.3');
 	echo $this->Html->script('oms.min');
 	echo $this->Html->script('jquery.idTabs.min.js');
@@ -8,7 +8,7 @@
 	echo $this->Html->css('start/jquery-ui-1.8.19.custom');
 
 ?>
-
+<script type="text/javascript" src="https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/src/markerclusterer.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -30,7 +30,7 @@
 	
 	var markerCluster = null; // Mapa de clusters
 
-	var mcOptions = {gridSize: 50, maxZoom: 17};
+	var mcOptions = {gridSize: 50, maxZoom: 17, imagePath: 'https://cdn.rawgit.com/googlemaps/js-marker-clusterer/gh-pages/images/m' };
 	var spiderOptions = { keepSpiderfied:true };
 
 	var defaultWidth="100%";					//Width of the map	

@@ -1125,6 +1125,7 @@ fieldset fieldset legend {
 	-webkit-box-shadow: 2px 2px 3px #666;
 	box-shadow: 2px 2px 3px #666;
 	padding-top: 5px;
+	padding-left: 0 !important;
 	outline: 0;
     }
 #sliders{
