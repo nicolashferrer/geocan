@@ -270,17 +270,19 @@
 	
 	}
 
-	function dibujarEstadisticas() {
+	function dibujarEstadisticasTab2() {
 
 		// Set a callback to run when the Google Visualization API is loaded.
     	google.charts.setOnLoadCallback(chart1);
 		google.charts.setOnLoadCallback(chart2);
 		google.charts.setOnLoadCallback(chart3);
 		google.charts.setOnLoadCallback(chart4);
+	}
+
+	function dibujarEstadisticasTab3() {
         
         // Generacion dinamica de los graficos de las respuestas!
         for (iaux=0;iaux<cantpreguntas;iaux++) {
-        	
     		google.charts.setOnLoadCallback(chartAux(iaux));
         }
 	}
@@ -553,10 +555,7 @@
 					opacity:1
 				});
 				
-				toggleCluster(false); // Activamos clustering por defecto
-					
-				//heatmap.setMap(map);
-				dibujarEstadisticas();
+				toggleCluster(false); // Activamos clustering por defecto		
 				
 		});
 	}
@@ -651,12 +650,18 @@
 		
 		$("#tabs").tabs();
 
-		$("#tabs .tab-elem").click(function(){
-			dibujarEstadisticas();
+		$("#tabs .tab2").click(function(){
+			dibujarEstadisticasTab2();
 		});
 
+		$("#tabs .tab3").click(function(){
+			dibujarEstadisticasTab3();
+		});
+
+
 		$(window).resize(function(){
-		  dibujarEstadisticas();
+		  dibujarEstadisticasTab2();
+		  dibujarEstadisticasTab3();
 		});
 	
 		buscar(); //Disparamos una bsqueda global al entrar a la pantalla
@@ -704,8 +709,8 @@
 <div id="tabs" class="tabs">
   <ul>
     <li><a href="#tabs-1"><span class="ui-icon ui-icon-pin-s" style="display: inline-block;"></span> Mapa</a></li>
-    <li><a href="#tabs-2"><span class="ui-icon ui-icon-heart" style="display: inline-block;"></span> Estad&iacute;sticas de G&eacute;nero, Edad y Estado</a></li>
-    <li><a href="#tabs-3"><span class="ui-icon ui-icon-person" style="display: inline-block;"></span> Estad&iacute;sticas de informaci&oacute;n de Pacientes</a></li>
+    <li><a href="#tabs-2" class="tab2"><span class="ui-icon ui-icon-heart" style="display: inline-block;"></span> Estad&iacute;sticas de G&eacute;nero, Edad y Estado</a></li>
+    <li><a href="#tabs-3" class="tab3"><span class="ui-icon ui-icon-person" style="display: inline-block;"></span> Estad&iacute;sticas de informaci&oacute;n de Pacientes</a></li>
 	<li class="filter-tab"><a href="#tabs-4"><span class="ui-icon ui-icon-search" style="display: inline-block;"></span> Filtros</a></li>
   </ul>
   <div id="tabs-1">
