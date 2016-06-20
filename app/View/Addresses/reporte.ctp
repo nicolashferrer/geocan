@@ -12,6 +12,8 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
   
 <script>
 	
@@ -712,10 +714,18 @@
 
 <div id="tabs" class="tabs">
   <ul>
-    <li><a href="#tabs-1"><span class="ui-icon ui-icon-pin-s" style="display: inline-block;"></span> Mapa</a></li>
-    <li><a href="#tabs-2" class="tab2"><span class="ui-icon ui-icon-heart" style="display: inline-block;"></span> Estad&iacute;sticas de G&eacute;nero, Edad y Estado</a></li>
-    <li><a href="#tabs-3" class="tab3"><span class="ui-icon ui-icon-person" style="display: inline-block;"></span> Estad&iacute;sticas de informaci&oacute;n de Pacientes</a></li>
-	<li class="filter-tab"><a href="#tabs-4"><span class="ui-icon ui-icon-search" style="display: inline-block;"></span> Filtros</a></li>
+    <li title="Mapa">
+    	<a href="#tabs-1"><span class="ui-icon ui-icon-pin-s"></span> Mapa</a>
+	</li>
+    <li title="Estad&iacute;sticas de G&eacute;nero, Edad y Estado">
+    	<a href="#tabs-2" class="tab2"><span class="ui-icon ui-icon-heart"></span> Estad&iacute;sticas de G&eacute;nero, Edad y Estado</a>
+	</li>
+    <li title="Estad&iacute;sticas de informaci&oacute;n de Pacientes">
+		<a href="#tabs-3" class="tab3"><span class="ui-icon ui-icon-person"></span> Estad&iacute;sticas de informaci&oacute;n de Pacientes</a>
+	</li>
+	<li title="Filtros" class="filter-tab">
+		<a href="#tabs-4"><span class="ui-icon ui-icon-search"></span> Filtros</a>
+	</li>
   </ul>
   <div id="tabs-1">
   	<div class="row">

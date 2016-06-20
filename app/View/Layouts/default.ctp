@@ -136,7 +136,7 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 	<div id="container">
 		<div id="header"><div id="loadingDiv"><?php echo $this->Html->image('loading.gif', array('alt' => 'Cargando...'))?></div>
 			<div id="header-logo"><a href="<?php echo $this -> Html -> url(array("controller" => "pages", "action" => "welcome")); ?>"><?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?></a></div>
-			<div id="menucontainer" style="z-index: 2;">
+			<div id="menucontainer">
 				<ul id="nav">
 					<?php if ($isAuthed) {  ?>
 					<li class="top"><a href="<?php echo $this -> Html -> url(array("controller" => "pages", "action" => "welcome")); ?>" class="top_link"><span>Inicio</span></a></li>
