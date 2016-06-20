@@ -23,7 +23,7 @@ body {
 	font-family:'Arial';
 	font-size:100%;
 	margin: 0;
-	
+	min-width: 732px;
 	width:100%;
 	
 	font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
@@ -115,7 +115,9 @@ p {
 	height:36px;
 	background-image:url('menu/fondomenu.gif');
 	background-repeat:repeat-x;
+	z-index: 2;
 }
+
 
 
 
@@ -1137,6 +1139,20 @@ fieldset fieldset legend {
 	background: #e14f1c url("start/images/ui-bg_gloss-wave_45_e14f1c_500x100.png") repeat-x scroll 50% top !important;
     border: 1px solid #cd0a0a !important;
     color: #ffffff;
+}
+
+#tabs ul li span {
+	display: inline-block;
+}
+
+#tabs ul li {
+	max-width: 30%;
+}
+
+#tabs ul li a {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
     a.button {

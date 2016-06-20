@@ -120,6 +120,16 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 
 				$("#pepito").html("Contenido dinamico");
 			}
+
+	        $(window).scroll(function () {
+	            if ($(window).scrollTop() > $('#header-logo').height()) {
+	                $('#menucontainer').css('position', 'fixed').css('top', '0');
+	                $('#content').css('margin-top','40px');
+	            } else {
+	                $('#menucontainer').css('position', 'relative');
+	                $('#content').css('margin-top','0');
+	            }
+	         });
 	</script>
 </head>
 <body onLoad="fechaActual()">
