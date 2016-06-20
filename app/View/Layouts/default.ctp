@@ -120,13 +120,23 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 
 				$("#pepito").html("Contenido dinamico");
 			}
+
+	        $(window).scroll(function () {
+	            if ($(window).scrollTop() > $('#header-logo').height()) {
+	                $('#menucontainer').css('position', 'fixed').css('top', '0');
+	                $('#content').css('margin-top','40px');
+	            } else {
+	                $('#menucontainer').css('position', 'relative');
+	                $('#content').css('margin-top','0');
+	            }
+	         });
 	</script>
 </head>
 <body onLoad="fechaActual()">
 	<div id="container">
 		<div id="header"><div id="loadingDiv"><?php echo $this->Html->image('loading.gif', array('alt' => 'Cargando...'))?></div>
 			<div id="header-logo"><a href="<?php echo $this -> Html -> url(array("controller" => "pages", "action" => "welcome")); ?>"><?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?></a></div>
-			<div id="menucontainer">
+			<div id="menucontainer" style="z-index: 2;">
 				<ul id="nav">
 					<?php if ($isAuthed) {  ?>
 					<li class="top"><a href="<?php echo $this -> Html -> url(array("controller" => "pages", "action" => "welcome")); ?>" class="top_link"><span>Inicio</span></a></li>
