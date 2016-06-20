@@ -336,7 +336,8 @@
         var options2 = {
 			'title': 'Generos ( Total = ' + total + ' )',
 			'width':'100%',
-			'height':300
+			'height':300,
+			'is3D': true,
         };
 
         var chart2 = new google.visualization.PieChart(document.getElementById('div_torta'));
@@ -365,7 +366,8 @@
         var options3 = {
 			'title': 'Pacientes por Rango de Edades ( Total = ' + total + ' )',
 			'width':'100%',
-			'height':300
+			'height':300,
+			'is3D': true,
         };
 
         var chart3 = new google.visualization.PieChart(document.getElementById('div_torta2'));
@@ -385,7 +387,8 @@
         var options4 = {
 			'title': 'Estado de Pacientes ( Total = ' + total + ' )',
 			'width':'100%',
-			'height':300
+			'height':300,
+			'is3D': true,
         };
 
         var chart4 = new google.visualization.PieChart(document.getElementById('div_torta4'));
@@ -414,7 +417,8 @@
 	    	var optionsaux = {
 				'title': '' + preguntasactivas[index][1] + ' ( Total = ' + total + ' )',
 				'width':'100%',
-				'height':300
+				'height':300,
+				'is3D': true,
 	   		 };
 	   		 
 	   		 // #4 Creo el grafico....
@@ -741,6 +745,12 @@
 				<a id="btncalor" class="button long" href="JavaScript:toggleHeatmap();">Mapa de Calor</a>
 				<a id="btncluster" class="button long" href="JavaScript:toggleCluster(false);">Agrupado</a>
 		</div>
+	</div>
+	<div clas="row">
+		<div class="col-md-12" id="paises_div"></div>
+	</div>
+	<div clas="row">
+		<div class="col-md-12" id="regiones_div"></div>
 	</div>
   </div>
   <div id="tabs-2">
