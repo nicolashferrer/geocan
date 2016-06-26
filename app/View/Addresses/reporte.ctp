@@ -23,8 +23,6 @@
 
 	// Load the Visualization API and the piechart package.
     google.charts.load('current', {'packages':['corechart']});
-    //google.charts.load("visualization", "1", {'packages':['corechart']});
-    
 
 	var pointarray, heatmap;
 	var map;
@@ -552,8 +550,6 @@
 					agregarEstadisticas(option.Patient);
 				});
 				
-			//	markerCluster = new MarkerClusterer(map, null,mcOptions);
-			//	markerCluster.addMarkers(marcadores);
 				pointArray = new google.maps.MVCArray(marcadoresHeatmap);
 				heatmap = new google.maps.visualization.HeatmapLayer({
 					data: pointArray,
@@ -840,10 +836,8 @@
 					echo "<div>";
 					echo "<label class='label_radio'>".$question['Question']['descripcion']."</label>";
 					echo $this->Form->hidden('Answer.'.$i.'.question_id', array('value' => $question['Question']['id']));
-					//echo $this->Form->hidden('Answer.'.$i.'patient_id', array('value' => ''));
 					echo $this->Form->radio('Answer.'.$i.'.valor',$opciones,$atributos);
 					echo "</div>";
-					//echo '<br>';
 					$i++;
 				
 				endforeach;	
