@@ -6,6 +6,7 @@
 	echo $this->Html->script('jquery.idTabs.min.js');
 	echo $this->Html->script('jquery-ui-1.8.19.min');
 	echo $this->Html->css('start/jquery-ui-1.8.19.custom');
+	echo $this->Html->script('jquery.autocomplete-min');
 
 ?>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
