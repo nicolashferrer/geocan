@@ -826,22 +826,23 @@
 			</fieldset>
 			<fieldset>
 				<legend><?php echo __('Informaci&oacute;n Adicional'); ?></legend>
-				<?php
-				
-				$i = 0;
-				foreach ($questions as $question):
-				
-					$opciones=array('1'=>'Si','0'=>'No',''=>'Indistinto');
-					$atributos=array('legend'=>false,'value'=>'','separator'=>'');
-					echo "<div>";
-					echo "<label class='label_radio'>".$question['Question']['descripcion']."</label>";
-					echo $this->Form->hidden('Answer.'.$i.'.question_id', array('value' => $question['Question']['id']));
-					echo $this->Form->radio('Answer.'.$i.'.valor',$opciones,$atributos);
-					echo "</div>";
-					$i++;
-				
-				endforeach;	
-				?>
+				<div class="row">
+					<?php
+					$i = 0;
+					foreach ($questions as $question):
+					
+						$opciones=array('1'=>'Si','0'=>'No',''=>'Indistinto');
+						$atributos=array('legend'=>false,'value'=>'','separator'=>'');
+						echo "<div class='col-md-12'>";
+						echo "<label class='label_radio'>".$question['Question']['descripcion']."</label>";
+						echo $this->Form->hidden('Answer.'.$i.'.question_id', array('value' => $question['Question']['id']));
+						echo $this->Form->radio('Answer.'.$i.'.valor',$opciones,$atributos);
+						echo "</div>";
+						$i++;
+					
+					endforeach;	
+					?>
+				</div>
 			</fieldset>
 			<?php echo $this->Form->end(__('Consultar'));?>
 		</div>
