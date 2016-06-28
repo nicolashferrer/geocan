@@ -88,7 +88,7 @@ function direccionGoogle(data, tipoDireccion) {
 
 		var cantidad = data[0].formatted_address.split(",");
 
-		if ((cantidad.length > 3) && ($.trim(cantidad[1]) == miciudad)) {// Resultado "valido"... si es menor o igual a 3... me mando a cualquier lugar
+		if ((cantidad.length > 3) && (($.trim(cantidad[1])).includes(miciudad))) {// Resultado "valido"... si es menor o igual a 3... me mando a cualquier lugar
 
 			var lat = data[0].geometry.location.lat();
 			var lng = data[0].geometry.location.lng();
