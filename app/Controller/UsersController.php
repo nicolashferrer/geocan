@@ -40,8 +40,8 @@ class UsersController extends AppController {
 		if (!empty($this -> data)) {
 
 			$this -> User -> create();
-			$this -> request -> data['User']['password'] = 'geocan2012';
-			$this -> request -> data['User']['password_confirm'] = 'geocan2012';
+			$this -> request -> data['User']['password'] = 'geocan2016';
+			$this -> request -> data['User']['password_confirm'] = 'geocan2016';
 
 			if ($this -> request -> data['Control']['conMedico'] == 'false') {
 				unset($this -> request -> data['User']['medic_id']);
@@ -73,8 +73,8 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Usuario no v�lido'));
 		} else {
 			$this -> request -> data['User']['id'] = $id;
-			$this -> request -> data['User']['password'] = 'geocan2012';
-			$this -> request -> data['User']['password_confirm'] = 'geocan2012';
+			$this -> request -> data['User']['password'] = 'geocan2016';
+			$this -> request -> data['User']['password_confirm'] = 'geocan2016';
 
 			//debug($this->request->data);
 			//exit();
@@ -464,7 +464,7 @@ class UsersController extends AppController {
 			
 	    $this->User->read(null, $id);
 	    $this->User->set('blocked', $valor);
-	 //	$this->User->blocked = $valor;
+	 	//	$this->User->blocked = $valor;
 	    $this->User->save(null,false);
 		if ($valor == 1) {
 			$this -> Session -> setFlash(__('Usuario deshabilitado correctamente.', null), 'default', array('class' => 'success'));	

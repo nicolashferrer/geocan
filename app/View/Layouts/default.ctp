@@ -19,7 +19,7 @@
 $cakeDescription = __d('cake_dev', 'GeoCan');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100%;">
 <head>
 	<?php echo $this -> Html -> charset('utf-8'); ?>
 	<title>
@@ -132,10 +132,11 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 	         });
 	</script>
 </head>
-<body onLoad="fechaActual()">
-	<div id="container">
+<body onLoad="fechaActual()" style="height: 100%;">
+	<div id="container" style="height: auto !important; margin: 0 auto -99px; min-height: 100%;">
 		<div id="header"><div id="loadingDiv"><?php echo $this->Html->image('loading.gif', array('alt' => 'Cargando...'))?></div>
-			<div id="header-logo"><a href="<?php echo $this -> Html -> url(array("controller" => "pages", "action" => "welcome")); ?>"><?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?></a></div>
+			<div id="header-logo"><a href="<?php echo $this -> Html -> url(array("controller" => "pages", "action" => "welcome")); ?>"><?php echo $this->Html->image('logo.jpg', array('alt' => 'GeoCan'))?></a>
+			</div>
 			<div id="menucontainer">
 				<ul id="nav">
 					<?php if ($isAuthed) {  ?>
@@ -198,7 +199,6 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 				</ul>
 			</div>		
 		</div>
-		</div>
 		<div id="content">
 
 			<?php echo $this -> Session -> flash(); ?>
@@ -206,9 +206,11 @@ $cakeDescription = __d('cake_dev', 'GeoCan');
 
 			<?php echo $this -> fetch('content'); ?>			
 		</div>
+		<div style="height: 99px;"></div>
+	</div>
 	</div>
 			<div id="footer">
-			<b>GeoCan &copy; 2013</b><br><br>
+			<b>GeoCan &copy; 2016</b><br><br>
 			<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es_AR"><img alt="Licencia Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br />Esta obra est&aacute; bajo una <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/deed.es_AR">Licencia Creative Commons Atribuci&oacute;n-NoComercial-CompartirIgual 3.0 Unported</a><br><br>
 		</div>
 		<script type="text/javascript">
